@@ -1,0 +1,35 @@
+{
+  "version": "0.1.0-*",
+  "description": "Stormpath .NET Configuration Loader",
+  "authors": [ "Nate Barbettini" ],
+  "tags": ["stormpath"],
+  "projectUrl": "https://github.com/stormpath/stormpath-dotnet-config",
+  "licenseUrl": "https://github.com/stormpath/stormpath-dotnet-config/blob/master/LICENSE",
+  "tooling": {
+    "defaultNamespace": "Stormpath.Configuration.Test"
+  },
+
+  "dependencies": {
+    "xunit": "2.1.0",
+    "xunit.runner.dnx": "2.1.0-rc1-build204",
+    "Stormpath.Configuration": "0.1.0-*",
+    "FluentAssertions": "4.2.1"
+  },
+
+  "commands": {
+    "test": "xunit.runner.dnx"
+  },
+
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Collections": "4.0.11-beta-23516",
+        "System.Linq": "4.0.1-beta-23516",
+        "System.Runtime": "4.0.21-beta-23516",
+        "System.Threading": "4.0.11-beta-23516"
+      }
+    }
+  }
+  }
