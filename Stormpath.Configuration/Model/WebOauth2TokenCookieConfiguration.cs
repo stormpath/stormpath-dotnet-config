@@ -1,4 +1,4 @@
-﻿// <copyright file="StormpathConfiguration.cs" company="Stormpath, Inc.">
+﻿// <copyright file="WebOauth2TokenCookieConfiguration.cs" company="Stormpath, Inc.">
 // Copyright (c) 2016 Stormpath, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,22 +14,18 @@
 // limitations under the License.
 // </copyright>
 
-using Stormpath.Configuration.Loader;
-using Stormpath.Configuration.Model;
-
-namespace Stormpath.Configuration
+namespace Stormpath.Configuration.Model
 {
-    public sealed class StormpathConfiguration
+    public sealed class WebOauth2TokenCookieConfiguration
     {
-        public ClientConfiguration Client { get; set; } = new ClientConfiguration();
+        public string Name { get; set; }
 
-        public ApplicationConfiguration Application { get; set; } = new ApplicationConfiguration();
+        public bool HttpOnly { get; set; }
 
-        public WebConfiguration Web { get; set; } = new WebConfiguration();
+        public bool? Secure { get; set; }
 
-        public static StormpathConfiguration Load()
-        {
-            return new ConfigurationLoader().Load();
-        }
+        public string Path { get; set; }
+
+        public string Domain { get; set; }
     }
 }

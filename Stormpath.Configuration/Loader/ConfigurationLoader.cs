@@ -14,22 +14,18 @@
 // limitations under the License.
 // </copyright>
 
-using Stormpath.Configuration.Loader;
-using Stormpath.Configuration.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Stormpath.Configuration
+namespace Stormpath.Configuration.Loader
 {
-    public sealed class StormpathConfiguration
+    internal sealed class ConfigurationLoader
     {
-        public ClientConfiguration Client { get; set; } = new ClientConfiguration();
-
-        public ApplicationConfiguration Application { get; set; } = new ApplicationConfiguration();
-
-        public WebConfiguration Web { get; set; } = new WebConfiguration();
-
-        public static StormpathConfiguration Load()
+        public StormpathConfiguration Load()
         {
-            return new ConfigurationLoader().Load();
+            throw new NotImplementedException();
         }
     }
 }

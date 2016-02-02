@@ -1,4 +1,4 @@
-﻿// <copyright file="StormpathConfiguration.cs" company="Stormpath, Inc.">
+﻿// <copyright file="ClientCacheManagerConfiguration.cs" company="Stormpath, Inc.">
 // Copyright (c) 2016 Stormpath, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,22 +14,16 @@
 // limitations under the License.
 // </copyright>
 
-using Stormpath.Configuration.Loader;
-using Stormpath.Configuration.Model;
+using System.Collections.Generic;
 
-namespace Stormpath.Configuration
+namespace Stormpath.Configuration.Model
 {
-    public sealed class StormpathConfiguration
+    public sealed class ClientCacheManagerConfiguration
     {
-        public ClientConfiguration Client { get; set; } = new ClientConfiguration();
+        public int? DefaultTtl { get; set; }
 
-        public ApplicationConfiguration Application { get; set; } = new ApplicationConfiguration();
+        public int? DefaultTti { get; set; }
 
-        public WebConfiguration Web { get; set; } = new WebConfiguration();
-
-        public static StormpathConfiguration Load()
-        {
-            return new ConfigurationLoader().Load();
-        }
+        public Dictionary<string, ClientCacheConfiguration> Caches { get; set; } = new Dictionary<string, ClientCacheConfiguration>();
     }
 }

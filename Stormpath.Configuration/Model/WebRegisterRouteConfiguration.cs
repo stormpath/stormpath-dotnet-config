@@ -1,4 +1,4 @@
-﻿// <copyright file="StormpathConfiguration.cs" company="Stormpath, Inc.">
+﻿// <copyright file="WebRegisterRouteConfiguration.cs" company="Stormpath, Inc.">
 // Copyright (c) 2016 Stormpath, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,22 +14,14 @@
 // limitations under the License.
 // </copyright>
 
-using Stormpath.Configuration.Loader;
-using Stormpath.Configuration.Model;
-
-namespace Stormpath.Configuration
+namespace Stormpath.Configuration.Model
 {
-    public sealed class StormpathConfiguration
+    public sealed class WebRegisterRouteConfiguration : WebRouteWithNextConfigurationBase
     {
-        public ClientConfiguration Client { get; set; } = new ClientConfiguration();
+        public bool AutoLogin { get; set; }
 
-        public ApplicationConfiguration Application { get; set; } = new ApplicationConfiguration();
+        public WebRegisterRouteFormConfiguration Form { get; set; } = new WebRegisterRouteFormConfiguration();
 
-        public WebConfiguration Web { get; set; } = new WebConfiguration();
-
-        public static StormpathConfiguration Load()
-        {
-            return new ConfigurationLoader().Load();
-        }
+        public string View { get; set; }
     }
 }

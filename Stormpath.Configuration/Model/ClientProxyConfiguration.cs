@@ -1,4 +1,4 @@
-﻿// <copyright file="StormpathConfiguration.cs" company="Stormpath, Inc.">
+﻿// <copyright file="ClientProxyConfiguration.cs" company="Stormpath, Inc.">
 // Copyright (c) 2016 Stormpath, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,22 +14,16 @@
 // limitations under the License.
 // </copyright>
 
-using Stormpath.Configuration.Loader;
-using Stormpath.Configuration.Model;
-
-namespace Stormpath.Configuration
+namespace Stormpath.Configuration.Model
 {
-    public sealed class StormpathConfiguration
+    public sealed class ClientProxyConfiguration
     {
-        public ClientConfiguration Client { get; set; } = new ClientConfiguration();
+        public int? Port { get; set; }
 
-        public ApplicationConfiguration Application { get; set; } = new ApplicationConfiguration();
+        public string Host { get; set; }
 
-        public WebConfiguration Web { get; set; } = new WebConfiguration();
+        public string Username { get; set; }
 
-        public static StormpathConfiguration Load()
-        {
-            return new ConfigurationLoader().Load();
-        }
+        public string Password { get; set; }
     }
 }
