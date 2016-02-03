@@ -35,7 +35,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
                 throw new ArgumentNullException(nameof(configurationBuilder));
             }
 
-            return AddPropertiesFile(configurationBuilder, path, optional: false, prefix: null);
+            return AddPropertiesFile(configurationBuilder, path, optional: false, root: null);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
         /// <param name="path">Absolute path or path relative to <see cref="IConfigurationBuilder.BasePath"/> of
         /// <paramref name="configurationBuilder"/>.</param>
         /// <param name="optional">Determines if loading the configuration provider is optional.</param>
-        /// <param name="prefix">A string to prepend to any discovered key.</param>
+        /// <param name="root">A root element to prepend to any discovered key.</param>
         /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
         /// <exception cref="ArgumentException">If <paramref name="path"/> is null or empty.</exception>
         /// <exception cref="FileNotFoundException">If <paramref name="optional"/> is <c>false</c> and the file cannot
@@ -54,7 +54,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
             this IConfigurationBuilder configurationBuilder,
             string path,
             bool optional,
-            string prefix)
+            string root)
         {
             if (configurationBuilder == null)
             {
@@ -73,7 +73,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
                 throw new FileNotFoundException(string.Format(Resources.Error_FileNotFound, fullPath), fullPath);
             }
 
-            configurationBuilder.Add(new PropertiesConfigurationProvider(fullPath, optional: optional, root: prefix));
+            configurationBuilder.Add(new PropertiesConfigurationProvider(fullPath, optional: optional, root: root));
             return configurationBuilder;
         }
     }

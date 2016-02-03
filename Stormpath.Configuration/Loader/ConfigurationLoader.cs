@@ -56,10 +56,10 @@ namespace Stormpath.Configuration.Loader
         private IConfigurationRoot CompileFromSources()
         {
             var builder = new ConfigurationBuilder()
-                .AddPropertiesFile(ResolveHomePath($"{stormpathDirectory}apiKey.properties"), optional: true, prefix: "client")
+                .AddPropertiesFile(ResolveHomePath($"{stormpathDirectory}apiKey.properties"), optional: true, root: "client")
                 .AddJsonFile(ResolveHomePath($"{stormpathDirectory}stormpath.json"), optional: true)
                 //.AddYamlFile($"{dotStormpathPath}stormpath.yaml", optional: true)
-                .AddPropertiesFile("apiKey.properties", optional: true, prefix: "client")
+                .AddPropertiesFile("apiKey.properties", optional: true, root: "client")
                 .AddJsonFile("stormpath.json", optional: true)
                 //.AddYamlFile("stormpath.yaml", optional: true)
                 //.AddMatchingEnvironmentVariables(environment, match: Default.Configuration)
