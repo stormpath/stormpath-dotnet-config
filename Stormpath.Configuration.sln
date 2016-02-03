@@ -7,6 +7,10 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Stormpath.Configuration", "
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Stormpath.Configuration.Test", "Stormpath.Configuration.Test\Stormpath.Configuration.Test.xproj", "{C818234B-15E4-45B5-AAA0-BB93C95319D3}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Contrib.Stormpath.PropertiesFile", "Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile\Contrib.Stormpath.PropertiesFile.xproj", "{1EB64C2F-E6F8-4AD4-92C1-7CE4146A631B}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Contrib.Stormpath.PropertiesFile.Test", "Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile.Test\Contrib.Stormpath.PropertiesFile.Test.xproj", "{DC4E4239-C8D8-4923-B965-0637F1DA3209}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{C818234B-15E4-45B5-AAA0-BB93C95319D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C818234B-15E4-45B5-AAA0-BB93C95319D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C818234B-15E4-45B5-AAA0-BB93C95319D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EB64C2F-E6F8-4AD4-92C1-7CE4146A631B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EB64C2F-E6F8-4AD4-92C1-7CE4146A631B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EB64C2F-E6F8-4AD4-92C1-7CE4146A631B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EB64C2F-E6F8-4AD4-92C1-7CE4146A631B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC4E4239-C8D8-4923-B965-0637F1DA3209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC4E4239-C8D8-4923-B965-0637F1DA3209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC4E4239-C8D8-4923-B965-0637F1DA3209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC4E4239-C8D8-4923-B965-0637F1DA3209}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

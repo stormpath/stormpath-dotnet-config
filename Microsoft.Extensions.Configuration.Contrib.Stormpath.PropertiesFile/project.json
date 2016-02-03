@@ -1,0 +1,21 @@
+{
+  "version": "0.1.0-*",
+  "description": ".properties file configuration provider for the Configuration package.",
+  "authors": [ "Nate Barbettini" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "tooling": {
+    "defaultNamespace": "Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile"
+  },
+
+  "frameworks": {
+    "net451": { },
+    "dotnet5.4": { }
+  },
+
+  "dependencies": {
+    "Microsoft.Extensions.Configuration": "1.0.0-*",
+    "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0-*"
+  }
+}
