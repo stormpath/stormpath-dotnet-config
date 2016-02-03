@@ -73,7 +73,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
                 throw new FileNotFoundException(string.Format(Resources.Error_FileNotFound, fullPath), fullPath);
             }
 
-            configurationBuilder.Add(new PropertiesConfigurationProvider(fullPath, optional: optional, prefix: prefix));
+            configurationBuilder.Add(new PropertiesConfigurationProvider(fullPath, optional: optional, root: prefix));
             return configurationBuilder;
         }
     }

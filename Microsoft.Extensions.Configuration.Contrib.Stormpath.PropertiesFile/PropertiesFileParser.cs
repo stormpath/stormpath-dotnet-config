@@ -17,74 +17,68 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
 {
     internal sealed class PropertiesFileParser
     {
         private readonly Stream stream;
+        private readonly string root;
 
-        public PropertiesFileParser(Stream stream)
+        public PropertiesFileParser(Stream stream, string root)
         {
             this.stream = stream;
+            this.root = root;
         }
 
         public IEnumerable<KeyValuePair<string, string>> Parse()
         {
-            using (var reader = new StreamReader(stream))
+            using (var reader = new StreamReader(this.stream))
             {
-                var sectionPrefix = string.Empty;
-
                 while (reader.Peek() != -1)
                 {
                     var rawLine = reader.ReadLine();
-                    var line = rawLine.Trim();
-
+                    
                     // Ignore blank lines
-                    if (string.IsNullOrWhiteSpace(line))
+                    if (string.IsNullOrWhiteSpace(rawLine))
                     {
                         continue;
                     }
+
+                    var line = rawLine.Trim();
+
                     // Ignore comments
                     if (line[0] == '!' || line[0] == '#')
                     {
                         continue;
                     }
 
-                    var key = new StringBuilder();
-                    var value = new StringBuilder();
-                    bool foundSeparator = false;
+                    var key = string.Empty;
+                    var value = string.Empty;
 
-                    for (int i = 0; i < line.Length; i++)
+                    int separator = line.IndexOf('=');
+                    if (separator != -1)
                     {
-
+                        key = line.Substring(0, separator).Trim();
+                        value = line.Substring(separator + 1).Trim();
                     }
 
-                    if (!foundSeparator)
+                    if (key.Contains(":"))
                     {
                         throw new FormatException(string.Format(Resources.Error_UnrecognizedLineFormat, rawLine));
                     }
 
-                    int separator = line.IndexOf('=');
-                    if (separator < 0)
-                    {
+                    key = key.Replace('.', ':');
 
+                    if (!string.IsNullOrEmpty(this.root))
+                    {
+                        key = $"{this.root}:{key}";
                     }
 
-                    // key = value OR "value"
-                    string key = sectionPrefix + line.Substring(0, separator).Trim();
-                    string value = line.Substring(separator + 1).Trim();
-
-                    // Remove quotes
-                    if (value.Length > 1 && value[0] == '"' && value[value.Length - 1] == '"')
-                    {
-                        value = value.Substring(1, value.Length - 2);
-                    }
-
-
+                    yield return new KeyValuePair<string, string>(key, value);
                 }
             }
-
         }
     }
 }

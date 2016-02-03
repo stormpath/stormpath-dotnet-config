@@ -17,7 +17,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
 {
@@ -32,7 +31,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
         /// </summary>
         /// <param name="path">Absolute path of the .properties configuration file.</param>
         public PropertiesConfigurationProvider(string path)
-            : this(path, optional: false, prefix: null)
+            : this(path, optional: false, root: null)
         {
         }
 
@@ -41,7 +40,8 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
         /// </summary>
         /// <param name="path">Absolute path of the INI configuration file.</param>
         /// <param name="optional">Determines if the configuration is optional.</param>
-        public PropertiesConfigurationProvider(string path, bool optional, string prefix)
+        /// <param name="root">A root element to prepend to any discovered key.</param>
+        public PropertiesConfigurationProvider(string path, bool optional, string root)
         {
             if (string.IsNullOrEmpty(path))
             {
@@ -50,7 +50,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
 
             Optional = optional;
             Path = path;
-            Prefix = prefix;
+            Root = root;
         }
 
         /// <summary>
@@ -64,9 +64,9 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
         public string Path { get; }
 
         /// <summary>
-        /// Gets a string to prepend to any discovered key.
+        /// Gets a root element to prepend to any discovered key.
         /// </summary>
-        public string Prefix { get; }
+        public string Root { get; }
 
         /// <summary>
         /// Loads the contents of the file at <see cref="Path"/>.
@@ -98,13 +98,14 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
         internal void Load(Stream stream)
         {
             var data = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-            var parser = new PropertiesFileParser(stream);
+
+            var parser = new PropertiesFileParser(stream, this.Root);
 
             foreach (var pair in parser.Parse())
             {
                 if (data.ContainsKey(pair.Key))
                 {
-                    throw new FormatException(string.Format(Resources.Error_KeyIsDuplicated, key));
+                    throw new FormatException(string.Format(Resources.Error_KeyIsDuplicated, pair.Key));
                 }
 
                 data[pair.Key] = pair.Value;
