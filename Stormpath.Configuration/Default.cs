@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Stormpath.Configuration.Model;
 
 namespace Stormpath.Configuration
 {

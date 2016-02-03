@@ -48,12 +48,12 @@ namespace Stormpath.Configuration.Loader
         private IConfigurationRoot CompileFromSources()
         {
             var builder = new ConfigurationBuilder()
-                .AddIniFile("~/.stormpath/apiKey.properties")
-                .AddJsonFile("~/.stormpath/stormpath.json")
-                //.AddYamlFile("~/.stormpath/stormpath.yaml")
-                .AddIniFile(app_dir + "apiKey.properties")
-                .AddJsonFile(app_dir + "stormpath.json")
-                //.AddYamlFile(app_dir + "stormpath.yaml")
+                .AddPropertiesFile("~/.stormpath/apiKey.properties", optional: true, root: "client")
+                .AddJsonFile("~/.stormpath/stormpath.json", optional: true)
+                //.AddYamlFile("~/.stormpath/stormpath.yaml", optional: true)
+                .AddPropertiesFile("apiKey.properties", optional: true, root: "client")
+                .AddJsonFile("stormpath.json", optional: true)
+                //.AddYamlFile("stormpath.yaml", optional: true)
                 //.AddMatchingEnvironmentVariables(environment, match: Default.Configuration)
                 //.AddObject(this.userConfiguration)
                 ;

@@ -27,9 +27,10 @@ namespace Stormpath.Configuration
 
         public WebConfiguration Web { get; set; } = new WebConfiguration();
 
-        public static StormpathConfiguration Load()
+        public static StormpathConfiguration Load(object userConfiguration = null)
         {
-            return new ConfigurationLoader().Load();
+            return new ConfigurationLoader(userConfiguration)
+                .Load();
         }
     }
 }
