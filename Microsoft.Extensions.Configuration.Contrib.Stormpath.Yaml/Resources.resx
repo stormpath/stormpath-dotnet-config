@@ -124,12 +124,9 @@
     <value>File path must be a non-empty string.</value>
   </data>
   <data name="Error_YAMLParseError" xml:space="preserve">
-    <value>Could not parse the YAML file. Error on line number '{0}': '{1}'.</value>
+    <value>Could not parse the YAML file. See the inner exception for details.</value>
   </data>
   <data name="Error_KeyIsDuplicated" xml:space="preserve">
     <value>A duplicate key '{0}' was found.</value>
-  </data>
-  <data name="Error_UnsupportedYAMLToken" xml:space="preserve">
-    <value>Unsupported YAML token '{0}' was found. Path '{1}', line {2} position {3}.</value>
   </data>
 </root>

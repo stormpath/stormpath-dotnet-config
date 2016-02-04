@@ -30,16 +30,24 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
         public IDictionary<string, string> Parse(Stream input)
         {
             _data.Clear();
-            var yamlStream = new YamlStream();
-            yamlStream.Load(new StreamReader(input));
-
-            if (!yamlStream.Documents.Any())
-            {
-                return _data;
-            }
-
             var visitor = new ContextAwareVisitor();
-            yamlStream.Accept(visitor);
+
+            try
+           { 
+                var yamlStream = new YamlStream();
+                yamlStream.Load(new StreamReader(input));
+
+                if (!yamlStream.Documents.Any())
+                {
+                    return _data;
+                }
+
+                yamlStream.Accept(visitor);
+            }
+            catch (YamlDotNet.Core.YamlException e)
+            {
+                throw new FormatException(string.Format(Resources.Error_YAMLParseError), e);
+            }
 
             foreach (var item in visitor.Items)
             {

@@ -87,16 +87,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml {
         }
         
         /// <summary>
-        ///    Looks up a localized string similar to Unsupported YAML token &apos;{0}&apos; was found. Path &apos;{1}&apos;, line {2} position {3}..
-        /// </summary>
-        internal static string Error_UnsupportedYAMLToken {
-            get {
-                return ResourceManager.GetString("Error_UnsupportedYAMLToken", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///    Looks up a localized string similar to Could not parse the YAML file. Error on line number &apos;{0}&apos;: &apos;{1}&apos;..
+        ///    Looks up a localized string similar to Could not parse the YAML file. See the inner exception for details..
         /// </summary>
         internal static string Error_YAMLParseError {
             get {

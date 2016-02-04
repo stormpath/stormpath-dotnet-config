@@ -241,10 +241,35 @@ anotherFoo: 789
                 });
         }
 
-        [Fact(Skip = "todo")]
+        [Fact]
         public void Throws_FormatException_for_bad_YAML()
         {
-            throw new NotImplementedException();
+            var contents = @"
+---
+foo: bar: baz
+";
+
+            var parser = new YamlConfigurationFileParser();
+
+            Action act = () => parser.Parse(StreamFromString(contents));
+
+            act.ShouldThrow<FormatException>();
+        }
+
+        [Fact]
+        public void Throws_FormatException_for_duplicate_key()
+        {
+            var contents = @"
+---
+foo: bar
+foo: baz
+";
+
+            var parser = new YamlConfigurationFileParser();
+
+            Action act = () => parser.Parse(StreamFromString(contents));
+
+            act.ShouldThrow<FormatException>();
         }
 
         [Fact(Skip = "Move")]

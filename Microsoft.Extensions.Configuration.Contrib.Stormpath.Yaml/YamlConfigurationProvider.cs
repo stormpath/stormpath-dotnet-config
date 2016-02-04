@@ -89,55 +89,8 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
 
         internal void Load(Stream stream)
         {
-            YamlConfigurationFileParser parser = new YamlConfigurationFileParser();
-            try
-            {
-                Data = parser.Parse(stream);
-            }
-            catch (Exception e) //todo
-            {
-                //string errorLine = string.Empty;
-                //if (stream.CanSeek)
-                //{
-                //    stream.Seek(0, SeekOrigin.Begin);
-
-                //    IEnumerable<string> fileContent;
-                //    using (var streamReader = new StreamReader(stream))
-                //    {
-                //        fileContent = ReadLines(streamReader);
-                //        errorLine = RetrieveErrorContext(e, fileContent);
-                //    }
-                //}
-
-                //throw new FormatException(string.Format(Resources.Error_YAMLParseError, e.LineNumber, errorLine), e);
-            }
+            var parser = new YamlConfigurationFileParser();
+            Data = parser.Parse(stream);
         }
-
-        //private static string RetrieveErrorContext(Exception e, IEnumerable<string> fileContent)
-        //{
-        //    string errorLine;
-        //    if (e.LineNumber >= 2)
-        //    {
-        //        var errorContext = fileContent.Skip(e.LineNumber - 2).Take(2).ToList();
-        //        errorLine = errorContext[0].Trim() + Environment.NewLine + errorContext[1].Trim();
-        //    }
-        //    else
-        //    {
-        //        var possibleLineContent = fileContent.Skip(e.LineNumber - 1).FirstOrDefault();
-        //        errorLine = possibleLineContent ?? string.Empty;
-        //    }
-
-        //    return errorLine;
-        //}
-
-        //private static IEnumerable<string> ReadLines(StreamReader streamReader)
-        //{
-        //    string line;
-        //    do
-        //    {
-        //        line = streamReader.ReadLine();
-        //        yield return line;
-        //    } while (line != null);
-        //}
     }
 }
