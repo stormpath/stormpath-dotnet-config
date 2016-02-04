@@ -45,11 +45,11 @@ namespace Stormpath.Configuration.Loader
             BindApplicationSection(compiled, output.Application);
             BindWebSection(compiled, output.Web);
 
-            // If client.apiKey.file is set, load that. Throw if it doesn't exist
+            // Validate API Key and Secret exists
 
-            // Validate API Key and Secret
+            // Validation application href, if exists
 
-            // Web Validation?
+            // Web discovery
 
             return output;
         }
@@ -66,6 +66,12 @@ namespace Stormpath.Configuration.Loader
                 //.AddMatchingEnvironmentVariables(environment, match: Default.Configuration)
                 //.AddObject(this.userConfiguration)
                 ;
+
+            // If apiKey root element is set, copy over to client.apiKey (backwards compatibility)
+
+            // If client.apiKey.file is set, load that. Throw if it doesn't exist
+
+            var test = builder.Build();
 
             return builder.Build();
         }
@@ -176,7 +182,6 @@ namespace Stormpath.Configuration.Loader
 
             web.Unauthorized.View = compiled.Get("web:unauthorized:view", Default.Configuration.Web.Unauthorized.View);
         }
-
 
         private string ResolveHomePath(string input)
         {
