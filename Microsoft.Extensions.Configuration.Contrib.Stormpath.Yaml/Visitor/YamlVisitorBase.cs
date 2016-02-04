@@ -29,8 +29,6 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
     /// </summary>
     public abstract class YamlVisitorBase : IYamlVisitor
     {
-        private IYamlVisitor AsInterface => this;
-
         /// <summary>
         /// Called when this object is visiting a <see cref="YamlStream"/>.
         /// </summary>
