@@ -35,7 +35,12 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
             try
            { 
                 var yamlStream = new YamlStream();
-                yamlStream.Load(new StreamReader(input));
+
+                using (var reader = new StreamReader(input))
+                {
+                    yamlStream.Load(reader);
+
+                }
 
                 if (!yamlStream.Documents.Any())
                 {

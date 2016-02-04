@@ -9,11 +9,11 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Test
 {
     public class Parsing_tests
     {
-        [Fact]
-        public void Parsing_empty_file()
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void Parsing_empty_stream(string contents)
         {
-            var contents = string.Empty;
-
             var parser = new YamlConfigurationFileParser();
 
             parser.Parse(StreamFromString(contents)).Should().BeEmpty();
