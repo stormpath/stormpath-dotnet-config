@@ -11,6 +11,10 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Contrib.Stormpath.Propertie
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Contrib.Stormpath.PropertiesFile.Test", "Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile.Test\Contrib.Stormpath.PropertiesFile.Test.xproj", "{DC4E4239-C8D8-4923-B965-0637F1DA3209}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Contrib.Stormpath.Yaml", "Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml\Contrib.Stormpath.Yaml.xproj", "{99DCA118-FF91-492B-80AF-663758A60740}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Contrib.Stormpath.Yaml.Test", "Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Test\Contrib.Stormpath.Yaml.Test.xproj", "{0EDF7F56-6343-455D-A0B1-3C9564BF5484}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{DC4E4239-C8D8-4923-B965-0637F1DA3209}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC4E4239-C8D8-4923-B965-0637F1DA3209}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC4E4239-C8D8-4923-B965-0637F1DA3209}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99DCA118-FF91-492B-80AF-663758A60740}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99DCA118-FF91-492B-80AF-663758A60740}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99DCA118-FF91-492B-80AF-663758A60740}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99DCA118-FF91-492B-80AF-663758A60740}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EDF7F56-6343-455D-A0B1-3C9564BF5484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EDF7F56-6343-455D-A0B1-3C9564BF5484}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EDF7F56-6343-455D-A0B1-3C9564BF5484}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EDF7F56-6343-455D-A0B1-3C9564BF5484}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

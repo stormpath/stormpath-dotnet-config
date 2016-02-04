@@ -1,0 +1,22 @@
+{
+  "version": "0.1.0-*",
+  "description": "YAML file configuration provider for the Configuration package.",
+  "authors": [ "Nate Barbettini" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "tooling": {
+    "defaultNamespace": "Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml"
+  },
+
+  "frameworks": {
+    "net451": { },
+    "dotnet5.4": { }
+  },
+
+  "dependencies": {
+    "Microsoft.Extensions.Configuration": "1.0.0-*",
+    "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0-*",
+    "YamlDotNet": "3.8.0"
+  }
+}

@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile;
+using Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml;
 using Microsoft.Extensions.PlatformAbstractions;
 using Stormpath.Configuration.Model;
 
@@ -58,10 +59,10 @@ namespace Stormpath.Configuration.Loader
             var builder = new ConfigurationBuilder()
                 .AddPropertiesFile(ResolveHomePath($"{stormpathDirectory}apiKey.properties"), optional: true, root: "client")
                 .AddJsonFile(ResolveHomePath($"{stormpathDirectory}stormpath.json"), optional: true)
-                //.AddYamlFile($"{dotStormpathPath}stormpath.yaml", optional: true)
+                .AddYamlFile($"{stormpathDirectory}stormpath.yaml", optional: true)
                 .AddPropertiesFile("apiKey.properties", optional: true, root: "client")
                 .AddJsonFile("stormpath.json", optional: true)
-                //.AddYamlFile("stormpath.yaml", optional: true)
+                .AddYamlFile("stormpath.yaml", optional: true)
                 //.AddMatchingEnvironmentVariables(environment, match: Default.Configuration)
                 //.AddObject(this.userConfiguration)
                 ;
