@@ -17,16 +17,15 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
 {
-    internal sealed class PropertiesFileParser
+    internal sealed class PropertiesConfigurationFileParser
     {
         private readonly Stream stream;
         private readonly string root;
 
-        public PropertiesFileParser(Stream stream, string root)
+        public PropertiesConfigurationFileParser(Stream stream, string root)
         {
             this.stream = stream;
             this.root = root;
@@ -64,16 +63,16 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
                         value = line.Substring(separator + 1).Trim();
                     }
 
-                    if (key.Contains(":"))
+                    if (key.Contains(Constants.KeyDelimiter))
                     {
                         throw new FormatException(string.Format(Resources.Error_UnrecognizedLineFormat, rawLine));
                     }
 
-                    key = key.Replace('.', ':');
+                    key = key.Replace(".", Constants.KeyDelimiter);
 
                     if (!string.IsNullOrEmpty(this.root))
                     {
-                        key = $"{this.root}:{key}";
+                        key = $"{this.root}{Constants.KeyDelimiter}{key}";
                     }
 
                     yield return new KeyValuePair<string, string>(key, value);
