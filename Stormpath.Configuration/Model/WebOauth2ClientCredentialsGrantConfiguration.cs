@@ -18,7 +18,7 @@ namespace Stormpath.Configuration.Model
 {
     public sealed class WebOauth2ClientCredentialsGrantConfiguration
     {
-        public bool Enabled { get; set; }
+        public bool? Enabled { get; set; }
 
         public WebOauth2TokenConfiguration AccessToken { get; set; } = new WebOauth2TokenConfiguration();
     }

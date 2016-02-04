@@ -42,8 +42,8 @@ namespace Stormpath.Configuration.Loader
 
             var output = new StormpathConfiguration();
             BindClientSection(compiled, output.Client);
-            BindApplicationSection(compiled, output);
-            BindWebSection(compiled, output);
+            BindApplicationSection(compiled, output.Application);
+            BindWebSection(compiled, output.Web);
 
             // If client.apiKey.file is set, load that. Throw if it doesn't exist
 
@@ -90,18 +90,93 @@ namespace Stormpath.Configuration.Loader
             client.Proxy.Password = compiled.Get("client:proxy:password", Default.Configuration.Client.Proxy.Password);
         }
 
-        private void BindApplicationSection(IConfigurationRoot compiled, StormpathConfiguration output)
+        private void BindApplicationSection(IConfigurationRoot compiled, ApplicationConfiguration app)
         {
-            output.Application.Name = compiled.Get("application:name", Default.Configuration.Application.Name);
-            output.Application.Href = compiled.Get("application:href", Default.Configuration.Application.Href);
+            app.Name = compiled.Get("application:name", Default.Configuration.Application.Name);
+            app.Href = compiled.Get("application:href", Default.Configuration.Application.Href);
         }
 
-        private void BindWebSection(IConfigurationRoot compiled, StormpathConfiguration output)
+        private void BindWebSection(IConfigurationRoot compiled, WebConfiguration web)
         {
-            //todo
+            web.BasePath = compiled.Get("client:web:basePath", Default.Configuration.Web.BasePath);
+
+            web.Oauth2.Enabled = compiled.GetNullableBool("client:web:oauth2:enabled", Default.Configuration.Web.Oauth2.Enabled);
+            web.Oauth2.Uri = compiled.Get("client:web:oauth2:uri", Default.Configuration.Web.Oauth2.Uri);
+            web.Oauth2.Client_Credentials.Enabled = compiled.GetNullableBool("client:web:oauth2:client_credentials:enabled", Default.Configuration.Web.Oauth2.Client_Credentials.Enabled);
+            web.Oauth2.Client_Credentials.AccessToken.Ttl = compiled.GetNullableInt("client:web:oauth2:client_credentials:accessToken:ttl", Default.Configuration.Web.Oauth2.Client_Credentials.AccessToken.Ttl);
+            web.Oauth2.Password.Enabled = compiled.GetNullableBool("client:web:oauth2:password:enabled", Default.Configuration.Web.Oauth2.Password.Enabled);
+            web.Oauth2.Password.ValidationStrategy = compiled.Get("client:web:oauth2:password:validationStrategy", Default.Configuration.Web.Oauth2.Password.ValidationStrategy);
+
+            web.Expand = compiled.Get("client:web:expand", Default.Configuration.Web.Expand);
+
+            web.AccessTokenCookie.Name = compiled.Get("client:web:accessTokenCookie:name", Default.Configuration.Web.AccessTokenCookie.Name);
+            web.AccessTokenCookie.HttpOnly = compiled.Get("client:web:accessTokenCookie:httponly", Default.Configuration.Web.AccessTokenCookie.HttpOnly);
+            web.AccessTokenCookie.Secure = compiled.Get("client:web:accessTokenCookie:secure", Default.Configuration.Web.AccessTokenCookie.Secure);
+            web.AccessTokenCookie.Path = compiled.Get("client:web:accessTokenCookie:path", Default.Configuration.Web.AccessTokenCookie.Path);
+            web.AccessTokenCookie.Domain = compiled.Get("client:web:accessTokenCookie:domain", Default.Configuration.Web.AccessTokenCookie.Domain);
+
+            web.RefreshTokenCookie.Name = compiled.Get("client:web:refreshTokenCookie:name", Default.Configuration.Web.RefreshTokenCookie.Name);
+            web.RefreshTokenCookie.HttpOnly = compiled.Get("client:web:refreshTokenCookie:httponly", Default.Configuration.Web.RefreshTokenCookie.HttpOnly);
+            web.RefreshTokenCookie.Secure = compiled.Get("client:web:refreshTokenCookie:secure", Default.Configuration.Web.RefreshTokenCookie.Secure);
+            web.RefreshTokenCookie.Path = compiled.Get("client:web:refreshTokenCookie:path", Default.Configuration.Web.RefreshTokenCookie.Path);
+            web.RefreshTokenCookie.Domain = compiled.Get("client:web:refreshTokenCookie:domain", Default.Configuration.Web.RefreshTokenCookie.Domain);
+
+            web.Produces = compiled.Get("web:produces", Default.Configuration.Web.Produces);
+
+            web.Register.Enabled = compiled.GetNullableBool("web:register:enabled", Default.Configuration.Web.Register.Enabled);
+            web.Register.Uri = compiled.Get("web:register:uri", Default.Configuration.Web.Register.Uri);
+            web.Register.NextUri = compiled.Get("web:register:nextUri", Default.Configuration.Web.Register.NextUri);
+            web.Register.View = compiled.Get("web:register:view", Default.Configuration.Web.Register.View);
+            web.Register.AutoLogin = compiled.Get("web:register:autoLogin", Default.Configuration.Web.Register.AutoLogin);
+            web.Register.Form.Fields = compiled.Get("web:register:form:fields", Default.Configuration.Web.Register.Form.Fields);
+            web.Register.Form.FieldOrder = compiled.Get("web:register:form:fieldOrder", Default.Configuration.Web.Register.Form.FieldOrder);
+
+            web.VerifyEmail.Enabled = compiled.GetNullableBool("web:verifyEmail:enabled", Default.Configuration.Web.VerifyEmail.Enabled);
+            web.VerifyEmail.Uri = compiled.Get("web:verifyEmail:uri", Default.Configuration.Web.VerifyEmail.Uri);
+            web.VerifyEmail.NextUri = compiled.Get("web:verifyEmail:nextUri", Default.Configuration.Web.VerifyEmail.NextUri);
+            web.VerifyEmail.View = compiled.Get("web:verifyEmail:view", Default.Configuration.Web.VerifyEmail.View);
+
+            web.Login.Enabled = compiled.GetNullableBool("web:login:enabled", Default.Configuration.Web.Login.Enabled);
+            web.Login.Uri = compiled.Get("web:login:uri", Default.Configuration.Web.Login.Uri);
+            web.Login.NextUri = compiled.Get("web:login:nextUri", Default.Configuration.Web.Login.NextUri);
+            web.Login.View = compiled.Get("web:login:view", Default.Configuration.Web.Login.View);
+            web.Login.Form.Fields = compiled.Get("web:login:form:fields", Default.Configuration.Web.Login.Form.Fields);
+            web.Login.Form.FieldOrder = compiled.Get("web:login:form:fieldOrder", Default.Configuration.Web.Login.Form.FieldOrder);
+
+            web.Logout.Enabled = compiled.GetNullableBool("web:logout:enabled", Default.Configuration.Web.Logout.Enabled);
+            web.Logout.Uri = compiled.Get("web:logout:uri", Default.Configuration.Web.Logout.Uri);
+            web.Logout.NextUri = compiled.Get("web:logout:nextUri", Default.Configuration.Web.Logout.NextUri);
+
+            web.ForgotPassword.Enabled = compiled.GetNullableBool("web:forgotPassword:enabled", Default.Configuration.Web.ForgotPassword.Enabled);
+            web.ForgotPassword.Uri = compiled.Get("web:forgotPassword:uri", Default.Configuration.Web.ForgotPassword.Uri);
+            web.ForgotPassword.NextUri = compiled.Get("web:forgotPassword:nextUri", Default.Configuration.Web.ForgotPassword.NextUri);
+            web.ForgotPassword.View = compiled.Get("web:forgotPassword:view", Default.Configuration.Web.ForgotPassword.View);
+
+            web.ChangePassword.Enabled = compiled.GetNullableBool("web:changePassword:enabled", Default.Configuration.Web.ChangePassword.Enabled);
+            web.ChangePassword.Uri = compiled.Get("web:changePassword:uri", Default.Configuration.Web.ChangePassword.Uri);
+            web.ChangePassword.NextUri = compiled.Get("web:changePassword:nextUri", Default.Configuration.Web.ChangePassword.NextUri);
+            web.ChangePassword.View = compiled.Get("web:changePassword:view", Default.Configuration.Web.ChangePassword.View);
+            web.ChangePassword.AutoLogin = compiled.Get("web:changePassword:autoLogin", Default.Configuration.Web.ChangePassword.AutoLogin);
+            web.ChangePassword.ErrorUri = compiled.Get("web:changePassword:errorUri", Default.Configuration.Web.ChangePassword.ErrorUri);
+
+            web.IdSite.Enabled = compiled.GetNullableBool("web:idSite:enabled", Default.Configuration.Web.IdSite.Enabled);
+            web.IdSite.Uri = compiled.Get("web:idSite:uri", Default.Configuration.Web.IdSite.Uri);
+            web.IdSite.NextUri = compiled.Get("web:idSite:nextUri", Default.Configuration.Web.IdSite.NextUri);
+            web.IdSite.LoginUri = compiled.Get("web:idSite:loginUri", Default.Configuration.Web.IdSite.LoginUri);
+            web.IdSite.ForgotUri = compiled.Get("web:idSite:forgotUri", Default.Configuration.Web.IdSite.ForgotUri);
+            web.IdSite.RegisterUri = compiled.Get("web:idSite:registerUri", Default.Configuration.Web.IdSite.RegisterUri);
+
+            web.SocialProviders.CallbackRoot = compiled.Get("web:socialProviders:callbackRoot", Default.Configuration.Web.SocialProviders.CallbackRoot);
+
+            web.Me.Enabled = compiled.GetNullableBool("web:me:enabled", Default.Configuration.Web.Me.Enabled);
+            web.Me.Uri = compiled.Get("web:me:uri", Default.Configuration.Web.Me.Uri);
+
+            web.Spa.Enabled = compiled.GetNullableBool("web:spa:enabled", Default.Configuration.Web.Spa.Enabled);
+            web.Spa.View = compiled.Get("web:spa:view", Default.Configuration.Web.Spa.View);
+
+            web.Unauthorized.View = compiled.Get("web:unauthorized:view", Default.Configuration.Web.Unauthorized.View);
         }
 
-        
 
         private string ResolveHomePath(string input)
         {

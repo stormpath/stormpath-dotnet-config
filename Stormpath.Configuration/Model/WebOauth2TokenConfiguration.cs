@@ -18,6 +18,6 @@ namespace Stormpath.Configuration.Model
 {
     public sealed class WebOauth2TokenConfiguration
     {
-        public int Ttl { get; set; }
+        public int? Ttl { get; set; }
     }
 }

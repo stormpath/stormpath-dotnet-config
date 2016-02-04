@@ -59,7 +59,7 @@ namespace Stormpath.Configuration
                 {
                     Enabled = true,
                     Uri = "/oauth/token",
-                    ClientCredentials = new WebOauth2ClientCredentialsGrantConfiguration()
+                    Client_Credentials = new WebOauth2ClientCredentialsGrantConfiguration()
                     {
                         Enabled = true,
                         AccessToken = new WebOauth2TokenConfiguration()
@@ -79,8 +79,8 @@ namespace Stormpath.Configuration
                 {
                     ["apiKeys"] = false,
                     ["customData"] = true,
-                    ["directory"] = true,
-                    ["groups"] = true
+                    ["directory"] = false,
+                    ["groups"] = false
                 },
 
                 AccessTokenCookie = new WebOauth2TokenCookieConfiguration()

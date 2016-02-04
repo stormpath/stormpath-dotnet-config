@@ -18,7 +18,7 @@ namespace Stormpath.Configuration.Model
 {
     public sealed class WebOauth2RouteConfiguration : WebRouteConfigurationBase
     {
-        public WebOauth2ClientCredentialsGrantConfiguration ClientCredentials { get; set; } = new WebOauth2ClientCredentialsGrantConfiguration();
+        public WebOauth2ClientCredentialsGrantConfiguration Client_Credentials { get; set; } = new WebOauth2ClientCredentialsGrantConfiguration();
 
         public WebOauth2PasswordGrantConfiguration Password { get; set; } = new WebOauth2PasswordGrantConfiguration();
     }

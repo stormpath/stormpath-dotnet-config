@@ -18,7 +18,7 @@ namespace Stormpath.Configuration.Model
 {
     public sealed class WebSpaConfiguration
     {
-        public bool Enabled { get; set; }
+        public bool? Enabled { get; set; }
 
         public string View { get; set; }
     }

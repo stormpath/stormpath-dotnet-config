@@ -21,7 +21,7 @@ namespace Stormpath.Configuration
 {
     public static class ConfigurationRootExtensions
     {
-        // TOOD: This should be obsoleted with Configuration 1.0.0-rc2.
+        [Obsolete("Replace when updating to Configuration 1.0.0-rc2")]
         public static int? GetNullableInt(this IConfigurationRoot root, string key, int? defaultValue)
         {
             string value = root.Get(key, string.Empty);
@@ -29,6 +29,16 @@ namespace Stormpath.Configuration
             return string.IsNullOrEmpty(value)
                 ? defaultValue
                 : Convert.ToInt32(value);
+        }
+
+        [Obsolete("Replace when updating to Configuration 1.0.0-rc2")]
+        public static bool? GetNullableBool(this IConfigurationRoot root, string key, bool? defaultValue)
+        {
+            string value = root.Get(key, string.Empty);
+
+            return string.IsNullOrEmpty(value)
+                ? defaultValue
+                : Convert.ToBoolean(value);
         }
     }
 }
