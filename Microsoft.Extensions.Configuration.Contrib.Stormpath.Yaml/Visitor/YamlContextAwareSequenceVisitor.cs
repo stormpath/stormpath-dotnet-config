@@ -43,8 +43,24 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
             var key = $"{string.Join(Constants.KeyDelimiter, context.Reverse())}{Constants.KeyDelimiter}{index}";
 
             this.Items.Add(new KeyValuePair<string, string>(key, scalar.Value));
+        }
 
-            index++; //move this
+        protected override void Visited(YamlMappingNode mapping)
+        {
+            index++;
+            base.Visited(mapping);
+        }
+
+        protected override void Visited(YamlScalarNode scalar)
+        {
+            index++;
+            base.Visited(scalar);
+        }
+
+        protected override void Visited(YamlSequenceNode sequence)
+        {
+            index++;
+            base.Visited(sequence);
         }
     }
 }
