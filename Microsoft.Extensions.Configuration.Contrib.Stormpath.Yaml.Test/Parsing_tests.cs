@@ -196,6 +196,25 @@ foo: {@null}
         }
 
         [Fact]
+        public void Parsing_null_key()
+        {
+            var contents = @"
+---
+foo:
+  ~:
+    bar: baz
+";
+
+            var parser = new YamlConfigurationFileParser();
+
+            parser.Parse(StreamFromString(contents)).ShouldBeEquivalentTo(
+                new Dictionary<string, string>()
+                {
+                    ["foo::bar"] = "baz",
+                });
+        }
+
+        [Fact]
         public void Parsing_complex_property()
         {
             var contents = @"

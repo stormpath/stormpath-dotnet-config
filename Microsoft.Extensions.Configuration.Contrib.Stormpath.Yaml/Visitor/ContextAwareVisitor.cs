@@ -37,8 +37,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
 
         protected override void VisitPair(YamlNode key, YamlNode value)
         {
-            // add support for null keys here
-            EnterContext((key as YamlScalarNode)?.Value);
+            EnterContext(key as YamlScalarNode);
             value.Accept(this);
             ExitContext();
         }
@@ -46,12 +45,10 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
         protected override void Visit(YamlScalarNode scalar)
         {
             var key = string.Join(Constants.KeyDelimiter, context.Reverse());
-            string value = string.Empty;
 
-            if (!IsNull(scalar))
-            {
-                value = scalar.Value;
-            }
+            string value = IsNull(scalar)
+                ? string.Empty
+                : scalar.Value;
 
             this.items.Add(new KeyValuePair<string, string>(key, value));
         }
@@ -78,8 +75,18 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
             }
         }
 
+        protected void EnterContext(YamlScalarNode scalar)
+        {
+            string value = IsNull(scalar)
+                ? string.Empty
+                : scalar.Value;
+
+            EnterContext(value);
+        }
+
         protected void EnterContext(string context)
         {
+            context = context ?? string.Empty;
             this.context.Push(context);
         }
 
