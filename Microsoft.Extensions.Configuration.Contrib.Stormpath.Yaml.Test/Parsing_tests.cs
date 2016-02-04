@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using FluentAssertions;
@@ -201,11 +202,17 @@ anotherFoo: 789
                 });
         }
 
+        [Fact(Skip = "todo")]
+        public void Throws_FormatException_for_bad_YAML()
+        {
+            throw new NotImplementedException();
+        }
 
-
-        [Fact]
+        [Fact(Skip = "Move")]
         public void Parsing_Stormpath_defaults()
         {
+            //todo remove and move to Configuration.Test
+
             var contents = @"
 ---
 client:

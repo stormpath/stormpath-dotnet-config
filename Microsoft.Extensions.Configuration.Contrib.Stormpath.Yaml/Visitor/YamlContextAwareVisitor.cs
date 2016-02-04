@@ -19,9 +19,9 @@ using System.Collections.Generic;
 using System.Linq;
 using YamlDotNet.RepresentationModel;
 
-namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
+namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
 {
-    public class YamlContextAwareVisitor : YamlVisitor
+    public class YamlContextAwareVisitor : YamlVisitorBase
     {
         private readonly Stack<string> context;
         private YamlScalarNode previous = null;
@@ -36,16 +36,8 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
         public IList<KeyValuePair<string, string>> Items { get; }
             = new List<KeyValuePair<string, string>>();
 
-        public List<YamlNode> VisitedNodes
-            = new List<YamlNode>();
-
         protected override void Visit(YamlScalarNode scalar)
         {
-            if (VisitedNodes.Contains(scalar, new ReferenceEqualityComparer()))
-            {
-                return;
-            }
-
             if (previous == null)
             {
                 EnterContext(scalar);
@@ -65,17 +57,10 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
 
                 ExitContext();
             }
-
-            VisitedNodes.Add(scalar);
         }
 
         protected override void Visit(YamlMappingNode mapping)
         {
-            if (VisitedNodes.Contains(mapping, new ReferenceEqualityComparer()))
-            {
-                return;
-            }
-
             var nestedVisitor = new YamlContextAwareVisitor(context);
             nestedVisitor.VisitChildren(mapping);
             
@@ -84,19 +69,11 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
                 this.Items.Add(new KeyValuePair<string, string>(item.Key, item.Value));
             }
 
-            VisitedNodes.Add(mapping);
-            VisitedNodes.AddRange(nestedVisitor.VisitedNodes);
-
             ExitContext();
         }
 
         protected override void Visit(YamlSequenceNode sequence)
         {
-            if (VisitedNodes.Contains(sequence, new ReferenceEqualityComparer()))
-            {
-                return;
-            }
-
             var nestedVisitor = new YamlContextAwareSequenceVisitor(context);
             nestedVisitor.Visit(sequence);
 
@@ -104,9 +81,6 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
             {
                 this.Items.Add(new KeyValuePair<string, string>(item.Key, item.Value));
             }
-
-            VisitedNodes.Add(sequence);
-            VisitedNodes.AddRange(nestedVisitor.VisitedNodes);
 
             ExitContext();
         }

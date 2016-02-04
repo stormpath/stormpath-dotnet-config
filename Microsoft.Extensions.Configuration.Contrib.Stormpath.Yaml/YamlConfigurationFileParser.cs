@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor;
 using YamlDotNet.RepresentationModel;
 
 namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml

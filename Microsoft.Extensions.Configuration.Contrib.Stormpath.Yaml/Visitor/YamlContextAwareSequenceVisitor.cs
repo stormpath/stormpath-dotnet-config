@@ -18,9 +18,9 @@ using System.Collections.Generic;
 using System.Linq;
 using YamlDotNet.RepresentationModel;
 
-namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
+namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
 {
-    public class YamlContextAwareSequenceVisitor : YamlVisitor
+    public class YamlContextAwareSequenceVisitor : YamlVisitorBase
     {
         private readonly Stack<string> context;
         private int index = 0;
@@ -38,17 +38,13 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
         public IList<KeyValuePair<string, string>> Items { get; }
             = new List<KeyValuePair<string, string>>();
 
-        public List<YamlNode> VisitedNodes
-            = new List<YamlNode>();
-
         protected override void Visit(YamlScalarNode scalar)
         {
             var key = $"{string.Join(Constants.KeyDelimiter, context.Reverse())}{Constants.KeyDelimiter}{index}";
 
             this.Items.Add(new KeyValuePair<string, string>(key, scalar.Value));
 
-            index++;
-            this.VisitedNodes.Add(scalar);
+            index++; //move this
         }
     }
 }
