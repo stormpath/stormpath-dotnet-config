@@ -30,7 +30,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
         {
             this.context = context == null
                 ? new Stack<string>()
-                : new Stack<string>(context);
+                : new Stack<string>(context.Reverse());
         }
 
         public IList<KeyValuePair<string, string>> Items { get; }
@@ -107,6 +107,8 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
 
             VisitedNodes.Add(sequence);
             VisitedNodes.AddRange(nestedVisitor.VisitedNodes);
+
+            ExitContext();
         }
 
         private void EnterContext(YamlScalarNode scalar)
