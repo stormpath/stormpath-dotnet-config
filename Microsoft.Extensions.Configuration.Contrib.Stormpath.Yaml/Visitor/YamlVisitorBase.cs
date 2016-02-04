@@ -29,6 +29,8 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
     /// </summary>
     public abstract class YamlVisitorBase : IYamlVisitor
     {
+        private IYamlVisitor AsInterface => this;
+
         /// <summary>
         /// Called when this object is visiting a <see cref="YamlStream"/>.
         /// </summary>
@@ -139,10 +141,43 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
             // Do nothing.
         }
 
+        /// <summary>
+        /// Called when this object is visiting a key-value pair.
+        /// </summary>
+        /// <param name="key">The left (key) <see cref="YamlNode"/> that is being visited.</param>
+        /// <param name="value">The right (value) <see cref="YamlNode"/> that is being visited.</param>
         protected virtual void VisitPair(YamlNode key, YamlNode value)
         {
             key.Accept(this);
             value.Accept(this);
+        }
+
+        /// <summary>
+        /// Visits a <see cref="YamlNode"/>.
+        /// </summary>
+        /// <param name="node">The <see cref="YamlNode"/> to visit.</param>
+        protected virtual void Visit(YamlNode node)
+        {
+            var scalar = node as YamlScalarNode;
+            if (scalar != null)
+            {
+                AsInterface.Visit(scalar);
+                return;
+            }
+
+            var sequence = node as YamlSequenceNode;
+            if (sequence != null)
+            {
+                AsInterface.Visit(sequence);
+                return;
+            }
+
+            var mapping = node as YamlMappingNode;
+            if (mapping != null)
+            {
+                AsInterface.Visit(mapping);
+                return;
+            }
         }
 
         /// <summary>

@@ -24,7 +24,6 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
     public class YamlContextAwareVisitor : YamlVisitorBase
     {
         private readonly Stack<string> context;
-        private YamlScalarNode previous = null;
 
         public YamlContextAwareVisitor(Stack<string> context = null)
         {
@@ -33,30 +32,26 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
                 : new Stack<string>(context.Reverse());
         }
 
-        public IList<KeyValuePair<string, string>> Items { get; }
-            = new List<KeyValuePair<string, string>>();
+        public IList<KeyValuePair<string, string>> Items { get; } = new List<KeyValuePair<string, string>>();
+
+        protected override void VisitPair(YamlNode key, YamlNode value)
+        {
+            EnterContext((YamlScalarNode)key);
+            base.Visit(value);
+            ExitContext();
+        }
 
         protected override void Visit(YamlScalarNode scalar)
         {
-            if (previous == null)
+            var key = string.Join(Constants.KeyDelimiter, context.Reverse());
+            string value = string.Empty;
+
+            if (!IsNull(scalar))
             {
-                EnterContext(scalar);
+                value = scalar.Value;
             }
-            else
-            {
-                var key = string.Join(Constants.KeyDelimiter, context.Reverse());
-                string value = string.Empty;
 
-                if (!IsNull(scalar))
-                {
-                    value = scalar.Value;
-                }
-
-                this.Items.Add(new KeyValuePair<string, string>(key, value));
-
-
-                ExitContext();
-            }
+            this.Items.Add(new KeyValuePair<string, string>(key, value));
         }
 
         protected override void Visit(YamlMappingNode mapping)
@@ -68,8 +63,6 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
             {
                 this.Items.Add(new KeyValuePair<string, string>(item.Key, item.Value));
             }
-
-            ExitContext();
         }
 
         protected override void Visit(YamlSequenceNode sequence)
@@ -81,23 +74,17 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
             {
                 this.Items.Add(new KeyValuePair<string, string>(item.Key, item.Value));
             }
-
-            ExitContext();
         }
 
         private void EnterContext(YamlScalarNode scalar)
         {
+            // add support for null keys here
             context.Push(scalar.Value);
-            previous = scalar;
         }
 
         private void ExitContext()
         {
-            if (previous != null)
-            {
-                previous = null;
-                context.Pop();
-            }
+            context.Pop();
         }
 
         private static bool IsNull(YamlScalarNode scalar)
