@@ -76,15 +76,15 @@ namespace Stormpath.Configuration.Loader
             client.ApiKey.Id = compiled.Get("client:apiKey:id", Default.Configuration.Client.ApiKey.Id);
             client.ApiKey.Secret = compiled.Get("client:apiKey:secret", Default.Configuration.Client.ApiKey.Secret);
 
-            client.CacheManager.DefaultTtl = compiled.Get("client:cacheManager:defaultTtl", Default.Configuration.Client.CacheManager.DefaultTtl);
-            client.CacheManager.DefaultTti = compiled.Get("client:cacheManager:defaultTti", Default.Configuration.Client.CacheManager.DefaultTti);
+            client.CacheManager.DefaultTtl = compiled.GetNullableInt("client:cacheManager:defaultTtl", Default.Configuration.Client.CacheManager.DefaultTtl);
+            client.CacheManager.DefaultTti = compiled.GetNullableInt("client:cacheManager:defaultTti", Default.Configuration.Client.CacheManager.DefaultTti);
             client.CacheManager.Caches = compiled.Get("client:cacheManager:caches", new Dictionary<string, ClientCacheConfiguration>(Default.Configuration.Client.CacheManager.Caches));
 
             client.BaseUrl = compiled.Get("client:baseUrl", Default.Configuration.Client.BaseUrl);
             client.ConnectionTimeout = compiled.Get("client:connectionTimeout", Default.Configuration.Client.ConnectionTimeout);
             client.AuthenticationScheme = compiled.Get("client:authenticationScheme", Default.Configuration.Client.AuthenticationScheme);
 
-            client.Proxy.Port = compiled.Get("client:proxy:port", Default.Configuration.Client.Proxy.Port);
+            client.Proxy.Port = compiled.GetNullableInt("client:proxy:port", Default.Configuration.Client.Proxy.Port);
             client.Proxy.Host = compiled.Get("client:proxy:host", Default.Configuration.Client.Proxy.Host);
             client.Proxy.Username = compiled.Get("client:proxy:username", Default.Configuration.Client.Proxy.Username);
             client.Proxy.Password = compiled.Get("client:proxy:password", Default.Configuration.Client.Proxy.Password);
@@ -100,6 +100,8 @@ namespace Stormpath.Configuration.Loader
         {
             //todo
         }
+
+        
 
         private string ResolveHomePath(string input)
         {
