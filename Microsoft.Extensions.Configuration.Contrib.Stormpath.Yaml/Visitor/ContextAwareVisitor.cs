@@ -21,12 +21,12 @@ using YamlDotNet.RepresentationModel;
 
 namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
 {
-    public class YamlContextAwareVisitor : YamlVisitorBase
+    public class ContextAwareVisitor : YamlVisitorBase
     {
         protected readonly Stack<string> context;
         protected readonly List<KeyValuePair<string, string>> items = new List<KeyValuePair<string, string>>();
 
-        public YamlContextAwareVisitor(Stack<string> context = null)
+        public ContextAwareVisitor(Stack<string> context = null)
         {
             this.context = context == null
                 ? new Stack<string>()
@@ -39,7 +39,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
         {
             // add support for null keys here
             EnterContext((key as YamlScalarNode)?.Value);
-            base.Visit(value);
+            value.Accept(this);
             ExitContext();
         }
 
@@ -58,8 +58,8 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
 
         protected override void Visit(YamlMappingNode mapping)
         {
-            var nestedVisitor = new YamlContextAwareVisitor(context);
-            nestedVisitor.VisitChildren(mapping);
+            var nestedVisitor = new ContextAwareMappingVisitor(context);
+            mapping.Accept(nestedVisitor);
             
             foreach (var item in nestedVisitor.Items)
             {
@@ -69,7 +69,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
 
         protected override void Visit(YamlSequenceNode sequence)
         {
-            var nestedVisitor = new YamlContextAwareSequenceVisitor(context);
+            var nestedVisitor = new ContextAwareSequenceVisitor(context);
             sequence.Accept(nestedVisitor);
 
             foreach (var item in nestedVisitor.Items)

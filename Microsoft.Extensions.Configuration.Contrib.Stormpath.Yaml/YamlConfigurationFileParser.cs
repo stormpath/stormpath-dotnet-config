@@ -38,7 +38,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
                 return _data;
             }
 
-            var visitor = new YamlContextAwareVisitor();
+            var visitor = new ContextAwareVisitor();
             yamlStream.Accept(visitor);
 
             foreach (var item in visitor.Items)

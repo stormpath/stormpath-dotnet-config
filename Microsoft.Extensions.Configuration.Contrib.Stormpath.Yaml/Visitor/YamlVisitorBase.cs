@@ -153,34 +153,6 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
         }
 
         /// <summary>
-        /// Visits a <see cref="YamlNode"/>.
-        /// </summary>
-        /// <param name="node">The <see cref="YamlNode"/> to visit.</param>
-        protected virtual void Visit(YamlNode node)
-        {
-            var scalar = node as YamlScalarNode;
-            if (scalar != null)
-            {
-                AsInterface.Visit(scalar);
-                return;
-            }
-
-            var sequence = node as YamlSequenceNode;
-            if (sequence != null)
-            {
-                AsInterface.Visit(sequence);
-                return;
-            }
-
-            var mapping = node as YamlMappingNode;
-            if (mapping != null)
-            {
-                AsInterface.Visit(mapping);
-                return;
-            }
-        }
-
-        /// <summary>
         /// Visits every child of a <see cref="YamlStream"/>.
         /// </summary>
         /// <param name="stream">

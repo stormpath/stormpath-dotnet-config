@@ -15,38 +15,20 @@
 // </copyright>
 
 using System.Collections.Generic;
-using System.Linq;
 using YamlDotNet.RepresentationModel;
 
 namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
 {
-    public class YamlContextAwareSequenceVisitor : YamlContextAwareVisitor
+    public class ContextAwareMappingVisitor : ContextAwareVisitor
     {
-        private int index = 0;
-
-        public YamlContextAwareSequenceVisitor(Stack<string> context = null)
+        public ContextAwareMappingVisitor(Stack<string> context = null)
             : base(context)
         {
         }
 
-        protected override void Visit(YamlSequenceNode sequence)
+        protected override void Visit(YamlMappingNode mapping)
         {
-            VisitChildren(sequence);
-        }
-
-        protected override void VisitChildren(YamlSequenceNode sequence)
-        {
-            foreach (var node in sequence.Children)
-            {
-                this.EnterContext(index.ToString());
-
-                var visitor = new YamlContextAwareVisitor(context);
-                node.Accept(visitor);
-                this.items.AddRange(visitor.Items);
-
-                this.ExitContext();
-                index++;
-            }
+            VisitChildren(mapping);
         }
     }
 }
