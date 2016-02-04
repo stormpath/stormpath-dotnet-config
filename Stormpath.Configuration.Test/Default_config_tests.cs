@@ -16,13 +16,13 @@
 
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using FluentAssertions;
 using Xunit;
 
 namespace Stormpath.Configuration.Test
 {
-    public class Default_tests
+    [Collection("Disk IO Tests")]
+    public class Default_config_tests
     {
         public static IEnumerable<object[]> TestCases()
         {
@@ -30,7 +30,7 @@ namespace Stormpath.Configuration.Test
             yield return new object[] { new DefaultConfigTestCases.JsonTestCase() };
         }
 
-        public Default_tests()
+        public Default_config_tests()
         {
             Cleanup();
         }
@@ -40,14 +40,14 @@ namespace Stormpath.Configuration.Test
             // Clean up any stray items
             foreach (var entry in TestCases())
             {
-                var testCase = entry[0] as DefaultConfigTestCases.TestCaseBase;
+                var testCase = entry[0] as ConfigTestCaseBase;
                 File.Delete(testCase.Filename);
             }
         }
 
         [Theory]
         [MemberData(nameof(TestCases))]
-        public void Loading_Stormpath_defaults(DefaultConfigTestCases.TestCaseBase testCase)
+        public void Loading_Stormpath_defaults(ConfigTestCaseBase testCase)
         {
             File.WriteAllText(testCase.Filename, testCase.FileContents);
 
@@ -60,10 +60,10 @@ namespace Stormpath.Configuration.Test
 
             config.Client.CacheManager.DefaultTtl.Should().Be(300);
             config.Client.CacheManager.DefaultTti.Should().Be(300);
+
             config.Client.CacheManager.Caches.Should().HaveCount(1);
-            config.Client.CacheManager.Caches.Single().Key.Should().Be("account");
-            config.Client.CacheManager.Caches.Single().Value.Ttl.Should().Be(300);
-            config.Client.CacheManager.Caches.Single().Value.Tti.Should().Be(300);
+            config.Client.CacheManager.Caches["account"].Ttl.Should().Be(300);
+            config.Client.CacheManager.Caches["account"].Tti.Should().Be(300);
 
             config.Client.BaseUrl.Should().Be("https://api.stormpath.com/v1");
             config.Client.ConnectionTimeout.Should().Be(30);
@@ -186,7 +186,7 @@ namespace Stormpath.Configuration.Test
             config.Web.VerifyEmail.NextUri.Should().Be("/login");
             config.Web.VerifyEmail.View.Should().Be("verify");
 
-            config.Web.Login.Enabled.Should().Be(true);
+            config.Web.Login.Enabled.Should().BeTrue();
             config.Web.Login.Uri.Should().Be("/login");
             config.Web.Login.NextUri.Should().Be("/");
             config.Web.Login.View.Should().Be("login");
@@ -210,6 +210,10 @@ namespace Stormpath.Configuration.Test
             },
                 opt => opt.WithStrictOrdering()
             );
+
+            config.Web.Logout.Enabled.Should().BeTrue();
+            config.Web.Logout.Uri.Should().Be("/logout");
+            config.Web.Logout.NextUri.Should().Be("/");
 
             config.Web.ForgotPassword.Enabled.Should().Be(null);
             config.Web.ForgotPassword.Uri.Should().Be("/forgot");

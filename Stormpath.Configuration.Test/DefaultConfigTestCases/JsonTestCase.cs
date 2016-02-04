@@ -16,7 +16,7 @@
 
 namespace Stormpath.Configuration.Test.DefaultConfigTestCases
 {
-    public class JsonTestCase : TestCaseBase
+    public class JsonTestCase : ConfigTestCaseBase
     {
         public override string TestName => "Json";
 

@@ -20,7 +20,7 @@ namespace Stormpath.Configuration.Model
     {
         public string Name { get; set; }
 
-        public bool HttpOnly { get; set; }
+        public bool? HttpOnly { get; set; }
 
         public bool? Secure { get; set; }
 

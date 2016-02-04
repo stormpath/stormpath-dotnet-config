@@ -98,28 +98,28 @@ namespace Stormpath.Configuration.Loader
 
         private void BindWebSection(IConfigurationRoot compiled, WebConfiguration web)
         {
-            web.BasePath = compiled.Get("client:web:basePath", Default.Configuration.Web.BasePath);
+            web.BasePath = compiled.Get("web:basePath", Default.Configuration.Web.BasePath);
 
-            web.Oauth2.Enabled = compiled.GetNullableBool("client:web:oauth2:enabled", Default.Configuration.Web.Oauth2.Enabled);
-            web.Oauth2.Uri = compiled.Get("client:web:oauth2:uri", Default.Configuration.Web.Oauth2.Uri);
-            web.Oauth2.Client_Credentials.Enabled = compiled.GetNullableBool("client:web:oauth2:client_credentials:enabled", Default.Configuration.Web.Oauth2.Client_Credentials.Enabled);
-            web.Oauth2.Client_Credentials.AccessToken.Ttl = compiled.GetNullableInt("client:web:oauth2:client_credentials:accessToken:ttl", Default.Configuration.Web.Oauth2.Client_Credentials.AccessToken.Ttl);
-            web.Oauth2.Password.Enabled = compiled.GetNullableBool("client:web:oauth2:password:enabled", Default.Configuration.Web.Oauth2.Password.Enabled);
-            web.Oauth2.Password.ValidationStrategy = compiled.Get("client:web:oauth2:password:validationStrategy", Default.Configuration.Web.Oauth2.Password.ValidationStrategy);
+            web.Oauth2.Enabled = compiled.GetNullableBool("web:oauth2:enabled", Default.Configuration.Web.Oauth2.Enabled);
+            web.Oauth2.Uri = compiled.Get("web:oauth2:uri", Default.Configuration.Web.Oauth2.Uri);
+            web.Oauth2.Client_Credentials.Enabled = compiled.GetNullableBool("web:oauth2:client_credentials:enabled", Default.Configuration.Web.Oauth2.Client_Credentials.Enabled);
+            web.Oauth2.Client_Credentials.AccessToken.Ttl = compiled.GetNullableInt("web:oauth2:client_credentials:accessToken:ttl", Default.Configuration.Web.Oauth2.Client_Credentials.AccessToken.Ttl);
+            web.Oauth2.Password.Enabled = compiled.GetNullableBool("web:oauth2:password:enabled", Default.Configuration.Web.Oauth2.Password.Enabled);
+            web.Oauth2.Password.ValidationStrategy = compiled.Get("web:oauth2:password:validationStrategy", Default.Configuration.Web.Oauth2.Password.ValidationStrategy);
 
-            web.Expand = compiled.Get("client:web:expand", Default.Configuration.Web.Expand);
+            web.Expand = compiled.Get("web:expand", Default.Configuration.Web.Expand);
 
-            web.AccessTokenCookie.Name = compiled.Get("client:web:accessTokenCookie:name", Default.Configuration.Web.AccessTokenCookie.Name);
-            web.AccessTokenCookie.HttpOnly = compiled.Get("client:web:accessTokenCookie:httponly", Default.Configuration.Web.AccessTokenCookie.HttpOnly);
-            web.AccessTokenCookie.Secure = compiled.Get("client:web:accessTokenCookie:secure", Default.Configuration.Web.AccessTokenCookie.Secure);
-            web.AccessTokenCookie.Path = compiled.Get("client:web:accessTokenCookie:path", Default.Configuration.Web.AccessTokenCookie.Path);
-            web.AccessTokenCookie.Domain = compiled.Get("client:web:accessTokenCookie:domain", Default.Configuration.Web.AccessTokenCookie.Domain);
+            web.AccessTokenCookie.Name = compiled.Get("web:accessTokenCookie:name", Default.Configuration.Web.AccessTokenCookie.Name);
+            web.AccessTokenCookie.HttpOnly = compiled.GetNullableBool("web:accessTokenCookie:httpOnly", Default.Configuration.Web.AccessTokenCookie.HttpOnly);
+            web.AccessTokenCookie.Secure = compiled.GetNullableBool("web:accessTokenCookie:secure", Default.Configuration.Web.AccessTokenCookie.Secure);
+            web.AccessTokenCookie.Path = compiled.Get("web:accessTokenCookie:path", Default.Configuration.Web.AccessTokenCookie.Path);
+            web.AccessTokenCookie.Domain = compiled.Get("web:accessTokenCookie:domain", Default.Configuration.Web.AccessTokenCookie.Domain);
 
-            web.RefreshTokenCookie.Name = compiled.Get("client:web:refreshTokenCookie:name", Default.Configuration.Web.RefreshTokenCookie.Name);
-            web.RefreshTokenCookie.HttpOnly = compiled.Get("client:web:refreshTokenCookie:httponly", Default.Configuration.Web.RefreshTokenCookie.HttpOnly);
-            web.RefreshTokenCookie.Secure = compiled.Get("client:web:refreshTokenCookie:secure", Default.Configuration.Web.RefreshTokenCookie.Secure);
-            web.RefreshTokenCookie.Path = compiled.Get("client:web:refreshTokenCookie:path", Default.Configuration.Web.RefreshTokenCookie.Path);
-            web.RefreshTokenCookie.Domain = compiled.Get("client:web:refreshTokenCookie:domain", Default.Configuration.Web.RefreshTokenCookie.Domain);
+            web.RefreshTokenCookie.Name = compiled.Get("web:refreshTokenCookie:name", Default.Configuration.Web.RefreshTokenCookie.Name);
+            web.RefreshTokenCookie.HttpOnly = compiled.GetNullableBool("web:refreshTokenCookie:httpOnly", Default.Configuration.Web.RefreshTokenCookie.HttpOnly);
+            web.RefreshTokenCookie.Secure = compiled.GetNullableBool("web:refreshTokenCookie:secure", Default.Configuration.Web.RefreshTokenCookie.Secure);
+            web.RefreshTokenCookie.Path = compiled.Get("web:refreshTokenCookie:path", Default.Configuration.Web.RefreshTokenCookie.Path);
+            web.RefreshTokenCookie.Domain = compiled.Get("web:refreshTokenCookie:domain", Default.Configuration.Web.RefreshTokenCookie.Domain);
 
             web.Produces = compiled.Get("web:produces", Default.Configuration.Web.Produces);
 

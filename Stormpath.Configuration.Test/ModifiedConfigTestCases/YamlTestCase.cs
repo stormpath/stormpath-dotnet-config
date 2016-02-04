@@ -14,7 +14,7 @@
 // limitations under the License.
 // </copyright>
 
-namespace Stormpath.Configuration.Test.DefaultConfigTestCases
+namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
 {
     public class YamlTestCase : ConfigTestCaseBase
     {
@@ -31,206 +31,158 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
 client:
   apiKey:
     file: null
-    id: null
-    secret: null
+    id: foobar
+    secret: barbaz
   cacheManager:
-    defaultTtl: 300
-    defaultTti: 300
+    defaultTtl: 500
+    defaultTti: 600
     caches:
-      account:
-        ttl: 300
+      application:
+        ttl: 450
+        tti: 700
+      directory:
+        ttl: 200
         tti: 300
-  baseUrl: ""https://api.stormpath.com/v1""
-  connectionTimeout: 30
-  authenticationScheme: ""SAUTHC1""
+  baseUrl: ""https://api.foo.com/v1""
+  connectionTimeout: 90
+  authenticationScheme: ""BASIC""
   proxy:
-    port: null
-    host: null
-    username: null
-    password: null
+    port: 8088
+    host: proxy.foo.bar
+    username: foo
+    password: bar
 application:
-  name: null
-  href: null
+  name: Lightsabers Galore
+  href: ""https://api.foo.com/v1/apps/foo""
 web:
-  basePath: null
+  basePath: ""#/""
 
   oauth2:
-    enabled: true
-    uri: ""/oauth/token""
+    enabled: false
+    uri: ""/oauth2/token""
     client_credentials:
-      enabled: true
+      enabled: false
       accessToken:
-        ttl: 3600
+        ttl: 3601
     password:
-      enabled: true
-      validationStrategy: ""local""
+      enabled: false
+      validationStrategy: ""remote""
 
   expand:
-    apiKeys: false
     customData: true
-    directory: false
-    groups: false
+    applications: true
 
   accessTokenCookie:
-    name: ""access_token""
-    httpOnly: true
-    secure: null
-    path: null
-    domain: null
+    name: ""accessToken""
+    httpOnly: false
+    secure: false
+    path: ""/""
+    domain: ""foo.bar""
 
   refreshTokenCookie:
-    name: ""refresh_token""
-    httpOnly: true
-    secure: null
-    path: null
-    domain: null
+    name: ""refreshToken""
+    httpOnly: false
+    secure: true
+    path: ""/foo""
+    domain: ""baz.qux""
 
   # By default the Stormpath integration should respond to JSON and HTML
   # requests.  If either is removed from configuration, the integration should
   # not try to handle the response for the given content type.
 
   produces:
-    - text/html
-    - application/json
+    - foo/bar
 
   register:
-    enabled: true
-    uri: ""/register""
-    nextUri: ""/""
+    enabled: false
+    uri: ""/register1""
+    nextUri: ""/1""
     # autoLogin is possible only if the email verification feature is disabled
     # on the default default account store of the defined Stormpath
     # application.
-    autoLogin: false
+    autoLogin: true
     form:
       fields:
-        givenName:
-          enabled: true
-          label: ""First Name""
-          placeholder: ""First Name""
-          required: true
-          type: ""text""
-        middleName:
-          enabled: false
-          label: ""Middle Name""
-          placeholder: ""Middle Name""
-          required: true
-          type: ""text""
-        surname:
-          enabled: true
-          label: ""Last Name""
-          placeholder: ""Last Name""
-          required: true
-          type: ""text""
-        username:
-          enabled: false
-          label: ""Username""
-          placeholder: ""Username""
-          required: true
-          type: ""text""
         email:
-          enabled: true
-          label: ""Email""
-          placeholder: ""Email""
-          required: true
-          type: ""email""
-        password:
-          enabled: true
-          label: ""Password""
-          placeholder: ""Password""
-          required: true
-          type: ""password""
-        confirmPassword:
           enabled: false
-          label: ""Confirm Password""
-          placeholder: ""Confirm Password""
-          required: true
-          type: ""password""
+          label: ""I Can Has Email""
+          placeholder: ""Can Has?""
+          required: false
+          type: ""text""
       fieldOrder:
-        - ""username""
-        - ""givenName""
-        - ""middleName""
-        - ""surname""
         - ""email""
-        - ""password""
-        - ""confirmPassword""
-    view: ""register""
+        - ""hidden""
+    view: ""registerView""
 
   # Unless verifyEmail.enabled is specifically set to false, the email
   # verification feature must be automatically enabled if the default account
   # store for the defined Stormpath application has the email verification
   # workflow enabled.
   verifyEmail:
-    enabled: null
-    uri: ""/verify""
-    nextUri: ""/login""
-    view: ""verify""
+    enabled: true
+    uri: ""/verify1""
+    nextUri: ""/login2""
+    view: ""verifyView""
 
   login:
-    enabled: true
-    uri: ""/login""
-    nextUri: ""/""
-    view: ""login""
+    enabled: false
+    uri: ""/login3""
+    nextUri: ""/3""
+    view: ""loginView""
     form:
       fields:
-        login:
-          enabled: true
-          label: ""Username or Email""
-          placeholder: ""Username or Email""
-          required: true
-          type: ""text""
         password:
-          enabled: true
-          label: ""Password""
-          placeholder: ""Password""
-          required: true
-          type: ""password""
+          enabled: false
+          label: ""Password?""
+          placeholder: ""Maybe""
+          required: false
+          type: ""email""
       fieldOrder:
-        - ""login""
         - ""password""
 
   logout:
-    enabled: true
-    uri: ""/logout""
-    nextUri: ""/""
+    enabled: false
+    uri: ""/logout4""
+    nextUri: ""/4""
 
   # Unless forgotPassword.enabled is explicitly set to false, this feature
   # will be automatically enabled if the default account store for the defined
   # Stormpath application has the password reset workflow enabled.
   forgotPassword:
-    enabled: null
-    uri: ""/forgot""
-    view: ""forgot-password""
-    nextUri: ""/login?status=forgot""
+    enabled: true
+    uri: ""/forgot5""
+    view: ""forgot-password-view""
+    nextUri: ""/login?status=forgot!""
 
   # Unless changePassword.enabled is explicitly set to false, this feature
   # will be automatically enabled if the default account store for the defined
   # Stormpath application has the password reset workflow enabled.
   changePassword:
-    enabled: null
-    autoLogin: false
-    uri: ""/change""
-    nextUri: ""/login?status=reset""
-    view: ""change-password""
-    errorUri: ""/forgot?status=invalid_sptoken""
+    enabled: true
+    autoLogin: true
+    uri: ""/change6""
+    nextUri: ""/login?status=reset?""
+    view: ""change-password-view""
+    errorUri: ""/forgot?status=invalid_sptoken:(""
 
   # If idSite.enabled is true, the user should be redirected to ID site for
   # login, registration, and password reset.
   idSite:
-    enabled: false
-    uri: ""/idSiteResult""
-    nextUri: ""/""
-    loginUri: """"
-    forgotUri: ""/#/forgot""
-    registerUri: ""/#/register""
+    enabled: true
+    uri: ""/idSiteResultz""
+    nextUri: ""/123""
+    loginUri: ""/456""
+    forgotUri: ""/#/forgot789""
+    registerUri: ""/#/register0""
 
   socialProviders:
-    callbackRoot: ""/callbacks""
+    callbackRoot: ""/callbacksYo""
 
   # The /me route is for front-end applications, it returns a JSON object with
   # the current user object
   me:
-    enabled: true
-    uri: ""/me""
+    enabled: false
+    uri: ""/myself""
 
   # If the developer wants our integration to serve their Single Page
   # Application (SPA) in response to HTML requests for our default routes,
@@ -243,11 +195,11 @@ web:
   # from `stormpath.web.produces`, so that we don not serve our default
   # HTML views.
   spa:
-    enabled: false
-    view: index
+    enabled: true
+    view: indexView
 
   unauthorized:
-    view: ""unauthorized""";
+    view: ""unauthorizedView""";
             }
         }
     }

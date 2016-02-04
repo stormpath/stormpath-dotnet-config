@@ -16,9 +16,9 @@
 
 using Xunit.Abstractions;
 
-namespace Stormpath.Configuration.Test.DefaultConfigTestCases
+namespace Stormpath.Configuration.Test
 {
-    public abstract class TestCaseBase : IXunitSerializable
+    public abstract class ConfigTestCaseBase : IXunitSerializable
     {
         public virtual string TestName { get; protected set; }
 
