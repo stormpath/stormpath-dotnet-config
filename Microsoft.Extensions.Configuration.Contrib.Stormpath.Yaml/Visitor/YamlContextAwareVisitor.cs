@@ -23,7 +23,8 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
 {
     public class YamlContextAwareVisitor : YamlVisitorBase
     {
-        private readonly Stack<string> context;
+        protected readonly Stack<string> context;
+        protected readonly List<KeyValuePair<string, string>> items = new List<KeyValuePair<string, string>>();
 
         public YamlContextAwareVisitor(Stack<string> context = null)
         {
@@ -32,11 +33,12 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
                 : new Stack<string>(context.Reverse());
         }
 
-        public IList<KeyValuePair<string, string>> Items { get; } = new List<KeyValuePair<string, string>>();
+        public IReadOnlyList<KeyValuePair<string, string>> Items => this.items;
 
         protected override void VisitPair(YamlNode key, YamlNode value)
         {
-            EnterContext((YamlScalarNode)key);
+            // add support for null keys here
+            EnterContext((key as YamlScalarNode)?.Value);
             base.Visit(value);
             ExitContext();
         }
@@ -51,7 +53,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
                 value = scalar.Value;
             }
 
-            this.Items.Add(new KeyValuePair<string, string>(key, value));
+            this.items.Add(new KeyValuePair<string, string>(key, value));
         }
 
         protected override void Visit(YamlMappingNode mapping)
@@ -61,30 +63,29 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
             
             foreach (var item in nestedVisitor.Items)
             {
-                this.Items.Add(new KeyValuePair<string, string>(item.Key, item.Value));
+                this.items.Add(new KeyValuePair<string, string>(item.Key, item.Value));
             }
         }
 
         protected override void Visit(YamlSequenceNode sequence)
         {
             var nestedVisitor = new YamlContextAwareSequenceVisitor(context);
-            nestedVisitor.Visit(sequence);
+            sequence.Accept(nestedVisitor);
 
             foreach (var item in nestedVisitor.Items)
             {
-                this.Items.Add(new KeyValuePair<string, string>(item.Key, item.Value));
+                this.items.Add(new KeyValuePair<string, string>(item.Key, item.Value));
             }
         }
 
-        private void EnterContext(YamlScalarNode scalar)
+        protected void EnterContext(string context)
         {
-            // add support for null keys here
-            context.Push(scalar.Value);
+            this.context.Push(context);
         }
 
-        private void ExitContext()
+        protected void ExitContext()
         {
-            context.Pop();
+            this.context.Pop();
         }
 
         private static bool IsNull(YamlScalarNode scalar)

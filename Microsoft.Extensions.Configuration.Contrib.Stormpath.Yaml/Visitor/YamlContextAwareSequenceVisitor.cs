@@ -20,47 +20,33 @@ using YamlDotNet.RepresentationModel;
 
 namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
 {
-    public class YamlContextAwareSequenceVisitor : YamlVisitorBase
+    public class YamlContextAwareSequenceVisitor : YamlContextAwareVisitor
     {
-        private readonly Stack<string> context;
         private int index = 0;
 
         public YamlContextAwareSequenceVisitor(Stack<string> context = null)
+            : base(context)
         {
-            this.context = context ?? new Stack<string>();
         }
 
-        public new void Visit(YamlSequenceNode sequence)
+        protected override void Visit(YamlSequenceNode sequence)
         {
-            this.VisitChildren(sequence);
+            VisitChildren(sequence);
         }
 
-        public IList<KeyValuePair<string, string>> Items { get; }
-            = new List<KeyValuePair<string, string>>();
-
-        protected override void Visit(YamlScalarNode scalar)
+        protected override void VisitChildren(YamlSequenceNode sequence)
         {
-            var key = $"{string.Join(Constants.KeyDelimiter, context.Reverse())}{Constants.KeyDelimiter}{index}";
+            foreach (var node in sequence.Children)
+            {
+                this.EnterContext(index.ToString());
 
-            this.Items.Add(new KeyValuePair<string, string>(key, scalar.Value));
-        }
+                var visitor = new YamlContextAwareVisitor(context);
+                node.Accept(visitor);
+                this.items.AddRange(visitor.Items);
 
-        protected override void Visited(YamlMappingNode mapping)
-        {
-            index++;
-            base.Visited(mapping);
-        }
-
-        protected override void Visited(YamlScalarNode scalar)
-        {
-            index++;
-            base.Visited(scalar);
-        }
-
-        protected override void Visited(YamlSequenceNode sequence)
-        {
-            index++;
-            base.Visited(sequence);
+                this.ExitContext();
+                index++;
+            }
         }
     }
 }

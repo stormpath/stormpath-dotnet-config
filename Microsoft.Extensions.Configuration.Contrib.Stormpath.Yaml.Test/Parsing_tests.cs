@@ -152,6 +152,26 @@ zoo:
                 });
         }
 
+        [Fact]
+        public void Parsing_arrays_of_properties()
+        {
+            var contents = @"
+---
+foo:
+  - bar: baz
+  - qux: zoo
+";
+
+            var parser = new YamlConfigurationFileParser();
+
+            parser.Parse(StreamFromString(contents)).ShouldBeEquivalentTo(
+                new Dictionary<string, string>()
+                {
+                    ["foo:0:bar"] = "baz",
+                    ["foo:1:qux"] = "zoo",
+                });
+        }
+
         [Theory]
         [InlineData("!!null")]
         [InlineData("!!null blah")]
