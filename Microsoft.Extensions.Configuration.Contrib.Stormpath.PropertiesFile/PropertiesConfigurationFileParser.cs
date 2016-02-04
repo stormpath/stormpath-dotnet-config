@@ -22,18 +22,16 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
 {
     internal sealed class PropertiesConfigurationFileParser
     {
-        private readonly Stream stream;
         private readonly string root;
 
-        public PropertiesConfigurationFileParser(Stream stream, string root)
+        public PropertiesConfigurationFileParser(string root)
         {
-            this.stream = stream;
             this.root = root;
         }
 
-        public IEnumerable<KeyValuePair<string, string>> Parse()
+        public IEnumerable<KeyValuePair<string, string>> Parse(Stream stream)
         {
-            using (var reader = new StreamReader(this.stream))
+            using (var reader = new StreamReader(stream))
             {
                 while (reader.Peek() != -1)
                 {

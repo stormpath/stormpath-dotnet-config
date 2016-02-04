@@ -13,9 +13,9 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile.Te
         {
             var contents = string.Empty;
 
-            var parser = new PropertiesFileParser(StreamFromString(contents), root: null);
+            var parser = new PropertiesConfigurationFileParser(root: null);
 
-            parser.Parse().Should().BeEmpty();
+            parser.Parse(StreamFromString(contents)).Should().BeEmpty();
         }
 
         [Fact]
@@ -25,9 +25,9 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile.Te
 
 
 ";
-            var parser = new PropertiesFileParser(StreamFromString(contents), root: null);
+            var parser = new PropertiesConfigurationFileParser(root: null);
 
-            parser.Parse().Should().BeEmpty();
+            parser.Parse(StreamFromString(contents)).Should().BeEmpty();
         }
 
         [Fact]
@@ -37,9 +37,9 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile.Te
 ! a comment.
 # nope!
 ";
-            var parser = new PropertiesFileParser(StreamFromString(contents), root: null);
+            var parser = new PropertiesConfigurationFileParser(root: null);
 
-            parser.Parse().Should().BeEmpty();
+            parser.Parse(StreamFromString(contents)).Should().BeEmpty();
         }
 
         [Theory]
@@ -48,9 +48,9 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile.Te
         [InlineData("  foo   =            bar   ")]
         public void Parsing_property(string contents)
         {
-            var parser = new PropertiesFileParser(StreamFromString(contents), root: null);
+            var parser = new PropertiesConfigurationFileParser(root: null);
 
-            parser.Parse().Should().BeEquivalentTo(
+            parser.Parse(StreamFromString(contents)).Should().BeEquivalentTo(
                 new KeyValuePair<string, string>("foo", "bar"));
         }
 
@@ -58,9 +58,9 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile.Te
         public void Adds_root()
         {
             var contents = @"bar = baz";
-            var parser = new PropertiesFileParser(StreamFromString(contents), root: "foo");
+            var parser = new PropertiesConfigurationFileParser(root: "foo");
 
-            parser.Parse().Should().BeEquivalentTo(
+            parser.Parse(StreamFromString(contents)).Should().BeEquivalentTo(
                 new KeyValuePair<string, string>("foo:bar", "baz"));
         }
 
@@ -68,9 +68,9 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile.Te
         public void Separators_are_parsed()
         {
             var contents = @"foo.bar = baz";
-            var parser = new PropertiesFileParser(StreamFromString(contents), root: null);
+            var parser = new PropertiesConfigurationFileParser(root: null);
 
-            parser.Parse().Should().BeEquivalentTo(
+            parser.Parse(StreamFromString(contents)).Should().BeEquivalentTo(
                 new KeyValuePair<string, string>("foo:bar", "baz"));
         }
 

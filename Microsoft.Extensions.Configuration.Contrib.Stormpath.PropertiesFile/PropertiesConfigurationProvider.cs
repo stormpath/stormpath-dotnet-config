@@ -99,9 +99,9 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
         {
             var data = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
-            var parser = new PropertiesFileParser(stream, this.Root);
+            var parser = new PropertiesConfigurationFileParser(this.Root);
 
-            foreach (var pair in parser.Parse())
+            foreach (var pair in parser.Parse(stream))
             {
                 if (data.ContainsKey(pair.Key))
                 {
