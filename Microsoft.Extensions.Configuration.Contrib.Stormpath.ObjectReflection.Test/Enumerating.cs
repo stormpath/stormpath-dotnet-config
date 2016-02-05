@@ -14,6 +14,7 @@
 // limitations under the License.
 // </copyright>
 
+using System;
 using System.Collections.Generic;
 using FluentAssertions;
 using Xunit;
@@ -79,6 +80,51 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
                 ["Nest1:Baz"] = "1",
                 ["Nest2:Foo"] = "Two",
                 ["Nest2:Baz"] = "2",
+                });
+        }
+
+        [Fact]
+        public void Simple_anonymous_object()
+        {
+            var anon = new { Foo = "bar", Baz = 123 };
+
+            var enumerator = new ObjectReflectionEnumerator();
+
+            enumerator.GetItems(anon).Should()
+                .BeEquivalentTo(new Dictionary<string, string>()
+                {
+                    ["Foo"] = "bar",
+                    ["Baz"] = "123",
+                });
+        }
+
+        [Fact]
+        public void Complex_anonymous_object()
+        {
+            var anon = new
+            {
+                Qux = "foobar",
+                Nest1 = new
+                {
+                    Foo = "One",
+                    Baz = 1
+                },
+                Nest2 = new
+                {
+                    Foo = "Two",
+                    Baz = 2
+                }
+            };
+
+            var enumerator = new ObjectReflectionEnumerator();
+
+            enumerator.GetItems(anon).ShouldBeEquivalentTo(new Dictionary<string, string>()
+                {
+                    ["Qux"] = "foobar",
+                    ["Nest1:Foo"] = "One",
+                    ["Nest1:Baz"] = "1",
+                    ["Nest2:Foo"] = "Two",
+                    ["Nest2:Baz"] = "2",
                 });
         }
     }
