@@ -36,9 +36,9 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
         }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="IniConfigurationProvider"/>.
+        /// Initializes a new instance of <see cref="PropertiesConfigurationProvider"/>.
         /// </summary>
-        /// <param name="path">Absolute path of the INI configuration file.</param>
+        /// <param name="path">Absolute path of the .properties configuration file.</param>
         /// <param name="optional">Determines if the configuration is optional.</param>
         /// <param name="root">A root element to prepend to any discovered key.</param>
         public PropertiesConfigurationProvider(string path, bool optional, string root)
@@ -54,12 +54,12 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
         }
 
         /// <summary>
-        /// Gets a value that determines if this instance of <see cref="IniConfigurationProvider"/> is optional.
+        /// Gets a value that determines if this instance of <see cref="PropertiesConfigurationProvider"/> is optional.
         /// </summary>
         public bool Optional { get; }
 
         /// <summary>
-        /// The absolute path of the file backing this instance of <see cref="IniConfigurationProvider"/>.
+        /// The absolute path of the file backing this instance of <see cref="PropertiesConfigurationProvider"/>.
         /// </summary>
         public string Path { get; }
 
