@@ -14,7 +14,6 @@
 // limitations under the License.
 // </copyright>
 
-using System;
 using System.Collections.Generic;
 using FluentAssertions;
 using Xunit;
@@ -44,12 +43,13 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
 
             var enumerator = new ObjectReflectionEnumerator();
 
-            enumerator.GetItems(@obj).Should()
-                .BeEquivalentTo(new Dictionary<string, string>()
+            var expected = new Dictionary<string, string>()
             {
                 ["Foo"] = "bar",
                 ["Baz"] = "123",
-            });
+            };
+
+            enumerator.GetItems(@obj).Should().Equal(expected);
         }
 
         [Fact]
@@ -72,15 +72,16 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
 
             var enumerator = new ObjectReflectionEnumerator();
 
-            enumerator.GetItems(@obj).Should()
-                .BeEquivalentTo(new Dictionary<string, string>()
+            var expected = new Dictionary<string, string>()
             {
                 ["Qux"] = "foobar",
                 ["Nest1:Foo"] = "One",
                 ["Nest1:Baz"] = "1",
                 ["Nest2:Foo"] = "Two",
                 ["Nest2:Baz"] = "2",
-                });
+            };
+
+            enumerator.GetItems(@obj).Should().Equal(expected);
         }
 
         [Fact]
@@ -90,12 +91,13 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
 
             var enumerator = new ObjectReflectionEnumerator();
 
-            enumerator.GetItems(anon).Should()
-                .BeEquivalentTo(new Dictionary<string, string>()
-                {
-                    ["Foo"] = "bar",
-                    ["Baz"] = "123",
-                });
+            var expected = new Dictionary<string, string>()
+            {
+                ["Foo"] = "bar",
+                ["Baz"] = "123",
+            };
+
+            enumerator.GetItems(anon).Should().Equal(expected);
         }
 
         [Fact]
@@ -118,14 +120,16 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
 
             var enumerator = new ObjectReflectionEnumerator();
 
-            enumerator.GetItems(anon).ShouldBeEquivalentTo(new Dictionary<string, string>()
-                {
-                    ["Qux"] = "foobar",
-                    ["Nest1:Foo"] = "One",
-                    ["Nest1:Baz"] = "1",
-                    ["Nest2:Foo"] = "Two",
-                    ["Nest2:Baz"] = "2",
-                });
+            var expected = new Dictionary<string, string>()
+            {
+                ["Qux"] = "foobar",
+                ["Nest1:Foo"] = "One",
+                ["Nest1:Baz"] = "1",
+                ["Nest2:Foo"] = "Two",
+                ["Nest2:Baz"] = "2",
+            };
+
+            enumerator.GetItems(anon).Should().Equal(expected);
         }
     }
 
