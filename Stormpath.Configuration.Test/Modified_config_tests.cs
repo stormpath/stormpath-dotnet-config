@@ -104,6 +104,7 @@ namespace Stormpath.Configuration.Test
                         Password = "bar",
                     }
                 },
+
                 Application = new ApplicationConfiguration()
                 {
                     Name = "Lightsabers Galore",
@@ -292,7 +293,224 @@ namespace Stormpath.Configuration.Test
         [Fact]
         public void Supplied_by_anonymous_type()
         {
-            object userConfiguration = null;
+            var userConfiguration = new
+            {
+                client = new
+                {
+                    apiKey = new
+                    {
+                        id = "foobar",
+                        secret = "barbaz"
+                    },
+
+                    cacheManager = new
+                    {
+                        defaultTtl = 500,
+                        defaultTti = 600,
+                        caches = new
+                        {
+                            application = new
+                            {
+                                ttl = 450,
+                                tti = 700
+                            },
+                            directory = new
+                            {
+                                ttl = 200,
+                                tti = 300
+                            }
+                        },
+                    },
+
+                    baseUrl = "https://api.foo.com/v1",
+                    connectionTimeout = 90,
+                    authenticationScheme = ClientAuthenticationScheme.Basic,
+
+                    proxy = new
+                    {
+                        port = 8088,
+                        host = "proxy.foo.bar",
+                        username = "foo",
+                        password = "bar",
+                    }
+                },
+
+                application = new
+                {
+                    name = "Lightsabers Galore",
+                    href = "https://api.foo.com/v1/apps/foo",
+                },
+
+                web = new
+                {
+                    basePath = "#/",
+
+                    oauth2 = new
+                    {
+                        enabled = false,
+                        uri = "/oauth2/token",
+                        client_credentials = new
+                        {
+                            enabled = false,
+                            accessToken = new
+                            {
+                                ttl = 3601
+                            }
+                        },
+
+                        password = new
+                        {
+                            enabled = false,
+                            validationStrategy = WebOauth2TokenValidationStrategy.Remote
+                        }
+                    },
+
+                    expand = new
+                    {
+                        customData = true,
+                        applications = true,
+                    },
+
+                    accessTokenCookie = new
+                    {
+                        name = "accessToken",
+                        httpOnly = false,
+                        secure = false,
+                        path = "/",
+                        domain = "foo.bar",
+                    },
+
+                    refreshTokenCookie = new
+                    {
+                        name = "refreshToken",
+                        httpOnly = false,
+                        secure = true,
+                        path = "/foo",
+                        domain = "baz.qux",
+                    },
+
+                    produces = new string[] { "foo/bar" },
+
+                    Register = new
+                    {
+                        enabled = false,
+                        uri = "/register1",
+                        nextUri = "/register1",
+                        autoLogin = true,
+                        view = "registerView",
+                        form = new
+                        {
+                            fields = new
+                            {
+                                email = new
+                                {
+                                    enabled = false,
+                                    label = "I Can Has Email",
+                                    placeholder = "Can Has?",
+                                    required = false,
+                                    type = "text",
+                                },
+                            },
+                            fieldOrder = new List<string>()
+                            {
+                                "email",
+                                "hidden",
+                            },
+                        },
+                    },
+
+                    verifyEmail = new
+                    {
+                        enabled = true,
+                        uri = "/verify1",
+                        nextUri = "/login2",
+                        view = "verifyView"
+                    },
+
+                    login = new
+                    {
+                        enabled = false,
+                        uri = "/login3",
+                        nextUri = "/3",
+                        view = "loginView",
+                        form = new
+                        {
+                            Fields = new
+                            {
+                                password = new
+                                {
+                                    enabled = false,
+                                    label = "Password?",
+                                    placeholder = "Maybe",
+                                    required = false,
+                                    type = "email",
+                                },
+                            },
+                            fieldOrder = new List<string>()
+                            {
+                                "password",
+                            }
+                        }
+                    },
+
+                    logout = new
+                    {
+                        Enabled = false,
+                        Uri = "/logout4",
+                        NextUri = "/4"
+                    },
+
+                    ForgotPassword = new
+                    {
+                        enabled = true,
+                        uri = "/forgot5",
+                        view = "forgot-password-view",
+                        nextUri = "/login?status=forgot!",
+                    },
+
+                    changePassword = new
+                    {
+                        enabled = true,
+                        autoLogin = true,
+                        uri = "/change6",
+                        nextUri = "/login?status=reset?",
+                        view = "change-password-view",
+                        errorUri = "/forgot?status=invalid_sptoken:(",
+                    },
+
+                    idSite = new
+                    {
+                        enabled = true,
+                        uri = "/idSiteResult2",
+                        nextUri = "/123",
+                        loginUri = "/456",
+                        forgotUri = "/#/forgot789",
+                        registerUri = "/#/register0"
+                    },
+
+                    socialProviders = new
+                    {
+                        callbackRoot = "/callbacksYo"
+                    },
+
+                    me = new
+                    {
+                        enabled = false,
+                        uri = "/myself",
+                    },
+
+                    spa = new
+                    {
+                        enabled = true,
+                        view = "indexView",
+                    },
+
+                    unauthorized = new
+                    {
+                        view = "unauthorizedView",
+                    }
+                }
+            };
 
             var config = StormpathConfiguration.Load(userConfiguration);
 
