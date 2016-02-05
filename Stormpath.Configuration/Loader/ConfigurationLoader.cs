@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection;
 using Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile;
 using Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml;
 using Microsoft.Extensions.PlatformAbstractions;
@@ -64,8 +65,7 @@ namespace Stormpath.Configuration.Loader
                 .AddJsonFile("stormpath.json", optional: true)
                 .AddYamlFile("stormpath.yaml", optional: true)
                 //.AddMatchingEnvironmentVariables(environment, match: Default.Configuration)
-                //.AddObject(this.userConfiguration)
-                ;
+                .AddObject(this.userConfiguration);
 
             // If apiKey root element is set, copy over to client.apiKey (backwards compatibility)
 

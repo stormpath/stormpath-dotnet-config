@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using FluentAssertions;
+using Stormpath.Configuration.Model;
 using Xunit;
 
 namespace Stormpath.Configuration.Test
@@ -25,7 +26,7 @@ namespace Stormpath.Configuration.Test
     [Collection("Disk IO Tests")]
     public class Modified_config_tests
     {
-        public static IEnumerable<object[]> TestCases()
+        public static IEnumerable<object[]> FileTestCases()
         {
             yield return new object[] { new ModifiedConfigTestCases.YamlTestCase() };
             yield return new object[] { new ModifiedConfigTestCases.JsonTestCase() };
@@ -39,7 +40,7 @@ namespace Stormpath.Configuration.Test
         private static void Cleanup()
         {
             // Clean up any stray items
-            foreach (var entry in TestCases())
+            foreach (var entry in FileTestCases())
             {
                 var testCase = entry[0] as ConfigTestCaseBase;
                 File.Delete(testCase.Filename);
@@ -47,13 +48,259 @@ namespace Stormpath.Configuration.Test
         }
 
         [Theory]
-        [MemberData(nameof(TestCases))]
+        [MemberData(nameof(FileTestCases))]
         public void Loading_modified_config(ConfigTestCaseBase testCase)
         {
             File.WriteAllText(testCase.Filename, testCase.FileContents);
 
             var config = StormpathConfiguration.Load();
 
+            ValidateConfig(config);
+
+            Cleanup();
+        }
+
+        [Fact]
+        public void Supplied_by_instance()
+        {
+            var userConfiguration = new StormpathConfiguration()
+            {
+                Client = new ClientConfiguration()
+                {
+                    ApiKey = new ClientApiKeyConfiguration()
+                    {
+                        Id = "foobar",
+                        Secret = "barbaz"
+                    },
+
+                    CacheManager = new ClientCacheManagerConfiguration()
+                    {
+                        DefaultTtl = 500,
+                        DefaultTti = 600,
+                        Caches = new Dictionary<string, ClientCacheConfiguration>()
+                        {
+                            ["application"] = new ClientCacheConfiguration()
+                            {
+                                Ttl = 450,
+                                Tti = 700
+                            },
+                            ["directory"] = new ClientCacheConfiguration()
+                            {
+                                Ttl = 200,
+                                Tti = 300
+                            }
+                        },
+                    },
+
+                    BaseUrl = "https://api.foo.com/v1",
+                    ConnectionTimeout = 90,
+                    AuthenticationScheme = ClientAuthenticationScheme.Basic,
+
+                    Proxy = new ClientProxyConfiguration()
+                    {
+                        Port = 8088,
+                        Host = "proxy.foo.bar",
+                        Username = "foo",
+                        Password = "bar",
+                    }
+                },
+                Application = new ApplicationConfiguration()
+                {
+                    Name = "Lightsabers Galore",
+                    Href = "https://api.foo.com/v1/apps/foo",
+                },
+
+                Web = new WebConfiguration()
+                {
+                    BasePath = "#/",
+
+                    Oauth2 = new WebOauth2RouteConfiguration()
+                    {
+                        Enabled = false,
+                        Uri = "/oauth2/token",
+                        Client_Credentials = new WebOauth2ClientCredentialsGrantConfiguration()
+                        {
+                            Enabled = false,
+                            AccessToken = new WebOauth2TokenConfiguration()
+                            {
+                                Ttl = 3601
+                            }
+                        },
+
+                        Password = new WebOauth2PasswordGrantConfiguration()
+                        {
+                            Enabled = false,
+                            ValidationStrategy = WebOauth2TokenValidationStrategy.Remote
+                        }
+                    },
+
+                    Expand = new Dictionary<string, bool>()
+                    {
+                        ["customData"] = true,
+                        ["applications"] = true,
+                    },
+
+                    AccessTokenCookie = new WebOauth2TokenCookieConfiguration()
+                    {
+                        Name = "accessToken",
+                        HttpOnly = false,
+                        Secure = false,
+                        Path = "/",
+                        Domain = "foo.bar",
+                    },
+
+                    RefreshTokenCookie = new WebOauth2TokenCookieConfiguration()
+                    {
+                        Name = "refreshToken",
+                        HttpOnly = false,
+                        Secure = true,
+                        Path = "/foo",
+                        Domain = "baz.qux",
+                    },
+
+                    Produces = new List<string>()
+                    {
+                        "foo/bar",
+                    },
+
+                    Register = new WebRegisterRouteConfiguration()
+                    {
+                        Enabled = false,
+                        Uri = "/register1",
+                        NextUri = "/register1",
+                        AutoLogin = true,
+                        View = "registerView",
+                        Form = new WebRegisterRouteFormConfiguration()
+                        {
+                            Fields = new Dictionary<string, WebFieldConfiguration>()
+                            {
+                                ["email"] = new WebFieldConfiguration()
+                                {
+                                    Enabled = false,
+                                    Label = "I Can Has Email",
+                                    Placeholder = "Can Has?",
+                                    Required = false,
+                                    Type = "text",
+                                },
+                            },
+                            FieldOrder = new List<string>()
+                            {
+                                "email",
+                                "hidden",
+                            },
+                        },
+                    },
+
+                    VerifyEmail = new WebVerifyEmailRouteConfiguration()
+                    {
+                        Enabled = true,
+                        Uri = "/verify1",
+                        NextUri = "/login2",
+                        View = "verifyView"
+                    },
+
+                    Login = new WebLoginRouteConfiguration()
+                    {
+                        Enabled = false,
+                        Uri = "/login3",
+                        NextUri = "/3",
+                        View = "loginView",
+                        Form = new WebLoginRouteFormConfiguration()
+                        {
+                            Fields = new Dictionary<string, WebFieldConfiguration>()
+                            {
+                                ["password"] = new WebFieldConfiguration()
+                                {
+                                    Enabled = false,
+                                    Label = "Password?",
+                                    Placeholder = "Maybe",
+                                    Required = false,
+                                    Type = "email",
+                                },
+                            },
+                            FieldOrder = new List<string>()
+                            {
+                                "password",
+                            }
+                        }
+                    },
+
+                    Logout = new WebLogoutRouteConfiguration()
+                    {
+                        Enabled = false,
+                        Uri = "/logout4",
+                        NextUri = "/4"
+                    },
+
+                    ForgotPassword = new WebForgotPasswordRouteConfiguration()
+                    {
+                        Enabled = true,
+                        Uri = "/forgot5",
+                        View = "forgot-password-view",
+                        NextUri = "/login?status=forgot!",
+                    },
+
+                    ChangePassword = new WebChangePasswordRouteConfiguration()
+                    {
+                        Enabled = true,
+                        AutoLogin = true,
+                        Uri = "/change6",
+                        NextUri = "/login?status=reset?",
+                        View = "change-password-view",
+                        ErrorUri = "/forgot?status=invalid_sptoken:(",
+                    },
+
+                    IdSite = new WebIdSiteRouteConfiguration()
+                    {
+                        Enabled = true,
+                        Uri = "/idSiteResult2",
+                        NextUri = "/123",
+                        LoginUri = "/456",
+                        ForgotUri = "/#/forgot789",
+                        RegisterUri = "/#/register0"
+                    },
+
+                    SocialProviders = new WebSocialProvidersConfiguration()
+                    {
+                        CallbackRoot = "/callbacksYo"
+                    },
+
+                    Me = new WebMeRouteConfiguration()
+                    {
+                        Enabled = false,
+                        Uri = "/myself",
+                    },
+
+                    Spa = new WebSpaConfiguration()
+                    {
+                        Enabled = true,
+                        View = "indexView",
+                    },
+
+                    Unauthorized = new WebUnauthorizedConfiguration()
+                    {
+                        View = "unauthorizedView",
+                    }
+                }
+            };
+
+            var config = StormpathConfiguration.Load(userConfiguration);
+
+            ValidateConfig(config);
+        }
+
+        [Fact]
+        public void Supplied_by_anonymous_type()
+        {
+            object userConfiguration = null;
+
+            var config = StormpathConfiguration.Load(userConfiguration);
+
+            ValidateConfig(config);
+        }
+
+        private void ValidateConfig(StormpathConfiguration config)
+        {
             // Client section
             config.Client.ApiKey.Id.Should().Be("foobar");
             config.Client.ApiKey.Secret.Should().Be("barbaz");
@@ -88,7 +335,7 @@ namespace Stormpath.Configuration.Test
             config.Web.Oauth2.Client_Credentials.Enabled.Should().BeFalse();
             config.Web.Oauth2.Client_Credentials.AccessToken.Ttl.Should().Be(3601);
             config.Web.Oauth2.Password.Enabled.Should().BeFalse();
-            config.Web.Oauth2.Password.ValidationStrategy.Should().Be(Model.WebOauth2TokenValidationStrategy.Remote);
+            config.Web.Oauth2.Password.ValidationStrategy.Should().Be(WebOauth2TokenValidationStrategy.Remote);
 
             config.Web.Expand.ShouldBeEquivalentTo(new Dictionary<string, bool>()
             {
@@ -114,7 +361,7 @@ namespace Stormpath.Configuration.Test
                 new List<string>()
             {
                 "foo/bar",
-            }, 
+            },
                 opt => opt.WithStrictOrdering()
             );
 
@@ -149,11 +396,13 @@ namespace Stormpath.Configuration.Test
             config.Web.Login.NextUri.Should().Be("/3");
             config.Web.Login.View.Should().Be("loginView");
 
+            //throw new System.NotImplementedException("should assert the number of fields");
             config.Web.Login.Form.Fields["password"].Enabled.Should().BeFalse();
             config.Web.Login.Form.Fields["password"].Label.Should().Be("Password?");
             config.Web.Login.Form.Fields["password"].Placeholder.Should().Be("Maybe");
             config.Web.Login.Form.Fields["password"].Required.Should().BeFalse();
             config.Web.Login.Form.Fields["password"].Type.Should().Be("email");
+            config.Web.Login.Form.Fields.Should().HaveCount(1);
 
             config.Web.Login.Form.FieldOrder.ShouldBeEquivalentTo(new List<string>()
             {
@@ -194,8 +443,6 @@ namespace Stormpath.Configuration.Test
             config.Web.Spa.View.Should().Be("indexView");
 
             config.Web.Unauthorized.View.Should().Be("unauthorizedView");
-
-            Cleanup();
         }
     }
 }
