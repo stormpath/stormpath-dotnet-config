@@ -22,16 +22,23 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection
     public class ObjectReflectionConfigurationProvider : ConfigurationProvider
     {
         private readonly object sourceObject;
+        private readonly string root;
 
-        public ObjectReflectionConfigurationProvider(object sourceObject)
+        public ObjectReflectionConfigurationProvider(object sourceObject, string root)
         {
             this.sourceObject = sourceObject;
+            this.root = root;
         }
 
         public override void Load()
         {
             var data = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-            var enumerator = new ObjectReflectionEnumerator();
+
+            var startingContext = string.IsNullOrEmpty(this.root)
+                ? new Stack<string>()
+                : new Stack<string>(new string[] { this.root });
+
+            var enumerator = new ObjectReflectionEnumerator(startingContext);
 
             foreach (var pair in enumerator.GetItems(this.sourceObject))
             {

@@ -25,15 +25,16 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection
         /// </summary>
         /// <param name="configurationBuilder">The <see cref="IConfigurationBuilder"/> to add to.</param>
         /// <param name="object">The object to examine.</param>
+        /// <param name="root">A root element to prepend to any discovered key.</param>
         /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
-        public static IConfigurationBuilder AddObject(this IConfigurationBuilder configurationBuilder, object @object)
+        public static IConfigurationBuilder AddObject(this IConfigurationBuilder configurationBuilder, object @object, string root = null)
         {
             if (configurationBuilder == null)
             {
                 throw new ArgumentNullException(nameof(configurationBuilder));
             }
 
-            configurationBuilder.Add(new ObjectReflectionConfigurationProvider(@object));
+            configurationBuilder.Add(new ObjectReflectionConfigurationProvider(@object, root));
             return configurationBuilder;
         }
     }
