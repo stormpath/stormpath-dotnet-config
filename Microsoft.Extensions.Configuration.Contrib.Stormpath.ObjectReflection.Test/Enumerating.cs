@@ -194,6 +194,28 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
 
             ContextAwareObjectVisitor.Visit(@obj).Should().Equal(expected);
         }
+
+        [Fact]
+        public void Dictionary_property()
+        {
+            var anon = new
+            {
+                items = new Dictionary<string, object>()
+                {
+                    ["foo"] = "bar",
+                    ["baz"] = new { id = 1, qux = "blah" }
+                }
+            };
+
+            var expected = new Dictionary<string, string>()
+            {
+                ["items:foo"] = "bar",
+                ["items:baz:id"] = "1",
+                ["items:baz:qux"] = "blah"
+            };
+
+            ContextAwareObjectVisitor.Visit(anon).Should().Equal(expected);
+        }
     }
 
     public class SimpleTestClass

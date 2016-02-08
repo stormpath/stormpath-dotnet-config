@@ -40,13 +40,13 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
             return visitor.items;
         }
 
-        protected override void VisitProperty(PropertyInfo property, object obj)
+        protected override void VisitProperty(string name, TypeInfo propertyTypeInfo, object actualValue)
         {
-            EnterContext(property.Name);
-            base.VisitProperty(property, obj);
+            EnterContext(name);
+            base.VisitProperty(name, propertyTypeInfo, actualValue);
         }
 
-        protected override void VisitedProperty(PropertyInfo property)
+        protected override void VisitedProperty(string name)
         {
             ExitContext();
         }
@@ -62,6 +62,13 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
         {
             var visitor = new ContextAwareEnumerableVisitor(this.context);
             visitor.VisitEnumerable(enumerable);
+            this.items.AddRange(visitor.items);
+        }
+
+        protected override void VisitDictionary(IDictionary dictionary)
+        {
+            var visitor = new ContextAwareDictionaryVisitor(this.context);
+            visitor.VisitDictionary(dictionary);
             this.items.AddRange(visitor.items);
         }
 

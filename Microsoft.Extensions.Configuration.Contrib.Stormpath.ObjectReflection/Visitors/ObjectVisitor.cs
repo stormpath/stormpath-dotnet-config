@@ -35,26 +35,28 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
         {
             foreach (var property in obj.GetType().GetTypeInfo().DeclaredProperties)
             {
-                VisitProperty(property, obj);
-                VisitedProperty(property);
+                VisitProperty(property.Name, property.PropertyType.GetTypeInfo(), property.GetValue(obj));
+                VisitedProperty(property.Name);
             }
         }
 
-        protected virtual void VisitProperty(PropertyInfo property, object obj)
+        protected virtual void VisitProperty(string name, TypeInfo propertyTypeInfo, object actualValue)
         {
-            var propertyTypeInfo = property.PropertyType.GetTypeInfo();
-
             if (IsSupportedPrimitive(propertyTypeInfo))
             {
-                VisitPrimitive(property.GetValue(obj));
+                VisitPrimitive(actualValue);
+            }
+            else if (typeof(IDictionary).GetTypeInfo().IsAssignableFrom(propertyTypeInfo))
+            {
+                VisitDictionary(actualValue as IDictionary);
             }
             else if (typeof(IEnumerable).GetTypeInfo().IsAssignableFrom(propertyTypeInfo))
             {
-                VisitEnumerable(property.GetValue(obj) as IEnumerable);
+                VisitEnumerable(actualValue as IEnumerable);
             }
             else if (propertyTypeInfo.IsClass)
             {
-                VisitObject(property.GetValue(obj));
+                VisitObject(actualValue);
             }
             else
             {
@@ -62,7 +64,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
             }
         }
 
-        protected virtual void VisitedProperty(PropertyInfo property)
+        protected virtual void VisitedProperty(string name)
         {
             // Do nothing.
         }
@@ -73,6 +75,11 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
         }
 
         protected virtual void VisitEnumerable(IEnumerable enumerable)
+        {
+            // Do nothing.
+        }
+
+        protected virtual void VisitDictionary(IDictionary dictionary)
         {
             // Do nothing.
         }
