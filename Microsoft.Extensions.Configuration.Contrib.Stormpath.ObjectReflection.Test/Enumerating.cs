@@ -16,6 +16,7 @@
 
 using System.Collections.Generic;
 using FluentAssertions;
+using Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.Visitors;
 using Xunit;
 
 namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.Test
@@ -27,9 +28,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
         {
             object @obj = null;
 
-            var enumerator = new ObjectReflectionEnumerator();
-
-            enumerator.GetItems(@obj).Should().BeEmpty();
+            ContextAwareObjectVisitor.Visit(@obj).Should().BeEmpty();
         }
 
         [Fact]
@@ -41,15 +40,13 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
                 Baz = 123
             };
 
-            var enumerator = new ObjectReflectionEnumerator();
-
             var expected = new Dictionary<string, string>()
             {
                 ["Foo"] = "bar",
                 ["Baz"] = "123",
             };
 
-            enumerator.GetItems(@obj).Should().Equal(expected);
+            ContextAwareObjectVisitor.Visit(@obj).Should().Equal(expected);
         }
 
         [Fact]
@@ -70,8 +67,6 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
                 }
             };
 
-            var enumerator = new ObjectReflectionEnumerator();
-
             var expected = new Dictionary<string, string>()
             {
                 ["Qux"] = "foobar",
@@ -81,7 +76,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
                 ["Nest2:Baz"] = "2",
             };
 
-            enumerator.GetItems(@obj).Should().Equal(expected);
+            ContextAwareObjectVisitor.Visit(@obj).Should().Equal(expected);
         }
 
         [Fact]
@@ -89,15 +84,13 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
         {
             var anon = new { Foo = "bar", Baz = 123 };
 
-            var enumerator = new ObjectReflectionEnumerator();
-
             var expected = new Dictionary<string, string>()
             {
                 ["Foo"] = "bar",
                 ["Baz"] = "123",
             };
 
-            enumerator.GetItems(anon).Should().Equal(expected);
+            ContextAwareObjectVisitor.Visit(anon).Should().Equal(expected);
         }
 
         [Fact]
@@ -118,8 +111,6 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
                 }
             };
 
-            var enumerator = new ObjectReflectionEnumerator();
-
             var expected = new Dictionary<string, string>()
             {
                 ["Qux"] = "foobar",
@@ -129,7 +120,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
                 ["Nest2:Baz"] = "2",
             };
 
-            enumerator.GetItems(anon).Should().Equal(expected);
+            ContextAwareObjectVisitor.Visit(anon).Should().Equal(expected);
         }
     }
 

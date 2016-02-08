@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.Visitors;
 
 namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection
 {
@@ -32,22 +33,16 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection
 
         public override void Load()
         {
-            var data = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            var data = new SortedDictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            var items = ContextAwareObjectVisitor.Visit(this.sourceObject);
 
-            var startingContext = string.IsNullOrEmpty(this.root)
-                ? new Stack<string>()
-                : new Stack<string>(new string[] { this.root });
-
-            var enumerator = new ObjectReflectionEnumerator(startingContext);
-
-            foreach (var pair in enumerator.GetItems(this.sourceObject))
+            foreach (var item in items)
             {
-                if (data.ContainsKey(pair.Key))
+                if (data.ContainsKey(item.Key))
                 {
-                    throw new FormatException(string.Format(Resources.Error_KeyIsDuplicated, pair.Key));
+                    throw new FormatException(string.Format(Resources.Error_KeyIsDuplicated, item.Key));
                 }
-
-                data[pair.Key] = pair.Value;
+                data[item.Key] = item.Value;
             }
 
             Data = data;
