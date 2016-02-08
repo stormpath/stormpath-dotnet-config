@@ -81,7 +81,11 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
         {
             return typeInfo.IsPrimitive
                 || typeInfo.IsEnum
-                || typeInfo.AsType() == typeof(string);
+                || typeInfo == typeof(string).GetTypeInfo()
+                || IsNullable(typeInfo.AsType());
         }
+
+        private static bool IsNullable(Type possiblyNullable)
+            => Nullable.GetUnderlyingType(possiblyNullable) != null;
     }
 }

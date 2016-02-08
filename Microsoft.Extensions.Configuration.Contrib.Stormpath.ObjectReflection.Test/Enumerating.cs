@@ -162,6 +162,38 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
 
             ContextAwareObjectVisitor.Visit(anon).Should().Equal(expected);
         }
+
+        [Fact]
+        public void Nullable_primitive_property_with_null()
+        {
+            var @obj = new HasNullable()
+            {
+                NullableFoo = null
+            };
+
+            var expected = new Dictionary<string, string>()
+            {
+                ["NullableFoo"] = string.Empty,
+            };
+
+            ContextAwareObjectVisitor.Visit(@obj).Should().Equal(expected);
+        }
+
+        [Fact]
+        public void Nullable_primitive_property_with_value()
+        {
+            var @obj = new HasNullable()
+            {
+                NullableFoo = 123
+            };
+
+            var expected = new Dictionary<string, string>()
+            {
+                ["NullableFoo"] = "123",
+            };
+
+            ContextAwareObjectVisitor.Visit(@obj).Should().Equal(expected);
+        }
     }
 
     public class SimpleTestClass
@@ -178,5 +210,10 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
         public SimpleTestClass Nest1 { get; set; }
 
         public SimpleTestClass Nest2 { get; set; }
+    }
+
+    public class HasNullable
+    {
+        public int? NullableFoo { get; set; }
     }
 }
