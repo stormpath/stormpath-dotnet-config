@@ -14,6 +14,7 @@
 // limitations under the License.
 // </copyright>
 
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -22,8 +23,8 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
 {
     public class ContextAwareObjectVisitor : ObjectVisitor
     {
-        private readonly Stack<string> context;
-        private readonly List<KeyValuePair<string, string>> items = new List<KeyValuePair<string, string>>();
+        protected readonly Stack<string> context;
+        protected readonly List<KeyValuePair<string, string>> items = new List<KeyValuePair<string, string>>();
 
         public ContextAwareObjectVisitor(Stack<string> previousContext = null)
         {
@@ -41,13 +42,13 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
 
         protected override void VisitProperty(PropertyInfo property, object obj)
         {
-            context.Push(property.Name);
+            EnterContext(property.Name);
             base.VisitProperty(property, obj);
         }
 
         protected override void VisitedProperty(PropertyInfo property)
         {
-            context.Pop();
+            ExitContext();
         }
 
         protected override void VisitPrimitive(object primitiveValue)
@@ -55,6 +56,24 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
             var key = string.Join(Constants.KeyDelimiter, context.Reverse());
 
             this.items.Add(new KeyValuePair<string, string>(key, primitiveValue.ToString()));
+        }
+
+        protected override void VisitEnumerable(IEnumerable enumerable)
+        {
+            var visitor = new ContextAwareEnumerableVisitor(this.context);
+            visitor.VisitEnumerable(enumerable);
+            this.items.AddRange(visitor.items);
+        }
+
+        protected void EnterContext(string context)
+        {
+            context = context ?? string.Empty;
+            this.context.Push(context);
+        }
+
+        protected void ExitContext()
+        {
+            this.context.Pop();
         }
     }
 }

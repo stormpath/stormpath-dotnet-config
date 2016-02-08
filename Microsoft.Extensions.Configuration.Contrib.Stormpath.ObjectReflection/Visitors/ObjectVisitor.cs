@@ -15,6 +15,8 @@
 // </copyright>
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.Visitors
@@ -42,13 +44,17 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
         {
             var propertyTypeInfo = property.PropertyType.GetTypeInfo();
 
-            if (propertyTypeInfo.IsPrimitive || property.PropertyType == typeof(string))
+            if (IsSupportedPrimitive(propertyTypeInfo))
             {
                 VisitPrimitive(property.GetValue(obj));
             }
+            else if (typeof(IEnumerable).GetTypeInfo().IsAssignableFrom(propertyTypeInfo))
+            {
+                VisitEnumerable(property.GetValue(obj) as IEnumerable);
+            }
             else if (propertyTypeInfo.IsClass)
             {
-                VisitNestedObject(property.GetValue(obj));
+                VisitObject(property.GetValue(obj));
             }
             else
             {
@@ -66,9 +72,16 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
             // Do nothing.
         }
 
-        protected virtual void VisitNestedObject(object nested)
+        protected virtual void VisitEnumerable(IEnumerable enumerable)
         {
-            VisitObject(nested);
+            // Do nothing.
+        }
+
+        protected static bool IsSupportedPrimitive(TypeInfo typeInfo)
+        {
+            return typeInfo.IsPrimitive
+                || typeInfo.IsEnum
+                || typeInfo.AsType() == typeof(string);
         }
     }
 }

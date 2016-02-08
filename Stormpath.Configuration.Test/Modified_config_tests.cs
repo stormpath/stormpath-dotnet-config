@@ -168,7 +168,7 @@ namespace Stormpath.Configuration.Test
                     {
                         Enabled = false,
                         Uri = "/register1",
-                        NextUri = "/register1",
+                        NextUri = "/1",
                         AutoLogin = true,
                         View = "registerView",
                         Form = new WebRegisterRouteFormConfiguration()
@@ -395,7 +395,7 @@ namespace Stormpath.Configuration.Test
                     {
                         enabled = false,
                         uri = "/register1",
-                        nextUri = "/register1",
+                        nextUri = "/1",
                         autoLogin = true,
                         view = "registerView",
                         form = new
@@ -481,7 +481,7 @@ namespace Stormpath.Configuration.Test
                     idSite = new
                     {
                         enabled = true,
-                        uri = "/idSiteResult2",
+                        uri = "/idSiteResultz",
                         nextUri = "/123",
                         loginUri = "/456",
                         forgotUri = "/#/forgot789",

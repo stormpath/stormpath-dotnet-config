@@ -122,6 +122,46 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
 
             ContextAwareObjectVisitor.Visit(anon).Should().Equal(expected);
         }
+
+        [Fact]
+        public void Nested_array_property()
+        {
+            var anon = new
+            {
+                foo = new
+                {
+                    items = new string[] { "foo", "bar" }
+                }
+            };
+
+            var expected = new Dictionary<string, string>()
+            {
+                ["foo:items:0"] = "foo",
+                ["foo:items:1"] = "bar"
+            };
+
+            ContextAwareObjectVisitor.Visit(anon).Should().Equal(expected);
+        }
+
+        [Fact]
+        public void Nested_list_property()
+        {
+            var anon = new
+            {
+                foo = new
+                {
+                    items = new List<string>() { "foo", "bar" }
+                }
+            };
+
+            var expected = new Dictionary<string, string>()
+            {
+                ["foo:items:0"] = "foo",
+                ["foo:items:1"] = "bar"
+            };
+
+            ContextAwareObjectVisitor.Visit(anon).Should().Equal(expected);
+        }
     }
 
     public class SimpleTestClass
