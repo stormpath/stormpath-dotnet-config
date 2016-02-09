@@ -254,7 +254,7 @@ namespace Stormpath.Configuration.Test
                     IdSite = new WebIdSiteRouteConfiguration()
                     {
                         Enabled = true,
-                        Uri = "/idSiteResult2",
+                        Uri = "/idSiteResultz",
                         NextUri = "/123",
                         LoginUri = "/456",
                         ForgotUri = "/#/forgot789",
