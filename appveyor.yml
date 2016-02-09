@@ -12,14 +12,14 @@ test_script:
 
     dnx test
 
-    cd .\Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile.Test
+    cd ..\Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile.Test
 
     dnx test
 
-    cd .\Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Test
+    cd ..\Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Test
 
     dnx test
 
-    cd .\Stormpath.Configuration.Test
+    cd ..\Stormpath.Configuration.Test
 
     dnx test
