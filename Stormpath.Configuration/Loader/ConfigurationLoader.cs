@@ -65,6 +65,7 @@ namespace Stormpath.Configuration.Loader
                 .AddPropertiesFile(ResolveHomePath($"{stormpathDirectory}apiKey.properties"), optional: true, root: "client")
                 .AddJsonFile(ResolveHomePath($"{stormpathDirectory}stormpath.json"), optional: true)
                 .AddYamlFile($"{stormpathDirectory}stormpath.yaml", optional: true)
+                .AddJsonFile("appsettings.json", optional: true)
                 .AddPropertiesFile("apiKey.properties", optional: true, root: "client")
                 .AddJsonFile("stormpath.json", optional: true)
                 .AddYamlFile("stormpath.yaml", optional: true)
