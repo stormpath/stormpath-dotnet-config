@@ -53,7 +53,7 @@ client:
     password: bar
 application:
   name: Lightsabers Galore
-  href: ""https://api.foo.com/v1/apps/foo""
+  href: ""https://api.foo.com/v1/applications/foo""
 web:
   basePath: ""#/""
 

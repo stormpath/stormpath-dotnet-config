@@ -61,5 +61,53 @@ namespace Stormpath.Configuration.Test
 
             act.ShouldThrow<ConfigurationException>().WithMessage("API key ID and secret is required.");
         }
+
+        [Fact]
+        public void Throws_for_malformed_app_href()
+        {
+            var anon = new
+            {
+                client = new
+                {
+                    apiKey = new
+                    {
+                        id = "foobar",
+                        secret = "secret123!",
+                    }
+                },
+                application = new
+                {
+                    href = "https://foo.bar/myapps/123",
+                }
+            };
+
+            Action act = () => StormpathConfiguration.Load(anon);
+
+            act.ShouldThrow<ConfigurationException>().Which.Message.Should().EndWith("is not a valid Stormpath Application href.");
+        }
+
+        [Fact]
+        public void Blank_app_href_is_ok()
+        {
+            var anon = new
+            {
+                client = new
+                {
+                    apiKey = new
+                    {
+                        id = "foobar",
+                        secret = "secret123!",
+                    }
+                },
+                application = new
+                {
+                    href = string.Empty,
+                }
+            };
+
+            Action act = () => StormpathConfiguration.Load(anon);
+
+            act.ShouldNotThrow();
+        }
     }
 }

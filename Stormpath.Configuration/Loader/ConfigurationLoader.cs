@@ -52,6 +52,7 @@ namespace Stormpath.Configuration.Loader
             ThrowIfMissingCredentials(output.Client);
 
             // Validation application href, if exists
+            ThrowIfInvalidApplicationHref(output.Application);
 
             // Web discovery
 
@@ -225,6 +226,20 @@ namespace Stormpath.Configuration.Loader
                 || string.IsNullOrEmpty(client.ApiKey.Secret))
             {
                 throw new ConfigurationException("API key ID and secret is required.");
+            }
+        }
+
+        private void ThrowIfInvalidApplicationHref(ApplicationConfiguration app)
+        {
+            if (string.IsNullOrEmpty(app?.Href))
+            {
+                return; // Skip validation
+            }
+
+            bool contains = app.Href.IndexOf("/applications/", StringComparison.OrdinalIgnoreCase) >= 0;
+            if (!contains)
+            {
+                throw new ConfigurationException($"'{app.Href}' is not a valid Stormpath Application href.");
             }
         }
 

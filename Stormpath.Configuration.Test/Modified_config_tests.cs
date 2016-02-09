@@ -336,7 +336,7 @@ namespace Stormpath.Configuration.Test
                 application = new
                 {
                     name = "Lightsabers Galore",
-                    href = "https://api.foo.com/v1/apps/foo",
+                    href = "https://api.foo.com/v1/applications/foo",
                 },
 
                 web = new
@@ -540,7 +540,7 @@ namespace Stormpath.Configuration.Test
             config.Client.Proxy.Password.Should().Be("bar");
 
             // Application section
-            config.Application.Href.Should().Be("https://api.foo.com/v1/apps/foo");
+            config.Application.Href.Should().Be("https://api.foo.com/v1/applications/foo");
             config.Application.Name.Should().Be("Lightsabers Galore");
 
             // Web section
