@@ -44,10 +44,6 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
         {
             EnterContext(name);
             base.VisitProperty(name, propertyTypeInfo, actualValue);
-        }
-
-        protected override void VisitedProperty(string name)
-        {
             ExitContext();
         }
 

@@ -36,7 +36,6 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
             foreach (var property in obj.GetType().GetTypeInfo().DeclaredProperties)
             {
                 VisitProperty(property.Name, property.PropertyType.GetTypeInfo(), property.GetValue(obj));
-                VisitedProperty(property.Name);
             }
         }
 
@@ -62,11 +61,6 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
             {
                 throw new NotImplementedException();
             }
-        }
-
-        protected virtual void VisitedProperty(string name)
-        {
-            // Do nothing.
         }
 
         protected virtual void VisitPrimitive(object primitiveValue)

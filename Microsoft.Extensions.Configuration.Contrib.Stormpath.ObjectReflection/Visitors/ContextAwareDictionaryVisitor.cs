@@ -33,7 +33,6 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
             foreach (DictionaryEntry entry in dictionary)
             {
                 VisitProperty(entry.Key.ToString(), entry.Value.GetType().GetTypeInfo(), entry.Value);
-                VisitedProperty(entry.Key.ToString());
             }
         }
     }
