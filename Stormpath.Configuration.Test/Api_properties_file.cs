@@ -15,12 +15,32 @@
 // </copyright>
 
 using System;
+using System.IO;
+using FluentAssertions;
 using Xunit;
 
 namespace Stormpath.Configuration.Test
 {
-    public class Api_key_file_tests
+    [Collection("Disk IO Tests")]
+    public class Api_properties_file
     {
+        [Fact]
+        public void Loads_id_and_secret()
+        {
+            var contents = @"
+apiKey.id = FOOBAR
+apiKey.secret = bazquxsecret!";
+
+            File.WriteAllText("apiKey.properties", contents);
+
+            var config = StormpathConfiguration.Load();
+
+            config.Client.ApiKey.Id.Should().Be("FOOBAR");
+            config.Client.ApiKey.Secret.Should().Be("bazquxsecret!");
+
+            File.Delete("apiKey.properties");
+        }
+
         [Fact(Skip = "when explicit configuration works")]
         public void Specified_file_is_loaded()
         {
