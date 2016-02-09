@@ -22,7 +22,6 @@ using Xunit;
 
 namespace Stormpath.Configuration.Test
 {
-    [Collection("Disk IO Tests")]
     public class Modified_config_tests
     {
         public static IEnumerable<object[]> FileTestCases()
@@ -107,7 +106,7 @@ namespace Stormpath.Configuration.Test
                 Application = new ApplicationConfiguration()
                 {
                     Name = "Lightsabers Galore",
-                    Href = "https://api.foo.com/v1/apps/foo",
+                    Href = "https://api.foo.com/v1/applications/foo",
                 },
 
                 Web = new WebConfiguration()

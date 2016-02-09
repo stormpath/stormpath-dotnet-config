@@ -21,7 +21,6 @@ using Xunit;
 
 namespace Stormpath.Configuration.Test
 {
-    [Collection("Disk IO Tests")]
     public class Api_properties_file : IDisposable
     {
         private readonly static string PropertiesFileContents = @"

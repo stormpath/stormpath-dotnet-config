@@ -21,7 +21,6 @@ using Xunit;
 
 namespace Stormpath.Configuration.Test
 {
-    [Collection("Disk IO Tests")]
     public class Default_config_tests
     {
         public static IEnumerable<object[]> TestCases()
