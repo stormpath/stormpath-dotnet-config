@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection;
 using Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile;
@@ -67,6 +68,33 @@ namespace Stormpath.Configuration.Loader
                 //.AddMatchingEnvironmentVariables(environment, match: Default.Configuration)
                 .AddObject(this.userConfiguration);
 
+            // If a root key 'apiKey' is set, map to client.apiKey (for backwards compatibility)
+            var apiKeyRootElement = builder.Build().GetSection("apiKey");
+            var mappedProperties = new Dictionary<string, string>();
+
+            var apiKeyRootFile = apiKeyRootElement.Get<string>("file");
+            if (!string.IsNullOrEmpty(apiKeyRootFile))
+            {
+                mappedProperties["client:apiKey:file"] = apiKeyRootFile;
+            }
+
+            var apiKeyRootId = apiKeyRootElement.Get<string>("id");
+            if (!string.IsNullOrEmpty(apiKeyRootId))
+            {
+                mappedProperties["client:apiKey:id"] = apiKeyRootId;
+            }
+
+            var apiKeyRootSecret = apiKeyRootElement.Get<string>("secret");
+            if (!string.IsNullOrEmpty(apiKeyRootSecret))
+            {
+                mappedProperties["client:apiKey:secret"] = apiKeyRootSecret;
+            }
+
+            if (mappedProperties.Any())
+            {
+                builder.AddInMemoryCollection(mappedProperties);
+            }
+
             // If client.apiKey.file is set, load that
             var specifiedApiKeyFilePath = builder.Build().Get("client:apiKey:file", defaultValue: string.Empty);
             if (!string.IsNullOrEmpty(specifiedApiKeyFilePath))
@@ -74,7 +102,7 @@ namespace Stormpath.Configuration.Loader
                 builder.AddPropertiesFile(specifiedApiKeyFilePath, optional: false, root: "client"); // Not optional this time!
             }
 
-            // If apiKey root element is set, copy over to client.apiKey (backwards compatibility)
+
 
             var test = builder.Build();
 

@@ -74,6 +74,9 @@ apiKey.secret = bazquxsecret!";
         [Fact]
         public void Throws_if_file_is_missing()
         {
+            // Clean up just in case a previous test run didn't
+            File.Delete("myother_apiKey.properties");
+
             Action load = () => StormpathConfiguration.Load(userConfiguration: new
             {
                 client = new
