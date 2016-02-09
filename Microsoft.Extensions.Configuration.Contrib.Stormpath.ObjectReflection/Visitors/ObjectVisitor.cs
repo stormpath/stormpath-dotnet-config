@@ -32,7 +32,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
 
         protected virtual void VisitProperties(object obj)
         {
-            foreach (var property in obj.GetType().GetTypeInfo().DeclaredProperties)
+            foreach (var property in obj.GetType().GetTypeInfo().GetAllProperties())
             {
                 VisitProperty(property.Name, property.PropertyType.GetTypeInfo(), property.GetValue(obj));
             }

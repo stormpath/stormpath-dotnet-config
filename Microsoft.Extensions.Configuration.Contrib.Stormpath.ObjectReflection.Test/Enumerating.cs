@@ -216,6 +216,26 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
 
             ContextAwareObjectVisitor.Visit(anon).Should().Equal(expected);
         }
+
+        [Fact]
+        public void Inherited_properties()
+        {
+            var @obj = new ExtendedTestClass()
+            {
+                Foo = "bar",
+                Baz = 123,
+                Qux = "abc"
+            };
+
+            var expected = new Dictionary<string, string>()
+            {
+                ["Qux"] = "abc",
+                ["Foo"] = "bar",
+                ["Baz"] = "123",
+            };
+
+            ContextAwareObjectVisitor.Visit(@obj).Should().Equal(expected);
+        }
     }
 
     public class SimpleTestClass
@@ -223,6 +243,11 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
         public string Foo { get; set; }
 
         public int Baz { get; set; }
+    }
+
+    public class ExtendedTestClass : SimpleTestClass
+    {
+        public string Qux { get; set; }
     }
 
     public class NestedClass
