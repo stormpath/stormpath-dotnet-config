@@ -1,0 +1,20 @@
+{
+  "version": "0.1.0-*",
+  "description": "Custom environment variables configuration provider for the Configuration package.",
+  "authors": [ "Nate Barbettini" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "tooling": {
+    "defaultNamespace": "Microsoft.Extensions.Configuration.Contrib.Stormpath.EnvironmentVariables"
+  },
+
+  "frameworks": {
+    "net451": { },
+    "dotnet5.4": { }
+  },
+
+  "dependencies": {
+    "Microsoft.Extensions.Configuration": "1.0.0-*",
+  }
+}

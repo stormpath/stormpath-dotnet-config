@@ -1,0 +1,27 @@
+{
+  "version": "0.1.0-*",
+  "description": "Custom environment variables configuration provider for the Configuration package.",
+  "authors": [ "Nate Barbettini" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "tooling": {
+    "defaultNamespace": "Microsoft.Extensions.Configuration.Contrib.Stormpath.EnvironmentVariables.Test"
+  },
+
+  "dependencies": {
+    "xunit": "2.1.0",
+    "xunit.runner.dnx": "2.1.0-rc1-build204",
+    "Microsoft.Extensions.Configuration.Contrib.Stormpath.EnvironmentVariables": "0.1.0-*",
+    "FluentAssertions": "4.2.1"
+  },
+  "commands": {
+    "test": "xunit.runner.dnx"
+  },
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": {
+      "dependencies": { }
+    }
+  }
+}

@@ -65,7 +65,7 @@ namespace Stormpath.Configuration.Loader
                 .AddPropertiesFile("apiKey.properties", optional: true, root: "client")
                 .AddJsonFile("stormpath.json", optional: true)
                 .AddYamlFile("stormpath.yaml", optional: true)
-                //.AddMatchingEnvironmentVariables(environment, match: Default.Configuration)
+                .AddEnvironmentVariables()
                 .AddObject(this.userConfiguration);
 
             // If a root key 'apiKey' is set, map to client.apiKey (for backwards compatibility)
