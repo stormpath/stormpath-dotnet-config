@@ -104,8 +104,6 @@ namespace Stormpath.Configuration.Loader
                 builder.AddPropertiesFile(specifiedApiKeyFilePath, optional: false, root: "client"); // Not optional this time!
             }
 
-            var test = builder.Build();
-
             return builder.Build();
         }
 
