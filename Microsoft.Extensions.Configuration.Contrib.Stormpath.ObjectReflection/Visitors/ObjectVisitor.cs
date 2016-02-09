@@ -16,7 +16,6 @@
 
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Reflection;
 
 namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.Visitors
@@ -59,7 +58,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
             }
             else
             {
-                throw new NotImplementedException();
+                throw new NotSupportedException($"The type '{propertyTypeInfo.Name}' is not supported at this position.");
             }
         }
 
