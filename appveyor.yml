@@ -5,6 +5,7 @@ install:
 before_build:
 - ps: >-
     dnu restore
+    
     nuget restore
 build:
   verbosity: minimal
