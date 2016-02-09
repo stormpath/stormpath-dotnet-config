@@ -49,6 +49,7 @@ namespace Stormpath.Configuration.Loader
             BindWebSection(compiled, output.Web);
 
             // Validate API Key and Secret exists
+            ThrowIfMissingCredentials(output.Client);
 
             // Validation application href, if exists
 
@@ -119,7 +120,7 @@ namespace Stormpath.Configuration.Loader
             client.CacheManager.Caches = compiled.Get("client:cacheManager:caches", new Dictionary<string, ClientCacheConfiguration>(Default.Configuration.Client.CacheManager.Caches));
 
             client.BaseUrl = compiled.Get("client:baseUrl", Default.Configuration.Client.BaseUrl);
-            client.ConnectionTimeout = compiled.Get("client:connectionTimeout", Default.Configuration.Client.ConnectionTimeout);
+            client.ConnectionTimeout = compiled.GetNullableInt("client:connectionTimeout", Default.Configuration.Client.ConnectionTimeout);
             client.AuthenticationScheme = compiled.Get("client:authenticationScheme", Default.Configuration.Client.AuthenticationScheme);
 
             client.Proxy.Port = compiled.GetNullableInt("client:proxy:port", Default.Configuration.Client.Proxy.Port);
@@ -213,6 +214,20 @@ namespace Stormpath.Configuration.Loader
             web.Spa.View = compiled.Get("web:spa:view", Default.Configuration.Web.Spa.View);
 
             web.Unauthorized.View = compiled.Get("web:unauthorized:view", Default.Configuration.Web.Unauthorized.View);
+        }
+
+        private void ThrowIfMissingCredentials(ClientConfiguration client)
+        {
+            if (client?.ApiKey == null)
+            {
+                throw new ConfigurationException("API key cannot be empty.");
+            }
+
+            if (string.IsNullOrEmpty(client.ApiKey.Id)
+                || string.IsNullOrEmpty(client.ApiKey.Secret))
+            {
+                throw new ConfigurationException("API key ID and secret is required.");
+            }
         }
 
         private string ResolveHomePath(string input)

@@ -26,13 +26,16 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
         {
             get
             {
+                // Note: Providing values for client.apiKey.id and client.apiKey.secret
+                // because validation will fail without them.
+
                 return @"
 {
   ""client"": {
     ""apiKey"": {
       ""file"": null,
-      ""id"": null,
-      ""secret"": null
+      ""id"": ""foobar"",
+      ""secret"": ""secret123!""
     },
     ""cacheManager"": {
       ""defaultTtl"": 300,

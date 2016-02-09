@@ -55,8 +55,8 @@ namespace Stormpath.Configuration.Test
 
             // Client section
             config.Client.ApiKey.File.Should().BeNullOrEmpty();
-            config.Client.ApiKey.Id.Should().BeNullOrEmpty();
-            config.Client.ApiKey.Secret.Should().BeNullOrEmpty();
+            config.Client.ApiKey.Id.Should().Be("foobar");
+            config.Client.ApiKey.Secret.Should().Be("secret123!");
 
             config.Client.CacheManager.DefaultTtl.Should().Be(300);
             config.Client.CacheManager.DefaultTti.Should().Be(300);
