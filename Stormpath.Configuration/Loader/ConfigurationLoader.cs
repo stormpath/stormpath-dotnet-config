@@ -67,9 +67,14 @@ namespace Stormpath.Configuration.Loader
                 //.AddMatchingEnvironmentVariables(environment, match: Default.Configuration)
                 .AddObject(this.userConfiguration);
 
-            // If apiKey root element is set, copy over to client.apiKey (backwards compatibility)
+            // If client.apiKey.file is set, load that
+            var specifiedApiKeyFilePath = builder.Build().Get("client:apiKey:file", defaultValue: string.Empty);
+            if (!string.IsNullOrEmpty(specifiedApiKeyFilePath))
+            {
+                builder.AddPropertiesFile(specifiedApiKeyFilePath, optional: false, root: "client"); // Not optional this time!
+            }
 
-            // If client.apiKey.file is set, load that. Throw if it doesn't exist
+            // If apiKey root element is set, copy over to client.apiKey (backwards compatibility)
 
             var test = builder.Build();
 

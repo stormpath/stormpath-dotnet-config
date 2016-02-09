@@ -22,35 +22,70 @@ using Xunit;
 namespace Stormpath.Configuration.Test
 {
     [Collection("Disk IO Tests")]
-    public class Api_properties_file
+    public class Api_properties_file : IDisposable
     {
-        [Fact]
-        public void Loads_id_and_secret()
-        {
-            var contents = @"
+        private readonly static string PropertiesFileContents = @"
 apiKey.id = FOOBAR
 apiKey.secret = bazquxsecret!";
 
-            File.WriteAllText("apiKey.properties", contents);
+        public Api_properties_file()
+        {
+            File.WriteAllText("apiKey.properties", PropertiesFileContents);
+        }
 
+        public void Dispose()
+        {
+            File.Delete("apiKey.properties");
+        }
+
+        [Fact]
+        public void Loads_id_and_secret()
+        {
             var config = StormpathConfiguration.Load();
 
             config.Client.ApiKey.Id.Should().Be("FOOBAR");
             config.Client.ApiKey.Secret.Should().Be("bazquxsecret!");
-
-            File.Delete("apiKey.properties");
         }
 
-        [Fact(Skip = "when explicit configuration works")]
-        public void Specified_file_is_loaded()
+        [Fact]
+        public void Loads_specified_file()
         {
-            throw new NotImplementedException();
+            File.WriteAllText(
+                "myother_apiKey.properties", 
+                PropertiesFileContents.Replace("FOOBAR", "FOOBAZ").Replace("secret!", "SECRETZ"));
+
+            var config = StormpathConfiguration.Load(userConfiguration: new
+            {
+                client = new
+                {
+                  apiKey = new
+                    {
+                        file = "myother_apiKey.properties"
+                    }
+                }
+            });
+
+            config.Client.ApiKey.Id.Should().Be("FOOBAZ");
+            config.Client.ApiKey.Secret.Should().Be("bazquxSECRETZ");
+
+            File.Delete("myother_apiKey.properties");
         }
 
-        [Fact(Skip = "when explicit configuration works")]
+        [Fact]
         public void Throws_if_file_is_missing()
         {
-            throw new NotImplementedException();
+            Action load = () => StormpathConfiguration.Load(userConfiguration: new
+            {
+                client = new
+                {
+                    apiKey = new
+                    {
+                        file = "myother_apiKey.properties"
+                    }
+                }
+            });
+
+            load.ShouldThrow<FileNotFoundException>();
         }
     }
 }
