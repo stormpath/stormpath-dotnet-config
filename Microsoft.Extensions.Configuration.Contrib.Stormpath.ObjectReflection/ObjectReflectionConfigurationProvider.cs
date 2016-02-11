@@ -38,11 +38,18 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection
 
             foreach (var item in items)
             {
-                if (data.ContainsKey(item.Key))
+                var key = item.Key;
+
+                if (!string.IsNullOrEmpty(this.root))
                 {
-                    throw new FormatException(string.Format(Resources.Error_KeyIsDuplicated, item.Key));
+                    key = $"{this.root}{Constants.KeyDelimiter}{key}";
                 }
-                data[item.Key] = item.Value;
+
+                if (data.ContainsKey(key))
+                {
+                    throw new FormatException(string.Format(Resources.Error_KeyIsDuplicated, key));
+                }
+                data[key] = item.Value;
             }
 
             Data = data;

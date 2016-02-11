@@ -60,9 +60,7 @@ namespace Stormpath.Configuration.Test
             config.Client.CacheManager.DefaultTtl.Should().Be(300);
             config.Client.CacheManager.DefaultTti.Should().Be(300);
 
-            config.Client.CacheManager.Caches.Should().HaveCount(1);
-            config.Client.CacheManager.Caches["account"].Ttl.Should().Be(300);
-            config.Client.CacheManager.Caches["account"].Tti.Should().Be(300);
+            config.Client.CacheManager.Caches.Should().HaveCount(0);
 
             config.Client.BaseUrl.Should().Be("https://api.stormpath.com/v1");
             config.Client.ConnectionTimeout.Should().Be(30);

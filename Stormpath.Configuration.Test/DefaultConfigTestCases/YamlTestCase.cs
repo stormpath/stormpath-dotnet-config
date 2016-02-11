@@ -39,10 +39,7 @@ client:
   cacheManager:
     defaultTtl: 300
     defaultTti: 300
-    caches:
-      account:
-        ttl: 300
-        tti: 300
+    caches: {}
   baseUrl: ""https://api.stormpath.com/v1""
   connectionTimeout: 30
   authenticationScheme: ""SAUTHC1""

@@ -36,8 +36,8 @@ namespace Stormpath.Configuration.Test
   ""Stormpath"": {
     ""Client"": {
         ""ApiKey"": {
-            ""Id"": ""FOOBAR"",
-            ""Secret"": ""secret123!""
+            ""Id"": ""appsetting-id"",
+            ""Secret"": ""appsetting-secret123!""
         }
     },
     ""Application"": {
@@ -62,8 +62,8 @@ namespace Stormpath.Configuration.Test
         {
             var config = StormpathConfiguration.Load();
 
-            config.Client.ApiKey.Id.Should().Be("FOOBAR");
-            config.Client.ApiKey.Secret.Should().Be("bazquxsecret!");
+            config.Client.ApiKey.Id.Should().Be("appsetting-id");
+            config.Client.ApiKey.Secret.Should().Be("appsetting-secret123!");
             config.Application.Href.Should().Be("https://api.stormpath.com/v1/applications/foobar123");
         }
     }

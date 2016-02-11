@@ -25,7 +25,13 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
 {
     internal class YamlConfigurationFileParser : YamlVisitor
     {
+        private readonly string root;
         private readonly IDictionary<string, string> _data = new SortedDictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+        public YamlConfigurationFileParser(string root = null)
+        {
+            this.root = root;
+        }
 
         public IDictionary<string, string> Parse(Stream input)
         {
@@ -56,11 +62,18 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
 
             foreach (var item in visitor.Items)
             {
-                if (_data.ContainsKey(item.Key))
+                var key = item.Key;
+
+                if (!string.IsNullOrEmpty(this.root))
                 {
-                    throw new FormatException(string.Format(Resources.Error_KeyIsDuplicated, item.Key));
+                    key = $"{this.root}{Constants.KeyDelimiter}{key}";
                 }
-                _data[item.Key] = item.Value;
+
+                if (_data.ContainsKey(key))
+                {
+                    throw new FormatException(string.Format(Resources.Error_KeyIsDuplicated, key));
+                }
+                _data[key] = item.Value;
             }
 
             return _data;

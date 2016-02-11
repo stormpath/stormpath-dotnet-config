@@ -21,27 +21,36 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.EnvironmentVariab
 {
     public class CustomEnvironmentVariablesConfigurationProvider : ConfigurationProvider
     {
-        private readonly string prefix;
+        private readonly string mustStartWith;
         private readonly string separator;
+        private readonly string root;
 
-        public CustomEnvironmentVariablesConfigurationProvider(string prefix, string separator)
+        public CustomEnvironmentVariablesConfigurationProvider(string mustStartWith, string separator, string root)
         {
-            this.prefix = prefix;
+            this.mustStartWith = mustStartWith;
             this.separator = separator;
+            this.root = root;
         }
 
         public override void Load()
         {
             var data = new SortedDictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-            var enumerator = new CustomEnvironmentVariablesEnumerator(prefix, separator);
+            var enumerator = new CustomEnvironmentVariablesEnumerator(mustStartWith, separator);
 
             foreach (var item in enumerator.GetItems(Environment.GetEnvironmentVariables()))
             {
-                if (data.ContainsKey(item.Key))
+                var key = item.Key;
+
+                if (!string.IsNullOrEmpty(this.root))
                 {
-                    throw new FormatException(string.Format(Resources.Error_KeyIsDuplicated, item.Key));
+                    key = $"{this.root}{Constants.KeyDelimiter}{key}";
                 }
-                data[item.Key] = item.Value;
+
+                if (data.ContainsKey(key))
+                {
+                    throw new FormatException(string.Format(Resources.Error_KeyIsDuplicated, key));
+                }
+                data[key] = item.Value;
             }
 
             Data = data;

@@ -19,7 +19,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Stormpath.Configuration
 {
-    public static class ConfigurationRootExtensions
+    internal static class ConfigurationRootExtensions
     {
         [Obsolete("Replace when updating to Configuration 1.0.0-rc2")]
         public static int? GetNullableInt(this IConfigurationRoot root, string key, int? defaultValue)

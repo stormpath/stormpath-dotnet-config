@@ -26,15 +26,16 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.EnvironmentVariab
         /// with a specified prefix.
         /// </summary>
         /// <param name="configurationBuilder">The <see cref="IConfigurationBuilder"/> to add to.</param>
-        /// <param name="prefix">The prefix that environment variable names must start with.</param>
+        /// <param name="mustStartWith">The prefix that environment variable names must start with.</param>
         /// <param name="separator">The separator character or string between key and value names.</param>
         /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
         public static IConfigurationBuilder AddEnvironmentVariables(
             this IConfigurationBuilder configurationBuilder,
-            string prefix,
-            string separator)
+            string mustStartWith,
+            string separator,
+            string root)
         {
-            configurationBuilder.Add(new CustomEnvironmentVariablesConfigurationProvider(prefix, separator));
+            configurationBuilder.Add(new CustomEnvironmentVariablesConfigurationProvider(mustStartWith, separator, root));
             return configurationBuilder;
         }
     }

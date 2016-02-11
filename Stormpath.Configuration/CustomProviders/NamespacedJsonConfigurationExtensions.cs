@@ -1,4 +1,4 @@
-﻿// <copyright file="StormpathConfiguration.cs" company="Stormpath, Inc.">
+﻿// <copyright file="NamespacedJsonConfigurationExtensions.cs" company="Stormpath, Inc.">
 // Copyright (c) 2016 Stormpath, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,35 +16,14 @@
 
 using System;
 using System.IO;
+using Microsoft.Extensions.Configuration;
 
-namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
+namespace Stormpath.Configuration.CustomProviders
 {
-    /// <summary>
-    /// Extension methods for adding <see cref="YamlConfigurationProvider"/>.
-    /// </summary>
-    public static class YamlConfigurationExtensions
+    public static class NamespacedJsonConfigurationExtensions
     {
         /// <summary>
-        /// Adds the YAML configuration provider at <paramref name="path"/> to <paramref name="configurationBuilder"/>.
-        /// </summary>
-        /// <param name="configurationBuilder">The <see cref="IConfigurationBuilder"/> to add to.</param>
-        /// <param name="path">Absolute path or path relative to <see cref="IConfigurationBuilder.BasePath"/> of
-        /// <paramref name="configurationBuilder"/>.</param>
-        /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
-        public static IConfigurationBuilder AddYamlFile(
-            this IConfigurationBuilder configurationBuilder,
-            string path)
-        {
-            if (configurationBuilder == null)
-            {
-                throw new ArgumentNullException(nameof(configurationBuilder));
-            }
-
-            return AddYamlFile(configurationBuilder, path, optional: false, root: null);
-        }
-
-        /// <summary>
-        /// Adds the YAML configuration provider at <paramref name="path"/> to <paramref name="configurationBuilder"/>.
+        /// Adds the JSON configuration provider at <paramref name="path"/> to <paramref name="configurationBuilder"/>.
         /// </summary>
         /// <param name="configurationBuilder">The <see cref="IConfigurationBuilder"/> to add to.</param>
         /// <param name="path">Absolute path or path relative to <see cref="IConfigurationBuilder.BasePath"/> of
@@ -55,7 +34,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
         /// <exception cref="ArgumentException">If <paramref name="path"/> is null or empty.</exception>
         /// <exception cref="FileNotFoundException">If <paramref name="optional"/> is <c>false</c> and the file cannot
         /// be resolved.</exception>
-        public static IConfigurationBuilder AddYamlFile(
+        public static IConfigurationBuilder AddJsonFile(
             this IConfigurationBuilder configurationBuilder,
             string path,
             bool optional,
@@ -68,17 +47,17 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
 
             if (string.IsNullOrEmpty(path))
             {
-                throw new ArgumentException(Resources.Error_InvalidFilePath, nameof(path));
+                throw new ArgumentException("File path must be a non-empty string.", nameof(path));
             }
 
             var fullPath = Path.Combine(configurationBuilder.GetBasePath(), path);
 
             if (!optional && !File.Exists(fullPath))
             {
-                throw new FileNotFoundException(string.Format(Resources.Error_FileNotFound, fullPath), fullPath);
+                throw new FileNotFoundException(string.Format("The configuration file '{0}' was not found and is not optional.", fullPath), fullPath);
             }
 
-            configurationBuilder.Add(new YamlConfigurationProvider(fullPath, optional, root));
+            configurationBuilder.Add(new NamespacedJsonConfigurationProvider(fullPath, optional: optional, root: root));
 
             return configurationBuilder;
         }

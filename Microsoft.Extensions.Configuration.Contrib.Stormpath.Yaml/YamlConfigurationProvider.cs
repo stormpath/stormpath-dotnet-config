@@ -30,7 +30,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
         /// </summary>
         /// <param name="path">Absolute path of the YAML configuration file.</param>
         public YamlConfigurationProvider(string path)
-            : this(path, optional: false)
+            : this(path, optional: false, root: null)
         {
         }
 
@@ -39,7 +39,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
         /// </summary>
         /// <param name="path">Absolute path of the YAML configuration file.</param>
         /// <param name="optional">Determines if the configuration is optional.</param>
-        public YamlConfigurationProvider(string path, bool optional)
+        public YamlConfigurationProvider(string path, bool optional, string root)
         {
             if (string.IsNullOrEmpty(path))
             {
@@ -48,6 +48,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
 
             Optional = optional;
             Path = path;
+            Root = root;
         }
 
         /// <summary>
@@ -59,6 +60,8 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
         /// The absolute path of the file backing this instance of <see cref="JsonConfigurationProvider"/>.
         /// </summary>
         public string Path { get; }
+
+        public string Root { get; }
 
         /// <summary>
         /// Loads the contents of the file at <see cref="Path"/>.
@@ -89,7 +92,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
 
         internal void Load(Stream stream)
         {
-            var parser = new YamlConfigurationFileParser();
+            var parser = new YamlConfigurationFileParser(this.Root);
             Data = parser.Parse(stream);
         }
     }
