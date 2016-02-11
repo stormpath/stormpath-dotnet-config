@@ -20,7 +20,7 @@ using System.IO;
 
 namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
 {
-    internal sealed class PropertiesConfigurationFileParser
+    public class PropertiesConfigurationFileParser
     {
         private readonly string root;
 

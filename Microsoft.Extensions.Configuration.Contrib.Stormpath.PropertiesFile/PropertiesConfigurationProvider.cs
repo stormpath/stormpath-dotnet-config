@@ -24,7 +24,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile
     /// A .properties file-based <see cref="ConfigurationProvider"/>.
     /// </summary>
     /// <seealso href="https://en.wikipedia.org/wiki/.properties"/>
-    public sealed class PropertiesConfigurationProvider : ConfigurationProvider
+    public class PropertiesConfigurationProvider : ConfigurationProvider
     {
         /// <summary>
         /// Initializes a new instance of <see cref="PropertiesConfigurationProvider"/>.

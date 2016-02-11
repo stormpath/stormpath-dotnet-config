@@ -23,7 +23,7 @@ using YamlDotNet.RepresentationModel;
 
 namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml
 {
-    internal class YamlConfigurationFileParser : YamlVisitor
+    public class YamlConfigurationFileParser : YamlVisitor
     {
         private readonly string root;
         private readonly IDictionary<string, string> _data = new SortedDictionary<string, string>(StringComparer.OrdinalIgnoreCase);
