@@ -264,7 +264,7 @@ namespace Stormpath.Configuration.Loader
         // Copied from DNX's DnuEnvironment.cs
         private static string GetHome()
         {
-#if DNX451
+#if NET451
             return Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 #else
             var runtimeEnv = PlatformServices.Default.Runtime;
