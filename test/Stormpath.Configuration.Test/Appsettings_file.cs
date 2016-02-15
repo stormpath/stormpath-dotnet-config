@@ -17,13 +17,17 @@
 using System;
 using System.IO;
 using FluentAssertions;
+using Microsoft.Extensions.PlatformAbstractions;
 using Xunit;
 
 namespace Stormpath.Configuration.Test
 {
     public class Appsettings_file : IDisposable
     {
-        private readonly static string AppSettingsJsonFileContents = @"
+        private readonly static string AppSettingsFilePath = Path.Combine(
+            PlatformServices.Default.Application.ApplicationBasePath, "appsettings.json");
+
+        private readonly static string AppSettingsFileContents = @"
 {
   ""Logging"": {
     ""IncludeScopes"": false,
@@ -49,12 +53,12 @@ namespace Stormpath.Configuration.Test
 
         public Appsettings_file()
         {
-            File.WriteAllText("appsettings.json", AppSettingsJsonFileContents);
+            File.WriteAllText(AppSettingsFilePath, AppSettingsFileContents);
         }
 
         public void Dispose()
         {
-            File.Delete("appsettings.json");
+            File.Delete(AppSettingsFilePath);
         }
 
         [Fact]

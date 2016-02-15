@@ -17,24 +17,28 @@
 using System;
 using System.IO;
 using FluentAssertions;
+using Microsoft.Extensions.PlatformAbstractions;
 using Xunit;
 
 namespace Stormpath.Configuration.Test
 {
     public class Api_properties_file : IDisposable
     {
+        private readonly static string PropertiesFilePath =
+            Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "apiKey.properties");
+
         private readonly static string PropertiesFileContents = @"
 apiKey.id = FOOBAR
 apiKey.secret = bazquxsecret!";
 
         public Api_properties_file()
         {
-            File.WriteAllText("apiKey.properties", PropertiesFileContents);
+            File.WriteAllText(PropertiesFilePath, PropertiesFileContents);
         }
 
         public void Dispose()
         {
-            File.Delete("apiKey.properties");
+            File.Delete(PropertiesFilePath);
         }
 
         [Fact]
@@ -49,8 +53,11 @@ apiKey.secret = bazquxsecret!";
         [Fact]
         public void Loads_specified_file()
         {
+            var otherPropertiesFilePath = Path.Combine(
+                PlatformServices.Default.Application.ApplicationBasePath, "myother_apiKey.properties");
+
             File.WriteAllText(
-                "myother_apiKey.properties", 
+                otherPropertiesFilePath, 
                 PropertiesFileContents.Replace("FOOBAR", "FOOBAZ").Replace("secret!", "SECRETZ"));
 
             var config = ConfigurationLoader.Load(userConfiguration: new
@@ -67,14 +74,18 @@ apiKey.secret = bazquxsecret!";
             config.Client.ApiKey.Id.Should().Be("FOOBAZ");
             config.Client.ApiKey.Secret.Should().Be("bazquxSECRETZ");
 
-            File.Delete("myother_apiKey.properties");
+            File.Delete(otherPropertiesFilePath);
         }
 
         [Fact]
         public void Throws_if_file_is_missing()
         {
+            var otherPropertiesFilePath = Path.Combine(
+                PlatformServices.Default.Application.ApplicationBasePath, "myother_apiKey.properties");
+
+
             // Clean up just in case a previous test run didn't
-            File.Delete("myother_apiKey.properties");
+            File.Delete(otherPropertiesFilePath);
 
             Action load = () => ConfigurationLoader.Load(userConfiguration: new
             {

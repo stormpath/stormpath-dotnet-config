@@ -7,19 +7,4 @@ before_build:
 build:
   verbosity: minimal
 test_script:
-- ps: >-
-    cd .\Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.Test
-
-    dnx test
-
-    cd ..\Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile.Test
-
-    dnx test
-
-    cd ..\Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Test
-
-    dnx test
-
-    cd ..\Stormpath.Configuration.Test
-
-    dnx test
+- ps: script/test.ps1

@@ -17,6 +17,7 @@
 using System.Collections.Generic;
 using System.IO;
 using FluentAssertions;
+using Microsoft.Extensions.PlatformAbstractions;
 using Stormpath.Configuration.Abstractions;
 using Stormpath.Configuration.Abstractions.Model;
 using Xunit;
@@ -42,7 +43,9 @@ namespace Stormpath.Configuration.Test
             foreach (var entry in FileTestCases())
             {
                 var testCase = entry[0] as ConfigTestCaseBase;
-                File.Delete(testCase.Filename);
+                var filePath = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, testCase.Filename);
+
+                File.Delete(filePath);
             }
         }
 
@@ -50,7 +53,9 @@ namespace Stormpath.Configuration.Test
         [MemberData(nameof(FileTestCases))]
         public void Loading_modified_config(ConfigTestCaseBase testCase)
         {
-            File.WriteAllText(testCase.Filename, testCase.FileContents);
+            var filePath = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, testCase.Filename);
+
+            File.WriteAllText(filePath, testCase.FileContents);
 
             var config = ConfigurationLoader.Load();
 
