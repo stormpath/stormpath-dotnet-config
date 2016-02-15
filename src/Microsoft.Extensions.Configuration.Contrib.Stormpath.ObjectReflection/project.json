@@ -23,5 +23,5 @@
   "tooling": {
     "defaultNamespace": "Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection"
   },
-  "version": "0.1.0-beta1"
+  "version": "0.1.0-beta2"
 }

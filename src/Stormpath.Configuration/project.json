@@ -4,10 +4,10 @@
   "dependencies": {
     "Microsoft.Extensions.Configuration": "1.0.0-rc1-final",
     "Microsoft.Extensions.Configuration.Binder": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Configuration.Contrib.Stormpath.EnvironmentVariables": "0.1.0-beta1",
-    "Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection": "0.1.0-beta1",
-    "Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile": "0.1.0-beta1",
-    "Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml": "0.1.0-beta1",
+    "Microsoft.Extensions.Configuration.Contrib.Stormpath.EnvironmentVariables": "0.1.0-beta2",
+    "Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection": "0.1.0-beta2",
+    "Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile": "0.1.0-beta2",
+    "Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml": "0.1.0-beta2",
     "Microsoft.Extensions.Configuration.Ini": "1.0.0-rc1-final",
     "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
     "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final",
@@ -38,5 +38,5 @@
   "tooling": {
     "defaultNamespace": "Stormpath.Configuration"
   },
-  "version": "0.1.0-beta1"
+  "version": "0.1.0-beta2"
 }
