@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using Stormpath.Configuration.Model;
+using Stormpath.Configuration.Abstractions;
+using Stormpath.Configuration.Abstractions.Model;
 
 namespace Stormpath.Configuration
 {

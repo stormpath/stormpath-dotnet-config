@@ -16,6 +16,7 @@
 
 using System;
 using FluentAssertions;
+using Stormpath.Configuration.Abstractions;
 using Xunit;
 
 namespace Stormpath.Configuration.Test
@@ -37,7 +38,7 @@ namespace Stormpath.Configuration.Test
                 }
             };
 
-            Action act = () => StormpathConfiguration.Load(anon);
+            Action act = () => ConfigurationLoader.Load(anon);
 
             act.ShouldThrow<ConfigurationException>().WithMessage("API key ID and secret is required.");
         }
@@ -57,7 +58,7 @@ namespace Stormpath.Configuration.Test
                 }
             };
 
-            Action act = () => StormpathConfiguration.Load(anon);
+            Action act = () => ConfigurationLoader.Load(anon);
 
             act.ShouldThrow<ConfigurationException>().WithMessage("API key ID and secret is required.");
         }
@@ -81,7 +82,7 @@ namespace Stormpath.Configuration.Test
                 }
             };
 
-            Action act = () => StormpathConfiguration.Load(anon);
+            Action act = () => ConfigurationLoader.Load(anon);
 
             act.ShouldThrow<ConfigurationException>().Which.Message.Should().EndWith("is not a valid Stormpath Application href.");
         }
@@ -105,7 +106,7 @@ namespace Stormpath.Configuration.Test
                 }
             };
 
-            Action act = () => StormpathConfiguration.Load(anon);
+            Action act = () => ConfigurationLoader.Load(anon);
 
             act.ShouldNotThrow();
         }

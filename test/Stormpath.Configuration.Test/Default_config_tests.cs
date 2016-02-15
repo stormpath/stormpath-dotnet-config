@@ -50,7 +50,7 @@ namespace Stormpath.Configuration.Test
         {
             File.WriteAllText(testCase.Filename, testCase.FileContents);
 
-            var config = StormpathConfiguration.Load();
+            var config = ConfigurationLoader.Load();
 
             // Client section
             config.Client.ApiKey.File.Should().BeNullOrEmpty();
@@ -64,7 +64,7 @@ namespace Stormpath.Configuration.Test
 
             config.Client.BaseUrl.Should().Be("https://api.stormpath.com/v1");
             config.Client.ConnectionTimeout.Should().Be(30);
-            config.Client.AuthenticationScheme.Should().Be(Model.ClientAuthenticationScheme.SAuthc1);
+            config.Client.AuthenticationScheme.Should().Be(Abstractions.Model.ClientAuthenticationScheme.SAuthc1);
 
             config.Client.Proxy.Port.Should().Be(null);
             config.Client.Proxy.Host.Should().BeNullOrEmpty();
@@ -83,7 +83,7 @@ namespace Stormpath.Configuration.Test
             config.Web.Oauth2.Client_Credentials.Enabled.Should().BeTrue();
             config.Web.Oauth2.Client_Credentials.AccessToken.Ttl.Should().Be(3600);
             config.Web.Oauth2.Password.Enabled.Should().BeTrue();
-            config.Web.Oauth2.Password.ValidationStrategy.Should().Be(Model.WebOauth2TokenValidationStrategy.Local);
+            config.Web.Oauth2.Password.ValidationStrategy.Should().Be(Abstractions.Model.WebOauth2TokenValidationStrategy.Local);
 
             config.Web.Expand.ShouldBeEquivalentTo(new Dictionary<string, bool>()
             {

@@ -15,6 +15,7 @@
 // </copyright>
 
 using FluentAssertions;
+using Stormpath.Configuration.Abstractions;
 using Xunit;
 
 namespace Stormpath.Configuration.Test
@@ -33,7 +34,7 @@ namespace Stormpath.Configuration.Test
                 }
             };
 
-            var config = StormpathConfiguration.Load(supplied);
+            var config = ConfigurationLoader.Load(supplied);
 
             config.Client.ApiKey.Id.Should().Be("foobar");
             config.Client.ApiKey.Secret.Should().Be("secret123!");

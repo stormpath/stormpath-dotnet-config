@@ -23,6 +23,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Contrib.Stormpath.Environme
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Contrib.Stormpath.EnvironmentVariables.Test", "test\Microsoft.Extensions.Configuration.Contrib.Stormpath.EnvironmentVariables.Test\Contrib.Stormpath.EnvironmentVariables.Test.xproj", "{CD47AE37-39A4-4861-81BB-B6143DA0BB2B}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Stormpath.Configuration.Abstractions", "src\Stormpath.Configuration.Abstractions\Stormpath.Configuration.Abstractions.xproj", "{C6D48F3C-B35C-44A9-B271-898A8BC448A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{CD47AE37-39A4-4861-81BB-B6143DA0BB2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD47AE37-39A4-4861-81BB-B6143DA0BB2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD47AE37-39A4-4861-81BB-B6143DA0BB2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6D48F3C-B35C-44A9-B271-898A8BC448A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6D48F3C-B35C-44A9-B271-898A8BC448A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6D48F3C-B35C-44A9-B271-898A8BC448A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6D48F3C-B35C-44A9-B271-898A8BC448A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

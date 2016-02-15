@@ -17,7 +17,8 @@
 using System.Collections.Generic;
 using System.IO;
 using FluentAssertions;
-using Stormpath.Configuration.Model;
+using Stormpath.Configuration.Abstractions;
+using Stormpath.Configuration.Abstractions.Model;
 using Xunit;
 
 namespace Stormpath.Configuration.Test
@@ -51,7 +52,7 @@ namespace Stormpath.Configuration.Test
         {
             File.WriteAllText(testCase.Filename, testCase.FileContents);
 
-            var config = StormpathConfiguration.Load();
+            var config = ConfigurationLoader.Load();
 
             ValidateConfig(config);
 
@@ -283,7 +284,7 @@ namespace Stormpath.Configuration.Test
                 }
             };
 
-            var config = StormpathConfiguration.Load(userConfiguration);
+            var config = ConfigurationLoader.Load(userConfiguration);
 
             ValidateConfig(config);
         }
@@ -510,7 +511,7 @@ namespace Stormpath.Configuration.Test
                 }
             };
 
-            var config = StormpathConfiguration.Load(userConfiguration);
+            var config = ConfigurationLoader.Load(userConfiguration);
 
             ValidateConfig(config);
         }
@@ -532,7 +533,7 @@ namespace Stormpath.Configuration.Test
 
             config.Client.BaseUrl.Should().Be("https://api.foo.com/v1");
             config.Client.ConnectionTimeout.Should().Be(90);
-            config.Client.AuthenticationScheme.Should().Be(Model.ClientAuthenticationScheme.Basic);
+            config.Client.AuthenticationScheme.Should().Be(Abstractions.Model.ClientAuthenticationScheme.Basic);
 
             config.Client.Proxy.Port.Should().Be(8088);
             config.Client.Proxy.Host.Should().Be("proxy.foo.bar");

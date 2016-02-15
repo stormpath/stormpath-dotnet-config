@@ -1,0 +1,33 @@
+{
+  "authors": [ "Nate Barbettini" ],
+  "copyright": "(c) 2016 Stormpath, Inc.",
+  "description": "Abstractions for the Stormpath.Configuration package",
+  "frameworks": {
+    "dnx451": { },
+    "dotnet5.3": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Collections": "4.0.11-beta-23516"
+      }
+    },
+    "net451": { },
+    "netcore50": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Collections": "4.0.11-beta-23516"
+
+      }
+    }
+  },
+  "licenseUrl": "https://github.com/stormpath/stormpath-dotnet-config/blob/master/LICENSE",
+  "projectUrl": "https://github.com/stormpath/stormpath-dotnet-config/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stormpath/stormpath-dotnet-config/"
+  },
+  "tags": [ "stormpath" ],
+  "tooling": {
+    "defaultNamespace": "Stormpath.Configuration.Abstractions"
+  },
+  "version": "0.1.0-beta2"
+}

@@ -40,7 +40,7 @@ apiKey.secret = bazquxsecret!";
         [Fact]
         public void Loads_id_and_secret()
         {
-            var config = StormpathConfiguration.Load();
+            var config = ConfigurationLoader.Load();
 
             config.Client.ApiKey.Id.Should().Be("FOOBAR");
             config.Client.ApiKey.Secret.Should().Be("bazquxsecret!");
@@ -53,7 +53,7 @@ apiKey.secret = bazquxsecret!";
                 "myother_apiKey.properties", 
                 PropertiesFileContents.Replace("FOOBAR", "FOOBAZ").Replace("secret!", "SECRETZ"));
 
-            var config = StormpathConfiguration.Load(userConfiguration: new
+            var config = ConfigurationLoader.Load(userConfiguration: new
             {
                 client = new
                 {
@@ -76,7 +76,7 @@ apiKey.secret = bazquxsecret!";
             // Clean up just in case a previous test run didn't
             File.Delete("myother_apiKey.properties");
 
-            Action load = () => StormpathConfiguration.Load(userConfiguration: new
+            Action load = () => ConfigurationLoader.Load(userConfiguration: new
             {
                 client = new
                 {
