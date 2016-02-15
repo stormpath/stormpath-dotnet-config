@@ -1,14 +1,10 @@
 {
-  "version": "0.1.0-*",
-  "description": "Object reflection configuration provider for the Configuration package.",
   "authors": [ "Nate Barbettini" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
-  "tooling": {
-    "defaultNamespace": "Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection"
+  "copyright": "(c) 2016 Stormpath, Inc.",
+  "dependencies": {
+    "Microsoft.Extensions.Configuration": "1.0.0-*"
   },
-
+  "description": "Object reflection configuration provider for the Configuration package.",
   "frameworks": {
     "net451": {
       "dependencies": {
@@ -17,8 +13,14 @@
     },
     "dotnet5.4": { }
   },
-
-  "dependencies": {
-    "Microsoft.Extensions.Configuration": "1.0.0-*",
-  }
+  "licenseUrl": "https://github.com/stormpath/stormpath-dotnet-config/blob/master/LICENSE",
+  "projectUrl": "https://github.com/stormpath/stormpath-dotnet-config/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stormpath/stormpath-dotnet-config/"
+  },
+  "tooling": {
+    "defaultNamespace": "Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection"
+  },
+  "version": "0.1.0-beta1"
 }

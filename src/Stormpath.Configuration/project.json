@@ -1,14 +1,18 @@
 {
-  "version": "0.1.0-*",
-  "description": "Stormpath .NET Configuration Loader",
   "authors": [ "Nate Barbettini" ],
-  "tags": ["stormpath"],
-  "projectUrl": "https://github.com/stormpath/stormpath-dotnet-config",
-  "licenseUrl": "https://github.com/stormpath/stormpath-dotnet-config/blob/master/LICENSE",
-  "tooling": {
-    "defaultNamespace": "Stormpath.Configuration"
+  "copyright": "(c) 2016 Stormpath, Inc.",
+  "dependencies": {
+    "Microsoft.Extensions.Configuration": "1.0.0-rc1-final",
+    "Microsoft.Extensions.Configuration.Binder": "1.0.0-rc1-final",
+    "Microsoft.Extensions.Configuration.Contrib.Stormpath.EnvironmentVariables": "0.1.0-beta1",
+    "Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection": "0.1.0-beta1",
+    "Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile": "0.1.0-beta1",
+    "Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml": "0.1.0-beta1",
+    "Microsoft.Extensions.Configuration.Ini": "1.0.0-rc1-final",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
+    "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final"
   },
-
+  "description": "Stormpath .NET Configuration Loader",
   "frameworks": {
     "net451": { },
     "dotnet5.4": {
@@ -21,15 +25,15 @@
       }
     }
   },
-  "dependencies": {
-    "Microsoft.Extensions.Configuration": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Configuration.Binder": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection": "0.1.0-*",
-    "Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile": "0.1.0-*",
-    "Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml": "0.1.0-*",
-    "Microsoft.Extensions.Configuration.Contrib.Stormpath.EnvironmentVariables": "0.1.0-*",
-    "Microsoft.Extensions.Configuration.Ini": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
-    "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final"
-  }
+  "licenseUrl": "https://github.com/stormpath/stormpath-dotnet-config/blob/master/LICENSE",
+  "projectUrl": "https://github.com/stormpath/stormpath-dotnet-config/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stormpath/stormpath-dotnet-config/"
+  },
+  "tags": [ "stormpath" ],
+  "tooling": {
+    "defaultNamespace": "Stormpath.Configuration"
+  },
+  "version": "0.1.0-beta1"
 }
