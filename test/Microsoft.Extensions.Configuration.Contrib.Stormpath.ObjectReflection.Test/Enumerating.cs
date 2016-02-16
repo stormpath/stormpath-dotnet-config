@@ -171,12 +171,7 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
                 NullableFoo = null
             };
 
-            var expected = new Dictionary<string, string>()
-            {
-                ["NullableFoo"] = string.Empty,
-            };
-
-            ContextAwareObjectVisitor.Visit(@obj).Should().Equal(expected);
+            ContextAwareObjectVisitor.Visit(@obj).Should().BeEmpty();
         }
 
         [Fact]
@@ -190,6 +185,23 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
             var expected = new Dictionary<string, string>()
             {
                 ["NullableFoo"] = "123",
+            };
+
+            ContextAwareObjectVisitor.Visit(@obj).Should().Equal(expected);
+        }
+
+        [Fact]
+        public void String_property_with_null()
+        {
+            var @obj = new SimpleTestClass()
+            {
+                Foo = null,
+                Baz = 123
+            };
+
+            var expected = new Dictionary<string, string>()
+            {
+                ["Baz"] = "123",
             };
 
             ContextAwareObjectVisitor.Visit(@obj).Should().Equal(expected);

@@ -26,7 +26,7 @@ namespace Stormpath.Configuration.Abstractions.Model
 
         public int? ConnectionTimeout { get; set; }
 
-        public ClientAuthenticationScheme AuthenticationScheme { get; set; }
+        public ClientAuthenticationScheme? AuthenticationScheme { get; set; }
 
         public ClientProxyConfiguration Proxy { get; set; } = new ClientProxyConfiguration();
     }

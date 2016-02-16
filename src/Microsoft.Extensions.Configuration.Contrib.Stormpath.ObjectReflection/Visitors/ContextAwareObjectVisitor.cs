@@ -49,9 +49,14 @@ namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.
 
         protected override void VisitPrimitive(object primitiveValue)
         {
+            if (primitiveValue == null)
+            {
+                return;
+            }
+
             var key = string.Join(Constants.KeyDelimiter, context.Reverse());
 
-            this.items.Add(new KeyValuePair<string, string>(key, primitiveValue?.ToString() ?? string.Empty));
+            this.items.Add(new KeyValuePair<string, string>(key, primitiveValue.ToString() ?? string.Empty));
         }
 
         protected override void VisitEnumerable(IEnumerable enumerable)
