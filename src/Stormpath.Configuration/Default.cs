@@ -33,7 +33,7 @@ namespace Stormpath.Configuration
                 },
 
                 BaseUrl = "https://api.stormpath.com/v1",
-                ConnectionTimeout = 30,
+                ConnectionTimeout = 30 * 1000,
                 AuthenticationScheme = ClientAuthenticationScheme.SAuthc1,
 
                 Proxy = new ClientProxyConfiguration()
