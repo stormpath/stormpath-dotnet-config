@@ -11,7 +11,7 @@
     "Microsoft.Extensions.Configuration.Ini": "1.0.0-rc1-final",
     "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
     "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final",
-    "Stormpath.Configuration.Abstractions": "0.1.0-beta3",
+    "Stormpath.Configuration.Abstractions": "0.1.0-beta4",
     "Stormpath.SDK.Abstractions":  "0.6.0-beta1"
   },
   "description": "Stormpath .NET Configuration Loader",
@@ -39,5 +39,5 @@
   "tooling": {
     "defaultNamespace": "Stormpath.Configuration"
   },
-  "version": "0.1.0-beta3"
+  "version": "0.1.0-beta4"
 }
