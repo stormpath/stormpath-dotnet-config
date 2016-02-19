@@ -313,7 +313,7 @@ namespace Stormpath.Configuration
             {
                 logger.Trace($"Loading specified apiKey.properties file at {specifiedApiKeyFilePath}");
 
-                builder.AddPropertiesFile(specifiedApiKeyFilePath, optional: false, root: "stormpath:client"); // Not optional this time!
+                builder.AddPropertiesFile(ResolveHomePath(specifiedApiKeyFilePath), optional: false, root: "stormpath:client"); // Not optional this time!
             }
         }
 
