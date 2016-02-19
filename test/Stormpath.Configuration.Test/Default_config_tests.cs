@@ -22,6 +22,7 @@ using Xunit;
 
 namespace Stormpath.Configuration.Test
 {
+    [Collection("I/O")]
     public class Default_config_tests
     {
         public static IEnumerable<object[]> TestCases()
@@ -60,8 +61,8 @@ namespace Stormpath.Configuration.Test
 
             // Client section
             config.Client.ApiKey.File.Should().BeNullOrEmpty();
-            config.Client.ApiKey.Id.Should().Be("foobar");
-            config.Client.ApiKey.Secret.Should().Be("secret123!");
+            config.Client.ApiKey.Id.Should().Be("default-foobar");
+            config.Client.ApiKey.Secret.Should().Be("default-secret123!");
 
             config.Client.CacheManager.DefaultTtl.Should().Be(300);
             config.Client.CacheManager.DefaultTti.Should().Be(300);
@@ -69,7 +70,7 @@ namespace Stormpath.Configuration.Test
             config.Client.CacheManager.Caches.Should().HaveCount(0);
 
             config.Client.BaseUrl.Should().Be("https://api.stormpath.com/v1");
-            config.Client.ConnectionTimeout.Should().Be(30);
+            config.Client.ConnectionTimeout.Should().Be(30000);
             config.Client.AuthenticationScheme.Should().Be(Abstractions.Model.ClientAuthenticationScheme.SAuthc1);
 
             config.Client.Proxy.Port.Should().Be(null);

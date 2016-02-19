@@ -22,6 +22,7 @@ using Xunit;
 
 namespace Stormpath.Configuration.Test
 {
+    [Collection("I/O")]
     public class Appsettings_file : IDisposable
     {
         private readonly static string AppSettingsFilePath = Path.Combine(

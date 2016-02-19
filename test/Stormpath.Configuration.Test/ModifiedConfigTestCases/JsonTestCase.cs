@@ -31,8 +31,8 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
   ""client"": {
     ""apiKey"": {
       ""file"": null,
-      ""id"": ""foobar"",
-      ""secret"": ""barbaz""
+      ""id"": ""modified-foobar"",
+      ""secret"": ""modified-barbaz""
     },
     ""cacheManager"": {
       ""defaultTtl"": 500,

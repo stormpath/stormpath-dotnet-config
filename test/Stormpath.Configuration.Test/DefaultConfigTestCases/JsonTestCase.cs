@@ -34,8 +34,8 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
   ""client"": {
     ""apiKey"": {
       ""file"": null,
-      ""id"": ""foobar"",
-      ""secret"": ""secret123!""
+      ""id"": ""default-foobar"",
+      ""secret"": ""default-secret123!""
     },
     ""cacheManager"": {
       ""defaultTtl"": 300,

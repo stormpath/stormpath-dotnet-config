@@ -29,15 +29,15 @@ namespace Stormpath.Configuration.Test
             {
                 apiKey = new
                 {
-                    id = "foobar",
-                    secret = "secret123!"
+                    id = "legacy-foobar",
+                    secret = "legacy-secret123!"
                 }
             };
 
             var config = ConfigurationLoader.Load(supplied);
 
-            config.Client.ApiKey.Id.Should().Be("foobar");
-            config.Client.ApiKey.Secret.Should().Be("secret123!");
+            config.Client.ApiKey.Id.Should().Be("legacy-foobar");
+            config.Client.ApiKey.Secret.Should().Be("legacy-secret123!");
         }
     }
 }

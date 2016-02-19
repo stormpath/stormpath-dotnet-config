@@ -22,14 +22,15 @@ using Xunit;
 
 namespace Stormpath.Configuration.Test
 {
+    [Collection("I/O")]
     public class Api_properties_file : IDisposable
     {
         private readonly static string PropertiesFilePath =
             Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "apiKey.properties");
 
         private readonly static string PropertiesFileContents = @"
-apiKey.id = FOOBAR
-apiKey.secret = bazquxsecret!";
+apiKey.id = APIKEY_FOOBAR
+apiKey.secret = APIKEY_bazquxsecret!";
 
         public Api_properties_file()
         {
@@ -46,8 +47,8 @@ apiKey.secret = bazquxsecret!";
         {
             var config = ConfigurationLoader.Load();
 
-            config.Client.ApiKey.Id.Should().Be("FOOBAR");
-            config.Client.ApiKey.Secret.Should().Be("bazquxsecret!");
+            config.Client.ApiKey.Id.Should().Be("APIKEY_FOOBAR");
+            config.Client.ApiKey.Secret.Should().Be("APIKEY_bazquxsecret!");
         }
 
         [Fact]
@@ -58,7 +59,7 @@ apiKey.secret = bazquxsecret!";
 
             File.WriteAllText(
                 otherPropertiesFilePath, 
-                PropertiesFileContents.Replace("FOOBAR", "FOOBAZ").Replace("secret!", "SECRETZ"));
+                PropertiesFileContents.Replace("APIKEY_FOOBAR", "OTHER_APIKEY_FOOBAR").Replace("APIKEY_bazquxsecret!", "OTHER_APIKEY_SECRETZ"));
 
             var config = ConfigurationLoader.Load(userConfiguration: new
             {
@@ -71,8 +72,8 @@ apiKey.secret = bazquxsecret!";
                 }
             });
 
-            config.Client.ApiKey.Id.Should().Be("FOOBAZ");
-            config.Client.ApiKey.Secret.Should().Be("bazquxSECRETZ");
+            config.Client.ApiKey.Id.Should().Be("OTHER_APIKEY_FOOBAR");
+            config.Client.ApiKey.Secret.Should().Be("OTHER_APIKEY_SECRETZ");
 
             File.Delete(otherPropertiesFilePath);
         }

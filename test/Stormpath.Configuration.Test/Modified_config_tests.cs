@@ -24,6 +24,7 @@ using Xunit;
 
 namespace Stormpath.Configuration.Test
 {
+    [Collection("I/O")]
     public class Modified_config_tests
     {
         public static IEnumerable<object[]> FileTestCases()
@@ -73,8 +74,8 @@ namespace Stormpath.Configuration.Test
                 {
                     ApiKey = new ClientApiKeyConfiguration()
                     {
-                        Id = "foobar",
-                        Secret = "barbaz"
+                        Id = "modified-foobar",
+                        Secret = "modified-barbaz"
                     },
 
                     CacheManager = new ClientCacheManagerConfiguration()
@@ -303,8 +304,8 @@ namespace Stormpath.Configuration.Test
                 {
                     apiKey = new
                     {
-                        id = "foobar",
-                        secret = "barbaz"
+                        id = "modified-foobar",
+                        secret = "modified-barbaz"
                     },
 
                     cacheManager = new
@@ -524,8 +525,8 @@ namespace Stormpath.Configuration.Test
         private void ValidateConfig(StormpathConfiguration config)
         {
             // Client section
-            config.Client.ApiKey.Id.Should().Be("foobar");
-            config.Client.ApiKey.Secret.Should().Be("barbaz");
+            config.Client.ApiKey.Id.Should().Be("modified-foobar");
+            config.Client.ApiKey.Secret.Should().Be("modified-barbaz");
 
             config.Client.CacheManager.DefaultTtl.Should().Be(500);
             config.Client.CacheManager.DefaultTti.Should().Be(600);

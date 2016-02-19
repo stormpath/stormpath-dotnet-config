@@ -34,14 +34,14 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
 client:
   apiKey:
     file: null
-    id: ""foobar""
-    secret: ""secret123!""
+    id: ""default-foobar""
+    secret: ""default-secret123!""
   cacheManager:
     defaultTtl: 300
     defaultTti: 300
     caches: {}
   baseUrl: ""https://api.stormpath.com/v1""
-  connectionTimeout: 30
+  connectionTimeout: 30000
   authenticationScheme: ""SAUTHC1""
   proxy:
     port: null
