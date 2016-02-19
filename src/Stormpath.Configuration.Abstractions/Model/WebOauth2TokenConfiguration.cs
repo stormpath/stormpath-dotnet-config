@@ -16,8 +16,14 @@
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
+    /// <summary>
+    /// Represents configuration options for OAuth2 tokens.
+    /// </summary>
     public sealed class WebOauth2TokenConfiguration
     {
+        /// <summary>
+        /// The token Time-To-Live.
+        /// </summary>
         public int? Ttl { get; set; }
     }
 }

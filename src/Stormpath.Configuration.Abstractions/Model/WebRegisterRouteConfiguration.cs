@@ -16,12 +16,51 @@
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
-    public sealed class WebRegisterRouteConfiguration : WebRouteWithNextConfigurationBase
+    /// <summary>
+    /// Represents configuration options for the Register route.
+    /// </summary>
+    public sealed class WebRegisterRouteConfiguration
     {
+        /// <summary>
+        /// Determines whether the user should be automatically logged in after interacting with this route.
+        /// </summary>
+        /// <remarks>
+        /// Auto login is possible only if the email verification feature is disabled
+        /// on the default account store of the defined Stormpath application.
+        /// <para>
+        /// Configuration path: <c>stormpath.web.register.autoLogin</c>
+        /// </para>
+        /// </remarks>
         public bool AutoLogin { get; set; }
 
+        /// <summary>
+        /// The form configuration options.
+        /// </summary>
+        /// Configuration path: <c>stormpath.web.register.form</c>
         public WebRegisterRouteFormConfiguration Form { get; set; } = new WebRegisterRouteFormConfiguration();
 
+        /// <summary>
+        /// The view to use for this route, or <see langword="null"/> to use the default view.
+        /// </summary>
+        /// Configuration path: <c>stormpath.web.register.view</c>
         public string View { get; set; }
+
+        /// <summary>
+        /// The URI to redirect to if the operation is successful.
+        /// </summary>
+        /// Configuration path: <c>stormpath.web.register.nextUri</c>
+        public string NextUri { get; set; }
+
+        /// <summary>
+        /// Determines whether the Register route is enabled.
+        /// </summary>
+        /// Configuration path: <c>stormpath.web.register.enabled</c>
+        public bool? Enabled { get; set; }
+
+        /// <summary>
+        /// The URI for this route, or <see langword="null"/> to use the default URI.
+        /// </summary>
+        /// Configuration path: <c>stormpath.web.register.uri</c>
+        public string Uri { get; set; }
     }
 }

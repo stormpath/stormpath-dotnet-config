@@ -145,7 +145,7 @@ namespace Stormpath.Configuration.Test
                         ["applications"] = true,
                     },
 
-                    AccessTokenCookie = new WebOauth2TokenCookieConfiguration()
+                    AccessTokenCookie = new WebCookieConfiguration()
                     {
                         Name = "accessToken",
                         HttpOnly = false,
@@ -154,7 +154,7 @@ namespace Stormpath.Configuration.Test
                         Domain = "foo.bar",
                     },
 
-                    RefreshTokenCookie = new WebOauth2TokenCookieConfiguration()
+                    RefreshTokenCookie = new WebCookieConfiguration()
                     {
                         Name = "refreshToken",
                         HttpOnly = false,

@@ -16,10 +16,33 @@
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
-    public sealed class WebOauth2RouteConfiguration : WebRouteConfigurationBase
+    /// <summary>
+    /// Represents configuration options for the OAuth2 route.
+    /// </summary>
+    public sealed class WebOauth2RouteConfiguration
     {
+        /// <summary>
+        /// The <c>client_credentials</c> grant type configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.oauth2.client_credentials</c></remarks>
         public WebOauth2ClientCredentialsGrantConfiguration Client_Credentials { get; set; } = new WebOauth2ClientCredentialsGrantConfiguration();
 
+        /// <summary>
+        /// The <c>password</c> grant type configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.oauth2.password</c></remarks>
         public WebOauth2PasswordGrantConfiguration Password { get; set; } = new WebOauth2PasswordGrantConfiguration();
+
+        /// <summary>
+        /// Determines whether the Change Password route is enabled.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.oauth2.enabled</c></remarks>
+        public bool? Enabled { get; set; }
+
+        /// <summary>
+        /// The URI for this route, or <see langword="null"/> to use the default URI.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.oauth2.uri</c></remarks>
+        public string Uri { get; set; }
     }
 }

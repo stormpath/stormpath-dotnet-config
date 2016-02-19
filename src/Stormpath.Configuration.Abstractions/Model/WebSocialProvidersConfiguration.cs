@@ -16,8 +16,15 @@
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
+    /// <summary>
+    /// Represents configuration options for social login providers.
+    /// </summary>
     public sealed class WebSocialProvidersConfiguration
     {
+        /// <summary>
+        /// The callback root URI used for social login.
+        /// </summary>
+        /// Configuration path: <c>stormpath.web.socialProviders.callbackRoot</c>
         public string CallbackRoot { get; set; }
     }
 }

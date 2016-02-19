@@ -16,10 +16,21 @@
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
+    /// <summary>
+    /// Represents configuration options for the OAuth2 <c>client_credentials</c> grant type.
+    /// </summary>
     public sealed class WebOauth2ClientCredentialsGrantConfiguration
     {
+        /// <summary>
+        /// Determines whether the <c>client_credentials</c> grant type is enabled.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.oauth2.client_credentials.enabled</c></remarks>
         public bool? Enabled { get; set; }
 
+        /// <summary>
+        /// The Access Token configuration options.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.oauth2.client_credentials.accessToken</c></remarks>
         public WebOauth2TokenConfiguration AccessToken { get; set; } = new WebOauth2TokenConfiguration();
     }
 }

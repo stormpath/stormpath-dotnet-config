@@ -14,9 +14,31 @@
 // limitations under the License.
 // </copyright>
 
+using System.Collections.Generic;
+
 namespace Stormpath.Configuration.Abstractions.Model
 {
-    public sealed class WebMeRouteConfiguration : WebRouteConfigurationBase
+    /// <summary>
+    /// Represents configuration options for the Me route.
+    /// </summary>
+    public sealed class WebMeRouteConfiguration
     {
+        /// <summary>
+        /// The expansion options configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.me.expand</c></remarks>
+        public Dictionary<string, bool> Expand { get; set; } = new Dictionary<string, bool>();
+
+        /// <summary>
+        /// Determines whether the Me route is enabled.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.me.enabled</c></remarks>
+        public bool? Enabled { get; set; }
+
+        /// <summary>
+        /// The URI for this route, or <see langword="null"/> to use the default URI.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.me.uri</c></remarks>
+        public string Uri { get; set; }
     }
 }

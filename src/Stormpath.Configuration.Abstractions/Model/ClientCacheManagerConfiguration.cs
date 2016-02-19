@@ -18,12 +18,27 @@ using System.Collections.Generic;
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
+    /// <summary>
+    /// Represents high-level Client cache configuration options.
+    /// </summary>
     public sealed class ClientCacheManagerConfiguration
     {
+        /// <summary>
+        /// The default cache Time-To-Live.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.client.cacheManager.defaultTtl</c></remarks>
         public int? DefaultTtl { get; set; }
 
+        /// <summary>
+        /// The default cache Time-To-Idle.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.client.cacheManager.defaultTti</c></remarks>
         public int? DefaultTti { get; set; }
 
+        /// <summary>
+        /// Per-resource cache configurations.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.client.cacheManager.caches</c></remarks>
         public Dictionary<string, ClientCacheConfiguration> Caches { get; set; } = new Dictionary<string, ClientCacheConfiguration>();
     }
 }

@@ -18,18 +18,33 @@ using System;
 
 namespace Stormpath.Configuration.Abstractions
 {
+    /// <summary>
+    /// Represents a configuration error.
+    /// </summary>
     public class ConfigurationException : Exception
     {
+        /// <summary>
+        /// Creates a new instance of <see cref="ConfigurationException"/>.
+        /// </summary>
         public ConfigurationException()
             : this(null, null)
         {
         }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="ConfigurationException"/> with the given message.
+        /// </summary>
+        /// <param name="message"></param>
         public ConfigurationException(string message)
             : this(message, null)
         {
         }
 
+        /// <summary>
+        /// /// Creates a new instance of <see cref="ConfigurationException"/> with the given message and inner exception.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="innerException"></param>
         public ConfigurationException(string message, Exception innerException)
             : base(message, innerException)
         {

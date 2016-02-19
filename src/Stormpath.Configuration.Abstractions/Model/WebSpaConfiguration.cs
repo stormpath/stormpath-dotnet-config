@@ -16,10 +16,27 @@
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
+    /// <summary>
+    /// Represents configuration options for Single-Page Application support.
+    /// </summary>
+    /// <remarks>
+    /// If the developer wants our integration to serve their Single Page
+    /// Application (SPA) in response to HTML requests for our default routes,
+    /// such as <c>/login</c>, then they will need to enable this feature and tell us
+    /// where the root of their SPA is.  This is likely a file path on the filesystem.
+    /// </remarks>
     public sealed class WebSpaConfiguration
     {
+        /// <summary>
+        /// Determines whether the SPA handling options are enabled.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.spa.enabled</c></remarks>
         public bool? Enabled { get; set; }
 
+        /// <summary>
+        /// The root view of the SPA.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.spa.view</c></remarks>
         public string View { get; set; }
     }
 }

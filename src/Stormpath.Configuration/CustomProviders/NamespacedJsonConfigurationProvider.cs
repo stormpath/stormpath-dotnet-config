@@ -21,6 +21,9 @@ using Microsoft.Extensions.Configuration.Json;
 
 namespace Stormpath.Configuration.CustomProviders
 {
+    /// <summary>
+    /// A JSON configuration provider that decorates discovered keys with a root (prefix).
+    /// </summary>
     public class NamespacedJsonConfigurationProvider : JsonConfigurationProvider
     {
         private readonly string root;

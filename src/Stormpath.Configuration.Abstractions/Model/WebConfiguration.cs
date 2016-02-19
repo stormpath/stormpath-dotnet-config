@@ -18,40 +18,111 @@ using System.Collections.Generic;
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
+    /// <summary>
+    /// Represents web framework integration configuration options.
+    /// </summary>
     public sealed class WebConfiguration
     {
+        /// <summary>
+        /// The web application's base path.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.basePath</c></remarks>
         public string BasePath { get; set; }
 
+        /// <summary>
+        /// The OAuth2 route configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.oauth2</c></remarks>
         public WebOauth2RouteConfiguration Oauth2 { get; set; } = new WebOauth2RouteConfiguration();
 
+        /// <summary>
+        /// The expansion options configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.expand</c></remarks>
         public Dictionary<string, bool> Expand { get; set; } = new Dictionary<string, bool>();
 
-        public WebOauth2TokenCookieConfiguration AccessTokenCookie { get; set; } = new WebOauth2TokenCookieConfiguration();
+        /// <summary>
+        /// The access token cookie configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.accessTokenCookie</c></remarks>
+        public WebCookieConfiguration AccessTokenCookie { get; set; } = new WebCookieConfiguration();
 
-        public WebOauth2TokenCookieConfiguration RefreshTokenCookie { get; set; } = new WebOauth2TokenCookieConfiguration();
+        /// <summary>
+        /// The refresh token cookie configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.refreshTokenCookie</c></remarks>
+        public WebCookieConfiguration RefreshTokenCookie { get; set; } = new WebCookieConfiguration();
 
+        /// <summary>
+        /// The output types configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.produces</c></remarks>
         public List<string> Produces { get; set; } = new List<string>();
 
+        /// <summary>
+        /// The Register route configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.register</c></remarks>
         public WebRegisterRouteConfiguration Register { get; set; } = new WebRegisterRouteConfiguration();
 
+        /// <summary>
+        /// The Verify Email route configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.verifyEmail</c></remarks>
         public WebVerifyEmailRouteConfiguration VerifyEmail { get; set; } = new WebVerifyEmailRouteConfiguration();
 
+        /// <summary>
+        /// The Login route configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.login</c></remarks>
         public WebLoginRouteConfiguration Login { get; set; } = new WebLoginRouteConfiguration();
 
+        /// <summary>
+        /// The Logout route configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.logout</c></remarks>
         public WebLogoutRouteConfiguration Logout { get; set; } = new WebLogoutRouteConfiguration();
 
+        /// <summary>
+        /// The Forgot Password route configuration
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.forgotPassword</c></remarks>
         public WebForgotPasswordRouteConfiguration ForgotPassword { get; set; } = new WebForgotPasswordRouteConfiguration();
 
+        /// <summary>
+        /// The Change Password route configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.changePassword</c></remarks>
         public WebChangePasswordRouteConfiguration ChangePassword { get; set; } = new WebChangePasswordRouteConfiguration();
 
+        /// <summary>
+        /// The ID Site route configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.idSite</c></remarks>
         public WebIdSiteRouteConfiguration IdSite { get; set; } = new WebIdSiteRouteConfiguration();
 
+        /// <summary>
+        /// The social providers configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.socialProviders</c></remarks>
         public WebSocialProvidersConfiguration SocialProviders { get; set; } = new WebSocialProvidersConfiguration();
 
+        /// <summary>
+        /// The Me route configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.me</c></remarks>
         public WebMeRouteConfiguration Me { get; set; } = new WebMeRouteConfiguration();
 
+        /// <summary>
+        /// The Single-Page Application configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.spa</c></remarks>
         public WebSpaConfiguration Spa { get; set; } = new WebSpaConfiguration();
 
+        /// <summary>
+        /// The Unauthorized route configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.unauthorized</c></remarks>
         public WebUnauthorizedConfiguration Unauthorized { get; set; } = new WebUnauthorizedConfiguration();
     }
 }

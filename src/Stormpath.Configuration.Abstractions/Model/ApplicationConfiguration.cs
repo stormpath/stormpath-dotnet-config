@@ -16,10 +16,21 @@
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
+    /// <summary>
+    /// Represents Application configuration options.
+    /// </summary>
     public sealed class ApplicationConfiguration
     {
+        /// <summary>
+        /// The application's name.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.application.name</c></remarks>
         public string Name { get; set; }
 
+        /// <summary>
+        /// The application's Stormpath <c>href</c>.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.application.href</c></remarks>
         public string Href { get; set; }
     }
 }

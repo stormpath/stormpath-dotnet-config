@@ -16,10 +16,21 @@
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
+    /// <summary>
+    /// Represents per-resource cache configuration options.
+    /// </summary>
     public sealed class ClientCacheConfiguration
     {
+        /// <summary>
+        /// The cache Time-To-Live.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.client.cacheManager.caches.[*].ttl</c></remarks>
         public int? Ttl { get; set; }
 
+        /// <summary>
+        /// The cache Time-To-Idle.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.client.cacheManager.caches.[*].tti</c></remarks>
         public int? Tti { get; set; }
     }
 }

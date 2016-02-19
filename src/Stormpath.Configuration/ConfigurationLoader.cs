@@ -34,6 +34,9 @@ using Microsoft.Extensions.PlatformAbstractions;
 
 namespace Stormpath.Configuration
 {
+    /// <summary>
+    /// Provides access to the local Stormpath configuration.
+    /// </summary>
     public sealed class ConfigurationLoader
     {
         private static readonly string stormpathDirectory = $"~{Path.DirectorySeparatorChar}.stormpath{Path.DirectorySeparatorChar}";
@@ -41,6 +44,14 @@ namespace Stormpath.Configuration
         private readonly object userConfiguration;
         private readonly ILogger logger;
 
+        /// <summary>
+        /// Loads the local Stormpath configuration and applies any user-defined configuration options.
+        /// </summary>
+        /// <param name="userConfiguration">
+        /// An instance of <see cref="StormpathConfiguration"/>, or an anonymous type, containing user-defined configuration options.
+        /// </param>
+        /// <param name="logger">An optional logger.</param>
+        /// <returns>The local Stormpath configuration.</returns>
         public static StormpathConfiguration Load(object userConfiguration = null, ILogger logger = null)
         {
             return new ConfigurationLoader(userConfiguration, logger)

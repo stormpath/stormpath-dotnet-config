@@ -16,8 +16,40 @@
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
-    public sealed class WebVerifyEmailRouteConfiguration : WebRouteWithNextConfigurationBase
+    /// <summary>
+    /// Represents configuration options for the Verify Email route.
+    /// </summary>
+    public sealed class WebVerifyEmailRouteConfiguration
     {
+        /// <summary>
+        /// The view to use for this route, or <see langword="null"/> to use the default view.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.verifyEmail.view</c></remarks>
         public string View { get; set; }
+
+        /// <summary>
+        /// The URI to redirect to if the operation is successful.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.verifyEmail.nextUri</c></remarks>
+        public string NextUri { get; set; }
+
+        /// <summary>
+        /// Determines whether the Change Password route is enabled.
+        /// </summary>
+        /// <remarks>
+        /// Unless explicitly set to <see langword="false"/>, the email
+        /// verification feature will be automatically enabled if the default account
+        /// store for the defined Stormpath application has the email verification workflow enabled.
+        /// <para>
+        /// Configuration path: <c>stormpath.web.verifyEmail.enabled</c>
+        /// </para>
+        /// </remarks>
+        public bool? Enabled { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.verifyEmail.uri</c></remarks>
+        public string Uri { get; set; }
     }
 }

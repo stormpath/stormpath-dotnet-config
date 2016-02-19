@@ -16,8 +16,40 @@
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
-    public sealed class WebForgotPasswordRouteConfiguration : WebRouteWithNextConfigurationBase
+    /// <summary>
+    /// Represents configuration options for the Forgot Password route.
+    /// </summary>
+    public sealed class WebForgotPasswordRouteConfiguration
     {
+        /// <summary>
+        /// The view to use for this route, or <see langword="null"/> to use the default view.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.forgotPassword.view</c></remarks>
         public string View { get; set; }
+
+        /// <summary>
+        /// The URI to redirect to if the operation is successful.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.forgotPassword.nextUri</c></remarks>
+        public string NextUri { get; set; }
+
+        /// <summary>
+        /// Determines whether the Forgot Password route is enabled.
+        /// </summary>
+        /// <remarks>
+        /// Unless explicitly set to <see langword="false"/>, this feature
+        /// will be automatically enabled if the default account store for the defined
+        /// Stormpath application has the password reset workflow enabled.
+        /// <para>
+        /// Configuration path: <c>stormpath.web.forgotPassword.enabled</c>
+        /// </para>
+        /// </remarks>
+        public bool? Enabled { get; set; }
+
+        /// <summary>
+        /// The URI for this route, or <see langword="null"/> to use the default URI.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.forgotPassword.uri</c></remarks>
+        public string Uri { get; set; }
     }
 }

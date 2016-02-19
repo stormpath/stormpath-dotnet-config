@@ -16,18 +16,45 @@
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
+    /// <summary>
+    /// Represents Client configuration options.
+    /// </summary>
     public sealed class ClientConfiguration
     {
+        /// <summary>
+        /// The API Key configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.client.apiKey</c></remarks>
         public ClientApiKeyConfiguration ApiKey { get; set; } = new ClientApiKeyConfiguration();
 
+        /// <summary>
+        /// The cache configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.client.cacheManager</c></remarks>
         public ClientCacheManagerConfiguration CacheManager { get; set; } = new ClientCacheManagerConfiguration();
 
+        /// <summary>
+        /// The API base URL.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.client.baseUrl</c></remarks>
         public string BaseUrl { get; set; }
 
+        /// <summary>
+        /// The connection timeout.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.client.connectionTimeout</c></remarks>
         public int? ConnectionTimeout { get; set; }
 
+        /// <summary>
+        /// The authentication scheme to use for requests.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.client.authenticationScheme</c></remarks>
         public ClientAuthenticationScheme? AuthenticationScheme { get; set; }
 
+        /// <summary>
+        /// The proxy to use for requests.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.client.proxy</c></remarks>
         public ClientProxyConfiguration Proxy { get; set; } = new ClientProxyConfiguration();
     }
 }

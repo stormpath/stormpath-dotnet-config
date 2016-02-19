@@ -16,12 +16,52 @@
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
-    public sealed class WebChangePasswordRouteConfiguration : WebRouteWithNextConfigurationBase
+    /// <summary>
+    /// Represents configuration options for the Change Password route.
+    /// </summary>
+    public sealed class WebChangePasswordRouteConfiguration
     {
+        /// <summary>
+        /// Determines whether the user should be automatically logged in after interacting with this route.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.changePassword.autoLogin</c></remarks>
         public bool AutoLogin { get; set; }
 
+        /// <summary>
+        /// The view to use for this route, or <see langword="null"/> to use the default view.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.changePassword.view</c></remarks>
         public string View { get; set; }
 
+        /// <summary>
+        /// The URI to redirect to if an error occurs.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.changePassword.errorUri</c></remarks>
         public string ErrorUri { get; set; }
+
+        /// <summary>
+        /// The URI to redirect to if the operation is successful.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.changePassword.nextUri</c></remarks>
+        public string NextUri { get; set; }
+
+        /// <summary>
+        /// Determines whether the Change Password route is enabled.
+        /// </summary>
+        /// <remarks>
+        /// Unless explicitly set to <see langword="false"/>, this feature
+        /// will be automatically enabled if the default account store for the defined
+        /// Stormpath application has the password reset workflow enabled.
+        /// <para>
+        /// Configuration path: <c>stormpath.web.changePassword.enabled</c>
+        /// </para>
+        /// </remarks>
+        public bool? Enabled { get; set; }
+
+        /// <summary>
+        /// The URI for this route, or <see langword="null"/> to use the default URI.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.changePassword.uri</c></remarks>
+        public string Uri { get; set; }
     }
 }

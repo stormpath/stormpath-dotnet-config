@@ -16,12 +16,32 @@
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
+    /// <summary>
+    /// Represents API Key configuration options.
+    /// </summary>
     public sealed class ClientApiKeyConfiguration
     {
+        /// <summary>
+        /// An optional path to an <c>apiKey.properties</c> file.
+        /// </summary>
+        /// <remarks>
+        /// If set, this will override any values stored in <see cref="Id"/> and <see cref="Secret"/>.
+        /// <para>
+        /// Configuration path: <c>stormpath.client.apiKey.file</c>
+        /// </para>
+        /// </remarks>
         public string File { get; set; }
 
+        /// <summary>
+        /// The API Key ID.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.client.apiKey.id</c></remarks>
         public string Id { get; set; }
 
+        /// <summary>
+        /// The API Key secret.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.client.apiKey.secret</c></remarks>
         public string Secret { get; set; }
     }
 }

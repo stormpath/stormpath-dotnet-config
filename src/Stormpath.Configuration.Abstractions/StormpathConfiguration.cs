@@ -18,12 +18,31 @@ using Stormpath.Configuration.Abstractions.Model;
 
 namespace Stormpath.Configuration.Abstractions
 {
+    /// <summary>
+    /// Represents a Stormpath Client configuration.
+    /// </summary>
+    /// <remarks>
+    /// This is a strongly-typed version of the stormpath config file format.
+    /// </remarks>
+    /// <see href="https://github.com/stormpath/stormpath-framework-spec/blob/master/configuration.md"/>
     public sealed class StormpathConfiguration
     {
+        /// <summary>
+        /// The Client-specific configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.client</c></remarks>
         public ClientConfiguration Client { get; set; } = new ClientConfiguration();
 
+        /// <summary>
+        /// The Application-specific configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.application</c></remarks>
         public ApplicationConfiguration Application { get; set; } = new ApplicationConfiguration();
 
+        /// <summary>
+        /// The framework integration-specific configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web</c></remarks>
         public WebConfiguration Web { get; set; } = new WebConfiguration();
     }
 }

@@ -17,10 +17,39 @@
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
-    public sealed class WebLoginRouteConfiguration : WebRouteWithNextConfigurationBase
+    /// <summary>
+    /// Represents configuration options for the Login route.
+    /// </summary>
+    public sealed class WebLoginRouteConfiguration
     {
+        /// <summary>
+        /// The form configuration options.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.login.form</c></remarks>
         public WebLoginRouteFormConfiguration Form { get; set; } = new WebLoginRouteFormConfiguration();
 
+        /// <summary>
+        /// The view to use for this route, or <see langword="null"/> to use the default view.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.login.view</c></remarks>
         public string View { get; set; }
+
+        /// <summary>
+        /// The URI to redirect to if the operation is successful.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.login.nextUri</c></remarks>
+        public string NextUri { get; set; }
+
+        /// <summary>
+        /// Determines whether the Login route is enabled.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.login.enabled</c></remarks>
+        public bool? Enabled { get; set; }
+
+        /// <summary>
+        /// The URI for this route, or <see langword="null"/> to use the default URI.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.login.uri</c></remarks>
+        public string Uri { get; set; }
     }
 }

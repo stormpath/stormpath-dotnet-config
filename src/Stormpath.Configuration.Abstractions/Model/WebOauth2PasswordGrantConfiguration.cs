@@ -16,10 +16,20 @@
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
+    /// <summary>
+    /// Represents configuration options for the OAuth2 <c>password</c> grant type.
+    /// </summary>
     public sealed class WebOauth2PasswordGrantConfiguration
     {
+        /// <summary>
+        /// Determines whether the <c>password</c> grant type is enabled.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.oauth2.password.enabled</c></remarks>
         public bool? Enabled { get; set; }
 
+        /// <summary>
+        /// The selected validation strategy.
+        /// </summary>
         public WebOauth2TokenValidationStrategy ValidationStrategy { get; set; }
     }
 }

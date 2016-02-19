@@ -16,16 +16,34 @@
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
+    /// <summary>
+    /// Represents configuration options for a field on a form.
+    /// </summary>
     public sealed class WebFieldConfiguration
     {
+        /// <summary>
+        /// Determines whether this field is enabled (shown).
+        /// </summary>
         public bool Enabled { get; set; }
 
+        /// <summary>
+        /// The label.
+        /// </summary>
         public string Label { get; set; }
 
+        /// <summary>
+        /// The placeholder.
+        /// </summary>
         public string Placeholder { get; set; }
 
+        /// <summary>
+        /// Determines whether the field is required.
+        /// </summary>
         public bool Required { get; set; }
 
+        /// <summary>
+        /// The field type.
+        /// </summary>
         public string Type { get; set; }
     }
 }

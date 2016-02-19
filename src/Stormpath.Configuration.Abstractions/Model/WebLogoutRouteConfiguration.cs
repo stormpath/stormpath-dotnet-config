@@ -16,7 +16,27 @@
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
-    public sealed class WebLogoutRouteConfiguration : WebRouteWithNextConfigurationBase
+    /// <summary>
+    /// Represents configuration options for the Change Password route.
+    /// </summary>
+    public sealed class WebLogoutRouteConfiguration
     {
+        /// <summary>
+        /// The URI to redirect to if the logout is successful.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.logout.nextUri</c></remarks>
+        public string NextUri { get; set; }
+
+        /// <summary>
+        /// Determines whether the Logout route is enabled.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.logout.enabled</c></remarks>
+        public bool? Enabled { get; set; }
+
+        /// <summary>
+        /// The URI for this route, or <see langword="null"/> to use the default URI.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.logout.uri</c></remarks>
+        public string Uri { get; set; }
     }
 }

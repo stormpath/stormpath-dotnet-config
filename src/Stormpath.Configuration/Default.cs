@@ -84,7 +84,7 @@ namespace Stormpath.Configuration
                     ["groups"] = false
                 },
 
-                AccessTokenCookie = new WebOauth2TokenCookieConfiguration()
+                AccessTokenCookie = new WebCookieConfiguration()
                 {
                     Name = "access_token",
                     HttpOnly = true,
@@ -93,7 +93,7 @@ namespace Stormpath.Configuration
                     Domain = null,
                 },
 
-                RefreshTokenCookie = new WebOauth2TokenCookieConfiguration()
+                RefreshTokenCookie = new WebCookieConfiguration()
                 {
                     Name = "refresh_token",
                     HttpOnly = true,

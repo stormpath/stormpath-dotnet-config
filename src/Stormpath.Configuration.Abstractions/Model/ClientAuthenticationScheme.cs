@@ -16,9 +16,20 @@
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
+    /// <summary>
+    /// Represents the available Stormpath API authentication schemes.
+    /// </summary>
     public enum ClientAuthenticationScheme
     {
+        /// <summary>
+        /// HTTP Basic authentication.
+        /// </summary>
         Basic = 0,
+
+        /// <summary>
+        /// Stormpath SAuthc1 authentication.
+        /// </summary>
+        /// <see cref="http://docs.stormpath.com/rest/product-guide/latest/reference.html#digest-authentication"/>
         SAuthc1 = 1,
     }
 }

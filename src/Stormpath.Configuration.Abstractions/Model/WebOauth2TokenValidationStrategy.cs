@@ -16,9 +16,19 @@
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
+    /// <summary>
+    /// Represents the available OAuth2 token validation strategies.
+    /// </summary>
     public enum WebOauth2TokenValidationStrategy
     {
+        /// <summary>
+        /// Local validation.
+        /// </summary>
         Local = 0,
+
+        /// <summary>
+        /// Remote validation.
+        /// </summary>
         Remote = 1
     }
 }

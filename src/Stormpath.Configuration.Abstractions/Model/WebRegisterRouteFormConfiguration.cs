@@ -18,10 +18,21 @@ using System.Collections.Generic;
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
+    /// <summary>
+    /// Represents configuration options for the Login route form.
+    /// </summary>
     public sealed class WebRegisterRouteFormConfiguration
     {
+        /// <summary>
+        /// The field configuration options.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.register.form.fields</c></remarks>
         public Dictionary<string, WebFieldConfiguration> Fields { get; set; } = new Dictionary<string, WebFieldConfiguration>();
 
+        /// <summary>
+        /// The field order.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.register.form.fieldOrder</c></remarks>
         public List<string> FieldOrder { get; set; } = new List<string>();
     }
 }
