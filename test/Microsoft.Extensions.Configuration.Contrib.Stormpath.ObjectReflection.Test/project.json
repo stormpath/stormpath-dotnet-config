@@ -1,29 +1,28 @@
 {
-  "version": "0.1.0-beta3",
-  "description": "Tests for Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection",
   "authors": [ "Nate Barbettini" ],
-  "tooling": {
-    "defaultNamespace": "Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection"
+  "commands": {
+    "test": "xunit.runner.dnx"
   },
   "copyright": "(c) 2016 Stormpath, Inc.",
-  "projectUrl": "https://github.com/stormpath/stormpath-dotnet-config/",
+  "dependencies": {
+    "FluentAssertions": "4.2.1",
+    "Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection": "0.1.0-*",
+    "xunit": "2.1.0",
+    "xunit.runner.dnx": "2.1.0-rc1-build204"
+  },
+  "description": "Tests for Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection",
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": { }
+  },
   "licenseUrl": "https://github.com/stormpath/stormpath-dotnet-config/blob/master/LICENSE",
+  "projectUrl": "https://github.com/stormpath/stormpath-dotnet-config/",
   "repository": {
     "type": "git",
     "url": "https://github.com/stormpath/stormpath-dotnet-config/"
   },
-
-  "dependencies": {
-    "FluentAssertions": "4.2.1",
-    "Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection": "0.1.0-beta3",
-    "xunit": "2.1.0",
-    "xunit.runner.dnx": "2.1.0-rc1-build204"
+  "tooling": {
+    "defaultNamespace": "Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection"
   },
-  "commands": {
-    "test": "xunit.runner.dnx"
-  },
-  "frameworks": {
-    "dnx451": { },
-    "dnxcore50": { }
-  }
+  "version": "0.1.0-beta5"
 }

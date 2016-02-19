@@ -50,6 +50,7 @@ namespace Stormpath.Configuration
         private ConfigurationLoader(object userConfiguration, ILogger logger)
         {
             this.userConfiguration = userConfiguration;
+            this.logger = logger;
         }
 
         private StormpathConfiguration Load()

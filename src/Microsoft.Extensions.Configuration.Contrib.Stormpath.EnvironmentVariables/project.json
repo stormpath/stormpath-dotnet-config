@@ -6,8 +6,9 @@
   },
   "description": "Custom environment variables configuration provider for the Configuration package.",
   "frameworks": {
-    "net451": { },
+    "dnx451": { },
     "dotnet5.4": { },
+    "net451": { },
     "netcore50": { }
   },
   "licenseUrl": "https://github.com/stormpath/stormpath-dotnet-config/blob/master/LICENSE",
@@ -19,5 +20,5 @@
   "tooling": {
     "defaultNamespace": "Microsoft.Extensions.Configuration.Contrib.Stormpath.EnvironmentVariables"
   },
-  "version": "0.1.0-beta2"
+  "version": "0.1.0-beta5"
 }

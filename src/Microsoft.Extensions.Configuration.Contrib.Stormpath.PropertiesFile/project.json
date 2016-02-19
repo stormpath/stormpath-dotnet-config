@@ -7,8 +7,9 @@
   },
   "description": ".properties file configuration provider for the Configuration package.",
   "frameworks": {
-    "net451": { },
+    "dnx451": { },
     "dotnet5.4": { },
+    "net451": { },
     "netcore50": {
       "dependencies": {
         "System.IO": "4.0.11-beta-23516",
@@ -25,5 +26,5 @@
   "tooling": {
     "defaultNamespace": "Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile"
   },
-  "version": "0.1.0-beta2"
+  "version": "0.1.0-beta5"
 }

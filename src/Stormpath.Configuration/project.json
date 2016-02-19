@@ -4,30 +4,38 @@
   "dependencies": {
     "Microsoft.Extensions.Configuration": "1.0.0-rc1-final",
     "Microsoft.Extensions.Configuration.Binder": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Configuration.Contrib.Stormpath.EnvironmentVariables": "0.1.0-beta2",
-    "Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection": "0.1.0-beta3",
-    "Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile": "0.1.0-beta2",
-    "Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml": "0.1.0-beta2",
+    "Microsoft.Extensions.Configuration.Contrib.Stormpath.EnvironmentVariables": "0.1.0-beta5",
+    "Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection": "0.1.0-beta5",
+    "Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile": "0.1.0-beta5",
+    "Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml": "0.1.0-beta5",
     "Microsoft.Extensions.Configuration.Ini": "1.0.0-rc1-final",
     "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
-    "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final",
-    "Stormpath.Configuration.Abstractions": "0.1.0-beta4",
+    "Stormpath.Configuration.Abstractions": "0.1.0-beta5",
     "Stormpath.SDK.Abstractions":  "0.6.0-beta1"
   },
   "description": "Stormpath .NET Configuration Loader",
   "frameworks": {
-    "net451": { },
+    "dnx451": {
+      "dependencies": {
+        "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final"
+      }
+    },
     "dotnet5.4": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-beta-23516",
+        "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final",
         "System.Collections": "4.0.11-beta-23516",
         "System.Linq": "4.0.1-beta-23516",
         "System.Runtime": "4.0.21-beta-23516",
         "System.Threading": "4.0.11-beta-23516"
       }
     },
-    "dnx451": { },
-    "netcore50": { }
+    "net451": { },
+    "netcore50": {
+      "dependencies": {
+        "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final"
+      }
+    }
   },
   "licenseUrl": "https://github.com/stormpath/stormpath-dotnet-config/blob/master/LICENSE",
   "projectUrl": "https://github.com/stormpath/stormpath-dotnet-config/",
@@ -39,5 +47,5 @@
   "tooling": {
     "defaultNamespace": "Stormpath.Configuration"
   },
-  "version": "0.1.0-beta4"
+  "version": "0.1.0-beta5"
 }

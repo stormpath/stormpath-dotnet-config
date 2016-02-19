@@ -6,12 +6,9 @@
   },
   "description": "Object reflection configuration provider for the Configuration package.",
   "frameworks": {
-    "net451": {
-      "dependencies": {
-        "System.Reflection": "4.1.0-beta-23516"
-      }
-    },
+    "dnx451": { },
     "dotnet5.4": { },
+    "net451": { },
     "netcore50": { }
   },
   "licenseUrl": "https://github.com/stormpath/stormpath-dotnet-config/blob/master/LICENSE",
@@ -23,5 +20,5 @@
   "tooling": {
     "defaultNamespace": "Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection"
   },
-  "version": "0.1.0-beta3"
+  "version": "0.1.0-beta5"
 }
