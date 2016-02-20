@@ -12,12 +12,12 @@ install-package Stormpath.Configuration
 ## Usage
 
 To load the default configuration:
-```
+```csharp
 var configuration = ConfigurationLoader.Load();
 ```
 
 To load the default configuration and override specific items:
-```
+```csharp
 var configuration = ConfigurationLoader.Load(new StormpathConfiguration()
 {
   Client = new ClientConfiguration()
