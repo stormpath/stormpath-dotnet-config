@@ -27,5 +27,5 @@
   "tooling": {
     "defaultNamespace": "Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml"
   },
-  "version": "0.1.0-beta5"
+  "version": "0.1.0"
 }

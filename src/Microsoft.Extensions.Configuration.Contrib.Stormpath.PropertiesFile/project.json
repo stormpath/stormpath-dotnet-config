@@ -26,5 +26,5 @@
   "tooling": {
     "defaultNamespace": "Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile"
   },
-  "version": "0.1.0-beta5"
+  "version": "0.1.0"
 }
