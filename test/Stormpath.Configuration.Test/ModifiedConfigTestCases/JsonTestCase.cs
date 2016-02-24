@@ -194,7 +194,10 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
     },
     ""me"": {
       ""enabled"": false,
-      ""uri"": ""/myself""
+      ""uri"": ""/myself"",
+      ""expand"": {
+        ""directory"": true
+      }
     },
     ""spa"": {
       ""enabled"": true,

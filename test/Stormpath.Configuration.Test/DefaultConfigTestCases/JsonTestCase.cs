@@ -245,7 +245,13 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
     },
     ""me"": {
       ""enabled"": true,
-      ""uri"": ""/me""
+      ""uri"": ""/me"",
+      ""expand"": {
+        ""apiKeys"": false,
+        ""customData"": false,
+        ""directory"": false,
+        ""groups"": false
+      }
     },
     ""spa"": {
       ""enabled"": false,

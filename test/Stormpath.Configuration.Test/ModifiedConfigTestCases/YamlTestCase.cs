@@ -194,6 +194,8 @@ web:
   me:
     enabled: false
     uri: ""/myself""
+    expand:
+      directory: true
 
   # If the developer wants our integration to serve their Single Page
   # Application (SPA) in response to HTML requests for our default routes,

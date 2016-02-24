@@ -241,6 +241,11 @@ web:
   me:
     enabled: true
     uri: ""/me""
+    expand:
+      apiKeys: false
+      customData: false
+      directory: false
+      groups: false
 
   # If the developer wants our integration to serve their Single Page
   # Application (SPA) in response to HTML requests for our default routes,

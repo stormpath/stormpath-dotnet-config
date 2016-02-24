@@ -292,7 +292,13 @@ namespace Stormpath.Configuration.Abstractions
 
                 Me = new WebMeRouteConfiguration()
                 {
-                    Expand = new Dictionary<string, bool>(),
+                    Expand = new Dictionary<string, bool>()
+                    {
+                        ["apiKeys"] = false,
+                        ["customData"] = false,
+                        ["directory"] = false,
+                        ["groups"] = false,
+                    },
                     Enabled = true,
                     Uri = "/me",
                 },

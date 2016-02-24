@@ -225,7 +225,10 @@ namespace Stormpath.Configuration.Test
                 },
 
                 meRoute: new WebMeRouteConfiguration(
-                    expand: null,
+                    expand: new Dictionary<string, bool>()
+                    {
+                        ["directory"] = true
+                    },
                     enabled: false,
                     uri: "/myself"),
 
@@ -473,6 +476,10 @@ namespace Stormpath.Configuration.Test
                     {
                         enabled = false,
                         uri = "/myself",
+                        expand = new
+                        {
+                            directory = true
+                        }
                     },
 
                     spa = new
@@ -637,6 +644,9 @@ namespace Stormpath.Configuration.Test
 
             config.Web.Me.Enabled.Should().BeFalse();
             config.Web.Me.Uri.Should().Be("/myself");
+
+            config.Web.Me.Expand.Should().HaveCount(1);
+            config.Web.Me.Expand["directory"].Should().BeTrue();
 
             config.Web.Spa.Enabled.Should().BeTrue();
             config.Web.Spa.View.Should().Be("indexView");
