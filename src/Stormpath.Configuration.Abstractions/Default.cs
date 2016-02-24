@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Stormpath.Configuration.Abstractions;
 using Stormpath.Configuration.Abstractions.Model;
 
@@ -29,7 +30,7 @@ namespace Stormpath.Configuration.Abstractions
                 {
                     DefaultTtl = 300,
                     DefaultTti = 300,
-                    Caches = new Dictionary<string, ClientCacheConfiguration>() { },
+                    Caches = new Dictionary<string, ClientCacheConfiguration>(StringComparer.OrdinalIgnoreCase) { },
                 },
 
                 BaseUrl = "https://api.stormpath.com/v1",
@@ -76,7 +77,7 @@ namespace Stormpath.Configuration.Abstractions
                     }
                 },
 
-                Expand = new Dictionary<string, bool>()
+                Expand = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
                 {
                     ["apiKeys"] = false,
                     ["customData"] = true,
@@ -117,7 +118,7 @@ namespace Stormpath.Configuration.Abstractions
                     View = "register",
                     Form = new WebRegisterRouteFormConfiguration()
                     {
-                        Fields = new Dictionary<string, WebFieldConfiguration>()
+                        Fields = new Dictionary<string, WebFieldConfiguration>(StringComparer.OrdinalIgnoreCase)
                         {
                             ["givenName"] = new WebFieldConfiguration()
                             {
@@ -205,7 +206,7 @@ namespace Stormpath.Configuration.Abstractions
                     View = "login",
                     Form = new WebLoginRouteFormConfiguration()
                     {
-                        Fields = new Dictionary<string, WebFieldConfiguration>()
+                        Fields = new Dictionary<string, WebFieldConfiguration>(StringComparer.OrdinalIgnoreCase)
                         {
                             ["login"] = new WebFieldConfiguration()
                             {
@@ -267,7 +268,7 @@ namespace Stormpath.Configuration.Abstractions
                     RegisterUri = "/#/register"
                 },
 
-                Social = new Dictionary<string, WebSocialProviderConfiguration>()
+                Social = new Dictionary<string, WebSocialProviderConfiguration>(StringComparer.OrdinalIgnoreCase)
                 {
                     ["facebook"] = new WebSocialProviderConfiguration()
                     {
@@ -292,7 +293,7 @@ namespace Stormpath.Configuration.Abstractions
 
                 Me = new WebMeRouteConfiguration()
                 {
-                    Expand = new Dictionary<string, bool>()
+                    Expand = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
                     {
                         ["apiKeys"] = false,
                         ["customData"] = false,

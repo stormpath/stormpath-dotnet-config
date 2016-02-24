@@ -278,5 +278,47 @@ namespace Stormpath.Configuration.Test
                 "foo/bar",
             });
         }
+
+        [Fact]
+        public void Default_dictionaries_are_case_insensitive()
+        {
+            Default.Configuration.Web.Expand["CustomData"].Should().BeTrue();
+        }
+
+        [Fact]
+        public void Copied_default_dictionaries_are_case_insensitive()
+        {
+            var config = new StormpathConfiguration(Default.Configuration);
+
+            config.Web.Expand["CustomData"].Should().BeTrue();
+        }
+
+        [Fact]
+        public void Hydrated_dictionaries_are_case_insensitive()
+        {
+            var userConfiguration = new
+            {
+                client = new
+                {
+                    apiKey = new
+                    {
+                        id = "modified-foobar",
+                        secret = "modified-barbaz"
+                    },
+                },
+
+                web = new
+                {
+                    expand = new Dictionary<string, bool>()
+                    {
+                        ["CustomData"] = true,
+                    },
+                }
+            };
+
+            var config = ConfigurationLoader.Load(userConfiguration);
+
+            config.Web.Expand["customData"].Should().BeTrue();
+        }
     }
 }

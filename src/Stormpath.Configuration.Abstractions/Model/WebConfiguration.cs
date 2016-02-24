@@ -14,6 +14,7 @@
 // limitations under the License.
 // </copyright>
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -45,7 +46,7 @@ namespace Stormpath.Configuration.Abstractions.Model
         {
             this.BasePath = basePath;
             this.Oauth2 = new WebOauth2RouteConfiguration(oauth2Route);
-            this.Expand = new Dictionary<string, bool>(expand ?? new Dictionary<string, bool>());
+            this.Expand = new Dictionary<string, bool>(expand ?? new Dictionary<string, bool>(), StringComparer.OrdinalIgnoreCase);
             this.AccessTokenCookie = new WebCookieConfiguration(accessTokenCookie);
             this.RefreshTokenCookie = new WebCookieConfiguration(refreshTokenCookie);
             this.Produces = new List<string>(produces ?? new List<string>());
