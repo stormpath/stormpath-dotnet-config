@@ -24,10 +24,6 @@ using Stormpath.SDK.Logging;
 using FlexibleConfiguration;
 using FlexibleConfiguration.Abstractions;
 
-#if !NET45
-using Microsoft.Extensions.PlatformAbstractions;
-#endif
-
 namespace Stormpath.Configuration
 {
     /// <summary>
@@ -35,7 +31,7 @@ namespace Stormpath.Configuration
     /// </summary>
     public sealed class ConfigurationLoader
     {
-        private static readonly string stormpathDirectory = $"~{Path.DirectorySeparatorChar}.stormpath{Path.DirectorySeparatorChar}";
+        private static readonly string stormpathDirectoryPath = Path.Combine("~", ".stormpath");
 
         private readonly object userConfiguration;
         private readonly ILogger logger;
@@ -78,9 +74,9 @@ namespace Stormpath.Configuration
 
         private IConfigurationRoot CompileFromSources()
         {
-            var homeApiKeyPropertiesLocation = ResolveHomePath($"{stormpathDirectory}apiKey.properties");
-            var homeStormpathJsonLocation = ResolveHomePath($"{stormpathDirectory}stormpath.json");
-            var homeStormpathYamlLocation = ResolveHomePath($"{stormpathDirectory}stormpath.yaml");
+            var homeApiKeyPropertiesLocation = HomePath.Resolve("~", ".stormpath", "apiKey.properties");
+            var homeStormpathJsonLocation = HomePath.Resolve("~", ".stormpath", "stormpath.json");
+            var homeStormpathYamlLocation = HomePath.Resolve("~", ".stormpath", "stormpath.yaml");
 
             var configurationSources = string.Join(", ",
                 homeApiKeyPropertiesLocation, homeStormpathJsonLocation, homeStormpathYamlLocation,
@@ -178,51 +174,8 @@ namespace Stormpath.Configuration
             {
                 logger.Trace($"Loading specified apiKey.properties file at {specifiedApiKeyFilePath}");
 
-                builder.AddPropertiesFile(ResolveHomePath(specifiedApiKeyFilePath), optional: false, root: "stormpath:client"); // Not optional this time!
+                builder.AddPropertiesFile(HomePath.Resolve(specifiedApiKeyFilePath), optional: false, root: "stormpath:client"); // Not optional this time!
             }
-        }
-
-        private string ResolveHomePath(string input)
-        {
-            if (string.IsNullOrEmpty(input))
-            {
-                return input;
-            }
-
-            if (!input.StartsWith("~"))
-            {
-                return input;
-            }
-
-            var homePath = GetHome();
-
-            return System.IO.Path.Combine(homePath, input.Replace($"~{System.IO.Path.DirectorySeparatorChar}", string.Empty));
-        }
-
-        // Copied from DNX's DnuEnvironment.cs
-        private static string GetHome()
-        {
-#if NET45
-            return Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-#else
-            var runtimeEnv = PlatformServices.Default.Runtime;
-            if (runtimeEnv.OperatingSystem == "Windows")
-            {
-                return Environment.GetEnvironmentVariable("USERPROFILE") ??
-                    Environment.GetEnvironmentVariable("HOMEDRIVE") + Environment.GetEnvironmentVariable("HOMEPATH");
-            }
-            else
-            {
-                var home = Environment.GetEnvironmentVariable("HOME");
-
-                if (string.IsNullOrEmpty(home))
-                {
-                    throw new Exception("Home directory not found. The HOME environment variable is not set.");
-                }
-
-                return home;
-            }
-#endif
         }
     }
 }
