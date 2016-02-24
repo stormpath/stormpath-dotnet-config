@@ -15,6 +15,7 @@
 // </copyright>
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
@@ -64,10 +65,10 @@ namespace Stormpath.Configuration.Abstractions.Model
         public WebConfiguration(WebConfiguration existing)
             : this(existing.BasePath,
                   existing.Oauth2,
-                  existing.Expand,
+                  existing.Expand.ToDictionary(),
                   existing.AccessTokenCookie,
                   existing.RefreshTokenCookie,
-                  existing.Produces,
+                  existing.Produces.ToList(),
                   existing.Register,
                   existing.VerifyEmail,
                   existing.Login,
@@ -102,7 +103,7 @@ namespace Stormpath.Configuration.Abstractions.Model
         /// The expansion options configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.expand</c></remarks>
-        public Dictionary<string, bool> Expand { get; internal set; }
+        public IReadOnlyDictionary<string, bool> Expand { get; internal set; }
 
         /// <summary>
         /// The access token cookie configuration.
@@ -120,7 +121,7 @@ namespace Stormpath.Configuration.Abstractions.Model
         /// The output types configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.produces</c></remarks>
-        public List<string> Produces { get; internal set; }
+        public IReadOnlyList<string> Produces { get; internal set; }
 
         /// <summary>
         /// The Register route configuration.

@@ -36,7 +36,7 @@ namespace Stormpath.Configuration.Abstractions.Model
         public ClientCacheManagerConfiguration(ClientCacheManagerConfiguration existing)
             : this(defaultTimeToLive: existing.DefaultTtl,
                   defaultTimeToIdle: existing.DefaultTti,
-                  caches: existing.Caches)
+                  caches: existing.Caches.ToDictionary())
         {
         }
 
@@ -60,6 +60,6 @@ namespace Stormpath.Configuration.Abstractions.Model
         /// Per-resource cache configurations.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.cacheManager.caches</c></remarks>
-        public Dictionary<string, ClientCacheConfiguration> Caches { get; internal set; }
+        public IReadOnlyDictionary<string, ClientCacheConfiguration> Caches { get; internal set; }
     }
 }

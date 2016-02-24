@@ -34,7 +34,7 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebMeRouteConfiguration(WebMeRouteConfiguration existing)
-            : this(expand: existing.Expand,
+            : this(expand: existing.Expand.ToDictionary(),
                   enabled: existing.Enabled,
                   uri: existing.Uri)
         {
@@ -48,7 +48,7 @@ namespace Stormpath.Configuration.Abstractions.Model
         /// The expansion options configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.me.expand</c></remarks>
-        public Dictionary<string, bool> Expand { get; internal set; }
+        public IReadOnlyDictionary<string, bool> Expand { get; internal set; }
 
         /// <summary>
         /// Determines whether the Me route is enabled.

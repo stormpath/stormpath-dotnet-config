@@ -15,6 +15,7 @@
 // </copyright>
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
@@ -32,8 +33,8 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebLoginRouteFormConfiguration(WebLoginRouteFormConfiguration existing)
-            : this(fields: existing.Fields,
-                  fieldOrder: existing.FieldOrder)
+            : this(fields: existing.Fields.ToDictionary(),
+                  fieldOrder: existing.FieldOrder.ToList())
         {
         }
 
@@ -45,12 +46,12 @@ namespace Stormpath.Configuration.Abstractions.Model
         /// The field configuration options.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.login.form.fields</c></remarks>
-        public Dictionary<string, WebFieldConfiguration> Fields { get; internal set; }
+        public IReadOnlyDictionary<string, WebFieldConfiguration> Fields { get; internal set; }
 
         /// <summary>
         /// The field order.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.login.form.fieldOrder</c></remarks>
-        public List<string> FieldOrder { get; internal set; }
+        public IReadOnlyList<string> FieldOrder { get; internal set; }
     }
 }
