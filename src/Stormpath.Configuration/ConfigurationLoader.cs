@@ -64,8 +64,9 @@ namespace Stormpath.Configuration
         {
             var compiled = CompileFromSources();
 
-            var output = new StormpathConfiguration();
-            compiled.Bind(output, Default.Configuration, new BindingOptions() { RootNode = "stormpath" });
+            var copyOfDefault = new StormpathConfiguration(Default.Configuration);
+            var output = new StormpathConfiguration(Default.Configuration);
+            compiled.Bind(output, copyOfDefault, new BindingOptions() { RootNode = "stormpath" }); // todo remove default?
 
             //BindClientSection(compiled, output.Client);
             //BindApplicationSection(compiled, output.Application);
