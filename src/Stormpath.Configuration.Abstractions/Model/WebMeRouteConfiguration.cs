@@ -28,7 +28,7 @@ namespace Stormpath.Configuration.Abstractions.Model
             bool? enabled,
             string uri)
         {
-            this.Expand = new Dictionary<string, bool>(expand);
+            this.Expand = new Dictionary<string, bool>(expand ?? new Dictionary<string, bool>());
             this.Enabled = enabled;
             this.Uri = uri;
         }

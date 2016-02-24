@@ -44,10 +44,10 @@ namespace Stormpath.Configuration.Abstractions.Model
         {
             this.BasePath = basePath;
             this.Oauth2 = new WebOauth2RouteConfiguration(oauth2Route);
-            this.Expand = new Dictionary<string, bool>(expand);
+            this.Expand = new Dictionary<string, bool>(expand ?? new Dictionary<string, bool>());
             this.AccessTokenCookie = new WebCookieConfiguration(accessTokenCookie);
             this.RefreshTokenCookie = new WebCookieConfiguration(refreshTokenCookie);
-            this.Produces = new List<string>(produces);
+            this.Produces = new List<string>(produces ?? new List<string>());
             this.Register = new WebRegisterRouteConfiguration(registerRoute);
             this.VerifyEmail = new WebVerifyEmailRouteConfiguration(verifyRoute);
             this.Login = new WebLoginRouteConfiguration(loginRoute);

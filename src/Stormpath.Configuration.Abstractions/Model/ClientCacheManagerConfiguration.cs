@@ -30,7 +30,7 @@ namespace Stormpath.Configuration.Abstractions.Model
         {
             this.DefaultTtl = defaultTimeToLive;
             this.DefaultTti = defaultTimeToIdle;
-            this.Caches = new Dictionary<string, ClientCacheConfiguration>(caches);
+            this.Caches = new Dictionary<string, ClientCacheConfiguration>(caches ?? new Dictionary<string, ClientCacheConfiguration>());
         }
 
         public ClientCacheManagerConfiguration(ClientCacheManagerConfiguration existing)

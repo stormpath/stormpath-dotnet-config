@@ -27,8 +27,8 @@ namespace Stormpath.Configuration.Abstractions.Model
             IDictionary<string, WebFieldConfiguration> fields,
             IList<string> fieldOrder)
         {
-            this.Fields = new Dictionary<string, WebFieldConfiguration>(fields);
-            this.FieldOrder = new List<string>(fieldOrder);
+            this.Fields = new Dictionary<string, WebFieldConfiguration>(fields ?? new Dictionary<string, WebFieldConfiguration>());
+            this.FieldOrder = new List<string>(fieldOrder ?? new List<string>());
         }
 
         public WebLoginRouteFormConfiguration(WebLoginRouteFormConfiguration existing)
