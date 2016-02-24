@@ -2,12 +2,12 @@
 using Stormpath.Configuration.Abstractions;
 using Stormpath.Configuration.Abstractions.Model;
 
-namespace Stormpath.Configuration
+namespace Stormpath.Configuration.Abstractions
 {
     /// <summary>
     /// Provides configuration defaults.
     /// </summary>
-    internal static class Default
+    public static class Default
     {
         /// <summary>
         /// Represents the default configuration defaults for a Stormpath client or integration.
@@ -47,7 +47,7 @@ namespace Stormpath.Configuration
             Application = new ApplicationConfiguration()
             {
                 Name = null,
-                Href = null,
+                Href = null
             },
 
             // Section from the Stormpath Framework Specification at
