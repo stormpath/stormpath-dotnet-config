@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.IO;
 using FluentAssertions;
 using Microsoft.Extensions.PlatformAbstractions;
+using Stormpath.Configuration.Abstractions;
 using Xunit;
 
 namespace Stormpath.Configuration.Test
@@ -59,6 +60,31 @@ namespace Stormpath.Configuration.Test
 
             var config = ConfigurationLoader.Load();
 
+            ValidateConfig(config);
+
+            Cleanup();
+        }
+
+        [Fact]
+        public void Empty_configuration_loads_defaults()
+        {
+            var config = ConfigurationLoader.Load(new
+            {
+                client = new
+                {
+                    apiKey = new
+                    {
+                        id = "default-foobar", // so the API credentials validation does not throw
+                        secret = "default-secret123!" // ditto
+                    }
+                }
+            });
+
+            ValidateConfig(config);
+        }
+
+        private static void ValidateConfig(StormpathConfiguration config)
+        {
             // Client section
             config.Client.ApiKey.File.Should().BeNullOrEmpty();
             config.Client.ApiKey.Id.Should().Be("default-foobar");
@@ -119,7 +145,7 @@ namespace Stormpath.Configuration.Test
             {
                 "text/html",
                 "application/json",
-            }, 
+            },
                 opt => opt.WithStrictOrdering()
             );
 
@@ -248,7 +274,6 @@ namespace Stormpath.Configuration.Test
 
             config.Web.Unauthorized.View.Should().Be("unauthorized");
 
-            Cleanup();
         }
     }
 }

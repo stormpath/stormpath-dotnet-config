@@ -15,7 +15,6 @@
 // </copyright>
 
 using FluentAssertions;
-using Stormpath.Configuration.Abstractions;
 using Xunit;
 
 namespace Stormpath.Configuration.Test

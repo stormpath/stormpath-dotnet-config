@@ -522,7 +522,7 @@ namespace Stormpath.Configuration.Test
             ValidateConfig(config);
         }
 
-        private void ValidateConfig(StormpathConfiguration config)
+        private static void ValidateConfig(StormpathConfiguration config)
         {
             // Client section
             config.Client.ApiKey.Id.Should().Be("modified-foobar");
