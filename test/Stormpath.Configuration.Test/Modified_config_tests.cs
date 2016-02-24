@@ -216,8 +216,13 @@ namespace Stormpath.Configuration.Test
                     forgotUri: "/#/forgot789",
                     registerUri: "/#/register0"),
 
-                socialProviders: new WebSocialProvidersConfiguration(
-                    callbackRoot: "/callbacksYo"),
+                social: new Dictionary<string, WebSocialProviderConfiguration>()
+                {
+                    ["facebook"] = new WebSocialProviderConfiguration("/callbackz/facebook", "email birthday"),
+                    ["github"] = new WebSocialProviderConfiguration("/callbackz/github", "user:everything"),
+                    ["google"] = new WebSocialProviderConfiguration("/callbackz/google", "email profile friends"),
+                    ["linkedin"] = new WebSocialProviderConfiguration("/callbackz/linkedin", "email interests")
+                },
 
                 meRoute: new WebMeRouteConfiguration(
                     expand: null,
@@ -440,9 +445,28 @@ namespace Stormpath.Configuration.Test
                         registerUri = "/#/register0"
                     },
 
-                    socialProviders = new
+                    social = new
                     {
-                        callbackRoot = "/callbacksYo"
+                        facebook = new
+                        {
+                            uri = "/callbackz/facebook",
+                            scope = "email birthday"
+                        },
+                        github = new
+                        {
+                            uri = "/callbackz/github",
+                            scope = "user:everything"
+                        },
+                        google = new
+                        {
+                            uri = "/callbackz/google",
+                            scope = "email profile friends"
+                        },
+                        linkedin = new
+                        {
+                            uri = "/callbackz/linkedin",
+                            scope = "email interests"
+                        },
                     },
 
                     me = new
@@ -602,7 +626,14 @@ namespace Stormpath.Configuration.Test
             config.Web.IdSite.ForgotUri.Should().Be("/#/forgot789");
             config.Web.IdSite.RegisterUri.Should().Be("/#/register0");
 
-            config.Web.SocialProviders.CallbackRoot.Should().Be("/callbacksYo");
+            config.Web.Social["facebook"].Uri.Should().Be("/callbackz/facebook");
+            config.Web.Social["facebook"].Scope.Should().Be("email birthday");
+            config.Web.Social["github"].Uri.Should().Be("/callbackz/github");
+            config.Web.Social["github"].Scope.Should().Be("user:everything");
+            config.Web.Social["google"].Uri.Should().Be("/callbackz/google");
+            config.Web.Social["google"].Scope.Should().Be("email profile friends");
+            config.Web.Social["linkedin"].Uri.Should().Be("/callbackz/linkedin");
+            config.Web.Social["linkedin"].Scope.Should().Be("email interests");
 
             config.Web.Me.Enabled.Should().BeFalse();
             config.Web.Me.Uri.Should().Be("/myself");

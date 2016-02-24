@@ -264,7 +264,14 @@ namespace Stormpath.Configuration.Test
             config.Web.IdSite.ForgotUri.Should().Be("/#/forgot");
             config.Web.IdSite.RegisterUri.Should().Be("/#/register");
 
-            config.Web.SocialProviders.CallbackRoot.Should().Be("/callbacks");
+            config.Web.Social.Should().HaveCount(4);
+            config.Web.Social["facebook"].Uri.Should().Be("/callbacks/facebook");
+            config.Web.Social["facebook"].Scope.Should().Be("email");
+            config.Web.Social["github"].Uri.Should().Be("/callbacks/github");
+            config.Web.Social["github"].Scope.Should().Be("user:email");
+            config.Web.Social["google"].Uri.Should().Be("/callbacks/google");
+            config.Web.Social["google"].Scope.Should().Be("email profile");
+            config.Web.Social["linkedin"].Uri.Should().Be("/callbacks/linkedin");
 
             config.Web.Me.Enabled.Should().BeTrue();
             config.Web.Me.Uri.Should().Be("/me");

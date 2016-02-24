@@ -226,8 +226,22 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
       ""forgotUri"": ""/#/forgot"",
       ""registerUri"": ""/#/register""
     },
-    ""socialProviders"": {
-      ""callbackRoot"": ""/callbacks""
+    ""social"": {
+        ""facebook"": {
+            ""uri"": ""/callbacks/facebook"",
+            ""scope"": ""email""
+        },
+        ""github"": {
+            ""uri"": ""/callbacks/github"",
+            ""scope"": ""user:email""
+        },
+        ""google"": {
+            ""uri"": ""/callbacks/google"",
+            ""scope"": ""email profile""
+        },
+        ""linkedin"": {
+            ""uri"": ""/callbacks/linkedin""
+        }
     },
     ""me"": {
       ""enabled"": true,

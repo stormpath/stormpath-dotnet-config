@@ -175,8 +175,19 @@ web:
     forgotUri: ""/#/forgot789""
     registerUri: ""/#/register0""
 
-  socialProviders:
-    callbackRoot: ""/callbacksYo""
+  social:
+    facebook:
+      uri: ""/callbackz/facebook""
+      scope: ""email birthday""
+    github:
+      uri: ""/callbackz/github""
+      scope: ""user:everything""
+    google:
+      uri: ""/callbackz/google""
+      scope: ""email profile friends""
+    linkedin:
+      uri: ""/callbackz/linkedin""
+      scope: ""email interests""
 
   # The /me route is for front-end applications, it returns a JSON object with
   # the current user object

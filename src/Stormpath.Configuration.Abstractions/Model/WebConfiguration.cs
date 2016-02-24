@@ -38,7 +38,7 @@ namespace Stormpath.Configuration.Abstractions.Model
             WebForgotPasswordRouteConfiguration forgotPasswordRoute,
             WebChangePasswordRouteConfiguration changePasswordRoute,
             WebIdSiteRouteConfiguration idSiteRoute,
-            WebSocialProvidersConfiguration socialProviders,
+            IDictionary<string, WebSocialProviderConfiguration> social,
             WebMeRouteConfiguration meRoute,
             WebSpaConfiguration spa,
             WebUnauthorizedConfiguration unauthorizedRoute)
@@ -56,7 +56,7 @@ namespace Stormpath.Configuration.Abstractions.Model
             this.ForgotPassword = new WebForgotPasswordRouteConfiguration(forgotPasswordRoute);
             this.ChangePassword = new WebChangePasswordRouteConfiguration(changePasswordRoute);
             this.IdSite = new WebIdSiteRouteConfiguration(idSiteRoute);
-            this.SocialProviders = new WebSocialProvidersConfiguration(socialProviders);
+            this.Social = new Dictionary<string, WebSocialProviderConfiguration>(social ?? new Dictionary<string, WebSocialProviderConfiguration>());
             this.Me = new WebMeRouteConfiguration(meRoute);
             this.Spa = new WebSpaConfiguration(spa);
             this.Unauthorized = new WebUnauthorizedConfiguration(unauthorizedRoute);
@@ -76,7 +76,7 @@ namespace Stormpath.Configuration.Abstractions.Model
                   existing.ForgotPassword,
                   existing.ChangePassword,
                   existing.IdSite,
-                  existing.SocialProviders,
+                  existing.Social.ToDictionary(),
                   existing.Me,
                   existing.Spa,
                   existing.Unauthorized)
@@ -168,8 +168,8 @@ namespace Stormpath.Configuration.Abstractions.Model
         /// <summary>
         /// The social providers configuration.
         /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.web.socialProviders</c></remarks>
-        public WebSocialProvidersConfiguration SocialProviders { get; internal set; }
+        /// <remarks>Configuration path: <c>stormpath.web.social</c></remarks>
+        public IReadOnlyDictionary<string, WebSocialProviderConfiguration> Social { get; internal set; }
 
         /// <summary>
         /// The Me route configuration.

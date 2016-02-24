@@ -267,9 +267,27 @@ namespace Stormpath.Configuration.Abstractions
                     RegisterUri = "/#/register"
                 },
 
-                SocialProviders = new WebSocialProvidersConfiguration()
+                Social = new Dictionary<string, WebSocialProviderConfiguration>()
                 {
-                    CallbackRoot = "/callbacks"
+                    ["facebook"] = new WebSocialProviderConfiguration()
+                    {
+                        Uri = "/callbacks/facebook",
+                        Scope = "email"
+                    },
+                    ["github"] = new WebSocialProviderConfiguration()
+                    {
+                        Uri = "/callbacks/github",
+                        Scope = "user:email"
+                    },
+                    ["google"] = new WebSocialProviderConfiguration()
+                    {
+                        Uri = "/callbacks/google",
+                        Scope = "email profile"
+                    },
+                    ["linkedin"] = new WebSocialProviderConfiguration()
+                    {
+                        Uri = "/callbacks/linkedin"
+                    },
                 },
 
                 Me = new WebMeRouteConfiguration()
