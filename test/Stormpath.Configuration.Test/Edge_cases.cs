@@ -118,7 +118,6 @@ namespace Stormpath.Configuration.Test
             ValidateCustomCacheConfiguration(config);
         }
 
-
         [Fact]
         public void Setting_cacheManager_caches_to_list()
         {
@@ -247,6 +246,7 @@ namespace Stormpath.Configuration.Test
             });
         }
 
+        [Fact]
         public void Modifying_produces_only()
         {
             var userConfiguration = new
