@@ -210,7 +210,7 @@ namespace Stormpath.Configuration.Test
 
                 idSiteRoute: new WebIdSiteRouteConfiguration(
                     enabled: true,
-                    uri: "/idSiteResultsz",
+                    uri: "/idSiteResultz",
                     nextUri: "/123",
                     loginUri: "/456",
                     forgotUri: "/#/forgot789",
@@ -511,9 +511,7 @@ namespace Stormpath.Configuration.Test
             {
                 ["customData"] = true,
                 ["applications"] = true,
-            },
-                opt => opt.WithStrictOrdering()
-            );
+            });
 
             config.Web.AccessTokenCookie.Name.Should().Be("accessToken");
             config.Web.AccessTokenCookie.HttpOnly.Should().BeFalse();
