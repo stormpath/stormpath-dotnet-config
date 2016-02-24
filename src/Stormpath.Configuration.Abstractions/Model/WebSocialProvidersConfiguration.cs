@@ -21,10 +21,24 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class WebSocialProvidersConfiguration
     {
+        public WebSocialProvidersConfiguration(string callbackRoot)
+        {
+            this.CallbackRoot = callbackRoot;
+        }
+
+        public WebSocialProvidersConfiguration(WebSocialProvidersConfiguration existing)
+            : this(callbackRoot: existing.CallbackRoot)
+        {
+        }
+
+        internal WebSocialProvidersConfiguration()
+        {
+        }
+
         /// <summary>
         /// The callback root URI used for social login.
         /// </summary>
         /// Configuration path: <c>stormpath.web.socialProviders.callbackRoot</c>
-        public string CallbackRoot { get; set; }
+        public string CallbackRoot { get; internal set; }
     }
 }

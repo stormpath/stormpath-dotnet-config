@@ -21,29 +21,56 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class WebFieldConfiguration
     {
+        public WebFieldConfiguration(
+            bool enabled,
+            string label,
+            string placeholder,
+            bool required,
+            string type)
+        {
+            this.Enabled = enabled;
+            this.Label = label;
+            this.Placeholder = placeholder;
+            this.Required = required;
+            this.Type = type;
+        }
+
+        public WebFieldConfiguration(WebFieldConfiguration existing)
+            : this(enabled: existing.Enabled,
+                  label: existing.Label,
+                  placeholder: existing.Placeholder,
+                  required: existing.Required,
+                  type: existing.Type)
+        {
+        }
+
+        internal WebFieldConfiguration()
+        {
+        }
+
         /// <summary>
         /// Determines whether this field is enabled (shown).
         /// </summary>
-        public bool Enabled { get; set; }
+        public bool Enabled { get; internal set; }
 
         /// <summary>
         /// The label.
         /// </summary>
-        public string Label { get; set; }
+        public string Label { get; internal set; }
 
         /// <summary>
         /// The placeholder.
         /// </summary>
-        public string Placeholder { get; set; }
+        public string Placeholder { get; internal set; }
 
         /// <summary>
         /// Determines whether the field is required.
         /// </summary>
-        public bool Required { get; set; }
+        public bool Required { get; internal set; }
 
         /// <summary>
         /// The field type.
         /// </summary>
-        public string Type { get; set; }
+        public string Type { get; internal set; }
     }
 }

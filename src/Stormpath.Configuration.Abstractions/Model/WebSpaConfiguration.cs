@@ -27,16 +27,34 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </remarks>
     public sealed class WebSpaConfiguration
     {
+        public WebSpaConfiguration(
+            bool? enabled,
+            string view)
+        {
+            this.Enabled = enabled;
+            this.View = view;
+        }
+
+        public WebSpaConfiguration(WebSpaConfiguration existing)
+            : this(enabled: existing.Enabled,
+                  view: existing.View)
+        {
+        }
+
+        internal WebSpaConfiguration()
+        {
+        }
+
         /// <summary>
         /// Determines whether the SPA handling options are enabled.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.spa.enabled</c></remarks>
-        public bool? Enabled { get; set; }
+        public bool? Enabled { get; internal set; }
 
         /// <summary>
         /// The root view of the SPA.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.spa.view</c></remarks>
-        public string View { get; set; }
+        public string View { get; internal set; }
     }
 }

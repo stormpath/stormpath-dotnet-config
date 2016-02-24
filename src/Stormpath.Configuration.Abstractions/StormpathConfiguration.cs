@@ -37,7 +37,7 @@ namespace Stormpath.Configuration.Abstractions
         /// The Application-specific configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.application</c></remarks>
-        public ApplicationConfiguration Application { get; set; } = new ApplicationConfiguration();
+        public ApplicationConfiguration Application { get; set; } //= new ApplicationConfiguration();
 
         /// <summary>
         /// The framework integration-specific configuration.

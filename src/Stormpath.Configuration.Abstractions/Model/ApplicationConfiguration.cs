@@ -21,16 +21,32 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class ApplicationConfiguration
     {
+        public ApplicationConfiguration(string name, string href)
+        {
+            this.Name = name;
+            this.Href = href;
+        }
+
+        public ApplicationConfiguration(ApplicationConfiguration existing)
+            : this(name: existing.Name,
+                  href: existing.Href)
+        {
+        }
+       
+        internal ApplicationConfiguration()
+        {
+        }
+
         /// <summary>
         /// The application's name.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.application.name</c></remarks>
-        public string Name { get; set; }
+        public string Name { get; internal set; }
 
         /// <summary>
         /// The application's Stormpath <c>href</c>.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.application.href</c></remarks>
-        public string Href { get; set; }
+        public string Href { get; internal set; }
     }
 }

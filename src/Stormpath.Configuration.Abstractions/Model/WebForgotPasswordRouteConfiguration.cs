@@ -21,17 +21,41 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class WebForgotPasswordRouteConfiguration
     {
+        public WebForgotPasswordRouteConfiguration(
+            string view,
+            string nextUri,
+            bool? enabled,
+            string uri)
+        {
+            this.View = view;
+            this.NextUri = nextUri;
+            this.Enabled = enabled;
+            this.Uri = uri;
+        }
+
+        public WebForgotPasswordRouteConfiguration(WebForgotPasswordRouteConfiguration existing)
+            : this(view: existing.View,
+                  nextUri: existing.NextUri,
+                  enabled: existing.Enabled,
+                  uri: existing.Uri)
+        {
+        }
+
+        internal WebForgotPasswordRouteConfiguration()
+        {
+        }
+
         /// <summary>
         /// The view to use for this route, or <see langword="null"/> to use the default view.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.forgotPassword.view</c></remarks>
-        public string View { get; set; }
+        public string View { get; internal set; }
 
         /// <summary>
         /// The URI to redirect to if the operation is successful.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.forgotPassword.nextUri</c></remarks>
-        public string NextUri { get; set; }
+        public string NextUri { get; internal set; }
 
         /// <summary>
         /// Determines whether the Forgot Password route is enabled.
@@ -44,12 +68,12 @@ namespace Stormpath.Configuration.Abstractions.Model
         /// Configuration path: <c>stormpath.web.forgotPassword.enabled</c>
         /// </para>
         /// </remarks>
-        public bool? Enabled { get; set; }
+        public bool? Enabled { get; internal set; }
 
         /// <summary>
         /// The URI for this route, or <see langword="null"/> to use the default URI.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.forgotPassword.uri</c></remarks>
-        public string Uri { get; set; }
+        public string Uri { get; internal set; }
     }
 }

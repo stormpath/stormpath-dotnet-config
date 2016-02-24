@@ -21,40 +21,70 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class WebIdSiteRouteConfiguration
     {
+        public WebIdSiteRouteConfiguration(
+            string loginUri,
+            string forgotUri,
+            string registerUri,
+            string nextUri,
+            bool? enabled,
+            string uri)
+        {
+            this.LoginUri = loginUri;
+            this.ForgotUri = forgotUri;
+            this.RegisterUri = registerUri;
+            this.NextUri = nextUri;
+            this.Enabled = enabled;
+            this.Uri = uri;
+        }
+
+        public WebIdSiteRouteConfiguration(WebIdSiteRouteConfiguration existing)
+            : this(loginUri: existing.LoginUri,
+                  forgotUri: existing.ForgotUri,
+                  registerUri: existing.RegisterUri,
+                  nextUri: existing.NextUri,
+                  enabled: existing.Enabled,
+                  uri: existing.Uri)
+        {
+        }
+
+        internal WebIdSiteRouteConfiguration()
+        {
+        }
+
         /// <summary>
         /// The URI for the ID Site Login handler, or <see langword="null"/> to use the default URI.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.idSite.loginUri</c></remarks>
-        public string LoginUri { get; set; }
+        public string LoginUri { get; internal set; }
 
         /// <summary>
         /// The URI for the ID Site Forgot Password handler, or <see langword="null"/> to use the default URI.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.idSite.forgotUri</c></remarks>
-        public string ForgotUri { get; set; }
+        public string ForgotUri { get; internal set; }
 
         /// <summary>
-        /// The URI for the ID Site Reguster handler, or <see langword="null"/> to use the default URI.
+        /// The URI for the ID Site Register handler, or <see langword="null"/> to use the default URI.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.idSite.registerUri</c></remarks>
-        public string RegisterUri { get; set; }
+        public string RegisterUri { get; internal set; }
 
         /// <summary>
         /// The URI to redirect to if the operation is successful.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.idSite.nextUri</c></remarks>
-        public string NextUri { get; set; }
+        public string NextUri { get; internal set; }
 
         /// <summary>
         /// Determines whether ID Site is used for login, registration, and password reset.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.idSite.enabled</c></remarks>
-        public bool? Enabled { get; set; }
+        public bool? Enabled { get; internal set; }
 
         /// <summary>
         /// The URI for this route, or <see langword="null"/> to use the default URI.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.idSite.uri</c></remarks>
-        public string Uri { get; set; }
+        public string Uri { get; internal set; }
     }
 }

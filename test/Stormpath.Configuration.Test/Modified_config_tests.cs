@@ -110,11 +110,9 @@ namespace Stormpath.Configuration.Test
                     }
                 },
 
-                Application = new ApplicationConfiguration()
-                {
-                    Name = "Lightsabers Galore",
-                    Href = "https://api.foo.com/v1/applications/foo",
-                },
+                Application = new ApplicationConfiguration(
+                    name: "Lightsabers Galore",
+                    href: "https://api.foo.com/v1/applications/foo"),
 
                 Web = new WebConfiguration()
                 {

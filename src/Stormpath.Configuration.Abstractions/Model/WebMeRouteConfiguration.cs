@@ -23,22 +23,43 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class WebMeRouteConfiguration
     {
+        public WebMeRouteConfiguration(
+            IDictionary<string, bool> expand,
+            bool? enabled,
+            string uri)
+        {
+            this.Expand = new Dictionary<string, bool>(expand);
+            this.Enabled = enabled;
+            this.Uri = uri;
+        }
+
+        public WebMeRouteConfiguration(WebMeRouteConfiguration existing)
+            : this(expand: existing.Expand,
+                  enabled: existing.Enabled,
+                  uri: existing.Uri)
+        {
+        }
+
+        internal WebMeRouteConfiguration()
+        {
+        }
+
         /// <summary>
         /// The expansion options configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.me.expand</c></remarks>
-        public Dictionary<string, bool> Expand { get; set; } = new Dictionary<string, bool>();
+        public Dictionary<string, bool> Expand { get; internal set; }
 
         /// <summary>
         /// Determines whether the Me route is enabled.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.me.enabled</c></remarks>
-        public bool? Enabled { get; set; }
+        public bool? Enabled { get; internal set; }
 
         /// <summary>
         /// The URI for this route, or <see langword="null"/> to use the default URI.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.me.uri</c></remarks>
-        public string Uri { get; set; }
+        public string Uri { get; internal set; }
     }
 }

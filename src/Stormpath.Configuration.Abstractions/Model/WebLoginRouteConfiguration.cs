@@ -22,34 +22,61 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class WebLoginRouteConfiguration
     {
+        public WebLoginRouteConfiguration(
+            WebLoginRouteFormConfiguration form,
+            string view,
+            string nextUri,
+            bool? enabled,
+            string uri)
+        {
+            this.Form = new WebLoginRouteFormConfiguration(form);
+            this.View = view;
+            this.NextUri = nextUri;
+            this.Enabled = enabled;
+            this.Uri = uri;
+        }
+
+        public WebLoginRouteConfiguration(WebLoginRouteConfiguration existing)
+            : this(form: existing.Form,
+                  view: existing.View,
+                  nextUri: existing.NextUri,
+                  enabled: existing.Enabled,
+                  uri: existing.Uri)
+        {
+        }
+
+        internal WebLoginRouteConfiguration()
+        {
+        }
+
         /// <summary>
         /// The form configuration options.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.login.form</c></remarks>
-        public WebLoginRouteFormConfiguration Form { get; set; } = new WebLoginRouteFormConfiguration();
+        public WebLoginRouteFormConfiguration Form { get; internal set; }
 
         /// <summary>
         /// The view to use for this route, or <see langword="null"/> to use the default view.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.login.view</c></remarks>
-        public string View { get; set; }
+        public string View { get; internal set; }
 
         /// <summary>
         /// The URI to redirect to if the operation is successful.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.login.nextUri</c></remarks>
-        public string NextUri { get; set; }
+        public string NextUri { get; internal set; }
 
         /// <summary>
         /// Determines whether the Login route is enabled.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.login.enabled</c></remarks>
-        public bool? Enabled { get; set; }
+        public bool? Enabled { get; internal set; }
 
         /// <summary>
         /// The URI for this route, or <see langword="null"/> to use the default URI.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.login.uri</c></remarks>
-        public string Uri { get; set; }
+        public string Uri { get; internal set; }
     }
 }

@@ -21,6 +21,36 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class WebRegisterRouteConfiguration
     {
+        public WebRegisterRouteConfiguration(
+            bool autoLogin,
+            WebRegisterRouteFormConfiguration form,
+            string view,
+            string nextUri,
+            bool? enabled,
+            string uri)
+        {
+            this.AutoLogin = autoLogin;
+            this.Form = new WebRegisterRouteFormConfiguration(form);
+            this.View = view;
+            this.NextUri = nextUri;
+            this.Enabled = enabled;
+            this.Uri = uri;
+        }
+
+        public WebRegisterRouteConfiguration(WebRegisterRouteConfiguration existing)
+            : this(autoLogin: existing.AutoLogin,
+                  form: existing.Form,
+                  view: existing.View,
+                  nextUri: existing.NextUri,
+                  enabled: existing.Enabled,
+                  uri: existing.Uri)
+        {
+        }
+
+        internal WebRegisterRouteConfiguration()
+        {
+        }
+
         /// <summary>
         /// Determines whether the user should be automatically logged in after interacting with this route.
         /// </summary>
@@ -31,36 +61,36 @@ namespace Stormpath.Configuration.Abstractions.Model
         /// Configuration path: <c>stormpath.web.register.autoLogin</c>
         /// </para>
         /// </remarks>
-        public bool AutoLogin { get; set; }
+        public bool AutoLogin { get; internal set; }
 
         /// <summary>
         /// The form configuration options.
         /// </summary>
         /// Configuration path: <c>stormpath.web.register.form</c>
-        public WebRegisterRouteFormConfiguration Form { get; set; } = new WebRegisterRouteFormConfiguration();
+        public WebRegisterRouteFormConfiguration Form { get; internal set; }
 
         /// <summary>
         /// The view to use for this route, or <see langword="null"/> to use the default view.
         /// </summary>
         /// Configuration path: <c>stormpath.web.register.view</c>
-        public string View { get; set; }
+        public string View { get; internal set; }
 
         /// <summary>
         /// The URI to redirect to if the operation is successful.
         /// </summary>
         /// Configuration path: <c>stormpath.web.register.nextUri</c>
-        public string NextUri { get; set; }
+        public string NextUri { get; internal set; }
 
         /// <summary>
         /// Determines whether the Register route is enabled.
         /// </summary>
         /// Configuration path: <c>stormpath.web.register.enabled</c>
-        public bool? Enabled { get; set; }
+        public bool? Enabled { get; internal set; }
 
         /// <summary>
         /// The URI for this route, or <see langword="null"/> to use the default URI.
         /// </summary>
         /// Configuration path: <c>stormpath.web.register.uri</c>
-        public string Uri { get; set; }
+        public string Uri { get; internal set; }
     }
 }
