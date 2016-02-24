@@ -4,7 +4,7 @@
   "dependencies": {
     "FlexibleConfiguration": "1.0.0",
     "Stormpath.Configuration.Abstractions": "1.0.0",
-    "Stormpath.SDK.Abstractions": "0.6.0"
+    "Stormpath.SDK.Abstractions": "0.6.1"
   },
   "description": "Stormpath configuration loader",
   "frameworks": {
@@ -40,5 +40,5 @@
   "tooling": {
     "defaultNamespace": "Stormpath.Configuration"
   },
-  "version": "1.0.1"
+  "version": "1.0.2"
 }
