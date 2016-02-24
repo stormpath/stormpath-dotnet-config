@@ -64,9 +64,8 @@ namespace Stormpath.Configuration
         {
             var compiled = CompileFromSources();
 
-            var copyOfDefault = new StormpathConfiguration(Default.Configuration);
             var output = new StormpathConfiguration(Default.Configuration);
-            compiled.Bind(output, copyOfDefault, new BindingOptions() { RootNode = "stormpath" }); // todo remove default?
+            compiled.GetSection("stormpath").Bind(output);
 
             // Validate API Key and Secret exists
             ThrowIfMissingCredentials(output.Client);
