@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-#if !NET45
+#if !NET451
 using Microsoft.Extensions.PlatformAbstractions;
 #endif
 
@@ -52,7 +52,7 @@ namespace Stormpath.Configuration
         // Copied from DNX's DnuEnvironment.cs
         public static string GetHomePath()
         {
-#if NET45
+#if NET451
             return Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 #else
             var runtimeEnv = PlatformServices.Default.Runtime;
