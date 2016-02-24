@@ -34,7 +34,7 @@ namespace Stormpath.Configuration.Abstractions.Model
             WebVerifyEmailRouteConfiguration verifyRoute,
             WebLoginRouteConfiguration loginRoute,
             WebLogoutRouteConfiguration logoutRoute,
-            WebForgotPasswordRouteConfiguration forgotPasswordRotue,
+            WebForgotPasswordRouteConfiguration forgotPasswordRoute,
             WebChangePasswordRouteConfiguration changePasswordRoute,
             WebIdSiteRouteConfiguration idSiteRoute,
             WebSocialProvidersConfiguration socialProviders,
@@ -52,7 +52,7 @@ namespace Stormpath.Configuration.Abstractions.Model
             this.VerifyEmail = new WebVerifyEmailRouteConfiguration(verifyRoute);
             this.Login = new WebLoginRouteConfiguration(loginRoute);
             this.Logout = new WebLogoutRouteConfiguration(logoutRoute);
-            this.ForgotPassword = new WebForgotPasswordRouteConfiguration(forgotPasswordRotue);
+            this.ForgotPassword = new WebForgotPasswordRouteConfiguration(forgotPasswordRoute);
             this.ChangePassword = new WebChangePasswordRouteConfiguration(changePasswordRoute);
             this.IdSite = new WebIdSiteRouteConfiguration(idSiteRoute);
             this.SocialProviders = new WebSocialProvidersConfiguration(socialProviders);
