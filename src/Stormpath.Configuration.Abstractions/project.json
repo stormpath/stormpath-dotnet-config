@@ -11,7 +11,7 @@
         "System.Runtime.Extensions": "4.0.11-beta-23516"
       }
     },
-    "net451": { },
+    "net45": { },
     "netcore50": {
       "dependencies": {
         "System.Collections": "4.0.11-beta-23516",
@@ -29,6 +29,6 @@
   "tooling": {
     "defaultNamespace": "Stormpath.Configuration.Abstractions"
   },
-  "version": "0.1.0",
+  "version": "1.0.0",
   "xmlDoc":  true
 }

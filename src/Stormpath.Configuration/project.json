@@ -2,8 +2,8 @@
   "authors": [ "Nate Barbettini" ],
   "copyright": "(c) 2016 Stormpath, Inc.",
   "dependencies": {
-    "FlexibleConfiguration": "0.3.0-beta1",
-    "Stormpath.Configuration.Abstractions": "0.1.0",
+    "FlexibleConfiguration": "1.0.0",
+    "Stormpath.Configuration.Abstractions": "1.0.0",
     "Stormpath.SDK.Abstractions": "0.6.0"
   },
   "description": "Stormpath .NET Configuration Loader",
@@ -23,7 +23,11 @@
         "System.Threading": "4.0.11-beta-23516"
       }
     },
-    "net451": { },
+    "net45": {
+      "frameworkAssemblies": {
+        "System.Runtime": "4.0.0.0" 
+      }
+    },
     "netcore50": {
       "dependencies": {
         "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final"
@@ -40,5 +44,5 @@
   "tooling": {
     "defaultNamespace": "Stormpath.Configuration"
   },
-  "version": "0.2.0"
+  "version": "1.0.0"
 }
