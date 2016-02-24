@@ -1,4 +1,4 @@
-﻿// <copyright file="StormpathConfiguration.cs" company="Stormpath, Inc.">
+﻿// <copyright file="ReadOnlyDictionaryExtensions.cs" company="Stormpath, Inc.">
 // Copyright (c) 2016 Stormpath, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,20 +15,13 @@
 // </copyright>
 
 using System.Collections.Generic;
-using YamlDotNet.RepresentationModel;
+using System.Linq;
 
-namespace Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Visitor
+namespace Stormpath.Configuration.Abstractions
 {
-    public class ContextAwareMappingVisitor : ContextAwareVisitor
+    internal static class ReadOnlyDictionaryExtensions
     {
-        public ContextAwareMappingVisitor(Stack<string> context = null)
-            : base(context)
-        {
-        }
-
-        protected override void Visit(YamlMappingNode mapping)
-        {
-            VisitChildren(mapping);
-        }
+        public static IDictionary<TKey, TValue> ToDictionary<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> source)
+            => source.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
     }
 }

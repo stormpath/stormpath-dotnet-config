@@ -21,28 +21,52 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class WebOauth2RouteConfiguration
     {
+        public WebOauth2RouteConfiguration(
+            WebOauth2ClientCredentialsGrantConfiguration clientCredentialsGrant,
+            WebOauth2PasswordGrantConfiguration passwordGrant,
+            bool? enabled,
+            string uri)
+        {
+            this.Client_Credentials = new WebOauth2ClientCredentialsGrantConfiguration(clientCredentialsGrant);
+            this.Password = new WebOauth2PasswordGrantConfiguration(passwordGrant);
+            this.Enabled = enabled;
+            this.Uri = uri;
+        }
+
+        public WebOauth2RouteConfiguration(WebOauth2RouteConfiguration existing)
+            : this(clientCredentialsGrant: existing.Client_Credentials,
+                  passwordGrant: existing.Password,
+                  enabled: existing.Enabled,
+                  uri: existing.Uri)
+        {
+        }
+
+        internal WebOauth2RouteConfiguration()
+        {
+        }
+
         /// <summary>
         /// The <c>client_credentials</c> grant type configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.oauth2.client_credentials</c></remarks>
-        public WebOauth2ClientCredentialsGrantConfiguration Client_Credentials { get; set; } = new WebOauth2ClientCredentialsGrantConfiguration();
+        public WebOauth2ClientCredentialsGrantConfiguration Client_Credentials { get; internal set; }
 
         /// <summary>
         /// The <c>password</c> grant type configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.oauth2.password</c></remarks>
-        public WebOauth2PasswordGrantConfiguration Password { get; set; } = new WebOauth2PasswordGrantConfiguration();
+        public WebOauth2PasswordGrantConfiguration Password { get; internal set; }
 
         /// <summary>
         /// Determines whether the Change Password route is enabled.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.oauth2.enabled</c></remarks>
-        public bool? Enabled { get; set; }
+        public bool? Enabled { get; internal set; }
 
         /// <summary>
         /// The URI for this route, or <see langword="null"/> to use the default URI.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.oauth2.uri</c></remarks>
-        public string Uri { get; set; }
+        public string Uri { get; internal set; }
     }
 }

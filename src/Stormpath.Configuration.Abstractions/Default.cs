@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Stormpath.Configuration.Abstractions;
 using Stormpath.Configuration.Abstractions.Model;
 
-namespace Stormpath.Configuration
+namespace Stormpath.Configuration.Abstractions
 {
     /// <summary>
     /// Provides configuration defaults.
     /// </summary>
-    internal static class Default
+    public static class Default
     {
         /// <summary>
         /// Represents the default configuration defaults for a Stormpath client or integration.
@@ -29,7 +30,7 @@ namespace Stormpath.Configuration
                 {
                     DefaultTtl = 300,
                     DefaultTti = 300,
-                    Caches = new Dictionary<string, ClientCacheConfiguration>() { },
+                    Caches = new Dictionary<string, ClientCacheConfiguration>(StringComparer.OrdinalIgnoreCase) { },
                 },
 
                 BaseUrl = "https://api.stormpath.com/v1",
@@ -47,7 +48,7 @@ namespace Stormpath.Configuration
             Application = new ApplicationConfiguration()
             {
                 Name = null,
-                Href = null,
+                Href = null
             },
 
             // Section from the Stormpath Framework Specification at
@@ -76,7 +77,7 @@ namespace Stormpath.Configuration
                     }
                 },
 
-                Expand = new Dictionary<string, bool>()
+                Expand = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
                 {
                     ["apiKeys"] = false,
                     ["customData"] = true,
@@ -117,7 +118,7 @@ namespace Stormpath.Configuration
                     View = "register",
                     Form = new WebRegisterRouteFormConfiguration()
                     {
-                        Fields = new Dictionary<string, WebFieldConfiguration>()
+                        Fields = new Dictionary<string, WebFieldConfiguration>(StringComparer.OrdinalIgnoreCase)
                         {
                             ["givenName"] = new WebFieldConfiguration()
                             {
@@ -205,7 +206,7 @@ namespace Stormpath.Configuration
                     View = "login",
                     Form = new WebLoginRouteFormConfiguration()
                     {
-                        Fields = new Dictionary<string, WebFieldConfiguration>()
+                        Fields = new Dictionary<string, WebFieldConfiguration>(StringComparer.OrdinalIgnoreCase)
                         {
                             ["login"] = new WebFieldConfiguration()
                             {
@@ -267,13 +268,38 @@ namespace Stormpath.Configuration
                     RegisterUri = "/#/register"
                 },
 
-                SocialProviders = new WebSocialProvidersConfiguration()
+                Social = new Dictionary<string, WebSocialProviderConfiguration>(StringComparer.OrdinalIgnoreCase)
                 {
-                    CallbackRoot = "/callbacks"
+                    ["facebook"] = new WebSocialProviderConfiguration()
+                    {
+                        Uri = "/callbacks/facebook",
+                        Scope = "email"
+                    },
+                    ["github"] = new WebSocialProviderConfiguration()
+                    {
+                        Uri = "/callbacks/github",
+                        Scope = "user:email"
+                    },
+                    ["google"] = new WebSocialProviderConfiguration()
+                    {
+                        Uri = "/callbacks/google",
+                        Scope = "email profile"
+                    },
+                    ["linkedin"] = new WebSocialProviderConfiguration()
+                    {
+                        Uri = "/callbacks/linkedin"
+                    },
                 },
 
                 Me = new WebMeRouteConfiguration()
                 {
+                    Expand = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
+                    {
+                        ["apiKeys"] = false,
+                        ["customData"] = false,
+                        ["directory"] = false,
+                        ["groups"] = false,
+                    },
                     Enabled = true,
                     Uri = "/me",
                 },

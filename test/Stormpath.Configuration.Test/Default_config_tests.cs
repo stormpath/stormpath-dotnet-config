@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.IO;
 using FluentAssertions;
 using Microsoft.Extensions.PlatformAbstractions;
+using Stormpath.Configuration.Abstractions;
 using Xunit;
 
 namespace Stormpath.Configuration.Test
@@ -59,6 +60,31 @@ namespace Stormpath.Configuration.Test
 
             var config = ConfigurationLoader.Load();
 
+            ValidateConfig(config);
+
+            Cleanup();
+        }
+
+        [Fact]
+        public void Empty_configuration_loads_defaults()
+        {
+            var config = ConfigurationLoader.Load(new
+            {
+                client = new
+                {
+                    apiKey = new
+                    {
+                        id = "default-foobar", // so the API credentials validation does not throw
+                        secret = "default-secret123!" // ditto
+                    }
+                }
+            });
+
+            ValidateConfig(config);
+        }
+
+        private static void ValidateConfig(StormpathConfiguration config)
+        {
             // Client section
             config.Client.ApiKey.File.Should().BeNullOrEmpty();
             config.Client.ApiKey.Id.Should().Be("default-foobar");
@@ -119,7 +145,7 @@ namespace Stormpath.Configuration.Test
             {
                 "text/html",
                 "application/json",
-            }, 
+            },
                 opt => opt.WithStrictOrdering()
             );
 
@@ -238,17 +264,29 @@ namespace Stormpath.Configuration.Test
             config.Web.IdSite.ForgotUri.Should().Be("/#/forgot");
             config.Web.IdSite.RegisterUri.Should().Be("/#/register");
 
-            config.Web.SocialProviders.CallbackRoot.Should().Be("/callbacks");
+            config.Web.Social.Should().HaveCount(4);
+            config.Web.Social["facebook"].Uri.Should().Be("/callbacks/facebook");
+            config.Web.Social["facebook"].Scope.Should().Be("email");
+            config.Web.Social["github"].Uri.Should().Be("/callbacks/github");
+            config.Web.Social["github"].Scope.Should().Be("user:email");
+            config.Web.Social["google"].Uri.Should().Be("/callbacks/google");
+            config.Web.Social["google"].Scope.Should().Be("email profile");
+            config.Web.Social["linkedin"].Uri.Should().Be("/callbacks/linkedin");
 
             config.Web.Me.Enabled.Should().BeTrue();
             config.Web.Me.Uri.Should().Be("/me");
+
+            config.Web.Me.Expand.Should().HaveCount(4);
+            config.Web.Me.Expand["apiKeys"].Should().BeFalse();
+            config.Web.Me.Expand["customData"].Should().BeFalse();
+            config.Web.Me.Expand["directory"].Should().BeFalse();
+            config.Web.Me.Expand["groups"].Should().BeFalse();
 
             config.Web.Spa.Enabled.Should().BeFalse();
             config.Web.Spa.View.Should().Be("index");
 
             config.Web.Unauthorized.View.Should().Be("unauthorized");
 
-            Cleanup();
         }
     }
 }

@@ -174,12 +174,30 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
       ""forgotUri"": ""/#/forgot789"",
       ""registerUri"": ""/#/register0""
     },
-    ""socialProviders"": {
-      ""callbackRoot"": ""/callbacksYo""
+    ""social"": {
+      ""facebook"": {
+        ""uri"": ""/callbackz/facebook"",
+        ""scope"": ""email birthday""
+      },
+      ""github"": {
+        ""uri"": ""/callbackz/github"",
+        ""scope"": ""user:everything""
+      },
+      ""google"": {
+        ""uri"": ""/callbackz/google"",
+        ""scope"": ""email profile friends""
+      },
+      ""linkedin"": {
+        ""uri"": ""/callbackz/linkedin"",
+        ""scope"": ""email interests""
+      }
     },
     ""me"": {
       ""enabled"": false,
-      ""uri"": ""/myself""
+      ""uri"": ""/myself"",
+      ""expand"": {
+        ""directory"": true
+      }
     },
     ""spa"": {
       ""enabled"": true,

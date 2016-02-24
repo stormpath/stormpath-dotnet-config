@@ -21,16 +21,32 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class ClientCacheConfiguration
     {
+        public ClientCacheConfiguration(int? timeToLive, int? timeToIdle)
+        {
+            this.Ttl = timeToLive;
+            this.Tti = timeToIdle;
+        }
+
+        public ClientCacheConfiguration(ClientCacheConfiguration existing)
+            : this(timeToLive: existing.Ttl,
+                  timeToIdle: existing.Tti)
+        {
+        }
+
+        internal ClientCacheConfiguration()
+        {
+        }
+
         /// <summary>
         /// The cache Time-To-Live.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.cacheManager.caches.[*].ttl</c></remarks>
-        public int? Ttl { get; set; }
+        public int? Ttl { get; internal set; }
 
         /// <summary>
         /// The cache Time-To-Idle.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.cacheManager.caches.[*].tti</c></remarks>
-        public int? Tti { get; set; }
+        public int? Tti { get; internal set; }
     }
 }

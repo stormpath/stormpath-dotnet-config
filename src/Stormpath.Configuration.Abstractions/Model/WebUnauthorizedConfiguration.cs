@@ -21,10 +21,24 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class WebUnauthorizedConfiguration
     {
+        public WebUnauthorizedConfiguration(string view)
+        {
+            this.View = view;
+        }
+
+        public WebUnauthorizedConfiguration(WebUnauthorizedConfiguration existing)
+            : this(view: existing.View)
+        {
+        }
+
+        internal WebUnauthorizedConfiguration()
+        {
+        }
+
         /// <summary>
         /// The view to use when a user attempts to access an unauthorized route.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.unauthorized.view</c></remarks>
-        public string View { get; set; }
+        public string View { get; internal set; }
     }
 }

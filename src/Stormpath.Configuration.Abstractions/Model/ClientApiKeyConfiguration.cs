@@ -21,6 +21,24 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class ClientApiKeyConfiguration
     {
+        public ClientApiKeyConfiguration(string file, string id, string secret)
+        {
+            this.File = file;
+            this.Id = id;
+            this.Secret = secret;
+        }
+
+        public ClientApiKeyConfiguration(ClientApiKeyConfiguration existing)
+            : this(file: existing.File,
+                  id: existing.Id,
+                  secret: existing.Secret)
+        {
+        }
+
+        internal ClientApiKeyConfiguration()
+        {
+        }
+
         /// <summary>
         /// An optional path to an <c>apiKey.properties</c> file.
         /// </summary>
@@ -30,18 +48,18 @@ namespace Stormpath.Configuration.Abstractions.Model
         /// Configuration path: <c>stormpath.client.apiKey.file</c>
         /// </para>
         /// </remarks>
-        public string File { get; set; }
+        public string File { get; internal set; }
 
         /// <summary>
         /// The API Key ID.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.apiKey.id</c></remarks>
-        public string Id { get; set; }
+        public string Id { get; internal set; }
 
         /// <summary>
         /// The API Key secret.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.apiKey.secret</c></remarks>
-        public string Secret { get; set; }
+        public string Secret { get; internal  set; }
     }
 }

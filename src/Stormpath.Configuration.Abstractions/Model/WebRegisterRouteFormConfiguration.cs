@@ -15,6 +15,7 @@
 // </copyright>
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Stormpath.Configuration.Abstractions.Model
 {
@@ -23,16 +24,34 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class WebRegisterRouteFormConfiguration
     {
+        public WebRegisterRouteFormConfiguration(
+            IDictionary<string, WebFieldConfiguration> fields,
+            IList<string> fieldOrder)
+        {
+            this.Fields = new Dictionary<string, WebFieldConfiguration>(fields ?? new Dictionary<string, WebFieldConfiguration>());
+            this.FieldOrder = new List<string>(fieldOrder ?? new List<string>());
+        }
+
+        public WebRegisterRouteFormConfiguration(WebRegisterRouteFormConfiguration existing)
+            : this(fields: existing.Fields.ToDictionary(),
+                  fieldOrder: existing.FieldOrder.ToList())
+        {
+        }
+
+        internal WebRegisterRouteFormConfiguration()
+        {
+        }
+
         /// <summary>
         /// The field configuration options.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.register.form.fields</c></remarks>
-        public Dictionary<string, WebFieldConfiguration> Fields { get; set; } = new Dictionary<string, WebFieldConfiguration>();
+        public IReadOnlyDictionary<string, WebFieldConfiguration> Fields { get; internal set; }
 
         /// <summary>
         /// The field order.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.register.form.fieldOrder</c></remarks>
-        public List<string> FieldOrder { get; set; } = new List<string>();
+        public IReadOnlyList<string> FieldOrder { get; internal set; }
     }
 }

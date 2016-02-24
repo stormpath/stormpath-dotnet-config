@@ -223,14 +223,29 @@ web:
     forgotUri: ""/#/forgot""
     registerUri: ""/#/register""
 
-  socialProviders:
-    callbackRoot: ""/callbacks""
+  social:
+    facebook:
+      uri: ""/callbacks/facebook""
+      scope: ""email""
+    github:
+      uri: ""/callbacks/github""
+      scope: ""user:email""
+    google:
+      uri: ""/callbacks/google""
+      scope: ""email profile""
+    linkedin:
+      uri: ""/callbacks/linkedin""
 
   # The /me route is for front-end applications, it returns a JSON object with
   # the current user object
   me:
     enabled: true
     uri: ""/me""
+    expand:
+      apiKeys: false
+      customData: false
+      directory: false
+      groups: false
 
   # If the developer wants our integration to serve their Single Page
   # Application (SPA) in response to HTML requests for our default routes,

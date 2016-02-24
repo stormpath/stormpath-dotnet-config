@@ -21,29 +21,59 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class WebChangePasswordRouteConfiguration
     {
+        public WebChangePasswordRouteConfiguration(
+            bool autoLogin,
+            string view,
+            string errorUri,
+            string nextUri,
+            bool? enabled,
+            string uri)
+        {
+            this.AutoLogin = autoLogin;
+            this.View = view;
+            this.ErrorUri = errorUri;
+            this.NextUri = nextUri;
+            this.Enabled = enabled;
+            this.Uri = uri;
+        }
+
+        public WebChangePasswordRouteConfiguration(WebChangePasswordRouteConfiguration existing)
+            : this(autoLogin: existing.AutoLogin,
+                  view: existing.View,
+                  errorUri: existing.ErrorUri,
+                  nextUri: existing.NextUri,
+                  enabled: existing.Enabled,
+                  uri: existing.Uri)
+        {
+        }
+
+        internal WebChangePasswordRouteConfiguration()
+        {
+        }
+
         /// <summary>
         /// Determines whether the user should be automatically logged in after interacting with this route.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.changePassword.autoLogin</c></remarks>
-        public bool AutoLogin { get; set; }
+        public bool AutoLogin { get; internal set; }
 
         /// <summary>
         /// The view to use for this route, or <see langword="null"/> to use the default view.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.changePassword.view</c></remarks>
-        public string View { get; set; }
+        public string View { get; internal set; }
 
         /// <summary>
         /// The URI to redirect to if an error occurs.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.changePassword.errorUri</c></remarks>
-        public string ErrorUri { get; set; }
+        public string ErrorUri { get; internal set; }
 
         /// <summary>
         /// The URI to redirect to if the operation is successful.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.changePassword.nextUri</c></remarks>
-        public string NextUri { get; set; }
+        public string NextUri { get; internal set; }
 
         /// <summary>
         /// Determines whether the Change Password route is enabled.
@@ -56,12 +86,12 @@ namespace Stormpath.Configuration.Abstractions.Model
         /// Configuration path: <c>stormpath.web.changePassword.enabled</c>
         /// </para>
         /// </remarks>
-        public bool? Enabled { get; set; }
+        public bool? Enabled { get; internal set; }
 
         /// <summary>
         /// The URI for this route, or <see langword="null"/> to use the default URI.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.changePassword.uri</c></remarks>
-        public string Uri { get; set; }
+        public string Uri { get; internal set; }
     }
 }

@@ -23,22 +23,43 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class ClientCacheManagerConfiguration
     {
+        public ClientCacheManagerConfiguration(
+            int? defaultTimeToLive,
+            int? defaultTimeToIdle,
+            IDictionary<string, ClientCacheConfiguration> caches)
+        {
+            this.DefaultTtl = defaultTimeToLive;
+            this.DefaultTti = defaultTimeToIdle;
+            this.Caches = new Dictionary<string, ClientCacheConfiguration>(caches ?? new Dictionary<string, ClientCacheConfiguration>());
+        }
+
+        public ClientCacheManagerConfiguration(ClientCacheManagerConfiguration existing)
+            : this(defaultTimeToLive: existing.DefaultTtl,
+                  defaultTimeToIdle: existing.DefaultTti,
+                  caches: existing.Caches.ToDictionary())
+        {
+        }
+
+        internal ClientCacheManagerConfiguration()
+        {
+        }
+
         /// <summary>
         /// The default cache Time-To-Live.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.cacheManager.defaultTtl</c></remarks>
-        public int? DefaultTtl { get; set; }
+        public int? DefaultTtl { get; internal set; }
 
         /// <summary>
         /// The default cache Time-To-Idle.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.cacheManager.defaultTti</c></remarks>
-        public int? DefaultTti { get; set; }
+        public int? DefaultTti { get; internal set; }
 
         /// <summary>
         /// Per-resource cache configurations.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.cacheManager.caches</c></remarks>
-        public Dictionary<string, ClientCacheConfiguration> Caches { get; set; } = new Dictionary<string, ClientCacheConfiguration>();
+        public IReadOnlyDictionary<string, ClientCacheConfiguration> Caches { get; internal set; }
     }
 }

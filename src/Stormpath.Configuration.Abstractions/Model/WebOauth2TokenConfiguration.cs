@@ -21,9 +21,23 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class WebOauth2TokenConfiguration
     {
+        public WebOauth2TokenConfiguration(int? timeToLive)
+        {
+            this.Ttl = timeToLive;
+        }
+
+        public WebOauth2TokenConfiguration(WebOauth2TokenConfiguration existing)
+            : this(timeToLive: existing.Ttl)
+        {
+        }
+
+        internal WebOauth2TokenConfiguration()
+        {
+        }
+
         /// <summary>
         /// The token Time-To-Live.
         /// </summary>
-        public int? Ttl { get; set; }
+        public int? Ttl { get; internal set; }
     }
 }

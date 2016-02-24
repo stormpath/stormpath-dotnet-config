@@ -21,40 +21,70 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class ClientConfiguration
     {
+        public ClientConfiguration(
+            ClientApiKeyConfiguration apiKey,
+            ClientCacheManagerConfiguration cacheManager,
+            string baseUrl,
+            int? connectionTimeout,
+            ClientAuthenticationScheme? authenticationScheme,
+            ClientProxyConfiguration proxy)
+        {
+            this.ApiKey = new ClientApiKeyConfiguration(apiKey);
+            this.CacheManager = new ClientCacheManagerConfiguration(cacheManager);
+            this.BaseUrl = baseUrl;
+            this.ConnectionTimeout = connectionTimeout;
+            this.AuthenticationScheme = authenticationScheme;
+            this.Proxy = new ClientProxyConfiguration(proxy);
+        }
+
+        public ClientConfiguration(ClientConfiguration existing)
+            : this(apiKey: existing.ApiKey,
+                  cacheManager: existing.CacheManager,
+                  baseUrl: existing.BaseUrl,
+                  connectionTimeout: existing.ConnectionTimeout,
+                  authenticationScheme: existing.AuthenticationScheme,
+                  proxy: existing.Proxy)
+        {
+        }
+
+        internal ClientConfiguration()
+        {
+        }
+
         /// <summary>
         /// The API Key configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.apiKey</c></remarks>
-        public ClientApiKeyConfiguration ApiKey { get; set; } = new ClientApiKeyConfiguration();
+        public ClientApiKeyConfiguration ApiKey { get; internal set; }
 
         /// <summary>
         /// The cache configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.cacheManager</c></remarks>
-        public ClientCacheManagerConfiguration CacheManager { get; set; } = new ClientCacheManagerConfiguration();
+        public ClientCacheManagerConfiguration CacheManager { get; internal set; }
 
         /// <summary>
         /// The API base URL.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.baseUrl</c></remarks>
-        public string BaseUrl { get; set; }
+        public string BaseUrl { get; internal set; }
 
         /// <summary>
         /// The connection timeout.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.connectionTimeout</c></remarks>
-        public int? ConnectionTimeout { get; set; }
+        public int? ConnectionTimeout { get; internal set; }
 
         /// <summary>
         /// The authentication scheme to use for requests.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.authenticationScheme</c></remarks>
-        public ClientAuthenticationScheme? AuthenticationScheme { get; set; }
+        public ClientAuthenticationScheme? AuthenticationScheme { get; internal set; }
 
         /// <summary>
         /// The proxy to use for requests.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.proxy</c></remarks>
-        public ClientProxyConfiguration Proxy { get; set; } = new ClientProxyConfiguration();
+        public ClientProxyConfiguration Proxy { get; internal set; }
     }
 }

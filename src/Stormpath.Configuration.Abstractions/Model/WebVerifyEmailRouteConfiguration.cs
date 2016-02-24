@@ -21,17 +21,41 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class WebVerifyEmailRouteConfiguration
     {
+        public WebVerifyEmailRouteConfiguration(
+            string view,
+            string nextUri,
+            bool? enabled,
+            string uri)
+        {
+            this.View = view;
+            this.NextUri = nextUri;
+            this.Enabled = enabled;
+            this.Uri = uri;
+        }
+
+        public WebVerifyEmailRouteConfiguration(WebVerifyEmailRouteConfiguration existing)
+            : this(view: existing.View,
+                  nextUri: existing.NextUri,
+                  enabled: existing.Enabled,
+                  uri: existing.Uri)
+        {
+        }
+
+        internal WebVerifyEmailRouteConfiguration()
+        {
+        }
+
         /// <summary>
         /// The view to use for this route, or <see langword="null"/> to use the default view.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.verifyEmail.view</c></remarks>
-        public string View { get; set; }
+        public string View { get; internal set; }
 
         /// <summary>
         /// The URI to redirect to if the operation is successful.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.verifyEmail.nextUri</c></remarks>
-        public string NextUri { get; set; }
+        public string NextUri { get; internal set; }
 
         /// <summary>
         /// Determines whether the Change Password route is enabled.
@@ -44,12 +68,12 @@ namespace Stormpath.Configuration.Abstractions.Model
         /// Configuration path: <c>stormpath.web.verifyEmail.enabled</c>
         /// </para>
         /// </remarks>
-        public bool? Enabled { get; set; }
+        public bool? Enabled { get; internal set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.verifyEmail.uri</c></remarks>
-        public string Uri { get; set; }
+        public string Uri { get; internal set; }
     }
 }

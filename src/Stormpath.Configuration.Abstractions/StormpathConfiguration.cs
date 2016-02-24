@@ -27,22 +27,43 @@ namespace Stormpath.Configuration.Abstractions
     /// <see href="https://github.com/stormpath/stormpath-framework-spec/blob/master/configuration.md"/>
     public sealed class StormpathConfiguration
     {
+        public StormpathConfiguration(
+            ClientConfiguration client,
+            ApplicationConfiguration application,
+            WebConfiguration web)
+        {
+            this.Client = new ClientConfiguration(client);
+            this.Application = new ApplicationConfiguration(application);
+            this.Web = new WebConfiguration(web);
+        }
+
+        public StormpathConfiguration(StormpathConfiguration existing)
+            : this(client: existing.Client,
+                  application: existing.Application,
+                  web: existing.Web)
+        {
+        }
+
+        internal StormpathConfiguration()
+        {
+        }
+
         /// <summary>
         /// The Client-specific configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client</c></remarks>
-        public ClientConfiguration Client { get; set; } = new ClientConfiguration();
+        public ClientConfiguration Client { get; internal set; }
 
         /// <summary>
         /// The Application-specific configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.application</c></remarks>
-        public ApplicationConfiguration Application { get; set; } = new ApplicationConfiguration();
+        public ApplicationConfiguration Application { get; internal set; }
 
         /// <summary>
         /// The framework integration-specific configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web</c></remarks>
-        public WebConfiguration Web { get; set; } = new WebConfiguration();
+        public WebConfiguration Web { get; internal set; }
     }
 }

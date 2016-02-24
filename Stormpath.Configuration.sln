@@ -7,22 +7,6 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Stormpath.Configuration", "
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Stormpath.Configuration.Test", "test\Stormpath.Configuration.Test\Stormpath.Configuration.Test.xproj", "{C818234B-15E4-45B5-AAA0-BB93C95319D3}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Contrib.Stormpath.PropertiesFile", "src\Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile\Contrib.Stormpath.PropertiesFile.xproj", "{1EB64C2F-E6F8-4AD4-92C1-7CE4146A631B}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Contrib.Stormpath.PropertiesFile.Test", "test\Microsoft.Extensions.Configuration.Contrib.Stormpath.PropertiesFile.Test\Contrib.Stormpath.PropertiesFile.Test.xproj", "{DC4E4239-C8D8-4923-B965-0637F1DA3209}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Contrib.Stormpath.Yaml", "src\Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml\Contrib.Stormpath.Yaml.xproj", "{99DCA118-FF91-492B-80AF-663758A60740}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Contrib.Stormpath.Yaml.Test", "test\Microsoft.Extensions.Configuration.Contrib.Stormpath.Yaml.Test\Contrib.Stormpath.Yaml.Test.xproj", "{0EDF7F56-6343-455D-A0B1-3C9564BF5484}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Contrib.Stormpath.ObjectReflection", "src\Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection\Contrib.Stormpath.ObjectReflection.xproj", "{5967F0A8-21BF-4129-809F-92154D602257}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Contrib.Stormpath.ObjectReflection.Test", "test\Microsoft.Extensions.Configuration.Contrib.Stormpath.ObjectReflection.Test\Contrib.Stormpath.ObjectReflection.Test.xproj", "{408323C6-0D8B-486C-92D3-6B69CC7E0971}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Contrib.Stormpath.EnvironmentVariables", "src\Microsoft.Extensions.Configuration.Contrib.Stormpath.EnvironmentVariables\Contrib.Stormpath.EnvironmentVariables.xproj", "{FBA8984F-BB16-416C-B440-317BEF6A20FE}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Contrib.Stormpath.EnvironmentVariables.Test", "test\Microsoft.Extensions.Configuration.Contrib.Stormpath.EnvironmentVariables.Test\Contrib.Stormpath.EnvironmentVariables.Test.xproj", "{CD47AE37-39A4-4861-81BB-B6143DA0BB2B}"
-EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Stormpath.Configuration.Abstractions", "src\Stormpath.Configuration.Abstractions\Stormpath.Configuration.Abstractions.xproj", "{C6D48F3C-B35C-44A9-B271-898A8BC448A9}"
 EndProject
 Global
@@ -39,38 +23,6 @@ Global
 		{C818234B-15E4-45B5-AAA0-BB93C95319D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C818234B-15E4-45B5-AAA0-BB93C95319D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C818234B-15E4-45B5-AAA0-BB93C95319D3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1EB64C2F-E6F8-4AD4-92C1-7CE4146A631B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1EB64C2F-E6F8-4AD4-92C1-7CE4146A631B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1EB64C2F-E6F8-4AD4-92C1-7CE4146A631B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1EB64C2F-E6F8-4AD4-92C1-7CE4146A631B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC4E4239-C8D8-4923-B965-0637F1DA3209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC4E4239-C8D8-4923-B965-0637F1DA3209}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC4E4239-C8D8-4923-B965-0637F1DA3209}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC4E4239-C8D8-4923-B965-0637F1DA3209}.Release|Any CPU.Build.0 = Release|Any CPU
-		{99DCA118-FF91-492B-80AF-663758A60740}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{99DCA118-FF91-492B-80AF-663758A60740}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{99DCA118-FF91-492B-80AF-663758A60740}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{99DCA118-FF91-492B-80AF-663758A60740}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0EDF7F56-6343-455D-A0B1-3C9564BF5484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0EDF7F56-6343-455D-A0B1-3C9564BF5484}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0EDF7F56-6343-455D-A0B1-3C9564BF5484}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0EDF7F56-6343-455D-A0B1-3C9564BF5484}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5967F0A8-21BF-4129-809F-92154D602257}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5967F0A8-21BF-4129-809F-92154D602257}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5967F0A8-21BF-4129-809F-92154D602257}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5967F0A8-21BF-4129-809F-92154D602257}.Release|Any CPU.Build.0 = Release|Any CPU
-		{408323C6-0D8B-486C-92D3-6B69CC7E0971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{408323C6-0D8B-486C-92D3-6B69CC7E0971}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{408323C6-0D8B-486C-92D3-6B69CC7E0971}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{408323C6-0D8B-486C-92D3-6B69CC7E0971}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FBA8984F-BB16-416C-B440-317BEF6A20FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FBA8984F-BB16-416C-B440-317BEF6A20FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FBA8984F-BB16-416C-B440-317BEF6A20FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FBA8984F-BB16-416C-B440-317BEF6A20FE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CD47AE37-39A4-4861-81BB-B6143DA0BB2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD47AE37-39A4-4861-81BB-B6143DA0BB2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD47AE37-39A4-4861-81BB-B6143DA0BB2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD47AE37-39A4-4861-81BB-B6143DA0BB2B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C6D48F3C-B35C-44A9-B271-898A8BC448A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C6D48F3C-B35C-44A9-B271-898A8BC448A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6D48F3C-B35C-44A9-B271-898A8BC448A9}.Release|Any CPU.ActiveCfg = Release|Any CPU

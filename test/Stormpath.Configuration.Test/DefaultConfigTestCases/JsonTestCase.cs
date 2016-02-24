@@ -41,10 +41,9 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
       ""defaultTtl"": 300,
       ""defaultTti"": 300,
       ""caches"": { }
-      }
     },
     ""baseUrl"": ""https://api.stormpath.com/v1"",
-    ""connectionTimeout"": 30,
+    ""connectionTimeout"": 30000,
     ""authenticationScheme"": ""SAUTHC1"",
     ""proxy"": {
       ""port"": null,
@@ -227,12 +226,32 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
       ""forgotUri"": ""/#/forgot"",
       ""registerUri"": ""/#/register""
     },
-    ""socialProviders"": {
-      ""callbackRoot"": ""/callbacks""
+    ""social"": {
+        ""facebook"": {
+            ""uri"": ""/callbacks/facebook"",
+            ""scope"": ""email""
+        },
+        ""github"": {
+            ""uri"": ""/callbacks/github"",
+            ""scope"": ""user:email""
+        },
+        ""google"": {
+            ""uri"": ""/callbacks/google"",
+            ""scope"": ""email profile""
+        },
+        ""linkedin"": {
+            ""uri"": ""/callbacks/linkedin""
+        }
     },
     ""me"": {
       ""enabled"": true,
-      ""uri"": ""/me""
+      ""uri"": ""/me"",
+      ""expand"": {
+        ""apiKeys"": false,
+        ""customData"": false,
+        ""directory"": false,
+        ""groups"": false
+      }
     },
     ""spa"": {
       ""enabled"": false,

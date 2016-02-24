@@ -21,34 +21,61 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class WebCookieConfiguration
     {
+        public WebCookieConfiguration(
+            string name,
+            bool? httpOnly,
+            bool? secure,
+            string path,
+            string domain)
+        {
+            this.Name = name;
+            this.HttpOnly = httpOnly;
+            this.Secure = secure;
+            this.Path = path;
+            this.Domain = domain;
+        }
+
+        public WebCookieConfiguration(WebCookieConfiguration existing)
+            : this(name: existing.Name,
+                  httpOnly: existing.HttpOnly,
+                  secure: existing.Secure,
+                  path: existing.Path,
+                  domain: existing.Domain)
+        {
+        }
+
+        internal WebCookieConfiguration()
+        {
+        }
+
         /// <summary>
         /// The cookie name.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.[*Cookie].name</c></remarks>
-        public string Name { get; set; }
+        public string Name { get; internal set; }
 
         /// <summary>
         /// The cookie's <c>HttpOnly</c>flag.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.[*Cookie].httpOnly</c></remarks>
-        public bool? HttpOnly { get; set; }
+        public bool? HttpOnly { get; internal set; }
 
         /// <summary>
         /// The cookie's <c>Secure</c> flag.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.[*Cookie].secure</c></remarks>
-        public bool? Secure { get; set; }
+        public bool? Secure { get; internal set; }
 
         /// <summary>
         /// THe cookie path.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.[*Cookie].path</c></remarks>
-        public string Path { get; set; }
+        public string Path { get; internal set; }
 
         /// <summary>
         /// The cookie domain.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.[*Cookie].domain</c></remarks>
-        public string Domain { get; set; }
+        public string Domain { get; internal set; }
     }
 }

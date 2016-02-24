@@ -68,229 +68,184 @@ namespace Stormpath.Configuration.Test
         [Fact]
         public void Supplied_by_instance()
         {
-            var userConfiguration = new StormpathConfiguration()
-            {
-                Client = new ClientConfiguration()
+            var clientConfiguration = new ClientConfiguration(
+                new ClientApiKeyConfiguration(
+                    file: null,
+                    id: "modified-foobar",
+                    secret: "modified-barbaz"),
+
+                cacheManager: new ClientCacheManagerConfiguration(
+                    defaultTimeToLive: 500,
+                    defaultTimeToIdle: 600,
+                    caches: new Dictionary<string, ClientCacheConfiguration>()
+                    {
+                        ["application"] = new ClientCacheConfiguration(timeToLive: 450, timeToIdle: 700),
+                        ["directory"] = new ClientCacheConfiguration(timeToLive: 200, timeToIdle: 300)
+                    }),
+
+                baseUrl: "https://api.foo.com/v1",
+                connectionTimeout: 90,
+                authenticationScheme: ClientAuthenticationScheme.Basic,
+
+                proxy: new ClientProxyConfiguration(
+                    port: 8088,
+                    host: "proxy.foo.bar",
+                    username: "foo",
+                    password: "bar"
+                )
+            );
+
+            var applicationConfiguration = new ApplicationConfiguration(
+                name: "Lightsabers Galore",
+                href: "https://api.foo.com/v1/applications/foo");
+
+            var webConfiguration = new WebConfiguration(
+                basePath: "#/",
+
+                oauth2Route: new WebOauth2RouteConfiguration(
+                    enabled: false,
+                    uri: "/oauth2/token",
+                    clientCredentialsGrant: new WebOauth2ClientCredentialsGrantConfiguration(
+                        enabled: false,
+                        accessToken: new WebOauth2TokenConfiguration(timeToLive: 3601)
+                    ),
+                    passwordGrant: new WebOauth2PasswordGrantConfiguration(
+                        enabled: false,
+                        validationStrategy: WebOauth2TokenValidationStrategy.Remote)
+                ),
+
+                expand: new Dictionary<string, bool>()
                 {
-                    ApiKey = new ClientApiKeyConfiguration()
-                    {
-                        Id = "modified-foobar",
-                        Secret = "modified-barbaz"
-                    },
-
-                    CacheManager = new ClientCacheManagerConfiguration()
-                    {
-                        DefaultTtl = 500,
-                        DefaultTti = 600,
-                        Caches = new Dictionary<string, ClientCacheConfiguration>()
-                        {
-                            ["application"] = new ClientCacheConfiguration()
-                            {
-                                Ttl = 450,
-                                Tti = 700
-                            },
-                            ["directory"] = new ClientCacheConfiguration()
-                            {
-                                Ttl = 200,
-                                Tti = 300
-                            }
-                        },
-                    },
-
-                    BaseUrl = "https://api.foo.com/v1",
-                    ConnectionTimeout = 90,
-                    AuthenticationScheme = ClientAuthenticationScheme.Basic,
-
-                    Proxy = new ClientProxyConfiguration()
-                    {
-                        Port = 8088,
-                        Host = "proxy.foo.bar",
-                        Username = "foo",
-                        Password = "bar",
-                    }
+                    ["customData"] = true,
+                    ["applications"] = true,
                 },
 
-                Application = new ApplicationConfiguration()
+                accessTokenCookie: new WebCookieConfiguration(
+                    name: "accessToken",
+                    httpOnly: false,
+                    secure: false,
+                    path: "/",
+                    domain: "foo.bar"),
+
+                refreshTokenCookie: new WebCookieConfiguration(
+                    name: "refreshToken",
+                    httpOnly: false,
+                    secure: true,
+                    path: "/foo",
+                    domain: "baz.qux"),
+
+                produces: new List<string>()
                 {
-                    Name = "Lightsabers Galore",
-                    Href = "https://api.foo.com/v1/applications/foo",
+                    "foo/bar",
                 },
 
-                Web = new WebConfiguration()
+                registerRoute: new WebRegisterRouteConfiguration(
+                    enabled: false,
+                    uri: "/register1",
+                    nextUri: "/1",
+                    autoLogin: true,
+                    view: "registerView",
+                    form: new WebRegisterRouteFormConfiguration(
+                        fields: new Dictionary<string, WebFieldConfiguration>()
+                        {
+                            ["email"] = new WebFieldConfiguration(
+                                enabled: false,
+                                label: "I Can Has Email",
+                                placeholder: "Can Has?",
+                                required: false,
+                                type: "text")
+                        },
+                        fieldOrder: new List<string>()
+                        {
+                            "email",
+                            "hidden",
+                        })
+                    ),
+
+                verifyRoute: new WebVerifyEmailRouteConfiguration(
+                    enabled: true,
+                    uri: "/verify1",
+                    nextUri: "/login2",
+                    view: "verifyView"),
+
+                loginRoute: new WebLoginRouteConfiguration(
+                    enabled: false,
+                    uri: "/login3",
+                    nextUri: "/3",
+                    view: "loginView",
+                    form: new WebLoginRouteFormConfiguration(
+                        fields: new Dictionary<string, WebFieldConfiguration>()
+                        {
+                            ["password"] = new WebFieldConfiguration(
+                                enabled: false,
+                                label: "Password?",
+                                placeholder: "Maybe",
+                                required: false,
+                                type: "email")
+                        },
+                        fieldOrder: new List<string>()
+                        {
+                            "password",
+                        })
+                    ),
+
+                logoutRoute: new WebLogoutRouteConfiguration(
+                    enabled: false,
+                    uri: "/logout4",
+                    nextUri: "/4"),
+
+                forgotPasswordRoute: new WebForgotPasswordRouteConfiguration(
+                    enabled: true,
+                    uri: "/forgot5",
+                    view: "forgot-password-view",
+                    nextUri: "/login?status=forgot!"),
+
+                changePasswordRoute: new WebChangePasswordRouteConfiguration(
+                    enabled: true,
+                    autoLogin: true,
+                    uri: "/change6",
+                    nextUri: "/login?status=reset?",
+                    view: "change-password-view",
+                    errorUri: "/forgot?status=invalid_sptoken:("),
+
+                idSiteRoute: new WebIdSiteRouteConfiguration(
+                    enabled: true,
+                    uri: "/idSiteResultz",
+                    nextUri: "/123",
+                    loginUri: "/456",
+                    forgotUri: "/#/forgot789",
+                    registerUri: "/#/register0"),
+
+                social: new Dictionary<string, WebSocialProviderConfiguration>()
                 {
-                    BasePath = "#/",
+                    ["facebook"] = new WebSocialProviderConfiguration("/callbackz/facebook", "email birthday"),
+                    ["github"] = new WebSocialProviderConfiguration("/callbackz/github", "user:everything"),
+                    ["google"] = new WebSocialProviderConfiguration("/callbackz/google", "email profile friends"),
+                    ["linkedin"] = new WebSocialProviderConfiguration("/callbackz/linkedin", "email interests")
+                },
 
-                    Oauth2 = new WebOauth2RouteConfiguration()
+                meRoute: new WebMeRouteConfiguration(
+                    expand: new Dictionary<string, bool>()
                     {
-                        Enabled = false,
-                        Uri = "/oauth2/token",
-                        Client_Credentials = new WebOauth2ClientCredentialsGrantConfiguration()
-                        {
-                            Enabled = false,
-                            AccessToken = new WebOauth2TokenConfiguration()
-                            {
-                                Ttl = 3601
-                            }
-                        },
-
-                        Password = new WebOauth2PasswordGrantConfiguration()
-                        {
-                            Enabled = false,
-                            ValidationStrategy = WebOauth2TokenValidationStrategy.Remote
-                        }
+                        ["directory"] = true
                     },
+                    enabled: false,
+                    uri: "/myself"),
 
-                    Expand = new Dictionary<string, bool>()
-                    {
-                        ["customData"] = true,
-                        ["applications"] = true,
-                    },
+                spa: new WebSpaConfiguration(
+                    enabled: true,
+                    view: "indexView"),
 
-                    AccessTokenCookie = new WebCookieConfiguration()
-                    {
-                        Name = "accessToken",
-                        HttpOnly = false,
-                        Secure = false,
-                        Path = "/",
-                        Domain = "foo.bar",
-                    },
+                unauthorizedRoute: new WebUnauthorizedConfiguration(
+                    view: "unauthorizedView")
+            );
 
-                    RefreshTokenCookie = new WebCookieConfiguration()
-                    {
-                        Name = "refreshToken",
-                        HttpOnly = false,
-                        Secure = true,
-                        Path = "/foo",
-                        Domain = "baz.qux",
-                    },
+            var stormpathConfiguration = new StormpathConfiguration(
+                clientConfiguration,
+                applicationConfiguration,
+                webConfiguration);
 
-                    Produces = new List<string>()
-                    {
-                        "foo/bar",
-                    },
-
-                    Register = new WebRegisterRouteConfiguration()
-                    {
-                        Enabled = false,
-                        Uri = "/register1",
-                        NextUri = "/1",
-                        AutoLogin = true,
-                        View = "registerView",
-                        Form = new WebRegisterRouteFormConfiguration()
-                        {
-                            Fields = new Dictionary<string, WebFieldConfiguration>()
-                            {
-                                ["email"] = new WebFieldConfiguration()
-                                {
-                                    Enabled = false,
-                                    Label = "I Can Has Email",
-                                    Placeholder = "Can Has?",
-                                    Required = false,
-                                    Type = "text",
-                                },
-                            },
-                            FieldOrder = new List<string>()
-                            {
-                                "email",
-                                "hidden",
-                            },
-                        },
-                    },
-
-                    VerifyEmail = new WebVerifyEmailRouteConfiguration()
-                    {
-                        Enabled = true,
-                        Uri = "/verify1",
-                        NextUri = "/login2",
-                        View = "verifyView"
-                    },
-
-                    Login = new WebLoginRouteConfiguration()
-                    {
-                        Enabled = false,
-                        Uri = "/login3",
-                        NextUri = "/3",
-                        View = "loginView",
-                        Form = new WebLoginRouteFormConfiguration()
-                        {
-                            Fields = new Dictionary<string, WebFieldConfiguration>()
-                            {
-                                ["password"] = new WebFieldConfiguration()
-                                {
-                                    Enabled = false,
-                                    Label = "Password?",
-                                    Placeholder = "Maybe",
-                                    Required = false,
-                                    Type = "email",
-                                },
-                            },
-                            FieldOrder = new List<string>()
-                            {
-                                "password",
-                            }
-                        }
-                    },
-
-                    Logout = new WebLogoutRouteConfiguration()
-                    {
-                        Enabled = false,
-                        Uri = "/logout4",
-                        NextUri = "/4"
-                    },
-
-                    ForgotPassword = new WebForgotPasswordRouteConfiguration()
-                    {
-                        Enabled = true,
-                        Uri = "/forgot5",
-                        View = "forgot-password-view",
-                        NextUri = "/login?status=forgot!",
-                    },
-
-                    ChangePassword = new WebChangePasswordRouteConfiguration()
-                    {
-                        Enabled = true,
-                        AutoLogin = true,
-                        Uri = "/change6",
-                        NextUri = "/login?status=reset?",
-                        View = "change-password-view",
-                        ErrorUri = "/forgot?status=invalid_sptoken:(",
-                    },
-
-                    IdSite = new WebIdSiteRouteConfiguration()
-                    {
-                        Enabled = true,
-                        Uri = "/idSiteResultz",
-                        NextUri = "/123",
-                        LoginUri = "/456",
-                        ForgotUri = "/#/forgot789",
-                        RegisterUri = "/#/register0"
-                    },
-
-                    SocialProviders = new WebSocialProvidersConfiguration()
-                    {
-                        CallbackRoot = "/callbacksYo"
-                    },
-
-                    Me = new WebMeRouteConfiguration()
-                    {
-                        Enabled = false,
-                        Uri = "/myself",
-                    },
-
-                    Spa = new WebSpaConfiguration()
-                    {
-                        Enabled = true,
-                        View = "indexView",
-                    },
-
-                    Unauthorized = new WebUnauthorizedConfiguration()
-                    {
-                        View = "unauthorizedView",
-                    }
-                }
-            };
-
-            var config = ConfigurationLoader.Load(userConfiguration);
+            var config = ConfigurationLoader.Load(stormpathConfiguration);
 
             ValidateConfig(config);
         }
@@ -493,15 +448,38 @@ namespace Stormpath.Configuration.Test
                         registerUri = "/#/register0"
                     },
 
-                    socialProviders = new
+                    social = new
                     {
-                        callbackRoot = "/callbacksYo"
+                        facebook = new
+                        {
+                            uri = "/callbackz/facebook",
+                            scope = "email birthday"
+                        },
+                        github = new
+                        {
+                            uri = "/callbackz/github",
+                            scope = "user:everything"
+                        },
+                        google = new
+                        {
+                            uri = "/callbackz/google",
+                            scope = "email profile friends"
+                        },
+                        linkedin = new
+                        {
+                            uri = "/callbackz/linkedin",
+                            scope = "email interests"
+                        },
                     },
 
                     me = new
                     {
                         enabled = false,
                         uri = "/myself",
+                        expand = new
+                        {
+                            directory = true
+                        }
                     },
 
                     spa = new
@@ -522,7 +500,7 @@ namespace Stormpath.Configuration.Test
             ValidateConfig(config);
         }
 
-        private void ValidateConfig(StormpathConfiguration config)
+        private static void ValidateConfig(StormpathConfiguration config)
         {
             // Client section
             config.Client.ApiKey.Id.Should().Be("modified-foobar");
@@ -564,9 +542,7 @@ namespace Stormpath.Configuration.Test
             {
                 ["customData"] = true,
                 ["applications"] = true,
-            },
-                opt => opt.WithStrictOrdering()
-            );
+            });
 
             config.Web.AccessTokenCookie.Name.Should().Be("accessToken");
             config.Web.AccessTokenCookie.HttpOnly.Should().BeFalse();
@@ -657,10 +633,20 @@ namespace Stormpath.Configuration.Test
             config.Web.IdSite.ForgotUri.Should().Be("/#/forgot789");
             config.Web.IdSite.RegisterUri.Should().Be("/#/register0");
 
-            config.Web.SocialProviders.CallbackRoot.Should().Be("/callbacksYo");
+            config.Web.Social["facebook"].Uri.Should().Be("/callbackz/facebook");
+            config.Web.Social["facebook"].Scope.Should().Be("email birthday");
+            config.Web.Social["github"].Uri.Should().Be("/callbackz/github");
+            config.Web.Social["github"].Scope.Should().Be("user:everything");
+            config.Web.Social["google"].Uri.Should().Be("/callbackz/google");
+            config.Web.Social["google"].Scope.Should().Be("email profile friends");
+            config.Web.Social["linkedin"].Uri.Should().Be("/callbackz/linkedin");
+            config.Web.Social["linkedin"].Scope.Should().Be("email interests");
 
             config.Web.Me.Enabled.Should().BeFalse();
             config.Web.Me.Uri.Should().Be("/myself");
+
+            config.Web.Me.Expand.Should().HaveCount(1);
+            config.Web.Me.Expand["directory"].Should().BeTrue();
 
             config.Web.Spa.Enabled.Should().BeTrue();
             config.Web.Spa.View.Should().Be("indexView");
