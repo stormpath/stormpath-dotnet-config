@@ -287,7 +287,8 @@ namespace Stormpath.Configuration.Abstractions
                     },
                     ["linkedin"] = new WebSocialProviderConfiguration()
                     {
-                        Uri = "/callbacks/linkedin"
+                        Uri = "/callbacks/linkedin",
+                        Scope = "r_basicprofile, r_emailaddress"
                     },
                 },
 

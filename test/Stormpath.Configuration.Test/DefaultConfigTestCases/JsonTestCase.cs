@@ -240,7 +240,8 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
             ""scope"": ""email profile""
         },
         ""linkedin"": {
-            ""uri"": ""/callbacks/linkedin""
+            ""uri"": ""/callbacks/linkedin"",
+            ""scope"": ""r_basicprofile, r_emailaddress""
         }
     },
     ""me"": {

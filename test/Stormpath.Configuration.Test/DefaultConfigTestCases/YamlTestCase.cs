@@ -235,6 +235,7 @@ web:
       scope: ""email profile""
     linkedin:
       uri: ""/callbacks/linkedin""
+      scope: ""r_basicprofile, r_emailaddress""
 
   # The /me route is for front-end applications, it returns a JSON object with
   # the current user object
