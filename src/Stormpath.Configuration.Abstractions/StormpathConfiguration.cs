@@ -22,19 +22,19 @@ namespace Stormpath.Configuration.Abstractions
     /// Represents a Stormpath Client configuration.
     /// </summary>
     /// <remarks>
-    /// This is a strongly-typed version of the stormpath config file format.
+    /// This is a strongly-typed version of the Stormpath configuration format.
     /// </remarks>
     /// <see href="https://github.com/stormpath/stormpath-framework-spec/blob/master/configuration.md"/>
     public sealed class StormpathConfiguration
     {
         public StormpathConfiguration(
-            ClientConfiguration client,
-            ApplicationConfiguration application,
-            WebConfiguration web)
+            ClientConfiguration client = null,
+            ApplicationConfiguration application = null,
+            WebConfiguration web = null)
         {
-            this.Client = new ClientConfiguration(client);
-            this.Application = new ApplicationConfiguration(application);
-            this.Web = new WebConfiguration(web);
+            this.Client = new ClientConfiguration(client ?? Default.Configuration.Client);
+            this.Application = new ApplicationConfiguration(application ?? Default.Configuration.Application);
+            this.Web = new WebConfiguration(web ?? Default.Configuration.Web);
         }
 
         public StormpathConfiguration(StormpathConfiguration existing)
