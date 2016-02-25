@@ -22,19 +22,19 @@ namespace Stormpath.Configuration.Abstractions.Model
     public sealed class ClientConfiguration
     {
         public ClientConfiguration(
-            ClientApiKeyConfiguration apiKey,
-            ClientCacheManagerConfiguration cacheManager,
-            string baseUrl,
-            int? connectionTimeout,
-            ClientAuthenticationScheme? authenticationScheme,
-            ClientProxyConfiguration proxy)
+            ClientApiKeyConfiguration apiKey = null,
+            ClientCacheManagerConfiguration cacheManager = null,
+            string baseUrl = null,
+            int? connectionTimeout = null,
+            ClientAuthenticationScheme? authenticationScheme = null,
+            ClientProxyConfiguration proxy = null)
         {
-            this.ApiKey = new ClientApiKeyConfiguration(apiKey);
-            this.CacheManager = new ClientCacheManagerConfiguration(cacheManager);
-            this.BaseUrl = baseUrl;
-            this.ConnectionTimeout = connectionTimeout;
-            this.AuthenticationScheme = authenticationScheme;
-            this.Proxy = new ClientProxyConfiguration(proxy);
+            this.ApiKey = new ClientApiKeyConfiguration(apiKey) ?? Default.Configuration.Client.ApiKey;
+            this.CacheManager = new ClientCacheManagerConfiguration(cacheManager) ?? Default.Configuration.Client.CacheManager;
+            this.BaseUrl = baseUrl ?? Default.Configuration.Client.BaseUrl;
+            this.ConnectionTimeout = connectionTimeout ?? Default.Configuration.Client.ConnectionTimeout;
+            this.AuthenticationScheme = authenticationScheme ?? Default.Configuration.Client.AuthenticationScheme;
+            this.Proxy = new ClientProxyConfiguration(proxy) ?? Default.Configuration.Client.Proxy;
         }
 
         public ClientConfiguration(ClientConfiguration existing)

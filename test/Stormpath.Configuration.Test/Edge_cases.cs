@@ -320,5 +320,53 @@ namespace Stormpath.Configuration.Test
 
             config.Web.Expand["customData"].Should().BeTrue();
         }
+
+        /// <summary>
+        /// Testing the default value behavior of these configuration nodes.
+        /// Null should be an acceptable value and shouldn't be overwritten by another default value.
+        /// </summary>
+        [Fact]
+        public void VerifyEmail_enabled_behaves_properly()
+        {
+            var verifyPasswordNull = new WebVerifyEmailRouteConfiguration(enabled: null);
+
+            verifyPasswordNull.Enabled.Should().Be(null);
+
+            var verifyPasswordEnabled = new WebVerifyEmailRouteConfiguration(enabled: true);
+
+            verifyPasswordEnabled.Enabled.Should().BeTrue();
+        }
+
+        /// <summary>
+        /// Testing the default value behavior of these configuration nodes.
+        /// Null should be an acceptable value and shouldn't be overwritten by another default value.
+        /// </summary>
+        [Fact]
+        public void ForgotPassword_enabled_behaves_properly()
+        {
+            var forgotPasswordNull = new WebForgotPasswordRouteConfiguration(enabled: null);
+
+            forgotPasswordNull.Enabled.Should().Be(null);
+
+            var forgotPasswordEnabled = new WebForgotPasswordRouteConfiguration(enabled: true);
+
+            forgotPasswordEnabled.Enabled.Should().BeTrue();
+        }
+
+        /// <summary>
+        /// Testing the default value behavior of these configuration nodes.
+        /// Null should be an acceptable value and shouldn't be overwritten by another default value.
+        /// </summary>
+        [Fact]
+        public void ChangePassword_enabled_behaves_properly()
+        {
+            var changePasswordNull = new WebChangePasswordRouteConfiguration(enabled: null);
+
+            changePasswordNull.Enabled.Should().Be(null);
+
+            var changePasswordEnabled = new WebChangePasswordRouteConfiguration(enabled: true);
+
+            changePasswordEnabled.Enabled.Should().BeTrue();
+        }
     }
 }

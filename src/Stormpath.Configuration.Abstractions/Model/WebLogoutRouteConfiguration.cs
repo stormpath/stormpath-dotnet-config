@@ -22,13 +22,13 @@ namespace Stormpath.Configuration.Abstractions.Model
     public sealed class WebLogoutRouteConfiguration
     {
         public WebLogoutRouteConfiguration(
-            string nextUri,
-            bool? enabled,
-            string uri)
+            string nextUri = null,
+            bool? enabled = null,
+            string uri = null)
         {
-            this.NextUri = nextUri;
-            this.Enabled = enabled;
-            this.Uri = uri;
+            this.NextUri = nextUri ?? Default.Configuration.Web.Logout.NextUri;
+            this.Enabled = enabled ?? Default.Configuration.Web.Logout.Enabled;
+            this.Uri = uri ?? Default.Configuration.Web.Logout.Uri;
         }
 
         public WebLogoutRouteConfiguration(WebLogoutRouteConfiguration existing)

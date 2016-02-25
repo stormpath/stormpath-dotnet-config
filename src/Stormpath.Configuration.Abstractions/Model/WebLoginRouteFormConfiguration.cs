@@ -14,6 +14,7 @@
 // limitations under the License.
 // </copyright>
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,11 +26,11 @@ namespace Stormpath.Configuration.Abstractions.Model
     public sealed class WebLoginRouteFormConfiguration
     {
         public WebLoginRouteFormConfiguration(
-            IDictionary<string, WebFieldConfiguration> fields,
-            IList<string> fieldOrder)
+            IDictionary<string, WebFieldConfiguration> fields = null,
+            IList<string> fieldOrder = null)
         {
-            this.Fields = new Dictionary<string, WebFieldConfiguration>(fields ?? new Dictionary<string, WebFieldConfiguration>());
-            this.FieldOrder = new List<string>(fieldOrder ?? new List<string>());
+            this.Fields = new Dictionary<string, WebFieldConfiguration>(fields ?? Default.Configuration.Web.Login.Form.Fields.ToDictionary(), StringComparer.OrdinalIgnoreCase);
+            this.FieldOrder = new List<string>(fieldOrder ?? Default.Configuration.Web.Login.Form.FieldOrder.ToList());
         }
 
         public WebLoginRouteFormConfiguration(WebLoginRouteFormConfiguration existing)

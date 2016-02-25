@@ -23,17 +23,17 @@ namespace Stormpath.Configuration.Abstractions.Model
     public sealed class WebLoginRouteConfiguration
     {
         public WebLoginRouteConfiguration(
-            WebLoginRouteFormConfiguration form,
-            string view,
-            string nextUri,
-            bool? enabled,
-            string uri)
+            WebLoginRouteFormConfiguration form = null,
+            string view = null,
+            string nextUri = null,
+            bool? enabled = null,
+            string uri = null)
         {
-            this.Form = new WebLoginRouteFormConfiguration(form);
-            this.View = view;
-            this.NextUri = nextUri;
-            this.Enabled = enabled;
-            this.Uri = uri;
+            this.Form = new WebLoginRouteFormConfiguration(form ?? Default.Configuration.Web.Login.Form);
+            this.View = view ?? Default.Configuration.Web.Login.View;
+            this.NextUri = nextUri ?? Default.Configuration.Web.Login.NextUri;
+            this.Enabled = enabled ?? Default.Configuration.Web.Login.Enabled;
+            this.Uri = uri ?? Default.Configuration .Web.Login.Uri;
         }
 
         public WebLoginRouteConfiguration(WebLoginRouteConfiguration existing)

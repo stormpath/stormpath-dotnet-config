@@ -22,11 +22,11 @@ namespace Stormpath.Configuration.Abstractions.Model
     public sealed class WebOauth2PasswordGrantConfiguration
     {
         public WebOauth2PasswordGrantConfiguration(
-            bool? enabled,
-            WebOauth2TokenValidationStrategy validationStrategy)
+            bool? enabled = null,
+            WebOauth2TokenValidationStrategy? validationStrategy = null)
         {
-            this.Enabled = enabled;
-            this.ValidationStrategy = validationStrategy;
+            this.Enabled = enabled ?? Default.Configuration.Web.Oauth2.Password.Enabled;
+            this.ValidationStrategy = validationStrategy ?? Default.Configuration.Web.Oauth2.Password.ValidationStrategy;
         }
 
         public WebOauth2PasswordGrantConfiguration(WebOauth2PasswordGrantConfiguration existing)

@@ -21,10 +21,12 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class ApplicationConfiguration
     {
-        public ApplicationConfiguration(string name, string href)
+        public ApplicationConfiguration
+            (string name = null,
+            string href = null)
         {
-            this.Name = name;
-            this.Href = href;
+            this.Name = name ?? Default.Configuration.Application.Name;
+            this.Href = href ?? Default.Configuration.Application.Href;
         }
 
         public ApplicationConfiguration(ApplicationConfiguration existing)

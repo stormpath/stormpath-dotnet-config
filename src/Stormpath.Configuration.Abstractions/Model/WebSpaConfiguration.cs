@@ -23,16 +23,16 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// If the developer wants our integration to serve their Single Page
     /// Application (SPA) in response to HTML requests for our default routes,
     /// such as <c>/login</c>, then they will need to enable this feature and tell us
-    /// where the root of their SPA is.  This is likely a file path on the filesystem.
+    /// where the root of their SPA is.  This is likely a file path on the file system.
     /// </remarks>
     public sealed class WebSpaConfiguration
     {
         public WebSpaConfiguration(
-            bool? enabled,
-            string view)
+            bool? enabled = null,
+            string view = null)
         {
-            this.Enabled = enabled;
-            this.View = view;
+            this.Enabled = enabled ?? Default.Configuration.Web.Spa.Enabled;
+            this.View = view ?? Default.Configuration.Web.Spa.View;
         }
 
         public WebSpaConfiguration(WebSpaConfiguration existing)

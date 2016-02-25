@@ -22,15 +22,15 @@ namespace Stormpath.Configuration.Abstractions.Model
     public sealed class ClientProxyConfiguration
     {
         public ClientProxyConfiguration(
-            int? port,
-            string host,
-            string username,
-            string password)
+            int? port = null,
+            string host = null,
+            string username = null,
+            string password = null)
         {
-            this.Port = port;
-            this.Host = host;
-            this.Username = username;
-            this.Password = password;
+            this.Port = port ?? Default.Configuration.Client.Proxy.Port;
+            this.Host = host ?? Default.Configuration.Client.Proxy.Host;
+            this.Username = username ?? Default.Configuration.Client.Proxy.Username;
+            this.Password = password ?? Default.Configuration.Client.Proxy.Password;
         }
 
         public ClientProxyConfiguration(ClientProxyConfiguration existing)

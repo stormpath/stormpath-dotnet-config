@@ -22,15 +22,15 @@ namespace Stormpath.Configuration.Abstractions.Model
     public sealed class WebVerifyEmailRouteConfiguration
     {
         public WebVerifyEmailRouteConfiguration(
-            string view,
-            string nextUri,
-            bool? enabled,
-            string uri)
+            string view = null,
+            string nextUri = null,
+            bool? enabled = null,
+            string uri = null)
         {
-            this.View = view;
-            this.NextUri = nextUri;
-            this.Enabled = enabled;
-            this.Uri = uri;
+            this.View = view ?? Default.Configuration.Web.VerifyEmail.View;
+            this.NextUri = nextUri ?? Default.Configuration.Web.VerifyEmail.NextUri;
+            this.Enabled = enabled ?? Default.Configuration.Web.VerifyEmail.Enabled;
+            this.Uri = uri ?? Default.Configuration.Web.VerifyEmail.Uri;
         }
 
         public WebVerifyEmailRouteConfiguration(WebVerifyEmailRouteConfiguration existing)

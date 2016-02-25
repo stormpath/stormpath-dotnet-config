@@ -24,13 +24,13 @@ namespace Stormpath.Configuration.Abstractions.Model
     public sealed class ClientCacheManagerConfiguration
     {
         public ClientCacheManagerConfiguration(
-            int? defaultTimeToLive,
-            int? defaultTimeToIdle,
-            IDictionary<string, ClientCacheConfiguration> caches)
+            int? defaultTimeToLive = null,
+            int? defaultTimeToIdle = null,
+            IDictionary<string, ClientCacheConfiguration> caches = null)
         {
-            this.DefaultTtl = defaultTimeToLive;
-            this.DefaultTti = defaultTimeToIdle;
-            this.Caches = new Dictionary<string, ClientCacheConfiguration>(caches ?? new Dictionary<string, ClientCacheConfiguration>());
+            this.DefaultTtl = defaultTimeToLive ?? Default.Configuration.Client.CacheManager.DefaultTtl;
+            this.DefaultTti = defaultTimeToIdle ?? Default.Configuration.Client.CacheManager.DefaultTti;
+            this.Caches = new Dictionary<string, ClientCacheConfiguration>(caches ?? Default.Configuration.Client.CacheManager.Caches.ToDictionary());
         }
 
         public ClientCacheManagerConfiguration(ClientCacheManagerConfiguration existing)

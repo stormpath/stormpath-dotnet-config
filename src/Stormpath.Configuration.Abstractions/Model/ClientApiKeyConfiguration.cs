@@ -21,11 +21,14 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class ClientApiKeyConfiguration
     {
-        public ClientApiKeyConfiguration(string file, string id, string secret)
+        public ClientApiKeyConfiguration(
+            string file = null,
+            string id = null,
+            string secret = null)
         {
-            this.File = file;
-            this.Id = id;
-            this.Secret = secret;
+            this.File = file ?? Default.Configuration.Client.ApiKey.File;
+            this.Id = id ?? Default.Configuration.Client.ApiKey.Id;
+            this.Secret = secret ?? Default.Configuration.Client.ApiKey.Secret;
         }
 
         public ClientApiKeyConfiguration(ClientApiKeyConfiguration existing)

@@ -22,15 +22,15 @@ namespace Stormpath.Configuration.Abstractions.Model
     public sealed class WebForgotPasswordRouteConfiguration
     {
         public WebForgotPasswordRouteConfiguration(
-            string view,
-            string nextUri,
-            bool? enabled,
-            string uri)
+            string view = null,
+            string nextUri = null,
+            bool? enabled = null,
+            string uri = null)
         {
-            this.View = view;
-            this.NextUri = nextUri;
-            this.Enabled = enabled;
-            this.Uri = uri;
+            this.View = view ?? Default.Configuration.Web.ForgotPassword.View;
+            this.NextUri = nextUri ?? Default.Configuration.Web.ForgotPassword.NextUri;
+            this.Enabled = enabled ?? Default.Configuration.Web.ForgotPassword.Enabled;
+            this.Uri = uri ?? Default.Configuration.Web.ForgotPassword.Uri;
         }
 
         public WebForgotPasswordRouteConfiguration(WebForgotPasswordRouteConfiguration existing)

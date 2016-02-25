@@ -22,15 +22,15 @@ namespace Stormpath.Configuration.Abstractions.Model
     public sealed class WebOauth2RouteConfiguration
     {
         public WebOauth2RouteConfiguration(
-            WebOauth2ClientCredentialsGrantConfiguration clientCredentialsGrant,
-            WebOauth2PasswordGrantConfiguration passwordGrant,
-            bool? enabled,
-            string uri)
+            WebOauth2ClientCredentialsGrantConfiguration clientCredentialsGrant = null,
+            WebOauth2PasswordGrantConfiguration passwordGrant = null,
+            bool? enabled = null,
+            string uri = null)
         {
-            this.Client_Credentials = new WebOauth2ClientCredentialsGrantConfiguration(clientCredentialsGrant);
-            this.Password = new WebOauth2PasswordGrantConfiguration(passwordGrant);
-            this.Enabled = enabled;
-            this.Uri = uri;
+            this.Client_Credentials = new WebOauth2ClientCredentialsGrantConfiguration(clientCredentialsGrant ?? Default.Configuration.Web.Oauth2.Client_Credentials);
+            this.Password = new WebOauth2PasswordGrantConfiguration(passwordGrant ?? Default.Configuration.Web.Oauth2.Password);
+            this.Enabled = enabled ?? Default.Configuration.Web.Oauth2.Enabled;
+            this.Uri = uri ?? Default.Configuration.Web.Oauth2.Uri;
         }
 
         public WebOauth2RouteConfiguration(WebOauth2RouteConfiguration existing)
@@ -58,7 +58,7 @@ namespace Stormpath.Configuration.Abstractions.Model
         public WebOauth2PasswordGrantConfiguration Password { get; internal set; }
 
         /// <summary>
-        /// Determines whether the Change Password route is enabled.
+        /// Determines whether the route is enabled.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.oauth2.enabled</c></remarks>
         public bool? Enabled { get; internal set; }

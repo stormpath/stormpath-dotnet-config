@@ -21,7 +21,9 @@ namespace Stormpath.Configuration.Abstractions.Model
     /// </summary>
     public sealed class ClientCacheConfiguration
     {
-        public ClientCacheConfiguration(int? timeToLive, int? timeToIdle)
+        public ClientCacheConfiguration(
+            int? timeToLive,
+            int? timeToIdle)
         {
             this.Ttl = timeToLive;
             this.Tti = timeToIdle;

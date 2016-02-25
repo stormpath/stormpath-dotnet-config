@@ -22,11 +22,11 @@ namespace Stormpath.Configuration.Abstractions.Model
     public sealed class WebOauth2ClientCredentialsGrantConfiguration
     {
         public WebOauth2ClientCredentialsGrantConfiguration(
-            bool? enabled,
-            WebOauth2TokenConfiguration accessToken)
+            bool? enabled = null,
+            WebOauth2TokenConfiguration accessToken = null)
         {
-            this.Enabled = enabled;
-            this.AccessToken = new WebOauth2TokenConfiguration(accessToken);
+            this.Enabled = enabled ?? Default.Configuration.Web.Oauth2.Client_Credentials.Enabled;
+            this.AccessToken = new WebOauth2TokenConfiguration(accessToken ?? Default.Configuration.Web.Oauth2.Client_Credentials.AccessToken);
         }
 
         public WebOauth2ClientCredentialsGrantConfiguration(WebOauth2ClientCredentialsGrantConfiguration existing)

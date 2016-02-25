@@ -22,19 +22,19 @@ namespace Stormpath.Configuration.Abstractions.Model
     public sealed class WebRegisterRouteConfiguration
     {
         public WebRegisterRouteConfiguration(
-            bool autoLogin,
-            WebRegisterRouteFormConfiguration form,
-            string view,
-            string nextUri,
-            bool? enabled,
-            string uri)
+            bool? autoLogin = null,
+            WebRegisterRouteFormConfiguration form = null,
+            string view = null,
+            string nextUri = null,
+            bool? enabled = null,
+            string uri = null)
         {
-            this.AutoLogin = autoLogin;
-            this.Form = new WebRegisterRouteFormConfiguration(form);
-            this.View = view;
-            this.NextUri = nextUri;
-            this.Enabled = enabled;
-            this.Uri = uri;
+            this.AutoLogin = autoLogin ?? Default.Configuration.Web.Register.AutoLogin;
+            this.Form = new WebRegisterRouteFormConfiguration(form ?? Default.Configuration.Web.Register.Form);
+            this.View = view ?? Default.Configuration.Web.Register.View;
+            this.NextUri = nextUri ?? Default.Configuration.Web.Register.NextUri;
+            this.Enabled = enabled ?? Default.Configuration.Web.Register.Enabled;
+            this.Uri = uri ?? Default.Configuration.Web.Register.Uri;
         }
 
         public WebRegisterRouteConfiguration(WebRegisterRouteConfiguration existing)

@@ -26,41 +26,41 @@ namespace Stormpath.Configuration.Abstractions.Model
     public sealed class WebConfiguration
     {
         public WebConfiguration(
-            string basePath,
-            WebOauth2RouteConfiguration oauth2Route,
-            IDictionary<string, bool> expand,
-            WebCookieConfiguration accessTokenCookie,
-            WebCookieConfiguration refreshTokenCookie,
-            IList<string> produces,
-            WebRegisterRouteConfiguration registerRoute,
-            WebVerifyEmailRouteConfiguration verifyRoute,
-            WebLoginRouteConfiguration loginRoute,
-            WebLogoutRouteConfiguration logoutRoute,
-            WebForgotPasswordRouteConfiguration forgotPasswordRoute,
-            WebChangePasswordRouteConfiguration changePasswordRoute,
-            WebIdSiteRouteConfiguration idSiteRoute,
-            IDictionary<string, WebSocialProviderConfiguration> social,
-            WebMeRouteConfiguration meRoute,
-            WebSpaConfiguration spa,
-            WebUnauthorizedConfiguration unauthorizedRoute)
+            string basePath = null,
+            WebOauth2RouteConfiguration oauth2Route = null,
+            IDictionary<string, bool> expand = null,
+            WebCookieConfiguration accessTokenCookie = null,
+            WebCookieConfiguration refreshTokenCookie = null,
+            IList<string> produces = null,
+            WebRegisterRouteConfiguration registerRoute = null,
+            WebVerifyEmailRouteConfiguration verifyRoute = null,
+            WebLoginRouteConfiguration loginRoute = null,
+            WebLogoutRouteConfiguration logoutRoute = null,
+            WebForgotPasswordRouteConfiguration forgotPasswordRoute = null,
+            WebChangePasswordRouteConfiguration changePasswordRoute = null,
+            WebIdSiteRouteConfiguration idSiteRoute = null,
+            IDictionary<string, WebSocialProviderConfiguration> social = null,
+            WebMeRouteConfiguration meRoute = null,
+            WebSpaConfiguration spa = null,
+            WebUnauthorizedConfiguration unauthorizedRoute = null)
         {
-            this.BasePath = basePath;
-            this.Oauth2 = new WebOauth2RouteConfiguration(oauth2Route);
-            this.Expand = new Dictionary<string, bool>(expand ?? new Dictionary<string, bool>(), StringComparer.OrdinalIgnoreCase);
-            this.AccessTokenCookie = new WebCookieConfiguration(accessTokenCookie);
-            this.RefreshTokenCookie = new WebCookieConfiguration(refreshTokenCookie);
-            this.Produces = new List<string>(produces ?? new List<string>());
-            this.Register = new WebRegisterRouteConfiguration(registerRoute);
-            this.VerifyEmail = new WebVerifyEmailRouteConfiguration(verifyRoute);
-            this.Login = new WebLoginRouteConfiguration(loginRoute);
-            this.Logout = new WebLogoutRouteConfiguration(logoutRoute);
-            this.ForgotPassword = new WebForgotPasswordRouteConfiguration(forgotPasswordRoute);
-            this.ChangePassword = new WebChangePasswordRouteConfiguration(changePasswordRoute);
-            this.IdSite = new WebIdSiteRouteConfiguration(idSiteRoute);
-            this.Social = new Dictionary<string, WebSocialProviderConfiguration>(social ?? new Dictionary<string, WebSocialProviderConfiguration>());
-            this.Me = new WebMeRouteConfiguration(meRoute);
-            this.Spa = new WebSpaConfiguration(spa);
-            this.Unauthorized = new WebUnauthorizedConfiguration(unauthorizedRoute);
+            this.BasePath = basePath ?? Default.Configuration.Web.BasePath;
+            this.Oauth2 = new WebOauth2RouteConfiguration(oauth2Route ?? Default.Configuration.Web.Oauth2);
+            this.Expand = new Dictionary<string, bool>(expand ?? Default.Configuration.Web.Expand.ToDictionary(), StringComparer.OrdinalIgnoreCase);
+            this.AccessTokenCookie = new WebCookieConfiguration(accessTokenCookie ?? Default.Configuration.Web.AccessTokenCookie);
+            this.RefreshTokenCookie = new WebCookieConfiguration(refreshTokenCookie ?? Default.Configuration.Web.RefreshTokenCookie);
+            this.Produces = new List<string>(produces ?? Default.Configuration.Web.Produces.ToList());
+            this.Register = new WebRegisterRouteConfiguration(registerRoute ?? Default.Configuration.Web.Register);
+            this.VerifyEmail = new WebVerifyEmailRouteConfiguration(verifyRoute ?? Default.Configuration.Web.VerifyEmail);
+            this.Login = new WebLoginRouteConfiguration(loginRoute ?? Default.Configuration.Web.Login);
+            this.Logout = new WebLogoutRouteConfiguration(logoutRoute ?? Default.Configuration.Web.Logout);
+            this.ForgotPassword = new WebForgotPasswordRouteConfiguration(forgotPasswordRoute ?? Default.Configuration.Web.ForgotPassword);
+            this.ChangePassword = new WebChangePasswordRouteConfiguration(changePasswordRoute ?? Default.Configuration.Web.ChangePassword);
+            this.IdSite = new WebIdSiteRouteConfiguration(idSiteRoute ?? Default.Configuration.Web.IdSite);
+            this.Social = new Dictionary<string, WebSocialProviderConfiguration>(social ?? Default.Configuration.Web.Social.ToDictionary(), StringComparer.OrdinalIgnoreCase);
+            this.Me = new WebMeRouteConfiguration(meRoute ?? Default.Configuration.Web.Me);
+            this.Spa = new WebSpaConfiguration(spa ?? Default.Configuration.Web.Spa);
+            this.Unauthorized = new WebUnauthorizedConfiguration(unauthorizedRoute ?? Default.Configuration.Web.Unauthorized);
         }
 
         public WebConfiguration(WebConfiguration existing)

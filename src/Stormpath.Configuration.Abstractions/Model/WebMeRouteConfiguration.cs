@@ -14,6 +14,7 @@
 // limitations under the License.
 // </copyright>
 
+using System;
 using System.Collections.Generic;
 
 namespace Stormpath.Configuration.Abstractions.Model
@@ -24,13 +25,13 @@ namespace Stormpath.Configuration.Abstractions.Model
     public sealed class WebMeRouteConfiguration
     {
         public WebMeRouteConfiguration(
-            IDictionary<string, bool> expand,
-            bool? enabled,
-            string uri)
+            IDictionary<string, bool> expand = null,
+            bool? enabled = null,
+            string uri = null)
         {
-            this.Expand = new Dictionary<string, bool>(expand ?? new Dictionary<string, bool>());
-            this.Enabled = enabled;
-            this.Uri = uri;
+            this.Expand = new Dictionary<string, bool>(expand ?? Default.Configuration.Web.Me.Expand.ToDictionary(), StringComparer.OrdinalIgnoreCase);
+            this.Enabled = enabled ?? Default.Configuration.Web.Me.Enabled;
+            this.Uri = uri ?? Default.Configuration.Web.Me.Uri;
         }
 
         public WebMeRouteConfiguration(WebMeRouteConfiguration existing)

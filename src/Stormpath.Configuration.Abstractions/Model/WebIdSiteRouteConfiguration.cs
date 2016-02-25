@@ -22,19 +22,19 @@ namespace Stormpath.Configuration.Abstractions.Model
     public sealed class WebIdSiteRouteConfiguration
     {
         public WebIdSiteRouteConfiguration(
-            string loginUri,
-            string forgotUri,
-            string registerUri,
-            string nextUri,
-            bool? enabled,
-            string uri)
+            string loginUri = null,
+            string forgotUri = null,
+            string registerUri = null,
+            string nextUri = null,
+            bool? enabled = null,
+            string uri = null)
         {
-            this.LoginUri = loginUri;
-            this.ForgotUri = forgotUri;
-            this.RegisterUri = registerUri;
-            this.NextUri = nextUri;
-            this.Enabled = enabled;
-            this.Uri = uri;
+            this.LoginUri = loginUri ?? Default.Configuration.Web.IdSite.LoginUri;
+            this.ForgotUri = forgotUri ?? Default.Configuration.Web.IdSite.ForgotUri;
+            this.RegisterUri = registerUri ?? Default.Configuration.Web.IdSite.RegisterUri;
+            this.NextUri = nextUri ?? Default.Configuration.Web.IdSite.NextUri;
+            this.Enabled = enabled ?? Default.Configuration.Web.IdSite.Enabled;
+            this.Uri = uri ?? Default.Configuration.Web.IdSite.Uri;
         }
 
         public WebIdSiteRouteConfiguration(WebIdSiteRouteConfiguration existing)

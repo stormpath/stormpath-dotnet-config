@@ -22,19 +22,19 @@ namespace Stormpath.Configuration.Abstractions.Model
     public sealed class WebChangePasswordRouteConfiguration
     {
         public WebChangePasswordRouteConfiguration(
-            bool autoLogin,
-            string view,
-            string errorUri,
-            string nextUri,
-            bool? enabled,
-            string uri)
+            bool? autoLogin = null,
+            string view = null,
+            string errorUri = null,
+            string nextUri = null,
+            bool? enabled = null,
+            string uri = null)
         {
-            this.AutoLogin = autoLogin;
-            this.View = view;
-            this.ErrorUri = errorUri;
-            this.NextUri = nextUri;
-            this.Enabled = enabled;
-            this.Uri = uri;
+            this.AutoLogin = autoLogin ?? Default.Configuration.Web.ChangePassword.AutoLogin;
+            this.View = view ?? Default.Configuration.Web.ChangePassword.View;
+            this.ErrorUri = errorUri ?? Default.Configuration.Web.ChangePassword.ErrorUri;
+            this.NextUri = nextUri ?? Default.Configuration.Web.ChangePassword.NextUri;
+            this.Enabled = enabled ?? Default.Configuration.Web.ChangePassword.Enabled;
+            this.Uri = uri ?? Default.Configuration.Web.ChangePassword.Uri;
         }
 
         public WebChangePasswordRouteConfiguration(WebChangePasswordRouteConfiguration existing)
