@@ -38,9 +38,9 @@ namespace Stormpath.Configuration.Abstractions
         }
 
         public StormpathConfiguration(StormpathConfiguration existing)
-            : this(client: existing.Client,
-                  application: existing.Application,
-                  web: existing.Web)
+            : this(client: existing?.Client,
+                  application: existing?.Application,
+                  web: existing?.Web)
         {
         }
 

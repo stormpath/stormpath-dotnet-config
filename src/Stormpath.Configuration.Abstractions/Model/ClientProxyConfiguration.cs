@@ -34,10 +34,10 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public ClientProxyConfiguration(ClientProxyConfiguration existing)
-            : this (port: existing.Port,
-                  host: existing.Host,
-                  username: existing.Username,
-                  password: existing.Password)
+            : this (port: existing?.Port,
+                  host: existing?.Host,
+                  username: existing?.Username,
+                  password: existing?.Password)
         {
         }
 

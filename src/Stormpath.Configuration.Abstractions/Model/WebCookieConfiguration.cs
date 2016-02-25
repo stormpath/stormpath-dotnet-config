@@ -36,11 +36,11 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebCookieConfiguration(WebCookieConfiguration existing)
-            : this(name: existing.Name,
-                  httpOnly: existing.HttpOnly,
-                  secure: existing.Secure,
-                  path: existing.Path,
-                  domain: existing.Domain)
+            : this(name: existing?.Name,
+                  httpOnly: existing?.HttpOnly,
+                  secure: existing?.Secure,
+                  path: existing?.Path,
+                  domain: existing?.Domain)
         {
         }
 

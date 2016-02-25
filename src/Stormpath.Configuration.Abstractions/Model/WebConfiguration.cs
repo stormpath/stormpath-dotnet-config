@@ -64,23 +64,23 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebConfiguration(WebConfiguration existing)
-            : this(existing.BasePath,
-                  existing.Oauth2,
-                  existing.Expand.ToDictionary(),
-                  existing.AccessTokenCookie,
-                  existing.RefreshTokenCookie,
-                  existing.Produces.ToList(),
-                  existing.Register,
-                  existing.VerifyEmail,
-                  existing.Login,
-                  existing.Logout,
-                  existing.ForgotPassword,
-                  existing.ChangePassword,
-                  existing.IdSite,
-                  existing.Social.ToDictionary(),
-                  existing.Me,
-                  existing.Spa,
-                  existing.Unauthorized)
+            : this(existing?.BasePath,
+                  existing?.Oauth2,
+                  existing?.Expand.ToDictionary(),
+                  existing?.AccessTokenCookie,
+                  existing?.RefreshTokenCookie,
+                  existing?.Produces.ToList(),
+                  existing?.Register,
+                  existing?.VerifyEmail,
+                  existing?.Login,
+                  existing?.Logout,
+                  existing?.ForgotPassword,
+                  existing?.ChangePassword,
+                  existing?.IdSite,
+                  existing?.Social.ToDictionary(),
+                  existing?.Me,
+                  existing?.Spa,
+                  existing?.Unauthorized)
         {
         }
 

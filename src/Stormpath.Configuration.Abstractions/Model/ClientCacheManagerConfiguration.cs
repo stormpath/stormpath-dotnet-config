@@ -34,9 +34,9 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public ClientCacheManagerConfiguration(ClientCacheManagerConfiguration existing)
-            : this(defaultTimeToLive: existing.DefaultTtl,
-                  defaultTimeToIdle: existing.DefaultTti,
-                  caches: existing.Caches.ToDictionary())
+            : this(defaultTimeToLive: existing?.DefaultTtl,
+                  defaultTimeToIdle: existing?.DefaultTti,
+                  caches: existing?.Caches.ToDictionary())
         {
         }
 

@@ -34,10 +34,10 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebOauth2RouteConfiguration(WebOauth2RouteConfiguration existing)
-            : this(clientCredentialsGrant: existing.Client_Credentials,
-                  passwordGrant: existing.Password,
-                  enabled: existing.Enabled,
-                  uri: existing.Uri)
+            : this(clientCredentialsGrant: existing?.Client_Credentials,
+                  passwordGrant: existing?.Password,
+                  enabled: existing?.Enabled,
+                  uri: existing?.Uri)
         {
         }
 

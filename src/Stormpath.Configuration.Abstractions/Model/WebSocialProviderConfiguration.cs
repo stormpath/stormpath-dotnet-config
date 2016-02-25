@@ -28,7 +28,7 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebSocialProviderConfiguration(WebSocialProviderConfiguration existing)
-            : this(existing.Uri, existing.Scope)
+            : this(existing?.Uri, existing?.Scope)
         {
         }
 

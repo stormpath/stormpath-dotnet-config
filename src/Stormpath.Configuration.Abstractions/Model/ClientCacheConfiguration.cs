@@ -30,8 +30,8 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public ClientCacheConfiguration(ClientCacheConfiguration existing)
-            : this(timeToLive: existing.Ttl,
-                  timeToIdle: existing.Tti)
+            : this(timeToLive: existing?.Ttl,
+                  timeToIdle: existing?.Tti)
         {
         }
 

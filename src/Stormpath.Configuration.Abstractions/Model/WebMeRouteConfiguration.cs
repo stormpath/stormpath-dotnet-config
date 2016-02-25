@@ -35,9 +35,9 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebMeRouteConfiguration(WebMeRouteConfiguration existing)
-            : this(expand: existing.Expand.ToDictionary(),
-                  enabled: existing.Enabled,
-                  uri: existing.Uri)
+            : this(expand: existing?.Expand.ToDictionary(),
+                  enabled: existing?.Enabled,
+                  uri: existing?.Uri)
         {
         }
 

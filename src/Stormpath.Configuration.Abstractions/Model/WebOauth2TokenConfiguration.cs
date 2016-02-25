@@ -27,7 +27,7 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebOauth2TokenConfiguration(WebOauth2TokenConfiguration existing)
-            : this(timeToLive: existing.Ttl)
+            : this(timeToLive: existing?.Ttl)
         {
         }
 

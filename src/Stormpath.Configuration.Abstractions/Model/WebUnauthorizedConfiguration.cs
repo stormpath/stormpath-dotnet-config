@@ -27,7 +27,7 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebUnauthorizedConfiguration(WebUnauthorizedConfiguration existing)
-            : this(view: existing.View)
+            : this(view: existing?.View)
         {
         }
 

@@ -32,9 +32,9 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebLogoutRouteConfiguration(WebLogoutRouteConfiguration existing)
-            : this(nextUri: existing.NextUri,
-                  enabled: existing.Enabled,
-                  uri: existing.Uri)
+            : this(nextUri: existing?.NextUri,
+                  enabled: existing?.Enabled,
+                  uri: existing?.Uri)
         {
         }
 

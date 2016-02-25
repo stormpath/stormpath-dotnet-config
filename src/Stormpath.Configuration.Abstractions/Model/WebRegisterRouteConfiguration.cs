@@ -38,12 +38,12 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebRegisterRouteConfiguration(WebRegisterRouteConfiguration existing)
-            : this(autoLogin: existing.AutoLogin,
-                  form: existing.Form,
-                  view: existing.View,
-                  nextUri: existing.NextUri,
-                  enabled: existing.Enabled,
-                  uri: existing.Uri)
+            : this(autoLogin: existing?.AutoLogin,
+                  form: existing?.Form,
+                  view: existing?.View,
+                  nextUri: existing?.NextUri,
+                  enabled: existing?.Enabled,
+                  uri: existing?.Uri)
         {
         }
 

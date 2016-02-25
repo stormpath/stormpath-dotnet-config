@@ -38,12 +38,12 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public ClientConfiguration(ClientConfiguration existing)
-            : this(apiKey: existing.ApiKey,
-                  cacheManager: existing.CacheManager,
-                  baseUrl: existing.BaseUrl,
-                  connectionTimeout: existing.ConnectionTimeout,
-                  authenticationScheme: existing.AuthenticationScheme,
-                  proxy: existing.Proxy)
+            : this(apiKey: existing?.ApiKey,
+                  cacheManager: existing?.CacheManager,
+                  baseUrl: existing?.BaseUrl,
+                  connectionTimeout: existing?.ConnectionTimeout,
+                  authenticationScheme: existing?.AuthenticationScheme,
+                  proxy: existing?.Proxy)
         {
         }
 

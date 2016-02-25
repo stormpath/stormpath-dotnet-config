@@ -37,11 +37,11 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebLoginRouteConfiguration(WebLoginRouteConfiguration existing)
-            : this(form: existing.Form,
-                  view: existing.View,
-                  nextUri: existing.NextUri,
-                  enabled: existing.Enabled,
-                  uri: existing.Uri)
+            : this(form: existing?.Form,
+                  view: existing?.View,
+                  nextUri: existing?.NextUri,
+                  enabled: existing?.Enabled,
+                  uri: existing?.Uri)
         {
         }
 

@@ -83,6 +83,16 @@ namespace Stormpath.Configuration.Test
             ValidateConfig(config);
         }
 
+        [Fact]
+        public void Null_configuration_loads_defaults()
+        {
+            var config = ConfigurationLoader.Load(new StormpathConfiguration(
+                new Abstractions.Model.ClientConfiguration(
+                    new Abstractions.Model.ClientApiKeyConfiguration(id: "default-foobar", secret: "default-secret123!"))));
+
+            ValidateConfig(config);
+        }
+
         private static void ValidateConfig(StormpathConfiguration config)
         {
             // Client section

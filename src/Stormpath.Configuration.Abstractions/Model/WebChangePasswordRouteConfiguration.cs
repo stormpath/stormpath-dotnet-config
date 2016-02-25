@@ -38,12 +38,12 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebChangePasswordRouteConfiguration(WebChangePasswordRouteConfiguration existing)
-            : this(autoLogin: existing.AutoLogin,
-                  view: existing.View,
-                  errorUri: existing.ErrorUri,
-                  nextUri: existing.NextUri,
-                  enabled: existing.Enabled,
-                  uri: existing.Uri)
+            : this(autoLogin: existing?.AutoLogin,
+                  view: existing?.View,
+                  errorUri: existing?.ErrorUri,
+                  nextUri: existing?.NextUri,
+                  enabled: existing?.Enabled,
+                  uri: existing?.Uri)
         {
         }
 

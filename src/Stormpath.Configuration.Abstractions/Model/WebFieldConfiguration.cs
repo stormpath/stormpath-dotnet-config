@@ -36,11 +36,11 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebFieldConfiguration(WebFieldConfiguration existing)
-            : this(enabled: existing.Enabled,
-                  label: existing.Label,
-                  placeholder: existing.Placeholder,
-                  required: existing.Required,
-                  type: existing.Type)
+            : this(enabled: existing?.Enabled ?? true,
+                  label: existing?.Label,
+                  placeholder: existing?.Placeholder,
+                  required: existing?.Required ?? true,
+                  type: existing?.Type)
         {
         }
 

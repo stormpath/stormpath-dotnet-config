@@ -34,10 +34,10 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebForgotPasswordRouteConfiguration(WebForgotPasswordRouteConfiguration existing)
-            : this(view: existing.View,
-                  nextUri: existing.NextUri,
-                  enabled: existing.Enabled,
-                  uri: existing.Uri)
+            : this(view: existing?.View,
+                  nextUri: existing?.NextUri,
+                  enabled: existing?.Enabled,
+                  uri: existing?.Uri)
         {
         }
 

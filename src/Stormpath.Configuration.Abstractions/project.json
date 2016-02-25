@@ -29,6 +29,6 @@
   "tooling": {
     "defaultNamespace": "Stormpath.Configuration.Abstractions"
   },
-  "version": "1.0.3",
+  "version": "1.0.4",
   "xmlDoc":  true
 }

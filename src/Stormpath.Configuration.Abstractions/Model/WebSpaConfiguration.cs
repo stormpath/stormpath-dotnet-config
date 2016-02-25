@@ -36,8 +36,8 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebSpaConfiguration(WebSpaConfiguration existing)
-            : this(enabled: existing.Enabled,
-                  view: existing.View)
+            : this(enabled: existing?.Enabled,
+                  view: existing?.View)
         {
         }
 

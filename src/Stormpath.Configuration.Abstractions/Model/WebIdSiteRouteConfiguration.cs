@@ -38,12 +38,12 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebIdSiteRouteConfiguration(WebIdSiteRouteConfiguration existing)
-            : this(loginUri: existing.LoginUri,
-                  forgotUri: existing.ForgotUri,
-                  registerUri: existing.RegisterUri,
-                  nextUri: existing.NextUri,
-                  enabled: existing.Enabled,
-                  uri: existing.Uri)
+            : this(loginUri: existing?.LoginUri,
+                  forgotUri: existing?.ForgotUri,
+                  registerUri: existing?.RegisterUri,
+                  nextUri: existing?.NextUri,
+                  enabled: existing?.Enabled,
+                  uri: existing?.Uri)
         {
         }
 

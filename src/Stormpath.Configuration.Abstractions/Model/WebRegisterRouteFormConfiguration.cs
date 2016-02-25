@@ -34,8 +34,8 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebRegisterRouteFormConfiguration(WebRegisterRouteFormConfiguration existing)
-            : this(fields: existing.Fields.ToDictionary(),
-                  fieldOrder: existing.FieldOrder.ToList())
+            : this(fields: existing?.Fields.ToDictionary(),
+                  fieldOrder: existing?.FieldOrder.ToList())
         {
         }
 

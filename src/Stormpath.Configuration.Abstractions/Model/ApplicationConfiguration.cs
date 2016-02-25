@@ -30,8 +30,8 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public ApplicationConfiguration(ApplicationConfiguration existing)
-            : this(name: existing.Name,
-                  href: existing.Href)
+            : this(name: existing?.Name,
+                  href: existing?.Href)
         {
         }
        

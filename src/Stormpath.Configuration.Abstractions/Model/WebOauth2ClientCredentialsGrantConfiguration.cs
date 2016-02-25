@@ -30,8 +30,8 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebOauth2ClientCredentialsGrantConfiguration(WebOauth2ClientCredentialsGrantConfiguration existing)
-            : this(enabled: existing.Enabled,
-                  accessToken: existing.AccessToken)
+            : this(enabled: existing?.Enabled,
+                  accessToken: existing?.AccessToken)
         {
         }
 

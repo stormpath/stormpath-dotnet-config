@@ -30,8 +30,8 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public WebOauth2PasswordGrantConfiguration(WebOauth2PasswordGrantConfiguration existing)
-            : this(enabled: existing.Enabled,
-                  validationStrategy: existing.ValidationStrategy)
+            : this(enabled: existing?.Enabled,
+                  validationStrategy: existing?.ValidationStrategy)
         {
         }
 

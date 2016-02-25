@@ -32,9 +32,9 @@ namespace Stormpath.Configuration.Abstractions.Model
         }
 
         public ClientApiKeyConfiguration(ClientApiKeyConfiguration existing)
-            : this(file: existing.File,
-                  id: existing.Id,
-                  secret: existing.Secret)
+            : this(file: existing?.File,
+                  id: existing?.Id,
+                  secret: existing?.Secret)
         {
         }
 
