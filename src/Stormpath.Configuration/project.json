@@ -6,7 +6,7 @@
     "Stormpath.Configuration.Abstractions": "2.0.0",
     "Stormpath.SDK.Abstractions": "0.6.2"
   },
-  "description": "Stormpath configuration loader",
+  "description": "Load Stormpath configuration from various sources.",
   "frameworks": {
     "dnx451": {
       "dependencies": {

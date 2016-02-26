@@ -1,7 +1,7 @@
 {
   "authors": [ "Nate Barbettini" ],
   "copyright": "(c) 2016 Stormpath, Inc.",
-  "description": "Abstractions for the Stormpath.Configuration package",
+  "description": "Abstractions for the Stormpath.Configuration package.",
   "frameworks": {
     "dnx451": { },
     "dotnet5.1": {
