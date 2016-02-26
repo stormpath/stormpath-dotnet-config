@@ -114,12 +114,6 @@ namespace Stormpath.Configuration.Test
                         validationStrategy: WebOauth2TokenValidationStrategy.Remote)
                 ),
 
-                expand: new Dictionary<string, bool>()
-                {
-                    ["customData"] = true,
-                    ["applications"] = true,
-                },
-
                 accessTokenCookie: new WebCookieConfiguration(
                     name: "accessToken",
                     httpOnly: false,
@@ -323,12 +317,6 @@ namespace Stormpath.Configuration.Test
                             enabled = false,
                             validationStrategy = WebOauth2TokenValidationStrategy.Remote
                         }
-                    },
-
-                    expand = new
-                    {
-                        customData = true,
-                        applications = true,
                     },
 
                     accessTokenCookie = new
@@ -537,12 +525,6 @@ namespace Stormpath.Configuration.Test
             config.Web.Oauth2.Client_Credentials.AccessToken.Ttl.Should().Be(3601);
             config.Web.Oauth2.Password.Enabled.Should().BeFalse();
             config.Web.Oauth2.Password.ValidationStrategy.Should().Be(WebOauth2TokenValidationStrategy.Remote);
-
-            config.Web.Expand.ShouldBeEquivalentTo(new Dictionary<string, bool>()
-            {
-                ["customData"] = true,
-                ["applications"] = true,
-            });
 
             config.Web.AccessTokenCookie.Name.Should().Be("accessToken");
             config.Web.AccessTokenCookie.HttpOnly.Should().BeFalse();

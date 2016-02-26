@@ -78,10 +78,6 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
         ""validationStrategy"": ""remote""
       }
     },
-    ""expand"": {
-      ""customData"": true,
-      ""applications"": true
-    },
     ""accessTokenCookie"": {
       ""name"": ""accessToken"",
       ""httpOnly"": false,

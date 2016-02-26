@@ -65,12 +65,6 @@ web:
       enabled: true
       validationStrategy: ""local""
 
-  expand:
-    apiKeys: false
-    customData: true
-    directory: false
-    groups: false
-
   accessTokenCookie:
     name: ""access_token""
     httpOnly: true

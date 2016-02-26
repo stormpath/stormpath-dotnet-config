@@ -148,75 +148,6 @@ namespace Stormpath.Configuration.Test
         }
 
         [Fact]
-        public void Modifying_web_properties_but_not_expand()
-        {
-            var userConfiguration = new
-            {
-                client = new
-                {
-                    apiKey = new
-                    {
-                        id = "modified-foobar",
-                        secret = "modified-barbaz"
-                    },
-                },
-
-                web = new
-                {
-                    basePath = "foobar",
-                }
-            };
-
-            var config = ConfigurationLoader.Load(userConfiguration);
-
-            config.Web.BasePath.Should().Be("foobar");
-
-            // Expand should still be defaults, because we didn't touch it!
-            config.Web.Expand.ShouldBeEquivalentTo(new Dictionary<string, bool>()
-            {
-                ["apiKeys"] = false,
-                ["customData"] = true,
-                ["directory"] = false,
-                ["groups"] = false,
-            });
-        }
-
-        [Fact]
-        public void Modifying_expand_only()
-        {
-            var userConfiguration = new
-            {
-                client = new
-                {
-                    apiKey = new
-                    {
-                        id = "modified-foobar",
-                        secret = "modified-barbaz"
-                    },
-                },
-
-                web = new
-                {
-                    expand = new Dictionary<string, bool>()
-                    {
-                        ["customData"] = true,
-                        ["applications"] = true,
-                    },
-                }
-            };
-
-            var config = ConfigurationLoader.Load(userConfiguration);
-
-            config.Web.BasePath.Should().Be(null); // the default
-
-            config.Web.Expand.ShouldBeEquivalentTo(new Dictionary<string, bool>()
-            {
-                ["customData"] = true,
-                ["applications"] = true,
-            });
-        }
-
-        [Fact]
         public void Modifying_web_properties_but_not_produces()
         {
             var userConfiguration = new
@@ -282,7 +213,7 @@ namespace Stormpath.Configuration.Test
         [Fact]
         public void Default_dictionaries_are_case_insensitive()
         {
-            Default.Configuration.Web.Expand["CustomData"].Should().BeTrue();
+            Default.Configuration.Web.Social["Facebook"].Uri.Should().Be("/callbacks/facebook");
         }
 
         [Fact]
@@ -290,7 +221,7 @@ namespace Stormpath.Configuration.Test
         {
             var config = new StormpathConfiguration(Default.Configuration);
 
-            config.Web.Expand["CustomData"].Should().BeTrue();
+            config.Web.Social["Facebook"].Uri.Should().Be("/callbacks/facebook");
         }
 
         [Fact]
@@ -309,16 +240,19 @@ namespace Stormpath.Configuration.Test
 
                 web = new
                 {
-                    expand = new Dictionary<string, bool>()
+                    social = new
                     {
-                        ["CustomData"] = true,
-                    },
+                        facebook = new
+                        {
+                            uri = "/fb/cb"
+                        }
+                    }
                 }
             };
 
             var config = ConfigurationLoader.Load(userConfiguration);
 
-            config.Web.Expand["customData"].Should().BeTrue();
+            config.Web.Social["Facebook"].Uri.Should().Be("/fb/cb");
         }
 
         /// <summary>

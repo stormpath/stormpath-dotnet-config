@@ -128,16 +128,6 @@ namespace Stormpath.Configuration.Test
             config.Web.Oauth2.Password.Enabled.Should().BeTrue();
             config.Web.Oauth2.Password.ValidationStrategy.Should().Be(Abstractions.Model.WebOauth2TokenValidationStrategy.Local);
 
-            config.Web.Expand.ShouldBeEquivalentTo(new Dictionary<string, bool>()
-            {
-                ["apiKeys"] = false,
-                ["customData"] = true,
-                ["directory"] = false,
-                ["groups"] = false,
-            },
-                opt => opt.WithStrictOrdering()
-            );
-
             config.Web.AccessTokenCookie.Name.Should().Be("access_token");
             config.Web.AccessTokenCookie.HttpOnly.Should().BeTrue();
             config.Web.AccessTokenCookie.Secure.Should().Be(null);

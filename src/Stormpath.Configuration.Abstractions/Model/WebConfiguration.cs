@@ -28,7 +28,6 @@ namespace Stormpath.Configuration.Abstractions.Model
         public WebConfiguration(
             string basePath = null,
             WebOauth2RouteConfiguration oauth2Route = null,
-            IDictionary<string, bool> expand = null,
             WebCookieConfiguration accessTokenCookie = null,
             WebCookieConfiguration refreshTokenCookie = null,
             IList<string> produces = null,
@@ -46,7 +45,6 @@ namespace Stormpath.Configuration.Abstractions.Model
         {
             this.BasePath = basePath ?? Default.Configuration.Web.BasePath;
             this.Oauth2 = new WebOauth2RouteConfiguration(oauth2Route ?? Default.Configuration.Web.Oauth2);
-            this.Expand = new Dictionary<string, bool>(expand ?? Default.Configuration.Web.Expand.ToDictionary(), StringComparer.OrdinalIgnoreCase);
             this.AccessTokenCookie = new WebCookieConfiguration(accessTokenCookie ?? Default.Configuration.Web.AccessTokenCookie);
             this.RefreshTokenCookie = new WebCookieConfiguration(refreshTokenCookie ?? Default.Configuration.Web.RefreshTokenCookie);
             this.Produces = new List<string>(produces ?? Default.Configuration.Web.Produces.ToList());
@@ -66,7 +64,6 @@ namespace Stormpath.Configuration.Abstractions.Model
         public WebConfiguration(WebConfiguration existing)
             : this(existing?.BasePath,
                   existing?.Oauth2,
-                  existing?.Expand.ToDictionary(),
                   existing?.AccessTokenCookie,
                   existing?.RefreshTokenCookie,
                   existing?.Produces.ToList(),
@@ -99,12 +96,6 @@ namespace Stormpath.Configuration.Abstractions.Model
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.oauth2</c></remarks>
         public WebOauth2RouteConfiguration Oauth2 { get; internal set; }
-
-        /// <summary>
-        /// The expansion options configuration.
-        /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.web.expand</c></remarks>
-        public IReadOnlyDictionary<string, bool> Expand { get; internal set; }
 
         /// <summary>
         /// The access token cookie configuration.

@@ -77,14 +77,6 @@ namespace Stormpath.Configuration.Abstractions
                     }
                 },
 
-                Expand = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
-                {
-                    ["apiKeys"] = false,
-                    ["customData"] = true,
-                    ["directory"] = false,
-                    ["groups"] = false
-                },
-
                 AccessTokenCookie = new WebCookieConfiguration()
                 {
                     Name = "access_token",
