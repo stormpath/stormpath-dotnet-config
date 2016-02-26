@@ -87,8 +87,8 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
       ""domain"": null
     },
     ""produces"": [
-      ""text/html"",
-      ""application/json""
+      ""application/json"",
+      ""text/html""
     ],
     ""register"": {
       ""enabled"": true,

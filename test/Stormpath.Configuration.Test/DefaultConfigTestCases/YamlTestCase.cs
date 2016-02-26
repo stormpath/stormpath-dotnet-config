@@ -84,8 +84,8 @@ web:
   # not try to handle the response for the given content type.
 
   produces:
-    - text/html
     - application/json
+    - text/html
 
   register:
     enabled: true

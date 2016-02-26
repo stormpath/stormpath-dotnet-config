@@ -97,8 +97,8 @@ namespace Stormpath.Configuration.Abstractions
 
                 Produces = new List<string>()
                 {
-                    "text/html",
                     "application/json",
+                    "text/html"
                 },
 
                 Register = new WebRegisterRouteConfiguration()

@@ -140,14 +140,8 @@ namespace Stormpath.Configuration.Test
             config.Web.RefreshTokenCookie.Path.Should().BeNullOrEmpty();
             config.Web.RefreshTokenCookie.Domain.Should().BeNullOrEmpty();
 
-            config.Web.Produces.ShouldBeEquivalentTo(
-                new List<string>()
-            {
-                "text/html",
-                "application/json",
-            },
-                opt => opt.WithStrictOrdering()
-            );
+            config.Web.Produces[0].Should().Be("application/json");
+            config.Web.Produces[1].Should().Be("text/html");
 
             config.Web.Register.Enabled.Should().BeTrue();
             config.Web.Register.Uri.Should().Be("/register");
