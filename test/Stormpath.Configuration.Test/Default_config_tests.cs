@@ -277,11 +277,15 @@ namespace Stormpath.Configuration.Test
             config.Web.Me.Enabled.Should().BeTrue();
             config.Web.Me.Uri.Should().Be("/me");
 
-            config.Web.Me.Expand.Should().HaveCount(4);
+            config.Web.Me.Expand.Should().HaveCount(8);
             config.Web.Me.Expand["apiKeys"].Should().BeFalse();
+            config.Web.Me.Expand["applications"].Should().BeFalse();
             config.Web.Me.Expand["customData"].Should().BeFalse();
             config.Web.Me.Expand["directory"].Should().BeFalse();
+            config.Web.Me.Expand["groupMemberships"].Should().BeFalse();
             config.Web.Me.Expand["groups"].Should().BeFalse();
+            config.Web.Me.Expand["providerData"].Should().BeFalse();
+            config.Web.Me.Expand["tenant"].Should().BeFalse();
 
             config.Web.Spa.Enabled.Should().BeFalse();
             config.Web.Spa.View.Should().Be("index");

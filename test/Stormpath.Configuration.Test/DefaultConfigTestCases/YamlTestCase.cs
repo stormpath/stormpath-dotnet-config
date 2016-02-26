@@ -237,10 +237,14 @@ web:
     enabled: true
     uri: ""/me""
     expand:
-      apiKeys: false
-      customData: false
-      directory: false
-      groups: false
+        apiKeys: false
+        applications: false
+        customData: false
+        directory: false
+        groupMemberships: false
+        groups: false
+        providerData: false
+        tenant: false
 
   # If the developer wants our integration to serve their Single Page
   # Application (SPA) in response to HTML requests for our default routes,

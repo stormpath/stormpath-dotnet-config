@@ -289,9 +289,13 @@ namespace Stormpath.Configuration.Abstractions
                     Expand = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
                     {
                         ["apiKeys"] = false,
+                        ["applications"] = false,
                         ["customData"] = false,
                         ["directory"] = false,
+                        ["groupMemberships"] = false,
                         ["groups"] = false,
+                        ["providerData"] = false,
+                        ["tenant"] = false
                     },
                     Enabled = true,
                     Uri = "/me",
