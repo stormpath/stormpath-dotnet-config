@@ -43,7 +43,7 @@ namespace Stormpath.Configuration.Abstractions.Model
         /// Determines whether the <c>client_credentials</c> grant type is enabled.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.oauth2.client_credentials.enabled</c></remarks>
-        public bool? Enabled { get; internal set; }
+        public bool Enabled { get; internal set; }
 
         /// <summary>
         /// The Access Token configuration options.

@@ -301,12 +301,6 @@ namespace Stormpath.Configuration.Abstractions
                     Uri = "/me",
                 },
 
-                Spa = new WebSpaConfiguration()
-                {
-                    Enabled = false,
-                    View = "index",
-                },
-
                 Unauthorized = new WebUnauthorizedConfiguration()
                 {
                     View = "unauthorized",

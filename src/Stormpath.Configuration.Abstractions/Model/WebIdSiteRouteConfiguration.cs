@@ -79,7 +79,7 @@ namespace Stormpath.Configuration.Abstractions.Model
         /// Determines whether ID Site is used for login, registration, and password reset.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.idSite.enabled</c></remarks>
-        public bool? Enabled { get; internal set; }
+        public bool Enabled { get; internal set; }
 
         /// <summary>
         /// The URI for this route, or <see langword="null"/> to use the default URI.

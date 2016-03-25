@@ -40,7 +40,6 @@ namespace Stormpath.Configuration.Abstractions.Model
             WebIdSiteRouteConfiguration idSiteRoute = null,
             IDictionary<string, WebSocialProviderConfiguration> social = null,
             WebMeRouteConfiguration meRoute = null,
-            WebSpaConfiguration spa = null,
             WebUnauthorizedConfiguration unauthorizedRoute = null)
         {
             this.BasePath = basePath ?? Default.Configuration.Web.BasePath;
@@ -57,7 +56,6 @@ namespace Stormpath.Configuration.Abstractions.Model
             this.IdSite = new WebIdSiteRouteConfiguration(idSiteRoute ?? Default.Configuration.Web.IdSite);
             this.Social = new Dictionary<string, WebSocialProviderConfiguration>(social ?? Default.Configuration.Web.Social.ToDictionary(), StringComparer.OrdinalIgnoreCase);
             this.Me = new WebMeRouteConfiguration(meRoute ?? Default.Configuration.Web.Me);
-            this.Spa = new WebSpaConfiguration(spa ?? Default.Configuration.Web.Spa);
             this.Unauthorized = new WebUnauthorizedConfiguration(unauthorizedRoute ?? Default.Configuration.Web.Unauthorized);
         }
 
@@ -76,7 +74,6 @@ namespace Stormpath.Configuration.Abstractions.Model
                   existing?.IdSite,
                   existing?.Social.ToDictionary(),
                   existing?.Me,
-                  existing?.Spa,
                   existing?.Unauthorized)
         {
         }
@@ -168,12 +165,6 @@ namespace Stormpath.Configuration.Abstractions.Model
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.me</c></remarks>
         public WebMeRouteConfiguration Me { get; internal set; }
-
-        /// <summary>
-        /// The Single-Page Application configuration.
-        /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.web.spa</c></remarks>
-        public WebSpaConfiguration Spa { get; internal set; }
 
         /// <summary>
         /// The Unauthorized route configuration.

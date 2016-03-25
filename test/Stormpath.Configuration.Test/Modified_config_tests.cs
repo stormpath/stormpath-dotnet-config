@@ -226,10 +226,6 @@ namespace Stormpath.Configuration.Test
                     enabled: false,
                     uri: "/myself"),
 
-                spa: new WebSpaConfiguration(
-                    enabled: true,
-                    view: "indexView"),
-
                 unauthorizedRoute: new WebUnauthorizedConfiguration(
                     view: "unauthorizedView")
             );
@@ -629,9 +625,6 @@ namespace Stormpath.Configuration.Test
 
             config.Web.Me.Expand.Should().HaveCount(1);
             config.Web.Me.Expand["directory"].Should().BeTrue();
-
-            config.Web.Spa.Enabled.Should().BeTrue();
-            config.Web.Spa.View.Should().Be("indexView");
 
             config.Web.Unauthorized.View.Should().Be("unauthorizedView");
         }

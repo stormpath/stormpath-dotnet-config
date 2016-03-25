@@ -23,7 +23,7 @@ namespace Stormpath.Configuration.Abstractions.Model
     {
         public WebCookieConfiguration(
             string name,
-            bool? httpOnly,
+            bool httpOnly,
             bool? secure,
             string path,
             string domain)
@@ -37,7 +37,7 @@ namespace Stormpath.Configuration.Abstractions.Model
 
         public WebCookieConfiguration(WebCookieConfiguration existing)
             : this(name: existing?.Name,
-                  httpOnly: existing?.HttpOnly,
+                  httpOnly: existing?.HttpOnly ?? true,
                   secure: existing?.Secure,
                   path: existing?.Path,
                   domain: existing?.Domain)
@@ -58,7 +58,7 @@ namespace Stormpath.Configuration.Abstractions.Model
         /// The cookie's <c>HttpOnly</c>flag.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.[*Cookie].httpOnly</c></remarks>
-        public bool? HttpOnly { get; internal set; }
+        public bool HttpOnly { get; internal set; }
 
         /// <summary>
         /// The cookie's <c>Secure</c> flag.

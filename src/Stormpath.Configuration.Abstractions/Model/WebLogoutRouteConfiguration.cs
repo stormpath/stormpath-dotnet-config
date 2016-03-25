@@ -52,7 +52,7 @@ namespace Stormpath.Configuration.Abstractions.Model
         /// Determines whether the Logout route is enabled.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.logout.enabled</c></remarks>
-        public bool? Enabled { get; internal set; }
+        public bool Enabled { get; internal set; }
 
         /// <summary>
         /// The URI for this route, or <see langword="null"/> to use the default URI.
