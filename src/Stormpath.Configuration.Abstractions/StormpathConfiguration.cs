@@ -25,7 +25,7 @@ namespace Stormpath.Configuration.Abstractions
     /// This is a strongly-typed version of the Stormpath configuration format.
     /// </remarks>
     /// <see href="https://github.com/stormpath/stormpath-framework-spec/blob/master/configuration.md"/>
-    public sealed class StormpathConfiguration
+    public class StormpathConfiguration
     {
         public StormpathConfiguration(
             ClientConfiguration client = null,
