@@ -39,8 +39,7 @@ namespace Stormpath.Configuration.Abstractions.Model
             WebChangePasswordRouteConfiguration changePasswordRoute = null,
             WebIdSiteRouteConfiguration idSiteRoute = null,
             IDictionary<string, WebSocialProviderConfiguration> social = null,
-            WebMeRouteConfiguration meRoute = null,
-            WebUnauthorizedConfiguration unauthorizedRoute = null)
+            WebMeRouteConfiguration meRoute = null)
         {
             this.BasePath = basePath ?? Default.Configuration.Web.BasePath;
             this.Oauth2 = new WebOauth2RouteConfiguration(oauth2Route ?? Default.Configuration.Web.Oauth2);
@@ -56,7 +55,6 @@ namespace Stormpath.Configuration.Abstractions.Model
             this.IdSite = new WebIdSiteRouteConfiguration(idSiteRoute ?? Default.Configuration.Web.IdSite);
             this.Social = new Dictionary<string, WebSocialProviderConfiguration>(social ?? Default.Configuration.Web.Social.ToDictionary(), StringComparer.OrdinalIgnoreCase);
             this.Me = new WebMeRouteConfiguration(meRoute ?? Default.Configuration.Web.Me);
-            this.Unauthorized = new WebUnauthorizedConfiguration(unauthorizedRoute ?? Default.Configuration.Web.Unauthorized);
         }
 
         public WebConfiguration(WebConfiguration existing)
@@ -73,8 +71,7 @@ namespace Stormpath.Configuration.Abstractions.Model
                   existing?.ChangePassword,
                   existing?.IdSite,
                   existing?.Social.ToDictionary(),
-                  existing?.Me,
-                  existing?.Unauthorized)
+                  existing?.Me)
         {
         }
 
@@ -165,11 +162,5 @@ namespace Stormpath.Configuration.Abstractions.Model
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.me</c></remarks>
         public WebMeRouteConfiguration Me { get; internal set; }
-
-        /// <summary>
-        /// The Unauthorized route configuration.
-        /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.web.unauthorized</c></remarks>
-        public WebUnauthorizedConfiguration Unauthorized { get; internal set; }
     }
 }

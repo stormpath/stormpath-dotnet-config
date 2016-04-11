@@ -224,10 +224,7 @@ namespace Stormpath.Configuration.Test
                         ["directory"] = true
                     },
                     enabled: false,
-                    uri: "/myself"),
-
-                unauthorizedRoute: new WebUnauthorizedConfiguration(
-                    view: "unauthorizedView")
+                    uri: "/myself")
             );
 
             var stormpathConfiguration = new StormpathConfiguration(
@@ -625,8 +622,6 @@ namespace Stormpath.Configuration.Test
 
             config.Web.Me.Expand.Should().HaveCount(1);
             config.Web.Me.Expand["directory"].Should().BeTrue();
-
-            config.Web.Unauthorized.View.Should().Be("unauthorizedView");
         }
     }
 }

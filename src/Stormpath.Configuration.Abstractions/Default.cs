@@ -299,11 +299,6 @@ namespace Stormpath.Configuration.Abstractions
                     },
                     Enabled = true,
                     Uri = "/me",
-                },
-
-                Unauthorized = new WebUnauthorizedConfiguration()
-                {
-                    View = "unauthorized",
                 }
             }
         };

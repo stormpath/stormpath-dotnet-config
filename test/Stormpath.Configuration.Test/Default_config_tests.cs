@@ -280,9 +280,6 @@ namespace Stormpath.Configuration.Test
             config.Web.Me.Expand["groups"].Should().BeFalse();
             config.Web.Me.Expand["providerData"].Should().BeFalse();
             config.Web.Me.Expand["tenant"].Should().BeFalse();
-
-            config.Web.Unauthorized.View.Should().Be("unauthorized");
-
         }
     }
 }
