@@ -1,7 +1,6 @@
-# stormpath-dotnet-config
-*Stormpath configuration loader for .NET*
+# Stormpath .NET Configuration
 
-This library is responsible for loading the Stormpath configuration. It is an internal module used by the [Stormpath .NET SDK](https://github.com/stormpath/stormpath-sdk-dotnet) and [ASP.NET integration](https://github.com/stormpath/stormpath-aspnet), and is not meant for general consumption.
+This library is responsible for loading the Stormpath configuration. It is an internal module used by the [Stormpath .NET SDK](https://github.com/stormpath/stormpath-sdk-dotnet) and [OWIN middleware](https://github.com/stormpath/stormpath-dotnet-owin-middleware), and is not meant for general consumption.
 
 ## Installing
 
@@ -13,7 +12,7 @@ install-package Stormpath.Configuration
 
 To load the default configuration:
 ```csharp
-var configuration = ConfigurationLoader.Load();
+var configuration = ConfigurationLoader.Initialize().Load();
 ```
 
 To load the default configuration and override specific items:
