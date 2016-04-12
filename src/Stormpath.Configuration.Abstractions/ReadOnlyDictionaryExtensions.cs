@@ -19,8 +19,18 @@ using System.Linq;
 
 namespace Stormpath.Configuration.Abstractions
 {
-    internal static class ReadOnlyDictionaryExtensions
+    /// <summary>
+    /// Provides extension methods for <see cref="IReadOnlyDictionary{TKey, TValue}"/>.
+    /// </summary>
+    public static class ReadOnlyDictionaryExtensions
     {
+        /// <summary>
+        /// Creates a <see cref="IDictionary{TKey, TValue}"/> from a <see cref="IReadOnlyDictionary{TKey, TValue}"/>.
+        /// </summary>
+        /// <typeparam name="TKey">The dictionary key type.</typeparam>
+        /// <typeparam name="TValue">The dictionary value type.</typeparam>
+        /// <param name="source">The source dictionary.</param>
+        /// <returns></returns>
         public static IDictionary<TKey, TValue> ToDictionary<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> source)
             => source.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
     }
