@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Stormpath.Configuration.Abstractions;
-using Stormpath.Configuration.Abstractions.Immutable;
 using Xunit;
 
 namespace Stormpath.Configuration.Test
@@ -41,7 +40,7 @@ namespace Stormpath.Configuration.Test
             config.Client.CacheManager.Caches.Should().HaveCount(0);
         }
 
-        private static void ValidateCustomCacheConfiguration(StormpathConfiguration config)
+        private static void ValidateCustomCacheConfiguration(Abstractions.Immutable.StormpathConfiguration config)
         {
             config.Client.CacheManager.DefaultTtl.Should().Be(300); // the default
             config.Client.CacheManager.DefaultTti.Should().Be(300); // the default
@@ -104,10 +103,10 @@ namespace Stormpath.Configuration.Test
 
                     cacheManager = new
                     {
-                        caches = new Dictionary<string, ClientCacheConfiguration>()
+                        caches = new Dictionary<string, Abstractions.Immutable.ClientCacheConfiguration>()
                         {
-                            ["application"] = new ClientCacheConfiguration(timeToLive: 450, timeToIdle: 700),
-                            ["directory"] = new ClientCacheConfiguration(timeToLive: 200, timeToIdle: 300),
+                            ["application"] = new Abstractions.Immutable.ClientCacheConfiguration(timeToLive: 450, timeToIdle: 700),
+                            ["directory"] = new Abstractions.Immutable.ClientCacheConfiguration(timeToLive: 200, timeToIdle: 300),
                         }
                     },
                 }
@@ -133,10 +132,10 @@ namespace Stormpath.Configuration.Test
 
                     cacheManager = new
                     {
-                        caches = new List<KeyValuePair<string, ClientCacheConfiguration>>()
+                        caches = new List<KeyValuePair<string, Abstractions.Immutable.ClientCacheConfiguration>>()
                         {
-                            new KeyValuePair<string, ClientCacheConfiguration>("application", new ClientCacheConfiguration(timeToLive: 450, timeToIdle: 700)),
-                            new KeyValuePair<string, ClientCacheConfiguration>("directory", new ClientCacheConfiguration(timeToLive: 200, timeToIdle: 300)),
+                            new KeyValuePair<string, Abstractions.Immutable.ClientCacheConfiguration>("application", new Abstractions.Immutable.ClientCacheConfiguration(timeToLive: 450, timeToIdle: 700)),
+                            new KeyValuePair<string, Abstractions.Immutable.ClientCacheConfiguration>("directory", new Abstractions.Immutable.ClientCacheConfiguration(timeToLive: 200, timeToIdle: 300)),
                         }
                     },
                 }
@@ -219,7 +218,7 @@ namespace Stormpath.Configuration.Test
         [Fact]
         public void Copied_default_dictionaries_are_case_insensitive()
         {
-            var config = new StormpathConfiguration(Default.Configuration);
+            var config = new Abstractions.Immutable.StormpathConfiguration(Default.Configuration);
 
             config.Web.Social["Facebook"].Uri.Should().Be("/callbacks/facebook");
         }
@@ -262,11 +261,11 @@ namespace Stormpath.Configuration.Test
         [Fact]
         public void VerifyEmail_enabled_behaves_properly()
         {
-            var verifyPasswordNull = new WebVerifyEmailRouteConfiguration(enabled: null);
+            var verifyPasswordNull = new Abstractions.Immutable.WebVerifyEmailRouteConfiguration(enabled: null);
 
             verifyPasswordNull.Enabled.Should().Be(null);
 
-            var verifyPasswordEnabled = new WebVerifyEmailRouteConfiguration(enabled: true);
+            var verifyPasswordEnabled = new Abstractions.Immutable.WebVerifyEmailRouteConfiguration(enabled: true);
 
             verifyPasswordEnabled.Enabled.Should().BeTrue();
         }
@@ -278,11 +277,11 @@ namespace Stormpath.Configuration.Test
         [Fact]
         public void ForgotPassword_enabled_behaves_properly()
         {
-            var forgotPasswordNull = new WebForgotPasswordRouteConfiguration(enabled: null);
+            var forgotPasswordNull = new Abstractions.Immutable.WebForgotPasswordRouteConfiguration(enabled: null);
 
             forgotPasswordNull.Enabled.Should().Be(null);
 
-            var forgotPasswordEnabled = new WebForgotPasswordRouteConfiguration(enabled: true);
+            var forgotPasswordEnabled = new Abstractions.Immutable.WebForgotPasswordRouteConfiguration(enabled: true);
 
             forgotPasswordEnabled.Enabled.Should().BeTrue();
         }
@@ -294,11 +293,11 @@ namespace Stormpath.Configuration.Test
         [Fact]
         public void ChangePassword_enabled_behaves_properly()
         {
-            var changePasswordNull = new WebChangePasswordRouteConfiguration(enabled: null);
+            var changePasswordNull = new Abstractions.Immutable.WebChangePasswordRouteConfiguration(enabled: null);
 
             changePasswordNull.Enabled.Should().Be(null);
 
-            var changePasswordEnabled = new WebChangePasswordRouteConfiguration(enabled: true);
+            var changePasswordEnabled = new Abstractions.Immutable.WebChangePasswordRouteConfiguration(enabled: true);
 
             changePasswordEnabled.Enabled.Should().BeTrue();
         }

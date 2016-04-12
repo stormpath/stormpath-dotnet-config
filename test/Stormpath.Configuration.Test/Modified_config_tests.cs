@@ -19,7 +19,6 @@ using System.IO;
 using FluentAssertions;
 using Microsoft.Extensions.PlatformAbstractions;
 using Stormpath.Configuration.Abstractions;
-using Stormpath.Configuration.Abstractions.Immutable;
 using Xunit;
 
 namespace Stormpath.Configuration.Test
@@ -68,26 +67,26 @@ namespace Stormpath.Configuration.Test
         [Fact]
         public void Supplied_by_instance()
         {
-            var clientConfiguration = new ClientConfiguration(
-                new ClientApiKeyConfiguration(
+            var clientConfiguration = new Abstractions.Immutable.ClientConfiguration(
+                new Abstractions.Immutable.ClientApiKeyConfiguration(
                     file: null,
                     id: "modified-foobar",
                     secret: "modified-barbaz"),
 
-                cacheManager: new ClientCacheManagerConfiguration(
+                cacheManager: new Abstractions.Immutable.ClientCacheManagerConfiguration(
                     defaultTimeToLive: 500,
                     defaultTimeToIdle: 600,
-                    caches: new Dictionary<string, ClientCacheConfiguration>()
+                    caches: new Dictionary<string, Abstractions.Immutable.ClientCacheConfiguration>()
                     {
-                        ["application"] = new ClientCacheConfiguration(timeToLive: 450, timeToIdle: 700),
-                        ["directory"] = new ClientCacheConfiguration(timeToLive: 200, timeToIdle: 300)
+                        ["application"] = new Abstractions.Immutable.ClientCacheConfiguration(timeToLive: 450, timeToIdle: 700),
+                        ["directory"] = new Abstractions.Immutable.ClientCacheConfiguration(timeToLive: 200, timeToIdle: 300)
                     }),
 
                 baseUrl: "https://api.foo.com/v1",
                 connectionTimeout: 90,
                 authenticationScheme: ClientAuthenticationScheme.Basic,
 
-                proxy: new ClientProxyConfiguration(
+                proxy: new Abstractions.Immutable.ClientProxyConfiguration(
                     port: 8088,
                     host: "proxy.foo.bar",
                     username: "foo",
@@ -95,33 +94,33 @@ namespace Stormpath.Configuration.Test
                 )
             );
 
-            var applicationConfiguration = new ApplicationConfiguration(
+            var applicationConfiguration = new Abstractions.Immutable.ApplicationConfiguration(
                 name: "Lightsabers Galore",
                 href: "https://api.foo.com/v1/applications/foo");
 
-            var webConfiguration = new WebConfiguration(
+            var webConfiguration = new Abstractions.Immutable.WebConfiguration(
                 basePath: "#/",
 
-                oauth2Route: new WebOauth2RouteConfiguration(
+                oauth2Route: new Abstractions.Immutable.WebOauth2RouteConfiguration(
                     enabled: false,
                     uri: "/oauth2/token",
-                    clientCredentialsGrant: new WebOauth2ClientCredentialsGrantConfiguration(
+                    clientCredentialsGrant: new Abstractions.Immutable.WebOauth2ClientCredentialsGrantConfiguration(
                         enabled: false,
-                        accessToken: new WebOauth2TokenConfiguration(timeToLive: 3601)
+                        accessToken: new Abstractions.Immutable.WebOauth2TokenConfiguration(timeToLive: 3601)
                     ),
-                    passwordGrant: new WebOauth2PasswordGrantConfiguration(
+                    passwordGrant: new Abstractions.Immutable.WebOauth2PasswordGrantConfiguration(
                         enabled: false,
                         validationStrategy: WebOauth2TokenValidationStrategy.Remote)
                 ),
 
-                accessTokenCookie: new WebCookieConfiguration(
+                accessTokenCookie: new Abstractions.Immutable.WebCookieConfiguration(
                     name: "accessToken",
                     httpOnly: false,
                     secure: false,
                     path: "/",
                     domain: "foo.bar"),
 
-                refreshTokenCookie: new WebCookieConfiguration(
+                refreshTokenCookie: new Abstractions.Immutable.WebCookieConfiguration(
                     name: "refreshToken",
                     httpOnly: false,
                     secure: true,
@@ -133,16 +132,16 @@ namespace Stormpath.Configuration.Test
                     "foo/bar",
                 },
 
-                registerRoute: new WebRegisterRouteConfiguration(
+                registerRoute: new Abstractions.Immutable.WebRegisterRouteConfiguration(
                     enabled: false,
                     uri: "/register1",
                     nextUri: "/1",
                     autoLogin: true,
                     view: "registerView",
-                    form: new WebRegisterRouteFormConfiguration(
-                        fields: new Dictionary<string, WebFieldConfiguration>()
+                    form: new Abstractions.Immutable.WebRegisterRouteFormConfiguration(
+                        fields: new Dictionary<string, Abstractions.Immutable.WebFieldConfiguration>()
                         {
-                            ["email"] = new WebFieldConfiguration(
+                            ["email"] = new Abstractions.Immutable.WebFieldConfiguration(
                                 enabled: false,
                                 label: "I Can Has Email",
                                 placeholder: "Can Has?",
@@ -156,21 +155,21 @@ namespace Stormpath.Configuration.Test
                         })
                     ),
 
-                verifyRoute: new WebVerifyEmailRouteConfiguration(
+                verifyRoute: new Abstractions.Immutable.WebVerifyEmailRouteConfiguration(
                     enabled: true,
                     uri: "/verify1",
                     nextUri: "/login2",
                     view: "verifyView"),
 
-                loginRoute: new WebLoginRouteConfiguration(
+                loginRoute: new Abstractions.Immutable.WebLoginRouteConfiguration(
                     enabled: false,
                     uri: "/login3",
                     nextUri: "/3",
                     view: "loginView",
-                    form: new WebLoginRouteFormConfiguration(
-                        fields: new Dictionary<string, WebFieldConfiguration>()
+                    form: new Abstractions.Immutable.WebLoginRouteFormConfiguration(
+                        fields: new Dictionary<string, Abstractions.Immutable.WebFieldConfiguration>()
                         {
-                            ["password"] = new WebFieldConfiguration(
+                            ["password"] = new Abstractions.Immutable.WebFieldConfiguration(
                                 enabled: false,
                                 label: "Password?",
                                 placeholder: "Maybe",
@@ -183,18 +182,18 @@ namespace Stormpath.Configuration.Test
                         })
                     ),
 
-                logoutRoute: new WebLogoutRouteConfiguration(
+                logoutRoute: new Abstractions.Immutable.WebLogoutRouteConfiguration(
                     enabled: false,
                     uri: "/logout4",
                     nextUri: "/4"),
 
-                forgotPasswordRoute: new WebForgotPasswordRouteConfiguration(
+                forgotPasswordRoute: new Abstractions.Immutable.WebForgotPasswordRouteConfiguration(
                     enabled: true,
                     uri: "/forgot5",
                     view: "forgot-password-view",
                     nextUri: "/login?status=forgot!"),
 
-                changePasswordRoute: new WebChangePasswordRouteConfiguration(
+                changePasswordRoute: new Abstractions.Immutable.WebChangePasswordRouteConfiguration(
                     enabled: true,
                     autoLogin: true,
                     uri: "/change6",
@@ -202,7 +201,7 @@ namespace Stormpath.Configuration.Test
                     view: "change-password-view",
                     errorUri: "/forgot?status=invalid_sptoken:("),
 
-                idSiteRoute: new WebIdSiteRouteConfiguration(
+                idSiteRoute: new Abstractions.Immutable.WebIdSiteRouteConfiguration(
                     enabled: true,
                     uri: "/idSiteResultz",
                     nextUri: "/123",
@@ -210,15 +209,15 @@ namespace Stormpath.Configuration.Test
                     forgotUri: "/#/forgot789",
                     registerUri: "/#/register0"),
 
-                social: new Dictionary<string, WebSocialProviderConfiguration>()
+                social: new Dictionary<string, Abstractions.Immutable.WebSocialProviderConfiguration>()
                 {
-                    ["facebook"] = new WebSocialProviderConfiguration("/callbackz/facebook", "email birthday"),
-                    ["github"] = new WebSocialProviderConfiguration("/callbackz/github", "user:everything"),
-                    ["google"] = new WebSocialProviderConfiguration("/callbackz/google", "email profile friends"),
-                    ["linkedin"] = new WebSocialProviderConfiguration("/callbackz/linkedin", "email interests")
+                    ["facebook"] = new Abstractions.Immutable.WebSocialProviderConfiguration("/callbackz/facebook", "email birthday"),
+                    ["github"] = new Abstractions.Immutable.WebSocialProviderConfiguration("/callbackz/github", "user:everything"),
+                    ["google"] = new Abstractions.Immutable.WebSocialProviderConfiguration("/callbackz/google", "email profile friends"),
+                    ["linkedin"] = new Abstractions.Immutable.WebSocialProviderConfiguration("/callbackz/linkedin", "email interests")
                 },
 
-                meRoute: new WebMeRouteConfiguration(
+                meRoute: new Abstractions.Immutable.WebMeRouteConfiguration(
                     expand: new Dictionary<string, bool>()
                     {
                         ["directory"] = true
@@ -227,7 +226,7 @@ namespace Stormpath.Configuration.Test
                     uri: "/myself")
             );
 
-            var stormpathConfiguration = new StormpathConfiguration(
+            var stormpathConfiguration = new Abstractions.Immutable.StormpathConfiguration(
                 clientConfiguration,
                 applicationConfiguration,
                 webConfiguration);
@@ -481,7 +480,7 @@ namespace Stormpath.Configuration.Test
             ValidateConfig(config);
         }
 
-        private static void ValidateConfig(StormpathConfiguration config)
+        private static void ValidateConfig(Abstractions.Immutable.StormpathConfiguration config)
         {
             // Client section
             config.Client.ApiKey.Id.Should().Be("modified-foobar");

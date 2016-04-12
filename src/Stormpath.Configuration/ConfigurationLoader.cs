@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Stormpath.Configuration.Abstractions.Immutable;
 using Stormpath.Configuration.Abstractions;
 using Stormpath.SDK.Logging;
 using FlexibleConfiguration;
@@ -44,7 +43,7 @@ namespace Stormpath.Configuration
         /// </param>
         /// <param name="logger">An optional logger.</param>
         /// <returns>The local Stormpath configuration.</returns>
-        public static StormpathConfiguration Load(object userConfiguration = null, ILogger logger = null)
+        public static Abstractions.Immutable.StormpathConfiguration Load(object userConfiguration = null, ILogger logger = null)
         {
             return new ConfigurationLoader(userConfiguration, logger)
                 .Load();
@@ -56,11 +55,11 @@ namespace Stormpath.Configuration
             this.logger = logger;
         }
 
-        private StormpathConfiguration Load()
+        private Abstractions.Immutable.StormpathConfiguration Load()
         {
             var compiled = CompileFromSources();
 
-            var output = new StormpathConfiguration(Default.Configuration);
+            var output = new Abstractions.Immutable.StormpathConfiguration(Default.Configuration);
             compiled.GetSection("stormpath").Bind(output);
 
             // Validate API Key and Secret exists
@@ -105,7 +104,7 @@ namespace Stormpath.Configuration
             return builder.Build();
         }
 
-        private void ThrowIfMissingCredentials(ClientConfiguration client)
+        private void ThrowIfMissingCredentials(Abstractions.Immutable.ClientConfiguration client)
         {
             logger.Trace("Validating API credentials");
 
@@ -121,7 +120,7 @@ namespace Stormpath.Configuration
             }
         }
 
-        private void ThrowIfInvalidApplicationHref(ApplicationConfiguration app)
+        private void ThrowIfInvalidApplicationHref(Abstractions.Immutable.ApplicationConfiguration app)
         {
             if (string.IsNullOrEmpty(app?.Href))
             {
