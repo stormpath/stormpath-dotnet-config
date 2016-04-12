@@ -14,7 +14,6 @@
 // limitations under the License.
 // </copyright>
 
-
 namespace Stormpath.Configuration.Abstractions
 {
     /// <summary>
