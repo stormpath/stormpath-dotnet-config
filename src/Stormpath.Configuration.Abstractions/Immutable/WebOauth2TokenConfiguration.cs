@@ -1,4 +1,4 @@
-﻿// <copyright file="WebOauth2TokenValidationStrategy.cs" company="Stormpath, Inc.">
+﻿// <copyright file="WebOauth2TokenConfiguration.cs" company="Stormpath, Inc.">
 // Copyright (c) 2016 Stormpath, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,21 +14,30 @@
 // limitations under the License.
 // </copyright>
 
-namespace Stormpath.Configuration.Abstractions.Model
+namespace Stormpath.Configuration.Abstractions.Immutable
 {
     /// <summary>
-    /// Represents the available OAuth2 token validation strategies.
+    /// Represents configuration options for OAuth2 tokens.
     /// </summary>
-    public enum WebOauth2TokenValidationStrategy
+    public sealed class WebOauth2TokenConfiguration
     {
-        /// <summary>
-        /// Local validation.
-        /// </summary>
-        Local = 0,
+        public WebOauth2TokenConfiguration(int? timeToLive)
+        {
+            this.Ttl = timeToLive;
+        }
+
+        public WebOauth2TokenConfiguration(WebOauth2TokenConfiguration existing)
+            : this(timeToLive: existing?.Ttl)
+        {
+        }
+
+        internal WebOauth2TokenConfiguration()
+        {
+        }
 
         /// <summary>
-        /// Remote validation.
+        /// The token Time-To-Live.
         /// </summary>
-        Remote = 1
+        public int? Ttl { get; internal set; }
     }
 }

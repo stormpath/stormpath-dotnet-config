@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Stormpath.Configuration.Abstractions;
-using Stormpath.Configuration.Abstractions.Model;
+using Stormpath.Configuration.Abstractions.Immutable;
 using Xunit;
 
 namespace Stormpath.Configuration.Test

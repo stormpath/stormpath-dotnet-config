@@ -1,4 +1,4 @@
-﻿// <copyright file="WebOauth2TokenConfiguration.cs" company="Stormpath, Inc.">
+﻿// <copyright file="WebOauth2TokenValidationStrategy.cs" company="Stormpath, Inc.">
 // Copyright (c) 2016 Stormpath, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,30 +14,22 @@
 // limitations under the License.
 // </copyright>
 
-namespace Stormpath.Configuration.Abstractions.Model
+namespace Stormpath.Configuration.Abstractions
 {
     /// <summary>
-    /// Represents configuration options for OAuth2 tokens.
+    /// Represents the available Stormpath API authentication schemes.
     /// </summary>
-    public sealed class WebOauth2TokenConfiguration
+    public enum ClientAuthenticationScheme
     {
-        public WebOauth2TokenConfiguration(int? timeToLive)
-        {
-            this.Ttl = timeToLive;
-        }
-
-        public WebOauth2TokenConfiguration(WebOauth2TokenConfiguration existing)
-            : this(timeToLive: existing?.Ttl)
-        {
-        }
-
-        internal WebOauth2TokenConfiguration()
-        {
-        }
+        /// <summary>
+        /// HTTP Basic authentication.
+        /// </summary>
+        Basic = 0,
 
         /// <summary>
-        /// The token Time-To-Live.
+        /// Stormpath SAuthc1 authentication.
         /// </summary>
-        public int? Ttl { get; internal set; }
+        /// <see cref="http://docs.stormpath.com/rest/product-guide/latest/reference.html#digest-authentication"/>
+        SAuthc1 = 1,
     }
 }

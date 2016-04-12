@@ -14,7 +14,7 @@
 // limitations under the License.
 // </copyright>
 
-namespace Stormpath.Configuration.Abstractions.Model
+namespace Stormpath.Configuration.Abstractions.Immutable
 {
     /// <summary>
     /// Represents configuration options for the ID Site route.

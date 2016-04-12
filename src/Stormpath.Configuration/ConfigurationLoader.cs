@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Stormpath.Configuration.Abstractions.Model;
+using Stormpath.Configuration.Abstractions.Immutable;
 using Stormpath.Configuration.Abstractions;
 using Stormpath.SDK.Logging;
 using FlexibleConfiguration;

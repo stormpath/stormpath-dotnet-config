@@ -17,7 +17,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Stormpath.Configuration.Abstractions.Model
+namespace Stormpath.Configuration.Abstractions.Immutable
 {
     /// <summary>
     /// Represents configuration options for the Me route.

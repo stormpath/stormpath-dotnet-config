@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Stormpath.Configuration.Abstractions;
-using Stormpath.Configuration.Abstractions.Model;
+using Stormpath.Configuration.Abstractions.Immutable;
 
 namespace Stormpath.Configuration.Abstractions
 {

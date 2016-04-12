@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Stormpath.Configuration.Abstractions.Model
+namespace Stormpath.Configuration.Abstractions.Immutable
 {
     /// <summary>
     /// Represents web framework integration configuration options.

@@ -1,4 +1,4 @@
-﻿// <copyright file="WebVerifyEmailRouteConfiguration.cs" company="Stormpath, Inc.">
+﻿// <copyright file="WebForgotPasswordRouteConfiguration.cs" company="Stormpath, Inc.">
 // Copyright (c) 2016 Stormpath, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,26 +14,26 @@
 // limitations under the License.
 // </copyright>
 
-namespace Stormpath.Configuration.Abstractions.Model
+namespace Stormpath.Configuration.Abstractions.Immutable
 {
     /// <summary>
-    /// Represents configuration options for the Verify Email route.
+    /// Represents configuration options for the Forgot Password route.
     /// </summary>
-    public sealed class WebVerifyEmailRouteConfiguration
+    public sealed class WebForgotPasswordRouteConfiguration
     {
-        public WebVerifyEmailRouteConfiguration(
+        public WebForgotPasswordRouteConfiguration(
             string view = null,
             string nextUri = null,
             bool? enabled = null,
             string uri = null)
         {
-            this.View = view ?? Default.Configuration.Web.VerifyEmail.View;
-            this.NextUri = nextUri ?? Default.Configuration.Web.VerifyEmail.NextUri;
-            this.Enabled = enabled ?? Default.Configuration.Web.VerifyEmail.Enabled;
-            this.Uri = uri ?? Default.Configuration.Web.VerifyEmail.Uri;
+            this.View = view ?? Default.Configuration.Web.ForgotPassword.View;
+            this.NextUri = nextUri ?? Default.Configuration.Web.ForgotPassword.NextUri;
+            this.Enabled = enabled ?? Default.Configuration.Web.ForgotPassword.Enabled;
+            this.Uri = uri ?? Default.Configuration.Web.ForgotPassword.Uri;
         }
 
-        public WebVerifyEmailRouteConfiguration(WebVerifyEmailRouteConfiguration existing)
+        public WebForgotPasswordRouteConfiguration(WebForgotPasswordRouteConfiguration existing)
             : this(view: existing?.View,
                   nextUri: existing?.NextUri,
                   enabled: existing?.Enabled,
@@ -41,39 +41,39 @@ namespace Stormpath.Configuration.Abstractions.Model
         {
         }
 
-        internal WebVerifyEmailRouteConfiguration()
+        internal WebForgotPasswordRouteConfiguration()
         {
         }
 
         /// <summary>
         /// The view to use for this route, or <see langword="null"/> to use the default view.
         /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.web.verifyEmail.view</c></remarks>
+        /// <remarks>Configuration path: <c>stormpath.web.forgotPassword.view</c></remarks>
         public string View { get; internal set; }
 
         /// <summary>
         /// The URI to redirect to if the operation is successful.
         /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.web.verifyEmail.nextUri</c></remarks>
+        /// <remarks>Configuration path: <c>stormpath.web.forgotPassword.nextUri</c></remarks>
         public string NextUri { get; internal set; }
 
         /// <summary>
-        /// Determines whether the Change Password route is enabled.
+        /// Determines whether the Forgot Password route is enabled.
         /// </summary>
         /// <remarks>
-        /// Unless explicitly set to <see langword="false"/>, the email
-        /// verification feature will be automatically enabled if the default account
-        /// store for the defined Stormpath application has the email verification workflow enabled.
+        /// Unless explicitly set to <see langword="false"/>, this feature
+        /// will be automatically enabled if the default account store for the defined
+        /// Stormpath application has the password reset workflow enabled.
         /// <para>
-        /// Configuration path: <c>stormpath.web.verifyEmail.enabled</c>
+        /// Configuration path: <c>stormpath.web.forgotPassword.enabled</c>
         /// </para>
         /// </remarks>
         public bool? Enabled { get; internal set; }
 
         /// <summary>
-        /// 
+        /// The URI for this route, or <see langword="null"/> to use the default URI.
         /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.web.verifyEmail.uri</c></remarks>
+        /// <remarks>Configuration path: <c>stormpath.web.forgotPassword.uri</c></remarks>
         public string Uri { get; internal set; }
     }
 }

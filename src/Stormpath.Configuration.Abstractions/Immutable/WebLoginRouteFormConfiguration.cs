@@ -1,4 +1,4 @@
-﻿// <copyright file="WebRegisterRouteFormConfiguration.cs" company="Stormpath, Inc.">
+﻿// <copyright file="WebLoginRouteFormConfiguration.cs" company="Stormpath, Inc.">
 // Copyright (c) 2016 Stormpath, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,41 +18,41 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Stormpath.Configuration.Abstractions.Model
+namespace Stormpath.Configuration.Abstractions.Immutable
 {
     /// <summary>
     /// Represents configuration options for the Login route form.
     /// </summary>
-    public sealed class WebRegisterRouteFormConfiguration
+    public sealed class WebLoginRouteFormConfiguration
     {
-        public WebRegisterRouteFormConfiguration(
+        public WebLoginRouteFormConfiguration(
             IDictionary<string, WebFieldConfiguration> fields = null,
             IList<string> fieldOrder = null)
         {
-            this.Fields = new Dictionary<string, WebFieldConfiguration>(fields ?? Default.Configuration.Web.Register.Form.Fields.ToDictionary(), StringComparer.OrdinalIgnoreCase);
-            this.FieldOrder = new List<string>(fieldOrder ?? Default.Configuration.Web.Register.Form.FieldOrder.ToList());
+            this.Fields = new Dictionary<string, WebFieldConfiguration>(fields ?? Default.Configuration.Web.Login.Form.Fields.ToDictionary(), StringComparer.OrdinalIgnoreCase);
+            this.FieldOrder = new List<string>(fieldOrder ?? Default.Configuration.Web.Login.Form.FieldOrder.ToList());
         }
 
-        public WebRegisterRouteFormConfiguration(WebRegisterRouteFormConfiguration existing)
+        public WebLoginRouteFormConfiguration(WebLoginRouteFormConfiguration existing)
             : this(fields: existing?.Fields.ToDictionary(),
                   fieldOrder: existing?.FieldOrder.ToList())
         {
         }
 
-        internal WebRegisterRouteFormConfiguration()
+        internal WebLoginRouteFormConfiguration()
         {
         }
 
         /// <summary>
         /// The field configuration options.
         /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.web.register.form.fields</c></remarks>
+        /// <remarks>Configuration path: <c>stormpath.web.login.form.fields</c></remarks>
         public IReadOnlyDictionary<string, WebFieldConfiguration> Fields { get; internal set; }
 
         /// <summary>
         /// The field order.
         /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.web.register.form.fieldOrder</c></remarks>
+        /// <remarks>Configuration path: <c>stormpath.web.login.form.fieldOrder</c></remarks>
         public IReadOnlyList<string> FieldOrder { get; internal set; }
     }
 }

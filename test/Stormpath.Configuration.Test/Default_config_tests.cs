@@ -18,7 +18,7 @@ using System.Collections.Generic;
 using System.IO;
 using FluentAssertions;
 using Microsoft.Extensions.PlatformAbstractions;
-using Stormpath.Configuration.Abstractions;
+using Stormpath.Configuration.Abstractions.Immutable;
 using Xunit;
 
 namespace Stormpath.Configuration.Test
@@ -87,8 +87,8 @@ namespace Stormpath.Configuration.Test
         public void Null_configuration_loads_defaults()
         {
             var config = ConfigurationLoader.Load(new StormpathConfiguration(
-                new Abstractions.Model.ClientConfiguration(
-                    new Abstractions.Model.ClientApiKeyConfiguration(id: "default-foobar", secret: "default-secret123!"))));
+                new Abstractions.Immutable.ClientConfiguration(
+                    new Abstractions.Immutable.ClientApiKeyConfiguration(id: "default-foobar", secret: "default-secret123!"))));
 
             ValidateConfig(config);
         }
@@ -107,7 +107,7 @@ namespace Stormpath.Configuration.Test
 
             config.Client.BaseUrl.Should().Be("https://api.stormpath.com/v1");
             config.Client.ConnectionTimeout.Should().Be(30000);
-            config.Client.AuthenticationScheme.Should().Be(Abstractions.Model.ClientAuthenticationScheme.SAuthc1);
+            config.Client.AuthenticationScheme.Should().Be(Abstractions.ClientAuthenticationScheme.SAuthc1);
 
             config.Client.Proxy.Port.Should().Be(null);
             config.Client.Proxy.Host.Should().BeNullOrEmpty();
@@ -126,7 +126,7 @@ namespace Stormpath.Configuration.Test
             config.Web.Oauth2.Client_Credentials.Enabled.Should().BeTrue();
             config.Web.Oauth2.Client_Credentials.AccessToken.Ttl.Should().Be(3600);
             config.Web.Oauth2.Password.Enabled.Should().BeTrue();
-            config.Web.Oauth2.Password.ValidationStrategy.Should().Be(Abstractions.Model.WebOauth2TokenValidationStrategy.Local);
+            config.Web.Oauth2.Password.ValidationStrategy.Should().Be(Abstractions.WebOauth2TokenValidationStrategy.Local);
 
             config.Web.AccessTokenCookie.Name.Should().Be("access_token");
             config.Web.AccessTokenCookie.HttpOnly.Should().BeTrue();

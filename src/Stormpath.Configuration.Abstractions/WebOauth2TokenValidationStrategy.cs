@@ -14,22 +14,21 @@
 // limitations under the License.
 // </copyright>
 
-namespace Stormpath.Configuration.Abstractions.Model
+namespace Stormpath.Configuration.Abstractions
 {
     /// <summary>
-    /// Represents the available Stormpath API authentication schemes.
+    /// Represents the available OAuth2 token validation strategies.
     /// </summary>
-    public enum ClientAuthenticationScheme
+    public enum WebOauth2TokenValidationStrategy
     {
         /// <summary>
-        /// HTTP Basic authentication.
+        /// Local validation.
         /// </summary>
-        Basic = 0,
+        Local = 0,
 
         /// <summary>
-        /// Stormpath SAuthc1 authentication.
+        /// Remote validation.
         /// </summary>
-        /// <see cref="http://docs.stormpath.com/rest/product-guide/latest/reference.html#digest-authentication"/>
-        SAuthc1 = 1,
+        Remote = 1
     }
 }

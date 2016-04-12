@@ -19,7 +19,7 @@ using System.IO;
 using FluentAssertions;
 using Microsoft.Extensions.PlatformAbstractions;
 using Stormpath.Configuration.Abstractions;
-using Stormpath.Configuration.Abstractions.Model;
+using Stormpath.Configuration.Abstractions.Immutable;
 using Xunit;
 
 namespace Stormpath.Configuration.Test
@@ -498,7 +498,7 @@ namespace Stormpath.Configuration.Test
 
             config.Client.BaseUrl.Should().Be("https://api.foo.com/v1");
             config.Client.ConnectionTimeout.Should().Be(90);
-            config.Client.AuthenticationScheme.Should().Be(Abstractions.Model.ClientAuthenticationScheme.Basic);
+            config.Client.AuthenticationScheme.Should().Be(ClientAuthenticationScheme.Basic);
 
             config.Client.Proxy.Port.Should().Be(8088);
             config.Client.Proxy.Host.Should().Be("proxy.foo.bar");

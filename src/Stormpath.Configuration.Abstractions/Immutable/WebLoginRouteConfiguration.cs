@@ -15,7 +15,7 @@
 // </copyright>
 
 
-namespace Stormpath.Configuration.Abstractions.Model
+namespace Stormpath.Configuration.Abstractions.Immutable
 {
     /// <summary>
     /// Represents configuration options for the Login route.

@@ -14,12 +14,10 @@
 // limitations under the License.
 // </copyright>
 
-using Stormpath.Configuration.Abstractions.Model;
-
-namespace Stormpath.Configuration.Abstractions
+namespace Stormpath.Configuration.Abstractions.Immutable
 {
     /// <summary>
-    /// Represents a Stormpath Client configuration.
+    /// Represents an immutable Stormpath Client configuration.
     /// </summary>
     /// <remarks>
     /// This is a strongly-typed version of the Stormpath configuration format.
