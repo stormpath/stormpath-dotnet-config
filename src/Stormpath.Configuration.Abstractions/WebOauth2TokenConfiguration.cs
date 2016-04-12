@@ -1,4 +1,4 @@
-﻿// <copyright file="StormpathConfiguration.cs" company="Stormpath, Inc.">
+﻿// <copyright file="WebOauth2TokenConfiguration.cs" company="Stormpath, Inc.">
 // Copyright (c) 2016 Stormpath, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,16 +14,16 @@
 // limitations under the License.
 // </copyright>
 
-using Stormpath.Configuration.Abstractions;
-
-namespace Stormpath.Configuration
+namespace Stormpath.Configuration.Abstractions
 {
     /// <summary>
-    /// Provides access to the local Stormpath configuration.
+    /// Represents configuration options for OAuth2 tokens.
     /// </summary>
-    public static class ConfigurationLoader
+    public sealed class WebOauth2TokenConfiguration
     {
-        public static IConfigurationLoader Initialize()
-            => new DefaultConfigurationLoader();
+        /// <summary>
+        /// The token Time-To-Live.
+        /// </summary>
+        public int? Ttl { get; set; }
     }
 }

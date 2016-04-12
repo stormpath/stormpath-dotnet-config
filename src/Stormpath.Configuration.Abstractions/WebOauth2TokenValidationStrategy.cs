@@ -1,4 +1,4 @@
-﻿// <copyright file="StormpathConfiguration.cs" company="Stormpath, Inc.">
+﻿// <copyright file="WebOauth2TokenValidationStrategy.cs" company="Stormpath, Inc.">
 // Copyright (c) 2016 Stormpath, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,16 +14,21 @@
 // limitations under the License.
 // </copyright>
 
-using Stormpath.Configuration.Abstractions;
-
-namespace Stormpath.Configuration
+namespace Stormpath.Configuration.Abstractions
 {
     /// <summary>
-    /// Provides access to the local Stormpath configuration.
+    /// Represents the available OAuth2 token validation strategies.
     /// </summary>
-    public static class ConfigurationLoader
+    public enum WebOauth2TokenValidationStrategy
     {
-        public static IConfigurationLoader Initialize()
-            => new DefaultConfigurationLoader();
+        /// <summary>
+        /// Local validation.
+        /// </summary>
+        Local = 0,
+
+        /// <summary>
+        /// Remote validation.
+        /// </summary>
+        Remote = 1
     }
 }

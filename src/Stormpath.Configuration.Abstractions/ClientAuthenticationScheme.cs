@@ -1,4 +1,4 @@
-﻿// <copyright file="StormpathConfiguration.cs" company="Stormpath, Inc.">
+﻿// <copyright file="WebOauth2TokenValidationStrategy.cs" company="Stormpath, Inc.">
 // Copyright (c) 2016 Stormpath, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,16 +14,22 @@
 // limitations under the License.
 // </copyright>
 
-using Stormpath.Configuration.Abstractions;
-
-namespace Stormpath.Configuration
+namespace Stormpath.Configuration.Abstractions
 {
     /// <summary>
-    /// Provides access to the local Stormpath configuration.
+    /// Represents the available Stormpath API authentication schemes.
     /// </summary>
-    public static class ConfigurationLoader
+    public enum ClientAuthenticationScheme
     {
-        public static IConfigurationLoader Initialize()
-            => new DefaultConfigurationLoader();
+        /// <summary>
+        /// HTTP Basic authentication.
+        /// </summary>
+        Basic = 0,
+
+        /// <summary>
+        /// Stormpath SAuthc1 authentication.
+        /// </summary>
+        /// <see cref="http://docs.stormpath.com/rest/product-guide/latest/reference.html#digest-authentication"/>
+        SAuthc1 = 1,
     }
 }

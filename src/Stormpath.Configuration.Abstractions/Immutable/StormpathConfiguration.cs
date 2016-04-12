@@ -14,10 +14,10 @@
 // limitations under the License.
 // </copyright>
 
-namespace Stormpath.Configuration.Abstractions
+namespace Stormpath.Configuration.Abstractions.Immutable
 {
     /// <summary>
-    /// Represents a Stormpath Client configuration.
+    /// Represents an immutable Stormpath Client configuration.
     /// </summary>
     /// <remarks>
     /// This is a strongly-typed version of the Stormpath configuration format.
@@ -25,22 +25,43 @@ namespace Stormpath.Configuration.Abstractions
     /// <see href="https://github.com/stormpath/stormpath-framework-spec/blob/master/configuration.md"/>
     public class StormpathConfiguration
     {
+        public StormpathConfiguration(
+            ClientConfiguration client = null,
+            ApplicationConfiguration application = null,
+            WebConfiguration web = null)
+        {
+            this.Client = new ClientConfiguration(client ?? Default.Configuration.Client);
+            this.Application = new ApplicationConfiguration(application ?? Default.Configuration.Application);
+            this.Web = new WebConfiguration(web ?? Default.Configuration.Web);
+        }
+
+        public StormpathConfiguration(StormpathConfiguration existing)
+            : this(client: existing?.Client,
+                  application: existing?.Application,
+                  web: existing?.Web)
+        {
+        }
+
+        internal StormpathConfiguration()
+        {
+        }
+
         /// <summary>
         /// The Client-specific configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client</c></remarks>
-        public ClientConfiguration Client { get; set; }
+        public ClientConfiguration Client { get; internal set; }
 
         /// <summary>
         /// The Application-specific configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.application</c></remarks>
-        public ApplicationConfiguration Application { get; set; }
+        public ApplicationConfiguration Application { get; internal set; }
 
         /// <summary>
         /// The framework integration-specific configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web</c></remarks>
-        public WebConfiguration Web { get; set; }
+        public WebConfiguration Web { get; internal set; }
     }
 }

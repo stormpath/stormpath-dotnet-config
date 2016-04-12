@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Stormpath.Configuration.Abstractions;
-using Stormpath.Configuration.Abstractions.Model;
 
 namespace Stormpath.Configuration.Abstractions
 {
@@ -13,31 +11,31 @@ namespace Stormpath.Configuration.Abstractions
         /// <summary>
         /// Represents the default configuration defaults for a Stormpath client or integration.
         /// </summary>
-        public static readonly StormpathConfiguration Configuration = new StormpathConfiguration()
+        public static readonly Immutable.StormpathConfiguration Configuration = new Immutable.StormpathConfiguration()
         {
             // Sections from the Stormpath SDK Specification at
             // https://github.com/stormpath/stormpath-sdk-spec/blob/master/specifications/config.md
-            Client = new ClientConfiguration()
+            Client = new Immutable.ClientConfiguration()
             {
-                ApiKey = new ClientApiKeyConfiguration()
+                ApiKey = new Immutable.ClientApiKeyConfiguration()
                 {
                     File = null,
                     Id = null,
                     Secret = null
                 },
 
-                CacheManager = new ClientCacheManagerConfiguration()
+                CacheManager = new Immutable.ClientCacheManagerConfiguration()
                 {
                     DefaultTtl = 300,
                     DefaultTti = 300,
-                    Caches = new Dictionary<string, ClientCacheConfiguration>(StringComparer.OrdinalIgnoreCase) { },
+                    Caches = new Dictionary<string, Immutable.ClientCacheConfiguration>(StringComparer.OrdinalIgnoreCase) { },
                 },
 
                 BaseUrl = "https://api.stormpath.com/v1",
                 ConnectionTimeout = 30 * 1000,
                 AuthenticationScheme = ClientAuthenticationScheme.SAuthc1,
 
-                Proxy = new ClientProxyConfiguration()
+                Proxy = new Immutable.ClientProxyConfiguration()
                 {
                     Port = null,
                     Host = null,
@@ -45,7 +43,7 @@ namespace Stormpath.Configuration.Abstractions
                     Password = null,
                 }
             },
-            Application = new ApplicationConfiguration()
+            Application = new Immutable.ApplicationConfiguration()
             {
                 Name = null,
                 Href = null
@@ -53,31 +51,31 @@ namespace Stormpath.Configuration.Abstractions
 
             // Section from the Stormpath Framework Specification at
             // https://github.com/stormpath/stormpath-framework-spec/blob/master/configuration.md
-            Web = new WebConfiguration()
+            Web = new Immutable.WebConfiguration()
             {
                 BasePath = null,
 
-                Oauth2 = new WebOauth2RouteConfiguration()
+                Oauth2 = new Immutable.WebOauth2RouteConfiguration()
                 {
                     Enabled = true,
                     Uri = "/oauth/token",
-                    Client_Credentials = new WebOauth2ClientCredentialsGrantConfiguration()
+                    Client_Credentials = new Immutable.WebOauth2ClientCredentialsGrantConfiguration()
                     {
                         Enabled = true,
-                        AccessToken = new WebOauth2TokenConfiguration()
+                        AccessToken = new Immutable.WebOauth2TokenConfiguration()
                         {
                             Ttl = 3600
                         }
                     },
 
-                    Password = new WebOauth2PasswordGrantConfiguration()
+                    Password = new Immutable.WebOauth2PasswordGrantConfiguration()
                     {
                         Enabled = true,
                         ValidationStrategy = WebOauth2TokenValidationStrategy.Local
                     }
                 },
 
-                AccessTokenCookie = new WebCookieConfiguration()
+                AccessTokenCookie = new Immutable.WebCookieConfiguration()
                 {
                     Name = "access_token",
                     HttpOnly = true,
@@ -86,7 +84,7 @@ namespace Stormpath.Configuration.Abstractions
                     Domain = null,
                 },
 
-                RefreshTokenCookie = new WebCookieConfiguration()
+                RefreshTokenCookie = new Immutable.WebCookieConfiguration()
                 {
                     Name = "refresh_token",
                     HttpOnly = true,
@@ -101,18 +99,18 @@ namespace Stormpath.Configuration.Abstractions
                     "text/html"
                 },
 
-                Register = new WebRegisterRouteConfiguration()
+                Register = new Immutable.WebRegisterRouteConfiguration()
                 {
                     Enabled = true,
                     Uri = "/register",
                     NextUri = "/",
                     AutoLogin = false,
                     View = "register",
-                    Form = new WebRegisterRouteFormConfiguration()
+                    Form = new Immutable.WebRegisterRouteFormConfiguration()
                     {
-                        Fields = new Dictionary<string, WebFieldConfiguration>(StringComparer.OrdinalIgnoreCase)
+                        Fields = new Dictionary<string, Immutable.WebFieldConfiguration>(StringComparer.OrdinalIgnoreCase)
                         {
-                            ["givenName"] = new WebFieldConfiguration()
+                            ["givenName"] = new Immutable.WebFieldConfiguration()
                             {
                                 Enabled = true,
                                 Label = "First Name",
@@ -120,7 +118,7 @@ namespace Stormpath.Configuration.Abstractions
                                 Required = true,
                                 Type = "text",
                             },
-                            ["middleName"] = new WebFieldConfiguration()
+                            ["middleName"] = new Immutable.WebFieldConfiguration()
                             {
                                 Enabled = false,
                                 Label = "Middle Name",
@@ -128,7 +126,7 @@ namespace Stormpath.Configuration.Abstractions
                                 Required = true,
                                 Type = "text",
                             },
-                            ["surname"] = new WebFieldConfiguration()
+                            ["surname"] = new Immutable.WebFieldConfiguration()
                             {
                                 Enabled = true,
                                 Label = "Last Name",
@@ -136,7 +134,7 @@ namespace Stormpath.Configuration.Abstractions
                                 Required = true,
                                 Type = "text",
                             },
-                            ["username"] = new WebFieldConfiguration()
+                            ["username"] = new Immutable.WebFieldConfiguration()
                             {
                                 Enabled = false,
                                 Label = "Username",
@@ -144,7 +142,7 @@ namespace Stormpath.Configuration.Abstractions
                                 Required = true,
                                 Type = "text",
                             },
-                            ["email"] = new WebFieldConfiguration()
+                            ["email"] = new Immutable.WebFieldConfiguration()
                             {
                                 Enabled = true,
                                 Label = "Email",
@@ -152,7 +150,7 @@ namespace Stormpath.Configuration.Abstractions
                                 Required = true,
                                 Type = "email",
                             },
-                            ["password"] = new WebFieldConfiguration()
+                            ["password"] = new Immutable.WebFieldConfiguration()
                             {
                                 Enabled = true,
                                 Label = "Password",
@@ -160,7 +158,7 @@ namespace Stormpath.Configuration.Abstractions
                                 Required = true,
                                 Type = "password",
                             },
-                            ["confirmPassword"] = new WebFieldConfiguration()
+                            ["confirmPassword"] = new Immutable.WebFieldConfiguration()
                             {
                                 Enabled = false,
                                 Label = "Confirm Password",
@@ -182,7 +180,7 @@ namespace Stormpath.Configuration.Abstractions
                     },
                 },
 
-                VerifyEmail = new WebVerifyEmailRouteConfiguration()
+                VerifyEmail = new Immutable.WebVerifyEmailRouteConfiguration()
                 {
                     Enabled = null,
                     Uri = "/verify",
@@ -190,17 +188,17 @@ namespace Stormpath.Configuration.Abstractions
                     View = "verify"
                 },
 
-                Login = new WebLoginRouteConfiguration()
+                Login = new Immutable.WebLoginRouteConfiguration()
                 {
                     Enabled = true,
                     Uri = "/login",
                     NextUri = "/",
                     View = "login",
-                    Form = new WebLoginRouteFormConfiguration()
+                    Form = new Immutable.WebLoginRouteFormConfiguration()
                     {
-                        Fields = new Dictionary<string, WebFieldConfiguration>(StringComparer.OrdinalIgnoreCase)
+                        Fields = new Dictionary<string, Immutable.WebFieldConfiguration>(StringComparer.OrdinalIgnoreCase)
                         {
-                            ["login"] = new WebFieldConfiguration()
+                            ["login"] = new Immutable.WebFieldConfiguration()
                             {
                                 Enabled = true,
                                 Label = "Username or Email",
@@ -208,7 +206,7 @@ namespace Stormpath.Configuration.Abstractions
                                 Required = true,
                                 Type = "text",
                             },
-                            ["password"] = new WebFieldConfiguration()
+                            ["password"] = new Immutable.WebFieldConfiguration()
                             {
                                 Enabled = true,
                                 Label = "Password",
@@ -225,14 +223,14 @@ namespace Stormpath.Configuration.Abstractions
                     }
                 },
 
-                Logout = new WebLogoutRouteConfiguration()
+                Logout = new Immutable.WebLogoutRouteConfiguration()
                 {
                     Enabled = true,
                     Uri = "/logout",
                     NextUri = "/"
                 },
 
-                ForgotPassword = new WebForgotPasswordRouteConfiguration()
+                ForgotPassword = new Immutable.WebForgotPasswordRouteConfiguration()
                 {
                     Enabled = null,
                     Uri = "/forgot",
@@ -240,7 +238,7 @@ namespace Stormpath.Configuration.Abstractions
                     NextUri = "/login?status=forgot",
                 },
 
-                ChangePassword = new WebChangePasswordRouteConfiguration()
+                ChangePassword = new Immutable.WebChangePasswordRouteConfiguration()
                 {
                     Enabled = null,
                     AutoLogin = false,
@@ -250,7 +248,7 @@ namespace Stormpath.Configuration.Abstractions
                     ErrorUri = "/forgot?status=invalid_sptoken",
                 },
 
-                IdSite = new WebIdSiteRouteConfiguration()
+                IdSite = new Immutable.WebIdSiteRouteConfiguration()
                 {
                     Enabled = false,
                     Uri = "/idSiteResult",
@@ -260,31 +258,31 @@ namespace Stormpath.Configuration.Abstractions
                     RegisterUri = "/#/register"
                 },
 
-                Social = new Dictionary<string, WebSocialProviderConfiguration>(StringComparer.OrdinalIgnoreCase)
+                Social = new Dictionary<string, Immutable.WebSocialProviderConfiguration>(StringComparer.OrdinalIgnoreCase)
                 {
-                    ["facebook"] = new WebSocialProviderConfiguration()
+                    ["facebook"] = new Immutable.WebSocialProviderConfiguration()
                     {
                         Uri = "/callbacks/facebook",
                         Scope = "email"
                     },
-                    ["github"] = new WebSocialProviderConfiguration()
+                    ["github"] = new Immutable.WebSocialProviderConfiguration()
                     {
                         Uri = "/callbacks/github",
                         Scope = "user:email"
                     },
-                    ["google"] = new WebSocialProviderConfiguration()
+                    ["google"] = new Immutable.WebSocialProviderConfiguration()
                     {
                         Uri = "/callbacks/google",
                         Scope = "email profile"
                     },
-                    ["linkedin"] = new WebSocialProviderConfiguration()
+                    ["linkedin"] = new Immutable.WebSocialProviderConfiguration()
                     {
                         Uri = "/callbacks/linkedin",
                         Scope = "r_basicprofile, r_emailaddress"
                     },
                 },
 
-                Me = new WebMeRouteConfiguration()
+                Me = new Immutable.WebMeRouteConfiguration()
                 {
                     Expand = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
                     {

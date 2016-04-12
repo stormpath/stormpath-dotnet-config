@@ -1,4 +1,4 @@
-﻿// <copyright file="StormpathConfiguration.cs" company="Stormpath, Inc.">
+﻿// <copyright file="ApplicationConfiguration.cs" company="Stormpath, Inc.">
 // Copyright (c) 2016 Stormpath, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,16 +14,23 @@
 // limitations under the License.
 // </copyright>
 
-using Stormpath.Configuration.Abstractions;
-
-namespace Stormpath.Configuration
+namespace Stormpath.Configuration.Abstractions
 {
     /// <summary>
-    /// Provides access to the local Stormpath configuration.
+    /// Represents Application configuration options.
     /// </summary>
-    public static class ConfigurationLoader
+    public sealed class ApplicationConfiguration
     {
-        public static IConfigurationLoader Initialize()
-            => new DefaultConfigurationLoader();
+        /// <summary>
+        /// The application's name.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.application.name</c></remarks>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// The application's Stormpath <c>href</c>.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.application.href</c></remarks>
+        public string Href { get; set; }
     }
 }
