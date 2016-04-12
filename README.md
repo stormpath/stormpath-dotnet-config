@@ -1,6 +1,6 @@
 # Stormpath .NET Configuration
 
-This library is responsible for loading the Stormpath configuration. It is an internal module used by the [Stormpath .NET SDK](https://github.com/stormpath/stormpath-sdk-dotnet) and [OWIN middleware](https://github.com/stormpath/stormpath-dotnet-owin-middleware), and is not meant for general consumption.
+This library is responsible for loading the Stormpath configuration. It is an internal module used by the [Stormpath .NET SDK](https://github.com/stormpath/stormpath-sdk-dotnet) and [OWIN middleware](https://github.com/stormpath/stormpath-dotnet-owin-middleware) components, and is not meant for general consumption.
 
 ## Installing
 
