@@ -45,7 +45,7 @@ apiKey.secret = APIKEY_bazquxsecret!";
         [Fact]
         public void Loads_id_and_secret()
         {
-            var config = ConfigurationLoader.Load();
+            var config = ConfigurationLoader.Initialize().Load();
 
             config.Client.ApiKey.Id.Should().Be("APIKEY_FOOBAR");
             config.Client.ApiKey.Secret.Should().Be("APIKEY_bazquxsecret!");
@@ -61,7 +61,7 @@ apiKey.secret = APIKEY_bazquxsecret!";
                 otherPropertiesFilePath, 
                 PropertiesFileContents.Replace("APIKEY_FOOBAR", "OTHER_APIKEY_FOOBAR").Replace("APIKEY_bazquxsecret!", "OTHER_APIKEY_SECRETZ"));
 
-            var config = ConfigurationLoader.Load(userConfiguration: new
+            var config = ConfigurationLoader.Initialize().Load(userConfiguration: new
             {
                 client = new
                 {
@@ -88,7 +88,7 @@ apiKey.secret = APIKEY_bazquxsecret!";
             // Clean up just in case a previous test run didn't
             File.Delete(otherPropertiesFilePath);
 
-            Action load = () => ConfigurationLoader.Load(userConfiguration: new
+            Action load = () => ConfigurationLoader.Initialize().Load(userConfiguration: new
             {
                 client = new
                 {

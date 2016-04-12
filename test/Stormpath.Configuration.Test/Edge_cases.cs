@@ -28,7 +28,7 @@ namespace Stormpath.Configuration.Test
                 }
             };
 
-            var config = ConfigurationLoader.Load(userConfiguration);
+            var config = ConfigurationLoader.Initialize().Load(userConfiguration);
 
             config.Client.CacheManager.DefaultTtl.Should().Be(500);
             config.Client.CacheManager.DefaultTti.Should().Be(600);
@@ -80,7 +80,7 @@ namespace Stormpath.Configuration.Test
                 }
             };
 
-            var config = ConfigurationLoader.Load(userConfiguration);
+            var config = ConfigurationLoader.Initialize().Load(userConfiguration);
 
             ValidateCustomCacheConfiguration(config);
         }
@@ -109,7 +109,7 @@ namespace Stormpath.Configuration.Test
                 }
             };
 
-            var config = ConfigurationLoader.Load(userConfiguration);
+            var config = ConfigurationLoader.Initialize().Load(userConfiguration);
 
             ValidateCustomCacheConfiguration(config);
         }
@@ -138,7 +138,7 @@ namespace Stormpath.Configuration.Test
                 }
             };
 
-            var config = ConfigurationLoader.Load(userConfiguration);
+            var config = ConfigurationLoader.Initialize().Load(userConfiguration);
 
             ValidateCustomCacheConfiguration(config);
         }
@@ -163,7 +163,7 @@ namespace Stormpath.Configuration.Test
                 }
             };
 
-            var config = ConfigurationLoader.Load(userConfiguration);
+            var config = ConfigurationLoader.Initialize().Load(userConfiguration);
 
             // Produces should still be the default, because we didn't touch it!
             config.Web.Produces.ShouldBeEquivalentTo(new List<string>()
@@ -196,7 +196,7 @@ namespace Stormpath.Configuration.Test
                 }
             };
 
-            var config = ConfigurationLoader.Load(userConfiguration);
+            var config = ConfigurationLoader.Initialize().Load(userConfiguration);
 
             config.Web.BasePath.Should().Be(null); // the default
 
@@ -246,7 +246,7 @@ namespace Stormpath.Configuration.Test
                 }
             };
 
-            var config = ConfigurationLoader.Load(userConfiguration);
+            var config = ConfigurationLoader.Initialize().Load(userConfiguration);
 
             config.Web.Social["Facebook"].Uri.Should().Be("/fb/cb");
         }

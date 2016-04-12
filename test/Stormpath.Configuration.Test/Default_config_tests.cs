@@ -58,7 +58,7 @@ namespace Stormpath.Configuration.Test
 
             File.WriteAllText(filePath, testCase.FileContents);
 
-            var config = ConfigurationLoader.Load();
+            var config = ConfigurationLoader.Initialize().Load();
 
             ValidateConfig(config);
 
@@ -68,7 +68,7 @@ namespace Stormpath.Configuration.Test
         [Fact]
         public void Empty_configuration_loads_defaults()
         {
-            var config = ConfigurationLoader.Load(new
+            var config = ConfigurationLoader.Initialize().Load(new
             {
                 client = new
                 {
@@ -86,9 +86,9 @@ namespace Stormpath.Configuration.Test
         [Fact]
         public void Null_configuration_loads_defaults()
         {
-            var config = ConfigurationLoader.Load(new StormpathConfiguration(
-                new Abstractions.Immutable.ClientConfiguration(
-                    new Abstractions.Immutable.ClientApiKeyConfiguration(id: "default-foobar", secret: "default-secret123!"))));
+            var config = ConfigurationLoader.Initialize().Load(new StormpathConfiguration(
+                new ClientConfiguration(
+                    new ClientApiKeyConfiguration(id: "default-foobar", secret: "default-secret123!"))));
 
             ValidateConfig(config);
         }

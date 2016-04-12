@@ -65,7 +65,7 @@ namespace Stormpath.Configuration.Test
         [Fact]
         public void Loads_configuration()
         {
-            var config = ConfigurationLoader.Load();
+            var config = ConfigurationLoader.Initialize().Load();
 
             config.Client.ApiKey.Id.Should().Be("appsetting-id");
             config.Client.ApiKey.Secret.Should().Be("appsetting-secret123!");

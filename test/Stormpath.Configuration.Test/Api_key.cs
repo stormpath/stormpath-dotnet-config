@@ -33,7 +33,7 @@ namespace Stormpath.Configuration.Test
                 }
             };
 
-            var config = ConfigurationLoader.Load(supplied);
+            var config = ConfigurationLoader.Initialize().Load(supplied);
 
             config.Client.ApiKey.Id.Should().Be("legacy-foobar");
             config.Client.ApiKey.Secret.Should().Be("legacy-secret123!");

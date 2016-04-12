@@ -57,7 +57,7 @@ namespace Stormpath.Configuration.Test
 
             File.WriteAllText(filePath, testCase.FileContents);
 
-            var config = ConfigurationLoader.Load();
+            var config = ConfigurationLoader.Initialize().Load();
 
             ValidateConfig(config);
 
@@ -231,7 +231,7 @@ namespace Stormpath.Configuration.Test
                 applicationConfiguration,
                 webConfiguration);
 
-            var config = ConfigurationLoader.Load(stormpathConfiguration);
+            var config = ConfigurationLoader.Initialize().Load(stormpathConfiguration);
 
             ValidateConfig(config);
         }
@@ -423,7 +423,7 @@ namespace Stormpath.Configuration.Test
                 }
             };
 
-            var config = ConfigurationLoader.Load(stormpathConfiguration);
+            var config = ConfigurationLoader.Initialize().Load(stormpathConfiguration);
 
             ValidateConfig(config);
         }
@@ -667,7 +667,7 @@ namespace Stormpath.Configuration.Test
                 }
             };
 
-            var config = ConfigurationLoader.Load(userConfiguration);
+            var config = ConfigurationLoader.Initialize().Load(userConfiguration);
 
             ValidateConfig(config);
         }
