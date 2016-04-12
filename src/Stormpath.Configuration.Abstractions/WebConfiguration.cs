@@ -14,9 +14,7 @@
 // limitations under the License.
 // </copyright>
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Stormpath.Configuration.Abstractions
 {
