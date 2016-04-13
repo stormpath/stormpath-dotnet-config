@@ -23,8 +23,19 @@ using Microsoft.Extensions.PlatformAbstractions;
 
 namespace Stormpath.Configuration
 {
+    /// <summary>
+    /// Contains methods for resolving the home directory path.
+    /// </summary>
     public static class HomePath
     {
+        /// <summary>
+        /// Resolves a collection of path segments with a home directory path.
+        /// </summary>
+        /// <remarks>
+        /// Provides support for Unix-like paths on Windows. If the first path segment starts with <c>~</c>, this segment is prepended with the home directory path.
+        /// </remarks>
+        /// <param name="pathSegments">The path segments.</param>
+        /// <returns>A combined path which includes the resolved home directory path (if necessary).</returns>
         public static string Resolve(params string[] pathSegments)
         {
             if (pathSegments.Length == 0)
@@ -47,7 +58,13 @@ namespace Stormpath.Configuration
             return Path.Combine(newSegments);
         }
 
-        // Copied from DNX's DnuEnvironment.cs
+        /// <summary>
+        /// Resolves the current user's home directory path.
+        /// </summary>
+        /// <remarks>
+        /// Copied from DNX's DnuEnvironment.cs
+        /// </remarks>
+        /// <returns></returns>
         public static string GetHomePath()
         {
 #if NET451

@@ -17,7 +17,7 @@
 namespace Stormpath.Configuration.Abstractions
 {
     /// <summary>
-    /// Loads Stormpath configuration.
+    /// Loads the Stormpath configuration.
     /// </summary>
     public interface IConfigurationLoader
     {

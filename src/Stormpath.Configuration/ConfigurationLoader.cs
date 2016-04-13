@@ -23,6 +23,10 @@ namespace Stormpath.Configuration
     /// </summary>
     public static class ConfigurationLoader
     {
+        /// <summary>
+        /// Initializes the <see cref="ConfigurationLoader"/>.
+        /// </summary>
+        /// <returns>The initialized loader.</returns>
         public static IConfigurationLoader Initialize()
             => new DefaultConfigurationLoader();
     }

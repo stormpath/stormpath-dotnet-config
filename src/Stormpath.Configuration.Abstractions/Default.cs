@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Stormpath.Configuration.Abstractions
 {
     /// <summary>
-    /// Provides configuration defaults.
+    /// Provides Stormpath configuration defaults.
     /// </summary>
     public static class Default
     {
