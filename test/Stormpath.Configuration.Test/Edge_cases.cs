@@ -298,5 +298,29 @@ namespace Stormpath.Configuration.Test
 
             changePasswordEnabled.Enabled.Should().BeTrue();
         }
+
+        /// <summary>
+        /// Regression test for https://github.com/stormpath/stormpath-dotnet-config/issues/23
+        /// </summary>
+        [Fact]
+        public void Mutable_config_initialization_works()
+        {
+            var test = new StormpathConfiguration
+            {
+                Application = new ApplicationConfiguration { Name = "My Application!" },
+                Web = new WebConfiguration
+                {
+                    Login = new WebLoginRouteConfiguration
+                    {
+                        View = "test"
+                    }
+                }
+            };
+
+            var config = ConfigurationLoader.Initialize().Load(test);
+
+            config.Application.Name.Should().Be("My Application!");
+            config.Web.Login.View.Should().Be("test");
+        }
     }
 }
