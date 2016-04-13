@@ -2,7 +2,7 @@
   "authors": [ "Nate Barbettini" ],
   "copyright": "(c) 2016 Stormpath, Inc.",
   "dependencies": {
-    "FlexibleConfiguration": "1.0.2-beta2",
+    "FlexibleConfiguration": "1.0.2",
     "Stormpath.Configuration.Abstractions": "4.0.1"
   },
   "description": "Load Stormpath configuration from various sources.",
