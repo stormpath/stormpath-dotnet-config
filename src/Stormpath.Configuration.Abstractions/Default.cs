@@ -184,7 +184,7 @@ namespace Stormpath.Configuration.Abstractions
                 {
                     Enabled = null,
                     Uri = "/verify",
-                    NextUri = "/login",
+                    NextUri = "/login?status=verified",
                     View = "verify"
                 },
 

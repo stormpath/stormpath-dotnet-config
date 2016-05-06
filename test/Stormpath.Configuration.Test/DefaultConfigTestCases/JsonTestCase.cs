@@ -162,7 +162,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
     ""verifyEmail"": {
       ""enabled"": null,
       ""uri"": ""/verify"",
-      ""nextUri"": ""/login"",
+      ""nextUri"": ""/login?status=verified"",
       ""view"": ""verify""
     },
     ""login"": {

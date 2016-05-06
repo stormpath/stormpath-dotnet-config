@@ -207,7 +207,7 @@ namespace Stormpath.Configuration.Test
 
             config.Web.VerifyEmail.Enabled.Should().Be(null);
             config.Web.VerifyEmail.Uri.Should().Be("/verify");
-            config.Web.VerifyEmail.NextUri.Should().Be("/login");
+            config.Web.VerifyEmail.NextUri.Should().Be("/login?status=verified");
             config.Web.VerifyEmail.View.Should().Be("verify");
 
             config.Web.Login.Enabled.Should().BeTrue();
