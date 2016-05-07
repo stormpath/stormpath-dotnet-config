@@ -248,14 +248,18 @@ namespace Stormpath.Configuration.Abstractions
                     ErrorUri = "/forgot?status=invalid_sptoken",
                 },
 
-                IdSite = new Immutable.WebIdSiteRouteConfiguration()
+                IdSite = new Immutable.WebIdSiteConfiguration()
                 {
                     Enabled = false,
-                    Uri = "/idSiteResult",
-                    NextUri = "/",
                     LoginUri = "",
                     ForgotUri = "/#/forgot",
                     RegisterUri = "/#/register"
+                },
+
+                Callback = new Immutable.WebCallbackRouteConfiguration()
+                {
+                    Enabled = true,
+                    Uri = "/stormpathCallback"
                 },
 
                 Social = new Dictionary<string, Immutable.WebSocialProviderConfiguration>(StringComparer.OrdinalIgnoreCase)

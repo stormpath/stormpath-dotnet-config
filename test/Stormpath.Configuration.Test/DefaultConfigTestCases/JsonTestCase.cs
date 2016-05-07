@@ -214,11 +214,13 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
     },
     ""idSite"": {
       ""enabled"": false,
-      ""uri"": ""/idSiteResult"",
-      ""nextUri"": ""/"",
       ""loginUri"": """",
       ""forgotUri"": ""/#/forgot"",
       ""registerUri"": ""/#/register""
+    },
+    ""callback"": {
+      ""enabled"": true,
+      ""uri"": ""/stormpathCallback""
     },
     ""social"": {
         ""facebook"": {

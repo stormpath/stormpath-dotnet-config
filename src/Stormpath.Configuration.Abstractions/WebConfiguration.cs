@@ -90,10 +90,16 @@ namespace Stormpath.Configuration.Abstractions
         public WebChangePasswordRouteConfiguration ChangePassword { get; set; }
 
         /// <summary>
-        /// The ID Site route configuration.
+        /// The ID Site configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.idSite</c></remarks>
-        public WebIdSiteRouteConfiguration IdSite { get; set; }
+        public WebIdSiteConfiguration IdSite { get; set; }
+
+        /// <summary>
+        /// The Stormpath callback route configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.callback</c></remarks>
+        public WebCallbackRouteConfiguration Callback { get; set; }
 
         /// <summary>
         /// The social providers configuration.

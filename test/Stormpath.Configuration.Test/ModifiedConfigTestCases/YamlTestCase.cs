@@ -165,11 +165,13 @@ web:
   # login, registration, and password reset.
   idSite:
     enabled: true
-    uri: ""/idSiteResultz""
-    nextUri: ""/123""
     loginUri: ""/456""
     forgotUri: ""/#/forgot789""
     registerUri: ""/#/register0""
+
+  callback:
+    enabled: false
+    uri: ""/stormpath-callback""
 
   social:
     facebook:

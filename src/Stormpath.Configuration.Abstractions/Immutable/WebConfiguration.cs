@@ -37,7 +37,8 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             WebLogoutRouteConfiguration logoutRoute = null,
             WebForgotPasswordRouteConfiguration forgotPasswordRoute = null,
             WebChangePasswordRouteConfiguration changePasswordRoute = null,
-            WebIdSiteRouteConfiguration idSiteRoute = null,
+            WebIdSiteConfiguration idSite = null,
+            WebCallbackRouteConfiguration callbackRoute = null,
             IDictionary<string, WebSocialProviderConfiguration> social = null,
             WebMeRouteConfiguration meRoute = null)
         {
@@ -52,7 +53,8 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             this.Logout = new WebLogoutRouteConfiguration(logoutRoute ?? Default.Configuration.Web.Logout);
             this.ForgotPassword = new WebForgotPasswordRouteConfiguration(forgotPasswordRoute ?? Default.Configuration.Web.ForgotPassword);
             this.ChangePassword = new WebChangePasswordRouteConfiguration(changePasswordRoute ?? Default.Configuration.Web.ChangePassword);
-            this.IdSite = new WebIdSiteRouteConfiguration(idSiteRoute ?? Default.Configuration.Web.IdSite);
+            this.IdSite = new WebIdSiteConfiguration(idSite ?? Default.Configuration.Web.IdSite);
+            this.Callback = new WebCallbackRouteConfiguration(callbackRoute ?? Default.Configuration.Web.Callback);
             this.Social = new Dictionary<string, WebSocialProviderConfiguration>(social ?? Default.Configuration.Web.Social.ToDictionary(), StringComparer.OrdinalIgnoreCase);
             this.Me = new WebMeRouteConfiguration(meRoute ?? Default.Configuration.Web.Me);
         }
@@ -70,6 +72,7 @@ namespace Stormpath.Configuration.Abstractions.Immutable
                   existing?.ForgotPassword,
                   existing?.ChangePassword,
                   existing?.IdSite,
+                  existing?.Callback,
                   existing?.Social.ToDictionary(),
                   existing?.Me)
         {
@@ -146,10 +149,16 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         public WebChangePasswordRouteConfiguration ChangePassword { get; internal set; }
 
         /// <summary>
-        /// The ID Site route configuration.
+        /// The ID Site configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.idSite</c></remarks>
-        public WebIdSiteRouteConfiguration IdSite { get; internal set; }
+        public WebIdSiteConfiguration IdSite { get; internal set; }
+
+        /// <summary>
+        /// The Stormpath callback route configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.callback</c></remarks>
+        public WebCallbackRouteConfiguration Callback { get; internal set; }
 
         /// <summary>
         /// The social providers configuration.

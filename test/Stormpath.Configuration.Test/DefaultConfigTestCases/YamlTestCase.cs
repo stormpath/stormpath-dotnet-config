@@ -211,11 +211,13 @@ web:
   # login, registration, and password reset.
   idSite:
     enabled: false
-    uri: ""/idSiteResult""
-    nextUri: ""/""
     loginUri: """"
     forgotUri: ""/#/forgot""
     registerUri: ""/#/register""
+
+  callback:
+    enabled: true
+    uri: ""/stormpathCallback""
 
   social:
     facebook:

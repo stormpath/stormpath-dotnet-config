@@ -252,11 +252,12 @@ namespace Stormpath.Configuration.Test
             config.Web.ChangePassword.ErrorUri.Should().Be("/forgot?status=invalid_sptoken");
 
             config.Web.IdSite.Enabled.Should().BeFalse();
-            config.Web.IdSite.Uri.Should().Be("/idSiteResult");
-            config.Web.IdSite.NextUri.Should().Be("/");
             config.Web.IdSite.LoginUri.Should().BeNullOrEmpty();
             config.Web.IdSite.ForgotUri.Should().Be("/#/forgot");
             config.Web.IdSite.RegisterUri.Should().Be("/#/register");
+
+            config.Web.Callback.Enabled.Should().BeTrue();
+            config.Web.Callback.Uri.Should().Be("/stormpathCallback");
 
             config.Web.Social.Should().HaveCount(4);
             config.Web.Social["facebook"].Uri.Should().Be("/callbacks/facebook");

@@ -201,13 +201,15 @@ namespace Stormpath.Configuration.Test
                     view: "change-password-view",
                     errorUri: "/forgot?status=invalid_sptoken:("),
 
-                idSiteRoute: new Abstractions.Immutable.WebIdSiteRouteConfiguration(
+                idSite: new Abstractions.Immutable.WebIdSiteConfiguration(
                     enabled: true,
-                    uri: "/idSiteResultz",
-                    nextUri: "/123",
                     loginUri: "/456",
                     forgotUri: "/#/forgot789",
                     registerUri: "/#/register0"),
+
+                callbackRoute: new Abstractions.Immutable.WebCallbackRouteConfiguration(
+                    enabled: false,
+                    uri: "/stormpath-callback"),
 
                 social: new Dictionary<string, Abstractions.Immutable.WebSocialProviderConfiguration>()
                 {
@@ -395,14 +397,17 @@ namespace Stormpath.Configuration.Test
                         View = "change-password-view",
                         ErrorUri = "/forgot?status=invalid_sptoken:("
                     },
-                    IdSite = new WebIdSiteRouteConfiguration()
+                    IdSite = new WebIdSiteConfiguration()
                     {
                         Enabled = true,
-                        Uri = "/idSiteResultz",
-                        NextUri = "/123",
                         LoginUri = "/456",
                         ForgotUri = "/#/forgot789",
                         RegisterUri = "/#/register0"
+                    },
+                    Callback = new WebCallbackRouteConfiguration()
+                    {
+                        Enabled = false,
+                        Uri = "/stormpath-callback"
                     },
                     Social = new Dictionary<string, WebSocialProviderConfiguration>()
                     {
@@ -620,6 +625,12 @@ namespace Stormpath.Configuration.Test
                         registerUri = "/#/register0"
                     },
 
+                    callback = new
+                    {
+                        enabled = false,
+                        uri = "/stormpath-callback"
+                    },
+
                     social = new
                     {
                         facebook = new
@@ -793,11 +804,12 @@ namespace Stormpath.Configuration.Test
             config.Web.ChangePassword.ErrorUri.Should().Be("/forgot?status=invalid_sptoken:(");
 
             config.Web.IdSite.Enabled.Should().BeTrue();
-            config.Web.IdSite.Uri.Should().Be("/idSiteResultz");
-            config.Web.IdSite.NextUri.Should().Be("/123");
             config.Web.IdSite.LoginUri.Should().Be("/456");
             config.Web.IdSite.ForgotUri.Should().Be("/#/forgot789");
             config.Web.IdSite.RegisterUri.Should().Be("/#/register0");
+
+            config.Web.Callback.Enabled.Should().BeFalse();
+            config.Web.Callback.Uri.Should().Be("/stormpath-callback");
 
             config.Web.Social["facebook"].Uri.Should().Be("/callbackz/facebook");
             config.Web.Social["facebook"].Scope.Should().Be("email birthday");
