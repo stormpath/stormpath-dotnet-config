@@ -113,6 +113,7 @@ namespace Stormpath.Configuration.Abstractions
                             ["givenName"] = new Immutable.WebFieldConfiguration()
                             {
                                 Enabled = true,
+                                Visible = true,
                                 Label = "First Name",
                                 Placeholder = "First Name",
                                 Required = true,
@@ -121,6 +122,7 @@ namespace Stormpath.Configuration.Abstractions
                             ["middleName"] = new Immutable.WebFieldConfiguration()
                             {
                                 Enabled = false,
+                                Visible = true,
                                 Label = "Middle Name",
                                 Placeholder = "Middle Name",
                                 Required = true,
@@ -129,6 +131,7 @@ namespace Stormpath.Configuration.Abstractions
                             ["surname"] = new Immutable.WebFieldConfiguration()
                             {
                                 Enabled = true,
+                                Visible = true,
                                 Label = "Last Name",
                                 Placeholder = "Last Name",
                                 Required = true,
@@ -137,6 +140,7 @@ namespace Stormpath.Configuration.Abstractions
                             ["username"] = new Immutable.WebFieldConfiguration()
                             {
                                 Enabled = false,
+                                Visible = true,
                                 Label = "Username",
                                 Placeholder = "Username",
                                 Required = true,
@@ -145,6 +149,7 @@ namespace Stormpath.Configuration.Abstractions
                             ["email"] = new Immutable.WebFieldConfiguration()
                             {
                                 Enabled = true,
+                                Visible = true,
                                 Label = "Email",
                                 Placeholder = "Email",
                                 Required = true,
@@ -153,6 +158,7 @@ namespace Stormpath.Configuration.Abstractions
                             ["password"] = new Immutable.WebFieldConfiguration()
                             {
                                 Enabled = true,
+                                Visible = true,
                                 Label = "Password",
                                 Placeholder = "Password",
                                 Required = true,
@@ -161,6 +167,7 @@ namespace Stormpath.Configuration.Abstractions
                             ["confirmPassword"] = new Immutable.WebFieldConfiguration()
                             {
                                 Enabled = false,
+                                Visible = true,
                                 Label = "Confirm Password",
                                 Placeholder = "Confirm Password",
                                 Required = true,
@@ -201,6 +208,7 @@ namespace Stormpath.Configuration.Abstractions
                             ["login"] = new Immutable.WebFieldConfiguration()
                             {
                                 Enabled = true,
+                                Visible = true,
                                 Label = "Username or Email",
                                 Placeholder = "Username or Email",
                                 Required = true,
@@ -209,6 +217,7 @@ namespace Stormpath.Configuration.Abstractions
                             ["password"] = new Immutable.WebFieldConfiguration()
                             {
                                 Enabled = true,
+                                Visible = true,
                                 Label = "Password",
                                 Placeholder = "Password",
                                 Required = true,

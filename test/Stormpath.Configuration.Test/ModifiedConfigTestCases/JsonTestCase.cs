@@ -104,6 +104,7 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
         ""fields"": {
           ""email"": {
             ""enabled"": false,
+            ""visible"": false,
             ""label"": ""I Can Has Email"",
             ""placeholder"": ""Can Has?"",
             ""required"": false,
@@ -132,6 +133,7 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
         ""fields"": {
           ""password"": {
             ""enabled"": false,
+            ""visible"": false,
             ""label"": ""Password?"",
             ""placeholder"": ""Maybe"",
             ""required"": false,

@@ -23,12 +23,14 @@ namespace Stormpath.Configuration.Abstractions.Immutable
     {
         public WebFieldConfiguration(
             bool enabled,
+            bool visible,
             string label,
             string placeholder,
             bool required,
             string type)
         {
             this.Enabled = enabled;
+            this.Visible = visible;
             this.Label = label;
             this.Placeholder = placeholder;
             this.Required = required;
@@ -37,6 +39,7 @@ namespace Stormpath.Configuration.Abstractions.Immutable
 
         public WebFieldConfiguration(WebFieldConfiguration existing)
             : this(enabled: existing?.Enabled ?? true,
+                  visible: existing?.Visible ?? true,
                   label: existing?.Label,
                   placeholder: existing?.Placeholder,
                   required: existing?.Required ?? true,
@@ -51,7 +54,13 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         /// <summary>
         /// Determines whether this field is enabled (shown).
         /// </summary>
+        /// <remarks>If a field is <b>not</b> enabled, the server will error if that field is submitted with a form.</remarks>
         public bool Enabled { get; internal set; }
+
+        /// <summary>
+        /// Determines whether this field is shown on the form.
+        /// </summary>
+        public bool Visible { get; internal set; }
 
         /// <summary>
         /// The label.

@@ -99,6 +99,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
         ""fields"": {
           ""givenName"": {
             ""enabled"": true,
+            ""visible"": true,
             ""label"": ""First Name"",
             ""placeholder"": ""First Name"",
             ""required"": true,
@@ -106,6 +107,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
           },
           ""middleName"": {
             ""enabled"": false,
+            ""visible"": true,
             ""label"": ""Middle Name"",
             ""placeholder"": ""Middle Name"",
             ""required"": true,
@@ -113,6 +115,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
           },
           ""surname"": {
             ""enabled"": true,
+            ""visible"": true,
             ""label"": ""Last Name"",
             ""placeholder"": ""Last Name"",
             ""required"": true,
@@ -120,6 +123,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
           },
           ""username"": {
             ""enabled"": false,
+            ""visible"": true,
             ""label"": ""Username"",
             ""placeholder"": ""Username"",
             ""required"": true,
@@ -127,6 +131,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
           },
           ""email"": {
             ""enabled"": true,
+            ""visible"": true,
             ""label"": ""Email"",
             ""placeholder"": ""Email"",
             ""required"": true,
@@ -134,6 +139,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
           },
           ""password"": {
             ""enabled"": true,
+            ""visible"": true,
             ""label"": ""Password"",
             ""placeholder"": ""Password"",
             ""required"": true,
@@ -141,6 +147,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
           },
           ""confirmPassword"": {
             ""enabled"": false,
+            ""visible"": true,
             ""label"": ""Confirm Password"",
             ""placeholder"": ""Confirm Password"",
             ""required"": true,
@@ -174,6 +181,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
         ""fields"": {
           ""login"": {
             ""enabled"": true,
+            ""visible"": true,
             ""label"": ""Username or Email"",
             ""placeholder"": ""Username or Email"",
             ""required"": true,
@@ -181,6 +189,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
           },
           ""password"": {
             ""enabled"": true,
+            ""visible"": true,
             ""label"": ""Password"",
             ""placeholder"": ""Password"",
             ""required"": true,

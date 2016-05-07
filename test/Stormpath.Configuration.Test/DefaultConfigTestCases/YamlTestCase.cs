@@ -96,42 +96,49 @@ web:
       fields:
         givenName:
           enabled: true
+          visible: true
           label: ""First Name""
           placeholder: ""First Name""
           required: true
           type: ""text""
         middleName:
           enabled: false
+          visible: true
           label: ""Middle Name""
           placeholder: ""Middle Name""
           required: true
           type: ""text""
         surname:
           enabled: true
+          visible: true
           label: ""Last Name""
           placeholder: ""Last Name""
           required: true
           type: ""text""
         username:
           enabled: false
+          visible: true
           label: ""Username""
           placeholder: ""Username""
           required: true
           type: ""text""
         email:
           enabled: true
+          visible: true
           label: ""Email""
           placeholder: ""Email""
           required: true
           type: ""email""
         password:
           enabled: true
+          visible: true
           label: ""Password""
           placeholder: ""Password""
           required: true
           type: ""password""
         confirmPassword:
           enabled: false
+          visible: true
           label: ""Confirm Password""
           placeholder: ""Confirm Password""
           required: true
@@ -165,12 +172,14 @@ web:
       fields:
         login:
           enabled: true
+          visible: true
           label: ""Username or Email""
           placeholder: ""Username or Email""
           required: true
           type: ""text""
         password:
           enabled: true
+          visible: true
           label: ""Password""
           placeholder: ""Password""
           required: true

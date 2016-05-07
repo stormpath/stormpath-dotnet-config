@@ -143,6 +143,7 @@ namespace Stormpath.Configuration.Test
                         {
                             ["email"] = new Abstractions.Immutable.WebFieldConfiguration(
                                 enabled: false,
+                                visible: false,
                                 label: "I Can Has Email",
                                 placeholder: "Can Has?",
                                 required: false,
@@ -171,6 +172,7 @@ namespace Stormpath.Configuration.Test
                         {
                             ["password"] = new Abstractions.Immutable.WebFieldConfiguration(
                                 enabled: false,
+                                visible: false,
                                 label: "Password?",
                                 placeholder: "Maybe",
                                 required: false,
@@ -330,6 +332,7 @@ namespace Stormpath.Configuration.Test
                                 ["email"] = new WebFieldConfiguration()
                                 {
                                     Enabled = false,
+                                    Visible = false,
                                     Label = "I Can Has Email",
                                     Placeholder = "Can Has?",
                                     Required = false,
@@ -362,6 +365,7 @@ namespace Stormpath.Configuration.Test
                                 ["password"] = new WebFieldConfiguration()
                                 {
                                     Enabled = false,
+                                    Visible = false,
                                     Label = "Password?",
                                     Placeholder = "Maybe",
                                     Required = false,
@@ -746,6 +750,7 @@ namespace Stormpath.Configuration.Test
             config.Web.Register.Form.Fields.Should().HaveCount(1);
 
             config.Web.Register.Form.Fields["email"].Enabled.Should().BeFalse();
+            config.Web.Register.Form.Fields["email"].Visible.Should().BeFalse();
             config.Web.Register.Form.Fields["email"].Label.Should().Be("I Can Has Email");
             config.Web.Register.Form.Fields["email"].Placeholder.Should().Be("Can Has?");
             config.Web.Register.Form.Fields["email"].Required.Should().BeFalse();
@@ -769,8 +774,8 @@ namespace Stormpath.Configuration.Test
             config.Web.Login.NextUri.Should().Be("/3");
             config.Web.Login.View.Should().Be("loginView");
 
-            //throw new System.NotImplementedException("should assert the number of fields");
             config.Web.Login.Form.Fields["password"].Enabled.Should().BeFalse();
+            config.Web.Login.Form.Fields["password"].Visible.Should().BeFalse();
             config.Web.Login.Form.Fields["password"].Label.Should().Be("Password?");
             config.Web.Login.Form.Fields["password"].Placeholder.Should().Be("Maybe");
             config.Web.Login.Form.Fields["password"].Required.Should().BeFalse();
