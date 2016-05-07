@@ -197,13 +197,6 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
       ""expand"": {
         ""directory"": true
       }
-    },
-    ""spa"": {
-      ""enabled"": true,
-      ""view"": ""indexView""
-    },
-    ""unauthorized"": {
-      ""view"": ""unauthorizedView""
     }
   }
 }";

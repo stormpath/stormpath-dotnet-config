@@ -261,13 +261,6 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
         ""providerData"": false,
         ""tenant"": false
       }
-    },
-    ""spa"": {
-      ""enabled"": false,
-      ""view"": ""index""
-    },
-    ""unauthorized"": {
-      ""view"": ""unauthorized""
     }
   }
 }";

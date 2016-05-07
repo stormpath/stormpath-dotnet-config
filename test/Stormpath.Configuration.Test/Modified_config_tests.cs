@@ -664,17 +664,6 @@ namespace Stormpath.Configuration.Test
                         {
                             directory = true
                         }
-                    },
-
-                    spa = new
-                    {
-                        enabled = true,
-                        view = "indexView",
-                    },
-
-                    unauthorized = new
-                    {
-                        view = "unauthorizedView",
                     }
                 }
             };
