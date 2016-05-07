@@ -195,7 +195,6 @@ namespace Stormpath.Configuration.Test
 
                 changePasswordRoute: new Abstractions.Immutable.WebChangePasswordRouteConfiguration(
                     enabled: true,
-                    autoLogin: true,
                     uri: "/change6",
                     nextUri: "/login?status=reset?",
                     view: "change-password-view",
@@ -391,7 +390,6 @@ namespace Stormpath.Configuration.Test
                     ChangePassword = new WebChangePasswordRouteConfiguration()
                     {
                         Enabled = true,
-                        AutoLogin = true,
                         Uri = "/change6",
                         NextUri = "/login?status=reset?",
                         View = "change-password-view",
@@ -608,7 +606,6 @@ namespace Stormpath.Configuration.Test
                     changePassword = new
                     {
                         enabled = true,
-                        autoLogin = true,
                         uri = "/change6",
                         nextUri = "/login?status=reset?",
                         view = "change-password-view",
@@ -797,7 +794,6 @@ namespace Stormpath.Configuration.Test
             config.Web.ForgotPassword.View.Should().Be("forgot-password-view");
 
             config.Web.ChangePassword.Enabled.Should().BeTrue();
-            config.Web.ChangePassword.AutoLogin.Should().BeTrue();
             config.Web.ChangePassword.Uri.Should().Be("/change6");
             config.Web.ChangePassword.NextUri.Should().Be("/login?status=reset?");
             config.Web.ChangePassword.View.Should().Be("change-password-view");

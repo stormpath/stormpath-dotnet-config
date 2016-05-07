@@ -156,7 +156,6 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
     },
     ""changePassword"": {
       ""enabled"": true,
-      ""autoLogin"": true,
       ""uri"": ""/change6"",
       ""nextUri"": ""/login?status=reset?"",
       ""view"": ""change-password-view"",

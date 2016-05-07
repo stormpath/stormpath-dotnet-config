@@ -245,7 +245,6 @@ namespace Stormpath.Configuration.Test
             config.Web.ForgotPassword.View.Should().Be("forgot-password");
 
             config.Web.ChangePassword.Enabled.Should().Be(null);
-            config.Web.ChangePassword.AutoLogin.Should().BeFalse();
             config.Web.ChangePassword.Uri.Should().Be("/change");
             config.Web.ChangePassword.NextUri.Should().Be("/login?status=reset");
             config.Web.ChangePassword.View.Should().Be("change-password");

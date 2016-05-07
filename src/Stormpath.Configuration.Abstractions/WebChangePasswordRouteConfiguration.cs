@@ -22,12 +22,6 @@ namespace Stormpath.Configuration.Abstractions
     public sealed class WebChangePasswordRouteConfiguration
     {
         /// <summary>
-        /// Determines whether the user should be automatically logged in after interacting with this route.
-        /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.web.changePassword.autoLogin</c></remarks>
-        public bool AutoLogin { get; set; }
-
-        /// <summary>
         /// The view to use for this route, or <see langword="null"/> to use the default view.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.changePassword.view</c></remarks>

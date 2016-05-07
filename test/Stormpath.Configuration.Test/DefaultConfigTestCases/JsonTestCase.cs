@@ -206,7 +206,6 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
     },
     ""changePassword"": {
       ""enabled"": null,
-      ""autoLogin"": false,
       ""uri"": ""/change"",
       ""nextUri"": ""/login?status=reset"",
       ""view"": ""change-password"",

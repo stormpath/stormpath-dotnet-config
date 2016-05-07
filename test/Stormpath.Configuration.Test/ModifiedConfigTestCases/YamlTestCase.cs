@@ -93,9 +93,6 @@ web:
     enabled: false
     uri: ""/register1""
     nextUri: ""/1""
-    # autoLogin is possible only if the email verification feature is disabled
-    # on the default default account store of the defined Stormpath
-    # application.
     autoLogin: true
     form:
       fields:
@@ -155,7 +152,6 @@ web:
   # Stormpath application has the password reset workflow enabled.
   changePassword:
     enabled: true
-    autoLogin: true
     uri: ""/change6""
     nextUri: ""/login?status=reset?""
     view: ""change-password-view""

@@ -241,7 +241,6 @@ namespace Stormpath.Configuration.Abstractions
                 ChangePassword = new Immutable.WebChangePasswordRouteConfiguration()
                 {
                     Enabled = null,
-                    AutoLogin = false,
                     Uri = "/change",
                     NextUri = "/login?status=reset",
                     View = "change-password",
