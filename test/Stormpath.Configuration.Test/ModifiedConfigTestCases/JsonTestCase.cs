@@ -75,7 +75,7 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
       },
       ""password"": {
         ""enabled"": false,
-        ""validationStrategy"": ""remote""
+        ""validationStrategy"": ""STORMPATH""
       }
     },
     ""accessTokenCookie"": {
