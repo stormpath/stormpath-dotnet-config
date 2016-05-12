@@ -53,6 +53,7 @@ namespace Stormpath.Configuration.Abstractions
             // https://github.com/stormpath/stormpath-framework-spec/blob/master/configuration.md
             Web = new Immutable.WebConfiguration()
             {
+                // The base path is used as the default path for the cookies that are set. If not defined, the default is "/"
                 BasePath = null,
 
                 Oauth2 = new Immutable.WebOauth2RouteConfiguration()
