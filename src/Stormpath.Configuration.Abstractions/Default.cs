@@ -17,6 +17,7 @@ namespace Stormpath.Configuration.Abstractions
             // (https://github.com/stormpath/stormpath-sdk-spec/blob/master/specifications/config.md)
             Client = new Immutable.ClientConfiguration()
             {
+                // The Stormpath credentials to use when connecting to the Stormpath API.
                 ApiKey = new Immutable.ClientApiKeyConfiguration()
                 {
                     File = null,
@@ -24,6 +25,8 @@ namespace Stormpath.Configuration.Abstractions
                     Secret = null
                 },
 
+                // Configures the SDK Client caching layer.
+                // Uses an in-memory cache by default.
                 CacheManager = new Immutable.ClientCacheManagerConfiguration()
                 {
                     Enabled = true,
@@ -32,10 +35,18 @@ namespace Stormpath.Configuration.Abstractions
                     Caches = new Dictionary<string, Immutable.ClientCacheConfiguration>(StringComparer.OrdinalIgnoreCase) { },
                 },
 
+                // The Stormpath Base URL to use.
+                // You shouldn't have to modify this unless you are connecting to Stormpath Enterprise.
                 BaseUrl = "https://api.stormpath.com/v1",
+
+                // The default HTTP connection timeout, in milliseconds.
                 ConnectionTimeout = 30 * 1000,
+
+                // The REST API authentication scheme to use.
+                // SAuthc1  (the default) is more secure, but Basic is required in some hosting scenarios.
                 AuthenticationScheme = ClientAuthenticationScheme.SAuthc1,
 
+                // The HTTP proxy to use, if any.
                 Proxy = new Immutable.ClientProxyConfiguration()
                 {
                     Port = null,
@@ -47,6 +58,8 @@ namespace Stormpath.Configuration.Abstractions
 
             // Framework integration configuration
             // (https://github.com/stormpath/stormpath-framework-spec/blob/master/configuration.md)
+            // Either name or href is required to connect a front-end application to a Stormpath Application.
+            // If left empty, the framework library will attempt to auto-resolve an Application in the current Stormpath Tenant.
             Application = new Immutable.ApplicationConfiguration()
             {
                 Name = null,
@@ -58,13 +71,15 @@ namespace Stormpath.Configuration.Abstractions
             Web = new Immutable.WebConfiguration()
             {
                 // The base path is used as the default path for the cookies that are set.
-                // If not defined, the default is "/".
                 BasePath = "/",
 
+                // The OAuth 2.0 route configuraiton.
                 Oauth2 = new Immutable.WebOauth2RouteConfiguration()
                 {
                     Enabled = true,
                     Uri = "/oauth/token",
+
+                    // The OAuth 2.0 client_credentials grant configuration.
                     Client_Credentials = new Immutable.WebOauth2ClientCredentialsGrantConfiguration()
                     {
                         Enabled = true,
@@ -74,44 +89,76 @@ namespace Stormpath.Configuration.Abstractions
                         }
                     },
 
+                    // The OAuth 2.0 password grant configuration.
                     Password = new Immutable.WebOauth2PasswordGrantConfiguration()
                     {
                         Enabled = true,
+
+                        // Local validation checks the token signature.
+                        // Stormpath (remote) validation makes a network request, but allows for token revocation.
                         ValidationStrategy = WebOauth2TokenValidationStrategy.Local
                     }
                 },
 
+                // The details of the Access Token cookie saved to the user's browser.
                 AccessTokenCookie = new Immutable.WebCookieConfiguration()
                 {
+                    // Controls the name of the cookie.
                     Name = "access_token",
+
+                    // Sets the HttpOnly cookie flag, to prevent XSS attacks from hijacking your cookies.
+                    // We highly recommend that you do not change this.
                     HttpOnly = true,
+
+                    // The secure property controls the Secure flag on the cookie.  The
+                    // framework library will auto-detect if the incoming request is over HTTPS,
+                    // by looking at the request protocol and turn on Secure if so.  You can
+                    // override auto-detection and force the Secure flag on by setting this
+                    // property to true, or force off by setting this property to false.
                     Secure = null,
-                    Path = null, // If null, will be set to web.basePath, or fall back "/"
+
+                    // Controls the path flag of the cookie
+                    // Inherits from basePath, but can be overridden here.
+                    Path = null,
+
+                    // Controls the domain flag on the cookie, will not be set unless specified.
                     Domain = "",
                 },
 
+                // The details of the Refresh Token cookie saved to the user's browser.
+                // This has the same configuration options as the Access Token cookie (above).
                 RefreshTokenCookie = new Immutable.WebCookieConfiguration()
                 {
                     Name = "refresh_token",
                     HttpOnly = true,
                     Secure = null,
-                    Path = null, // If null, will be set to web.basePath, or fall back "/"
+                    Path = null,
                     Domain = "",
                 },
 
+                // Controls what Content-Types the framework library can produce.
+                // To disable JSON or HTML output, remove the corresponding item from this list.
                 Produces = new List<string>()
                 {
                     "application/json",
                     "text/html"
                 },
 
+                // The registration route configuration.
                 Register = new Immutable.WebRegisterRouteConfiguration()
                 {
                     Enabled = true,
                     Uri = "/register",
-                    NextUri = "/",
+
+                    // Whether to automatically log in a user after registration.
                     AutoLogin = false,
+
+                    // The URI to redirect to after successful registration, if AutoLogin is enabled.
+                    NextUri = "/",
+
                     View = "register",
+
+                    // The form or JSON view model to generate for this route.
                     Form = new Immutable.WebRegisterRouteFormConfiguration()
                     {
                         Fields = new Dictionary<string, Immutable.WebFieldConfiguration>(StringComparer.OrdinalIgnoreCase)
@@ -180,6 +227,8 @@ namespace Stormpath.Configuration.Abstractions
                                 Type = "password",
                             }
                         },
+
+                        // The order of the fields in the form or view model.
                         FieldOrder = new List<string>()
                         {
                             "username",
@@ -193,6 +242,7 @@ namespace Stormpath.Configuration.Abstractions
                     },
                 },
 
+                // The email verification route configuration.
                 VerifyEmail = new Immutable.WebVerifyEmailRouteConfiguration()
                 {
                     Enabled = null,
@@ -201,12 +251,15 @@ namespace Stormpath.Configuration.Abstractions
                     View = "verify"
                 },
 
+                // The login route configuration.
                 Login = new Immutable.WebLoginRouteConfiguration()
                 {
                     Enabled = true,
                     Uri = "/login",
                     NextUri = "/",
                     View = "login",
+                    
+                    // The form or JSON view model to generate for this route.
                     Form = new Immutable.WebLoginRouteFormConfiguration()
                     {
                         Fields = new Dictionary<string, Immutable.WebFieldConfiguration>(StringComparer.OrdinalIgnoreCase)
@@ -230,6 +283,8 @@ namespace Stormpath.Configuration.Abstractions
                                 Type = "password",
                             },
                         },
+
+                        // The order of the fields in the form or view model.
                         FieldOrder = new List<string>()
                         {
                             "login",
@@ -238,6 +293,7 @@ namespace Stormpath.Configuration.Abstractions
                     }
                 },
 
+                // The logout route configuration.
                 Logout = new Immutable.WebLogoutRouteConfiguration()
                 {
                     Enabled = true,
@@ -245,6 +301,7 @@ namespace Stormpath.Configuration.Abstractions
                     NextUri = "/"
                 },
 
+                // The forgot password route configuration.
                 ForgotPassword = new Immutable.WebForgotPasswordRouteConfiguration()
                 {
                     Enabled = null,
@@ -253,6 +310,7 @@ namespace Stormpath.Configuration.Abstractions
                     NextUri = "/login?status=forgot",
                 },
 
+                // The change password route configuration.
                 ChangePassword = new Immutable.WebChangePasswordRouteConfiguration()
                 {
                     Enabled = null,
@@ -262,6 +320,7 @@ namespace Stormpath.Configuration.Abstractions
                     ErrorUri = "/forgot?status=invalid_sptoken",
                 },
 
+                // Controls whether ID Site is used for registration, login, password reset, etc.
                 IdSite = new Immutable.WebIdSiteConfiguration()
                 {
                     Enabled = false,
@@ -270,12 +329,15 @@ namespace Stormpath.Configuration.Abstractions
                     RegisterUri = "/#/register"
                 },
 
+                // The Stormpath callback route configuration.
+                // This is used for ID Site and other Stormpath redirect flows.
                 Callback = new Immutable.WebCallbackRouteConfiguration()
                 {
                     Enabled = true,
                     Uri = "/stormpathCallback"
                 },
 
+                // The social login configuration.
                 Social = new Dictionary<string, Immutable.WebSocialProviderConfiguration>(StringComparer.OrdinalIgnoreCase)
                 {
                     ["facebook"] = new Immutable.WebSocialProviderConfiguration()
@@ -300,8 +362,10 @@ namespace Stormpath.Configuration.Abstractions
                     },
                 },
 
+                // The user details route configuration.
                 Me = new Immutable.WebMeRouteConfiguration()
                 {
+                    // Whether to automatically expand and return linked Account properties.
                     Expand = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
                     {
                         ["apiKeys"] = false,
