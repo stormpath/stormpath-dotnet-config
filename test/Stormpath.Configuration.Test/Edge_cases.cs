@@ -198,7 +198,7 @@ namespace Stormpath.Configuration.Test
 
             var config = ConfigurationLoader.Initialize().Load(userConfiguration);
 
-            config.Web.BasePath.Should().Be(null); // the default
+            config.Web.BasePath.Should().Be(Default.Configuration.Web.BasePath);
 
             config.Web.Produces.ShouldBeEquivalentTo(new List<string>()
             {

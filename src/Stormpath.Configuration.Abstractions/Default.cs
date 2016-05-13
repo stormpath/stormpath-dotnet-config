@@ -13,9 +13,8 @@ namespace Stormpath.Configuration.Abstractions
         /// </summary>
         public static readonly Immutable.StormpathConfiguration Configuration = new Immutable.StormpathConfiguration()
         {
-            // 
-            // Sections from the Stormpath SDK Specification at
-            // https://github.com/stormpath/stormpath-sdk-spec/blob/master/specifications/config.md
+            // SDK Client configuration
+            // (https://github.com/stormpath/stormpath-sdk-spec/blob/master/specifications/config.md)
             Client = new Immutable.ClientConfiguration()
             {
                 ApiKey = new Immutable.ClientApiKeyConfiguration()
@@ -45,18 +44,22 @@ namespace Stormpath.Configuration.Abstractions
                     Password = null,
                 }
             },
+
+            // Framework integration configuration
+            // (https://github.com/stormpath/stormpath-framework-spec/blob/master/configuration.md)
             Application = new Immutable.ApplicationConfiguration()
             {
                 Name = null,
                 Href = null
             },
 
-            // Section from the Stormpath Framework Specification at
-            // https://github.com/stormpath/stormpath-framework-spec/blob/master/configuration.md
+            // Framework integration configuration
+            // (https://github.com/stormpath/stormpath-framework-spec/blob/master/configuration.md)
             Web = new Immutable.WebConfiguration()
             {
-                // The base path is used as the default path for the cookies that are set. If not defined, the default is "/"
-                BasePath = null,
+                // The base path is used as the default path for the cookies that are set.
+                // If not defined, the default is "/".
+                BasePath = "/",
 
                 Oauth2 = new Immutable.WebOauth2RouteConfiguration()
                 {

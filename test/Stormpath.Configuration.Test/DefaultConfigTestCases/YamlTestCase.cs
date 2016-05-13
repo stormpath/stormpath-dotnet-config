@@ -53,7 +53,7 @@ application:
   name: null
   href: null
 web:
-  basePath: null
+  basePath: ""/""
 
   oauth2:
     enabled: true

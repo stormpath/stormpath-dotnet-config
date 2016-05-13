@@ -58,7 +58,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
     ""href"": null
   },
   ""web"": {
-    ""basePath"": null,
+    ""basePath"": ""/"",
     ""oauth2"": {
       ""enabled"": true,
       ""uri"": ""/oauth/token"",

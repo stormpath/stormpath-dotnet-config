@@ -120,7 +120,7 @@ namespace Stormpath.Configuration.Test
             config.Application.Name.Should().BeNullOrEmpty();
 
             // Web section
-            config.Web.BasePath.Should().BeNullOrEmpty();
+            config.Web.BasePath.Should().Be("/");
 
             config.Web.Oauth2.Enabled.Should().BeTrue();
             config.Web.Oauth2.Uri.Should().Be("/oauth/token");
