@@ -17,7 +17,7 @@
 using System;
 using System.IO;
 using System.Linq;
-#if !NET451
+#if !NET45
 using Microsoft.Extensions.PlatformAbstractions;
 #endif
 
@@ -67,7 +67,7 @@ namespace Stormpath.Configuration
         /// <returns></returns>
         public static string GetHomePath()
         {
-#if NET451
+#if NET45
             return Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 #else
             var runtimeEnv = PlatformServices.Default.Runtime;
