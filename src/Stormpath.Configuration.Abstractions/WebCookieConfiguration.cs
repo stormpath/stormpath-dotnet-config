@@ -43,12 +43,12 @@ namespace Stormpath.Configuration.Abstractions
         /// THe cookie path.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.[*Cookie].path</c></remarks>
-        public string Path { get; set; } = "/";
+        public string Path { get; set; }
 
         /// <summary>
         /// The cookie domain.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.[*Cookie].domain</c></remarks>
-        public string Domain { get; set; } = null;
+        public string Domain { get; set; }
     }
 }

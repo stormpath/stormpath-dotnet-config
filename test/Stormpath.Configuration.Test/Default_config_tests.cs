@@ -132,13 +132,13 @@ namespace Stormpath.Configuration.Test
             config.Web.AccessTokenCookie.Name.Should().Be("access_token");
             config.Web.AccessTokenCookie.HttpOnly.Should().BeTrue();
             config.Web.AccessTokenCookie.Secure.Should().Be(null);
-            config.Web.AccessTokenCookie.Path.Should().BeNullOrEmpty();
+            config.Web.AccessTokenCookie.Path.Should().Be("/");
             config.Web.AccessTokenCookie.Domain.Should().BeNullOrEmpty();
 
             config.Web.RefreshTokenCookie.Name.Should().Be("refresh_token");
             config.Web.RefreshTokenCookie.HttpOnly.Should().BeTrue();
             config.Web.RefreshTokenCookie.Secure.Should().Be(null);
-            config.Web.RefreshTokenCookie.Path.Should().BeNullOrEmpty();
+            config.Web.RefreshTokenCookie.Path.Should().Be("/");
             config.Web.RefreshTokenCookie.Domain.Should().BeNullOrEmpty();
 
             config.Web.Produces[0].Should().Be("application/json");

@@ -118,7 +118,7 @@ namespace Stormpath.Configuration.Test
                     name: "accessToken",
                     httpOnly: false,
                     secure: false,
-                    path: "/",
+                    path: "/bar",
                     domain: "foo.bar"),
 
                 refreshTokenCookie: new Abstractions.Immutable.WebCookieConfiguration(
@@ -305,7 +305,7 @@ namespace Stormpath.Configuration.Test
                         Name = "accessToken",
                         HttpOnly = false,
                         Secure = false,
-                        Path = "/",
+                        Path = "/bar",
                         Domain = "foo.bar"
                     },
                     RefreshTokenCookie = new WebCookieConfiguration()
@@ -518,7 +518,7 @@ namespace Stormpath.Configuration.Test
                         name = "accessToken",
                         httpOnly = false,
                         secure = false,
-                        path = "/",
+                        path = "/bar",
                         domain = "foo.bar",
                     },
 
@@ -718,7 +718,7 @@ namespace Stormpath.Configuration.Test
             config.Web.AccessTokenCookie.Name.Should().Be("accessToken");
             config.Web.AccessTokenCookie.HttpOnly.Should().BeFalse();
             config.Web.AccessTokenCookie.Secure.Should().BeFalse();
-            config.Web.AccessTokenCookie.Path.Should().Be("/");
+            config.Web.AccessTokenCookie.Path.Should().Be("/bar");
             config.Web.AccessTokenCookie.Domain.Should().Be("foo.bar");
 
             config.Web.RefreshTokenCookie.Name.Should().Be("refreshToken");

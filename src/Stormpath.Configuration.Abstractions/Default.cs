@@ -83,8 +83,8 @@ namespace Stormpath.Configuration.Abstractions
                     Name = "access_token",
                     HttpOnly = true,
                     Secure = null,
-                    Path = null,
-                    Domain = null,
+                    Path = null, // If null, will be set to web.basePath, or fall back "/"
+                    Domain = "",
                 },
 
                 RefreshTokenCookie = new Immutable.WebCookieConfiguration()
@@ -92,8 +92,8 @@ namespace Stormpath.Configuration.Abstractions
                     Name = "refresh_token",
                     HttpOnly = true,
                     Secure = null,
-                    Path = null,
-                    Domain = null,
+                    Path = null, // If null, will be set to web.basePath, or fall back "/"
+                    Domain = "",
                 },
 
                 Produces = new List<string>()

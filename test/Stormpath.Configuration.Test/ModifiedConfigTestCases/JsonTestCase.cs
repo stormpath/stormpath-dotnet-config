@@ -83,7 +83,7 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
       ""name"": ""accessToken"",
       ""httpOnly"": false,
       ""secure"": false,
-      ""path"": ""/"",
+      ""path"": ""/bar"",
       ""domain"": ""foo.bar""
     },
     ""refreshTokenCookie"": {

@@ -322,5 +322,56 @@ namespace Stormpath.Configuration.Test
             config.Application.Name.Should().Be("My Application!");
             config.Web.Login.View.Should().Be("test");
         }
+
+        [Fact]
+        public void Default_cookie_paths_are_slash()
+        {
+            var config = ConfigurationLoader.Initialize().Load();
+
+            config.Web.AccessTokenCookie.Path.Should().Be("/");
+            config.Web.RefreshTokenCookie.Path.Should().Be("/");
+        }
+
+        [Fact]
+        public void Cookie_paths_follow_base_path_if_unspecified()
+        {
+            var config = ConfigurationLoader.Initialize().Load(new
+            {
+                web = new
+                {
+                    basePath = "/blah"
+                }
+            });
+
+            config.Web.BasePath.Should().Be("/blah");
+
+            config.Web.AccessTokenCookie.Path.Should().Be("/blah");
+            config.Web.RefreshTokenCookie.Path.Should().Be("/blah");
+        }
+
+        [Fact]
+        public void Explicit_cookie_paths_are_observed()
+        {
+            var config = ConfigurationLoader.Initialize().Load(new
+            {
+                web = new
+                {
+                    basePath = "/blah",
+                    accessTokenCookie = new
+                    {
+                        path = "/foo"
+                    },
+                    refreshTokenCookie = new
+                    {
+                        path = "/bar"
+                    }
+                }
+            });
+
+            config.Web.BasePath.Should().Be("/blah");
+
+            config.Web.AccessTokenCookie.Path.Should().Be("/foo");
+            config.Web.RefreshTokenCookie.Path.Should().Be("/bar");
+        }
     }
 }
