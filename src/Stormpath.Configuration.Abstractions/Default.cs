@@ -13,6 +13,7 @@ namespace Stormpath.Configuration.Abstractions
         /// </summary>
         public static readonly Immutable.StormpathConfiguration Configuration = new Immutable.StormpathConfiguration()
         {
+            // 
             // Sections from the Stormpath SDK Specification at
             // https://github.com/stormpath/stormpath-sdk-spec/blob/master/specifications/config.md
             Client = new Immutable.ClientConfiguration()
@@ -26,6 +27,7 @@ namespace Stormpath.Configuration.Abstractions
 
                 CacheManager = new Immutable.ClientCacheManagerConfiguration()
                 {
+                    Enabled = true,
                     DefaultTtl = 300,
                     DefaultTti = 300,
                     Caches = new Dictionary<string, Immutable.ClientCacheConfiguration>(StringComparer.OrdinalIgnoreCase) { },

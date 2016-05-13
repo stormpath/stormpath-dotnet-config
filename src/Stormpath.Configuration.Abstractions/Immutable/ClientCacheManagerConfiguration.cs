@@ -24,19 +24,22 @@ namespace Stormpath.Configuration.Abstractions.Immutable
     public sealed class ClientCacheManagerConfiguration
     {
         public ClientCacheManagerConfiguration(
+            bool? enabled = null,
             int? defaultTimeToLive = null,
             int? defaultTimeToIdle = null,
             IDictionary<string, ClientCacheConfiguration> caches = null)
         {
+            this.Enabled = enabled ?? Default.Configuration.Client.CacheManager.Enabled;
             this.DefaultTtl = defaultTimeToLive ?? Default.Configuration.Client.CacheManager.DefaultTtl;
             this.DefaultTti = defaultTimeToIdle ?? Default.Configuration.Client.CacheManager.DefaultTti;
             this.Caches = new Dictionary<string, ClientCacheConfiguration>(caches ?? Default.Configuration.Client.CacheManager.Caches.ToDictionary());
         }
 
         public ClientCacheManagerConfiguration(ClientCacheManagerConfiguration existing)
-            : this(defaultTimeToLive: existing?.DefaultTtl,
+            : this(enabled: existing?.Enabled,
+                  defaultTimeToLive: existing?.DefaultTtl,
                   defaultTimeToIdle: existing?.DefaultTti,
-                  caches: existing?.Caches.ToDictionary())
+                  caches: existing?.Caches?.ToDictionary())
         {
         }
 
@@ -45,16 +48,22 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         }
 
         /// <summary>
+        /// Whether caching is enabled in the SDK client.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.client.cacheManager.enabled</c></remarks>
+        public bool Enabled { get; internal set; }
+
+        /// <summary>
         /// The default cache Time-To-Live.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.cacheManager.defaultTtl</c></remarks>
-        public int? DefaultTtl { get; internal set; }
+        public int DefaultTtl { get; internal set; }
 
         /// <summary>
         /// The default cache Time-To-Idle.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.cacheManager.defaultTti</c></remarks>
-        public int? DefaultTti { get; internal set; }
+        public int DefaultTti { get; internal set; }
 
         /// <summary>
         /// Per-resource cache configurations.

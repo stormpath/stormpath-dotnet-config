@@ -100,6 +100,7 @@ namespace Stormpath.Configuration.Test
             config.Client.ApiKey.Id.Should().Be("default-foobar");
             config.Client.ApiKey.Secret.Should().Be("default-secret123!");
 
+            config.Client.CacheManager.Enabled.Should().BeTrue();
             config.Client.CacheManager.DefaultTtl.Should().Be(300);
             config.Client.CacheManager.DefaultTti.Should().Be(300);
 

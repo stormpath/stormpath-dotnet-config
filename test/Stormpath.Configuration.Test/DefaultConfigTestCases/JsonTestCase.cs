@@ -38,6 +38,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
       ""secret"": ""default-secret123!""
     },
     ""cacheManager"": {
+      ""enabled"": true,
       ""defaultTtl"": 300,
       ""defaultTti"": 300,
       ""caches"": { }

@@ -35,6 +35,7 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
       ""secret"": ""modified-barbaz""
     },
     ""cacheManager"": {
+      ""enabled"": false,
       ""defaultTtl"": 500,
       ""defaultTti"": 600,
       ""caches"": {

@@ -74,6 +74,7 @@ namespace Stormpath.Configuration.Test
                     secret: "modified-barbaz"),
 
                 cacheManager: new Abstractions.Immutable.ClientCacheManagerConfiguration(
+                    enabled: false,
                     defaultTimeToLive: 500,
                     defaultTimeToIdle: 600,
                     caches: new Dictionary<string, Abstractions.Immutable.ClientCacheConfiguration>()
@@ -254,6 +255,7 @@ namespace Stormpath.Configuration.Test
                     },
                     CacheManager = new ClientCacheManagerConfiguration()
                     {
+                        Enabled = false,
                         DefaultTtl = 500,
                         DefaultTti = 600,
                         Caches = new Dictionary<string, ClientCacheConfiguration>()
@@ -450,6 +452,7 @@ namespace Stormpath.Configuration.Test
 
                     cacheManager = new
                     {
+                        enabled = false,
                         defaultTtl = 500,
                         defaultTti = 600,
                         caches = new
@@ -679,6 +682,7 @@ namespace Stormpath.Configuration.Test
             config.Client.ApiKey.Id.Should().Be("modified-foobar");
             config.Client.ApiKey.Secret.Should().Be("modified-barbaz");
 
+            config.Client.CacheManager.Enabled.Should().BeFalse();
             config.Client.CacheManager.DefaultTtl.Should().Be(500);
             config.Client.CacheManager.DefaultTti.Should().Be(600);
 

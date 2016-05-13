@@ -32,6 +32,6 @@ namespace Stormpath.Configuration.Abstractions
         /// <param name="source">The source dictionary.</param>
         /// <returns></returns>
         public static IDictionary<TKey, TValue> ToDictionary<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> source)
-            => source.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            => source?.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
     }
 }
