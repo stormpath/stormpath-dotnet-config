@@ -22,28 +22,22 @@ namespace Stormpath.Configuration.Abstractions
     public sealed class WebChangePasswordRouteConfiguration
     {
         /// <summary>
-        /// Determines whether the user should be automatically logged in after interacting with this route.
-        /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.web.changePassword.autoLogin</c></remarks>
-        public bool AutoLogin { get; set; }
-
-        /// <summary>
         /// The view to use for this route, or <see langword="null"/> to use the default view.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.changePassword.view</c></remarks>
-        public string View { get; set; }
+        public string View { get; set; } = Default.Configuration.Web.ChangePassword.View;
 
         /// <summary>
         /// The URI to redirect to if an error occurs.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.changePassword.errorUri</c></remarks>
-        public string ErrorUri { get; set; }
+        public string ErrorUri { get; set; } = Default.Configuration.Web.ChangePassword.ErrorUri;
 
         /// <summary>
         /// The URI to redirect to if the operation is successful.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.changePassword.nextUri</c></remarks>
-        public string NextUri { get; set; }
+        public string NextUri { get; set; } = Default.Configuration.Web.ChangePassword.NextUri;
 
         /// <summary>
         /// Determines whether the Change Password route is enabled.
@@ -56,12 +50,12 @@ namespace Stormpath.Configuration.Abstractions
         /// Configuration path: <c>stormpath.web.changePassword.enabled</c>
         /// </para>
         /// </remarks>
-        public bool? Enabled { get; set; }
+        public bool? Enabled { get; set; } = Default.Configuration.Web.ChangePassword.Enabled;
 
         /// <summary>
         /// The URI for this route, or <see langword="null"/> to use the default URI.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.changePassword.uri</c></remarks>
-        public string Uri { get; set; }
+        public string Uri { get; set; } = Default.Configuration.Web.ChangePassword.Uri;
     }
 }

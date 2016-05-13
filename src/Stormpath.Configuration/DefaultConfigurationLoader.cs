@@ -74,6 +74,10 @@ namespace Stormpath.Configuration
             // If client.apiKey.file is set, load that
             LoadCustomApiKeyFileIfSpecified(builder); // TODO restore logging
 
+            // Apply rules to cookie paths
+            UpdateCookiePath(builder, "accessTokenCookie");
+            UpdateCookiePath(builder, "refreshTokenCookie");
+
             return builder.Build();
         }
 
@@ -147,6 +151,26 @@ namespace Stormpath.Configuration
                 //logger.Trace($"Loading specified apiKey.properties file at {specifiedApiKeyFilePath}");
 
                 builder.AddPropertiesFile(HomePath.Resolve(specifiedApiKeyFilePath), optional: false, root: "stormpath:client"); // Not optional this time!
+            }
+        }
+
+        private static void UpdateCookiePath(IConfigurationBuilder builder, string cookieName)
+        {
+            var built = builder.Build();
+
+            var basePath = built.GetValue<string>("stormpath:web:basePath");
+            var cookiePath = built.GetValue<string>($"stormpath:web:{cookieName}:path");
+
+            if (string.IsNullOrEmpty(cookiePath))
+            {
+                var defaultPath = string.IsNullOrEmpty(basePath)
+                    ? "/"
+                    : basePath;
+
+                builder.AddInMemoryCollection(new Dictionary<string, string>()
+                {
+                    [$"stormpath:web:{cookieName}:path"] = defaultPath
+                });
             }
         }
     }

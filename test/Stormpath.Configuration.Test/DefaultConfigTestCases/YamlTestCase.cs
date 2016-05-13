@@ -37,6 +37,7 @@ client:
     id: ""default-foobar""
     secret: ""default-secret123!""
   cacheManager:
+    enabled: true
     defaultTtl: 300
     defaultTti: 300
     caches: {}
@@ -52,7 +53,7 @@ application:
   name: null
   href: null
 web:
-  basePath: null
+  basePath: ""/""
 
   oauth2:
     enabled: true
@@ -91,50 +92,54 @@ web:
     enabled: true
     uri: ""/register""
     nextUri: ""/""
-    # autoLogin is possible only if the email verification feature is disabled
-    # on the default default account store of the defined Stormpath
-    # application.
     autoLogin: false
     form:
       fields:
         givenName:
           enabled: true
+          visible: true
           label: ""First Name""
           placeholder: ""First Name""
           required: true
           type: ""text""
         middleName:
           enabled: false
+          visible: true
           label: ""Middle Name""
           placeholder: ""Middle Name""
           required: true
           type: ""text""
         surname:
           enabled: true
+          visible: true
           label: ""Last Name""
           placeholder: ""Last Name""
           required: true
           type: ""text""
         username:
           enabled: false
+          visible: true
           label: ""Username""
           placeholder: ""Username""
           required: true
           type: ""text""
         email:
           enabled: true
+          visible: true
           label: ""Email""
           placeholder: ""Email""
           required: true
           type: ""email""
         password:
           enabled: true
+          visible: true
           label: ""Password""
           placeholder: ""Password""
           required: true
           type: ""password""
         confirmPassword:
           enabled: false
+          visible: true
           label: ""Confirm Password""
           placeholder: ""Confirm Password""
           required: true
@@ -156,7 +161,7 @@ web:
   verifyEmail:
     enabled: null
     uri: ""/verify""
-    nextUri: ""/login""
+    nextUri: ""/login?status=verified""
     view: ""verify""
 
   login:
@@ -168,12 +173,14 @@ web:
       fields:
         login:
           enabled: true
+          visible: true
           label: ""Username or Email""
           placeholder: ""Username or Email""
           required: true
           type: ""text""
         password:
           enabled: true
+          visible: true
           label: ""Password""
           placeholder: ""Password""
           required: true
@@ -201,7 +208,6 @@ web:
   # Stormpath application has the password reset workflow enabled.
   changePassword:
     enabled: null
-    autoLogin: false
     uri: ""/change""
     nextUri: ""/login?status=reset""
     view: ""change-password""
@@ -211,11 +217,13 @@ web:
   # login, registration, and password reset.
   idSite:
     enabled: false
-    uri: ""/idSiteResult""
-    nextUri: ""/""
     loginUri: """"
     forgotUri: ""/#/forgot""
     registerUri: ""/#/register""
+
+  callback:
+    enabled: true
+    uri: ""/stormpathCallback""
 
   social:
     facebook:
@@ -244,24 +252,7 @@ web:
         groupMemberships: false
         groups: false
         providerData: false
-        tenant: false
-
-  # If the developer wants our integration to serve their Single Page
-  # Application (SPA) in response to HTML requests for our default routes,
-  # such as /login, then they will need to enable this feature and tell us
-  # where the root of their SPA is.  This is likely a file path on the
-  # filesystem.
-  #
-  # If the developer does not want our integration to handle their SPA, they
-  # will need to configure the framework themeslves and remove 'text/html'
-  # from `stormpath.web.produces`, so that we don not serve our default
-  # HTML views.
-  spa:
-    enabled: false
-    view: index
-
-  unauthorized:
-    view: ""unauthorized""";
+        tenant: false";
             }
         }
     }

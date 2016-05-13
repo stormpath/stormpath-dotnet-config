@@ -27,18 +27,18 @@ namespace Stormpath.Configuration.Abstractions
         /// The expansion options configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.me.expand</c></remarks>
-        public IReadOnlyDictionary<string, bool> Expand { get; set; }
+        public IReadOnlyDictionary<string, bool> Expand { get; set; } = Default.Configuration.Web.Me.Expand;
 
         /// <summary>
         /// Determines whether the Me route is enabled.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.me.enabled</c></remarks>
-        public bool Enabled { get; set; }
+        public bool Enabled { get; set; } = Default.Configuration.Web.Me.Enabled;
 
         /// <summary>
         /// The URI for this route, or <see langword="null"/> to use the default URI.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.me.uri</c></remarks>
-        public string Uri { get; set; }
+        public string Uri { get; set; } = Default.Configuration.Web.Me.Uri;
     }
 }

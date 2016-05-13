@@ -22,14 +22,12 @@ namespace Stormpath.Configuration.Abstractions.Immutable
     public sealed class WebChangePasswordRouteConfiguration
     {
         public WebChangePasswordRouteConfiguration(
-            bool? autoLogin = null,
             string view = null,
             string errorUri = null,
             string nextUri = null,
             bool? enabled = null,
             string uri = null)
         {
-            this.AutoLogin = autoLogin ?? Default.Configuration.Web.ChangePassword.AutoLogin;
             this.View = view ?? Default.Configuration.Web.ChangePassword.View;
             this.ErrorUri = errorUri ?? Default.Configuration.Web.ChangePassword.ErrorUri;
             this.NextUri = nextUri ?? Default.Configuration.Web.ChangePassword.NextUri;
@@ -38,8 +36,7 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         }
 
         public WebChangePasswordRouteConfiguration(WebChangePasswordRouteConfiguration existing)
-            : this(autoLogin: existing?.AutoLogin,
-                  view: existing?.View,
+            : this(view: existing?.View,
                   errorUri: existing?.ErrorUri,
                   nextUri: existing?.NextUri,
                   enabled: existing?.Enabled,
@@ -50,12 +47,6 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         internal WebChangePasswordRouteConfiguration()
         {
         }
-
-        /// <summary>
-        /// Determines whether the user should be automatically logged in after interacting with this route.
-        /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.web.changePassword.autoLogin</c></remarks>
-        public bool AutoLogin { get; internal set; }
 
         /// <summary>
         /// The view to use for this route, or <see langword="null"/> to use the default view.

@@ -74,6 +74,7 @@ namespace Stormpath.Configuration.Test
                     secret: "modified-barbaz"),
 
                 cacheManager: new Abstractions.Immutable.ClientCacheManagerConfiguration(
+                    enabled: false,
                     defaultTimeToLive: 500,
                     defaultTimeToIdle: 600,
                     caches: new Dictionary<string, Abstractions.Immutable.ClientCacheConfiguration>()
@@ -110,14 +111,14 @@ namespace Stormpath.Configuration.Test
                     ),
                     passwordGrant: new Abstractions.Immutable.WebOauth2PasswordGrantConfiguration(
                         enabled: false,
-                        validationStrategy: WebOauth2TokenValidationStrategy.Remote)
+                        validationStrategy: WebOauth2TokenValidationStrategy.Stormpath)
                 ),
 
                 accessTokenCookie: new Abstractions.Immutable.WebCookieConfiguration(
                     name: "accessToken",
                     httpOnly: false,
                     secure: false,
-                    path: "/",
+                    path: "/bar",
                     domain: "foo.bar"),
 
                 refreshTokenCookie: new Abstractions.Immutable.WebCookieConfiguration(
@@ -143,6 +144,7 @@ namespace Stormpath.Configuration.Test
                         {
                             ["email"] = new Abstractions.Immutable.WebFieldConfiguration(
                                 enabled: false,
+                                visible: false,
                                 label: "I Can Has Email",
                                 placeholder: "Can Has?",
                                 required: false,
@@ -171,6 +173,7 @@ namespace Stormpath.Configuration.Test
                         {
                             ["password"] = new Abstractions.Immutable.WebFieldConfiguration(
                                 enabled: false,
+                                visible: false,
                                 label: "Password?",
                                 placeholder: "Maybe",
                                 required: false,
@@ -195,19 +198,20 @@ namespace Stormpath.Configuration.Test
 
                 changePasswordRoute: new Abstractions.Immutable.WebChangePasswordRouteConfiguration(
                     enabled: true,
-                    autoLogin: true,
                     uri: "/change6",
                     nextUri: "/login?status=reset?",
                     view: "change-password-view",
                     errorUri: "/forgot?status=invalid_sptoken:("),
 
-                idSiteRoute: new Abstractions.Immutable.WebIdSiteRouteConfiguration(
+                idSite: new Abstractions.Immutable.WebIdSiteConfiguration(
                     enabled: true,
-                    uri: "/idSiteResultz",
-                    nextUri: "/123",
                     loginUri: "/456",
                     forgotUri: "/#/forgot789",
                     registerUri: "/#/register0"),
+
+                callbackRoute: new Abstractions.Immutable.WebCallbackRouteConfiguration(
+                    enabled: false,
+                    uri: "/stormpath-callback"),
 
                 social: new Dictionary<string, Abstractions.Immutable.WebSocialProviderConfiguration>()
                 {
@@ -251,6 +255,7 @@ namespace Stormpath.Configuration.Test
                     },
                     CacheManager = new ClientCacheManagerConfiguration()
                     {
+                        Enabled = false,
                         DefaultTtl = 500,
                         DefaultTti = 600,
                         Caches = new Dictionary<string, ClientCacheConfiguration>()
@@ -292,7 +297,7 @@ namespace Stormpath.Configuration.Test
                         Password = new WebOauth2PasswordGrantConfiguration()
                         {
                             Enabled = false,
-                            ValidationStrategy = WebOauth2TokenValidationStrategy.Remote
+                            ValidationStrategy = WebOauth2TokenValidationStrategy.Stormpath
                         }
                     },
                     AccessTokenCookie = new WebCookieConfiguration()
@@ -300,7 +305,7 @@ namespace Stormpath.Configuration.Test
                         Name = "accessToken",
                         HttpOnly = false,
                         Secure = false,
-                        Path = "/",
+                        Path = "/bar",
                         Domain = "foo.bar"
                     },
                     RefreshTokenCookie = new WebCookieConfiguration()
@@ -329,6 +334,7 @@ namespace Stormpath.Configuration.Test
                                 ["email"] = new WebFieldConfiguration()
                                 {
                                     Enabled = false,
+                                    Visible = false,
                                     Label = "I Can Has Email",
                                     Placeholder = "Can Has?",
                                     Required = false,
@@ -361,6 +367,7 @@ namespace Stormpath.Configuration.Test
                                 ["password"] = new WebFieldConfiguration()
                                 {
                                     Enabled = false,
+                                    Visible = false,
                                     Label = "Password?",
                                     Placeholder = "Maybe",
                                     Required = false,
@@ -389,20 +396,22 @@ namespace Stormpath.Configuration.Test
                     ChangePassword = new WebChangePasswordRouteConfiguration()
                     {
                         Enabled = true,
-                        AutoLogin = true,
                         Uri = "/change6",
                         NextUri = "/login?status=reset?",
                         View = "change-password-view",
                         ErrorUri = "/forgot?status=invalid_sptoken:("
                     },
-                    IdSite = new WebIdSiteRouteConfiguration()
+                    IdSite = new WebIdSiteConfiguration()
                     {
                         Enabled = true,
-                        Uri = "/idSiteResultz",
-                        NextUri = "/123",
                         LoginUri = "/456",
                         ForgotUri = "/#/forgot789",
                         RegisterUri = "/#/register0"
+                    },
+                    Callback = new WebCallbackRouteConfiguration()
+                    {
+                        Enabled = false,
+                        Uri = "/stormpath-callback"
                     },
                     Social = new Dictionary<string, WebSocialProviderConfiguration>()
                     {
@@ -443,6 +452,7 @@ namespace Stormpath.Configuration.Test
 
                     cacheManager = new
                     {
+                        enabled = false,
                         defaultTtl = 500,
                         defaultTti = 600,
                         caches = new
@@ -499,7 +509,7 @@ namespace Stormpath.Configuration.Test
                         password = new
                         {
                             enabled = false,
-                            validationStrategy = WebOauth2TokenValidationStrategy.Remote
+                            validationStrategy = WebOauth2TokenValidationStrategy.Stormpath
                         }
                     },
 
@@ -508,7 +518,7 @@ namespace Stormpath.Configuration.Test
                         name = "accessToken",
                         httpOnly = false,
                         secure = false,
-                        path = "/",
+                        path = "/bar",
                         domain = "foo.bar",
                     },
 
@@ -603,7 +613,6 @@ namespace Stormpath.Configuration.Test
                     changePassword = new
                     {
                         enabled = true,
-                        autoLogin = true,
                         uri = "/change6",
                         nextUri = "/login?status=reset?",
                         view = "change-password-view",
@@ -618,6 +627,12 @@ namespace Stormpath.Configuration.Test
                         loginUri = "/456",
                         forgotUri = "/#/forgot789",
                         registerUri = "/#/register0"
+                    },
+
+                    callback = new
+                    {
+                        enabled = false,
+                        uri = "/stormpath-callback"
                     },
 
                     social = new
@@ -652,17 +667,6 @@ namespace Stormpath.Configuration.Test
                         {
                             directory = true
                         }
-                    },
-
-                    spa = new
-                    {
-                        enabled = true,
-                        view = "indexView",
-                    },
-
-                    unauthorized = new
-                    {
-                        view = "unauthorizedView",
                     }
                 }
             };
@@ -678,6 +682,7 @@ namespace Stormpath.Configuration.Test
             config.Client.ApiKey.Id.Should().Be("modified-foobar");
             config.Client.ApiKey.Secret.Should().Be("modified-barbaz");
 
+            config.Client.CacheManager.Enabled.Should().BeFalse();
             config.Client.CacheManager.DefaultTtl.Should().Be(500);
             config.Client.CacheManager.DefaultTti.Should().Be(600);
 
@@ -708,12 +713,12 @@ namespace Stormpath.Configuration.Test
             config.Web.Oauth2.Client_Credentials.Enabled.Should().BeFalse();
             config.Web.Oauth2.Client_Credentials.AccessToken.Ttl.Should().Be(3601);
             config.Web.Oauth2.Password.Enabled.Should().BeFalse();
-            config.Web.Oauth2.Password.ValidationStrategy.Should().Be(WebOauth2TokenValidationStrategy.Remote);
+            config.Web.Oauth2.Password.ValidationStrategy.Should().Be(WebOauth2TokenValidationStrategy.Stormpath);
 
             config.Web.AccessTokenCookie.Name.Should().Be("accessToken");
             config.Web.AccessTokenCookie.HttpOnly.Should().BeFalse();
             config.Web.AccessTokenCookie.Secure.Should().BeFalse();
-            config.Web.AccessTokenCookie.Path.Should().Be("/");
+            config.Web.AccessTokenCookie.Path.Should().Be("/bar");
             config.Web.AccessTokenCookie.Domain.Should().Be("foo.bar");
 
             config.Web.RefreshTokenCookie.Name.Should().Be("refreshToken");
@@ -738,6 +743,7 @@ namespace Stormpath.Configuration.Test
             config.Web.Register.Form.Fields.Should().HaveCount(1);
 
             config.Web.Register.Form.Fields["email"].Enabled.Should().BeFalse();
+            config.Web.Register.Form.Fields["email"].Visible.Should().BeFalse();
             config.Web.Register.Form.Fields["email"].Label.Should().Be("I Can Has Email");
             config.Web.Register.Form.Fields["email"].Placeholder.Should().Be("Can Has?");
             config.Web.Register.Form.Fields["email"].Required.Should().BeFalse();
@@ -761,8 +767,8 @@ namespace Stormpath.Configuration.Test
             config.Web.Login.NextUri.Should().Be("/3");
             config.Web.Login.View.Should().Be("loginView");
 
-            //throw new System.NotImplementedException("should assert the number of fields");
             config.Web.Login.Form.Fields["password"].Enabled.Should().BeFalse();
+            config.Web.Login.Form.Fields["password"].Visible.Should().BeFalse();
             config.Web.Login.Form.Fields["password"].Label.Should().Be("Password?");
             config.Web.Login.Form.Fields["password"].Placeholder.Should().Be("Maybe");
             config.Web.Login.Form.Fields["password"].Required.Should().BeFalse();
@@ -786,18 +792,18 @@ namespace Stormpath.Configuration.Test
             config.Web.ForgotPassword.View.Should().Be("forgot-password-view");
 
             config.Web.ChangePassword.Enabled.Should().BeTrue();
-            config.Web.ChangePassword.AutoLogin.Should().BeTrue();
             config.Web.ChangePassword.Uri.Should().Be("/change6");
             config.Web.ChangePassword.NextUri.Should().Be("/login?status=reset?");
             config.Web.ChangePassword.View.Should().Be("change-password-view");
             config.Web.ChangePassword.ErrorUri.Should().Be("/forgot?status=invalid_sptoken:(");
 
             config.Web.IdSite.Enabled.Should().BeTrue();
-            config.Web.IdSite.Uri.Should().Be("/idSiteResultz");
-            config.Web.IdSite.NextUri.Should().Be("/123");
             config.Web.IdSite.LoginUri.Should().Be("/456");
             config.Web.IdSite.ForgotUri.Should().Be("/#/forgot789");
             config.Web.IdSite.RegisterUri.Should().Be("/#/register0");
+
+            config.Web.Callback.Enabled.Should().BeFalse();
+            config.Web.Callback.Uri.Should().Be("/stormpath-callback");
 
             config.Web.Social["facebook"].Uri.Should().Be("/callbackz/facebook");
             config.Web.Social["facebook"].Scope.Should().Be("email birthday");

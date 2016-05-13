@@ -34,6 +34,7 @@ client:
     id: modified-foobar
     secret: modified-barbaz
   cacheManager:
+    enabled: false
     defaultTtl: 500
     defaultTti: 600
     caches:
@@ -66,13 +67,13 @@ web:
         ttl: 3601
     password:
       enabled: false
-      validationStrategy: ""remote""
+      validationStrategy: ""STORMPATH""
 
   accessTokenCookie:
     name: ""accessToken""
     httpOnly: false
     secure: false
-    path: ""/""
+    path: ""/bar""
     domain: ""foo.bar""
 
   refreshTokenCookie:
@@ -93,14 +94,12 @@ web:
     enabled: false
     uri: ""/register1""
     nextUri: ""/1""
-    # autoLogin is possible only if the email verification feature is disabled
-    # on the default default account store of the defined Stormpath
-    # application.
     autoLogin: true
     form:
       fields:
         email:
           enabled: false
+          visible: false
           label: ""I Can Has Email""
           placeholder: ""Can Has?""
           required: false
@@ -129,6 +128,7 @@ web:
       fields:
         password:
           enabled: false
+          visible: false
           label: ""Password?""
           placeholder: ""Maybe""
           required: false
@@ -155,7 +155,6 @@ web:
   # Stormpath application has the password reset workflow enabled.
   changePassword:
     enabled: true
-    autoLogin: true
     uri: ""/change6""
     nextUri: ""/login?status=reset?""
     view: ""change-password-view""
@@ -165,11 +164,13 @@ web:
   # login, registration, and password reset.
   idSite:
     enabled: true
-    uri: ""/idSiteResultz""
-    nextUri: ""/123""
     loginUri: ""/456""
     forgotUri: ""/#/forgot789""
     registerUri: ""/#/register0""
+
+  callback:
+    enabled: false
+    uri: ""/stormpath-callback""
 
   social:
     facebook:
@@ -191,24 +192,7 @@ web:
     enabled: false
     uri: ""/myself""
     expand:
-      directory: true
-
-  # If the developer wants our integration to serve their Single Page
-  # Application (SPA) in response to HTML requests for our default routes,
-  # such as /login, then they will need to enable this feature and tell us
-  # where the root of their SPA is.  This is likely a file path on the
-  # filesystem.
-  #
-  # If the developer does not want our integration to handle their SPA, they
-  # will need to configure the framework themeslves and remove 'text/html'
-  # from `stormpath.web.produces`, so that we don not serve our default
-  # HTML views.
-  spa:
-    enabled: true
-    view: indexView
-
-  unauthorized:
-    view: ""unauthorizedView""";
+      directory: true";
             }
         }
     }

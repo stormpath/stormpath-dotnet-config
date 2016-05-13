@@ -14,6 +14,7 @@
 // limitations under the License.
 // </copyright>
 
+using System;
 using System.Collections.Generic;
 
 namespace Stormpath.Configuration.Abstractions
@@ -24,21 +25,28 @@ namespace Stormpath.Configuration.Abstractions
     public sealed class ClientCacheManagerConfiguration
     {
         /// <summary>
-        /// The default cache Time-To-Live.
+        /// Whether caching is enabled in the SDK client.
         /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.client.cacheManager.defaultTtl</c></remarks>
-        public int? DefaultTtl { get; set; }
+        /// <remarks>Configuration path: <c>stormpath.client.cacheManager.enabled</c></remarks>
+        public bool Enabled { get; set; } = Default.Configuration.Client.CacheManager.Enabled;
 
         /// <summary>
-        /// The default cache Time-To-Idle.
+        /// The default cache region Time-To-Live.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.client.cacheManager.defaultTtl</c></remarks>
+        public int DefaultTtl { get; set; } = Default.Configuration.Client.CacheManager.DefaultTtl;
+
+        /// <summary>
+        /// The default cache region Time-To-Idle.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.cacheManager.defaultTti</c></remarks>
-        public int? DefaultTti { get; set; }
+        public int DefaultTti { get; set; } = Default.Configuration.Client.CacheManager.DefaultTti;
 
         /// <summary>
         /// Per-resource cache configurations.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.cacheManager.caches</c></remarks>
         public IReadOnlyDictionary<string, ClientCacheConfiguration> Caches { get; set; }
+            = new Dictionary<string, ClientCacheConfiguration>(StringComparer.OrdinalIgnoreCase);
     }
 }

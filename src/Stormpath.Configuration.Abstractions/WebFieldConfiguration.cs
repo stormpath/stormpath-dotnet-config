@@ -23,9 +23,15 @@ namespace Stormpath.Configuration.Abstractions
     {
 
         /// <summary>
-        /// Determines whether this field is enabled (shown).
+        /// Determines whether this field is enabled.
         /// </summary>
-        public bool Enabled { get; set; }
+        /// <remarks>If a field is <b>not</b> enabled, the server will error if that field is submitted with a form.</remarks>
+        public bool Enabled { get; set; } = true;
+
+        /// <summary>
+        /// Determines whether this field is shown on the form.
+        /// </summary>
+        public bool Visible { get; set; } = true;
 
         /// <summary>
         /// The label.
@@ -40,7 +46,7 @@ namespace Stormpath.Configuration.Abstractions
         /// <summary>
         /// Determines whether the field is required.
         /// </summary>
-        public bool Required { get; set; }
+        public bool Required { get; set; } = true;
 
         /// <summary>
         /// The field type.

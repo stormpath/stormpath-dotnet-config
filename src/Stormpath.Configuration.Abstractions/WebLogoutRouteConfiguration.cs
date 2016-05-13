@@ -25,18 +25,18 @@ namespace Stormpath.Configuration.Abstractions
         /// The URI to redirect to if the logout is successful.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.logout.nextUri</c></remarks>
-        public string NextUri { get; set; }
+        public string NextUri { get; set; } = Default.Configuration.Web.Logout.NextUri;
 
         /// <summary>
         /// Determines whether the Logout route is enabled.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.logout.enabled</c></remarks>
-        public bool Enabled { get; set; }
+        public bool Enabled { get; set; } = Default.Configuration.Web.Logout.Enabled;
 
         /// <summary>
         /// The URI for this route, or <see langword="null"/> to use the default URI.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.logout.uri</c></remarks>
-        public string Uri { get; set; }
+        public string Uri { get; set; } = Default.Configuration.Web.Logout.Uri;
     }
 }

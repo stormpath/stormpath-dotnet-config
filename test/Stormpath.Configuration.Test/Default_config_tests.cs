@@ -100,6 +100,7 @@ namespace Stormpath.Configuration.Test
             config.Client.ApiKey.Id.Should().Be("default-foobar");
             config.Client.ApiKey.Secret.Should().Be("default-secret123!");
 
+            config.Client.CacheManager.Enabled.Should().BeTrue();
             config.Client.CacheManager.DefaultTtl.Should().Be(300);
             config.Client.CacheManager.DefaultTti.Should().Be(300);
 
@@ -119,7 +120,7 @@ namespace Stormpath.Configuration.Test
             config.Application.Name.Should().BeNullOrEmpty();
 
             // Web section
-            config.Web.BasePath.Should().BeNullOrEmpty();
+            config.Web.BasePath.Should().Be("/");
 
             config.Web.Oauth2.Enabled.Should().BeTrue();
             config.Web.Oauth2.Uri.Should().Be("/oauth/token");
@@ -131,13 +132,13 @@ namespace Stormpath.Configuration.Test
             config.Web.AccessTokenCookie.Name.Should().Be("access_token");
             config.Web.AccessTokenCookie.HttpOnly.Should().BeTrue();
             config.Web.AccessTokenCookie.Secure.Should().Be(null);
-            config.Web.AccessTokenCookie.Path.Should().BeNullOrEmpty();
+            config.Web.AccessTokenCookie.Path.Should().Be("/");
             config.Web.AccessTokenCookie.Domain.Should().BeNullOrEmpty();
 
             config.Web.RefreshTokenCookie.Name.Should().Be("refresh_token");
             config.Web.RefreshTokenCookie.HttpOnly.Should().BeTrue();
             config.Web.RefreshTokenCookie.Secure.Should().Be(null);
-            config.Web.RefreshTokenCookie.Path.Should().BeNullOrEmpty();
+            config.Web.RefreshTokenCookie.Path.Should().Be("/");
             config.Web.RefreshTokenCookie.Domain.Should().BeNullOrEmpty();
 
             config.Web.Produces[0].Should().Be("application/json");
@@ -151,42 +152,49 @@ namespace Stormpath.Configuration.Test
             config.Web.Register.Form.Fields.Should().HaveCount(7);
 
             config.Web.Register.Form.Fields["givenName"].Enabled.Should().BeTrue();
+            config.Web.Register.Form.Fields["givenName"].Visible.Should().BeTrue();
             config.Web.Register.Form.Fields["givenName"].Label.Should().Be("First Name");
             config.Web.Register.Form.Fields["givenName"].Placeholder.Should().Be("First Name");
             config.Web.Register.Form.Fields["givenName"].Required.Should().BeTrue();
             config.Web.Register.Form.Fields["givenName"].Type.Should().Be("text");
 
             config.Web.Register.Form.Fields["middleName"].Enabled.Should().BeFalse();
+            config.Web.Register.Form.Fields["middleName"].Visible.Should().BeTrue();
             config.Web.Register.Form.Fields["middleName"].Label.Should().Be("Middle Name");
             config.Web.Register.Form.Fields["middleName"].Placeholder.Should().Be("Middle Name");
             config.Web.Register.Form.Fields["middleName"].Required.Should().BeTrue();
             config.Web.Register.Form.Fields["middleName"].Type.Should().Be("text");
 
             config.Web.Register.Form.Fields["surname"].Enabled.Should().BeTrue();
+            config.Web.Register.Form.Fields["surname"].Visible.Should().BeTrue();
             config.Web.Register.Form.Fields["surname"].Label.Should().Be("Last Name");
             config.Web.Register.Form.Fields["surname"].Placeholder.Should().Be("Last Name");
             config.Web.Register.Form.Fields["surname"].Required.Should().BeTrue();
             config.Web.Register.Form.Fields["surname"].Type.Should().Be("text");
 
             config.Web.Register.Form.Fields["username"].Enabled.Should().BeFalse();
+            config.Web.Register.Form.Fields["username"].Visible.Should().BeTrue();
             config.Web.Register.Form.Fields["username"].Label.Should().Be("Username");
             config.Web.Register.Form.Fields["username"].Placeholder.Should().Be("Username");
             config.Web.Register.Form.Fields["username"].Required.Should().BeTrue();
             config.Web.Register.Form.Fields["username"].Type.Should().Be("text");
 
             config.Web.Register.Form.Fields["email"].Enabled.Should().BeTrue();
+            config.Web.Register.Form.Fields["email"].Visible.Should().BeTrue();
             config.Web.Register.Form.Fields["email"].Label.Should().Be("Email");
             config.Web.Register.Form.Fields["email"].Placeholder.Should().Be("Email");
             config.Web.Register.Form.Fields["email"].Required.Should().BeTrue();
             config.Web.Register.Form.Fields["email"].Type.Should().Be("email");
 
             config.Web.Register.Form.Fields["password"].Enabled.Should().BeTrue();
+            config.Web.Register.Form.Fields["password"].Visible.Should().BeTrue();
             config.Web.Register.Form.Fields["password"].Label.Should().Be("Password");
             config.Web.Register.Form.Fields["password"].Placeholder.Should().Be("Password");
             config.Web.Register.Form.Fields["password"].Required.Should().BeTrue();
             config.Web.Register.Form.Fields["password"].Type.Should().Be("password");
 
             config.Web.Register.Form.Fields["confirmPassword"].Enabled.Should().BeFalse();
+            config.Web.Register.Form.Fields["confirmPassword"].Visible.Should().BeTrue();
             config.Web.Register.Form.Fields["confirmPassword"].Label.Should().Be("Confirm Password");
             config.Web.Register.Form.Fields["confirmPassword"].Placeholder.Should().Be("Confirm Password");
             config.Web.Register.Form.Fields["confirmPassword"].Required.Should().BeTrue();
@@ -207,7 +215,7 @@ namespace Stormpath.Configuration.Test
 
             config.Web.VerifyEmail.Enabled.Should().Be(null);
             config.Web.VerifyEmail.Uri.Should().Be("/verify");
-            config.Web.VerifyEmail.NextUri.Should().Be("/login");
+            config.Web.VerifyEmail.NextUri.Should().Be("/login?status=verified");
             config.Web.VerifyEmail.View.Should().Be("verify");
 
             config.Web.Login.Enabled.Should().BeTrue();
@@ -216,12 +224,14 @@ namespace Stormpath.Configuration.Test
             config.Web.Login.View.Should().Be("login");
 
             config.Web.Login.Form.Fields["login"].Enabled.Should().BeTrue();
+            config.Web.Login.Form.Fields["login"].Visible.Should().BeTrue();
             config.Web.Login.Form.Fields["login"].Label.Should().Be("Username or Email");
             config.Web.Login.Form.Fields["login"].Placeholder.Should().Be("Username or Email");
             config.Web.Login.Form.Fields["login"].Required.Should().BeTrue();
             config.Web.Login.Form.Fields["login"].Type.Should().Be("text");
 
             config.Web.Login.Form.Fields["password"].Enabled.Should().BeTrue();
+            config.Web.Login.Form.Fields["password"].Visible.Should().BeTrue();
             config.Web.Login.Form.Fields["password"].Label.Should().Be("Password");
             config.Web.Login.Form.Fields["password"].Placeholder.Should().Be("Password");
             config.Web.Login.Form.Fields["password"].Required.Should().BeTrue();
@@ -245,18 +255,18 @@ namespace Stormpath.Configuration.Test
             config.Web.ForgotPassword.View.Should().Be("forgot-password");
 
             config.Web.ChangePassword.Enabled.Should().Be(null);
-            config.Web.ChangePassword.AutoLogin.Should().BeFalse();
             config.Web.ChangePassword.Uri.Should().Be("/change");
             config.Web.ChangePassword.NextUri.Should().Be("/login?status=reset");
             config.Web.ChangePassword.View.Should().Be("change-password");
             config.Web.ChangePassword.ErrorUri.Should().Be("/forgot?status=invalid_sptoken");
 
             config.Web.IdSite.Enabled.Should().BeFalse();
-            config.Web.IdSite.Uri.Should().Be("/idSiteResult");
-            config.Web.IdSite.NextUri.Should().Be("/");
             config.Web.IdSite.LoginUri.Should().BeNullOrEmpty();
             config.Web.IdSite.ForgotUri.Should().Be("/#/forgot");
             config.Web.IdSite.RegisterUri.Should().Be("/#/register");
+
+            config.Web.Callback.Enabled.Should().BeTrue();
+            config.Web.Callback.Uri.Should().Be("/stormpathCallback");
 
             config.Web.Social.Should().HaveCount(4);
             config.Web.Social["facebook"].Uri.Should().Be("/callbacks/facebook");

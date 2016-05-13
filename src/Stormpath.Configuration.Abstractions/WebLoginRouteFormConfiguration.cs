@@ -33,6 +33,6 @@ namespace Stormpath.Configuration.Abstractions
         /// The field order.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.login.form.fieldOrder</c></remarks>
-        public IReadOnlyList<string> FieldOrder { get; set; }
+        public IReadOnlyList<string> FieldOrder { get; set; } = Default.Configuration.Web.Login.Form.FieldOrder;
     }
 }

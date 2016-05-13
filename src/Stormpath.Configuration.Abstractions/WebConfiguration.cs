@@ -14,6 +14,7 @@
 // limitations under the License.
 // </copyright>
 
+using System;
 using System.Collections.Generic;
 
 namespace Stormpath.Configuration.Abstractions
@@ -27,7 +28,7 @@ namespace Stormpath.Configuration.Abstractions
         /// The web application's base path.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.basePath</c></remarks>
-        public string BasePath { get; set; }
+        public string BasePath { get; set; } = Default.Configuration.Web.BasePath;
 
         /// <summary>
         /// The OAuth2 route configuration.
@@ -90,16 +91,23 @@ namespace Stormpath.Configuration.Abstractions
         public WebChangePasswordRouteConfiguration ChangePassword { get; set; }
 
         /// <summary>
-        /// The ID Site route configuration.
+        /// The ID Site configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.idSite</c></remarks>
-        public WebIdSiteRouteConfiguration IdSite { get; set; }
+        public WebIdSiteConfiguration IdSite { get; set; }
+
+        /// <summary>
+        /// The Stormpath callback route configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.callback</c></remarks>
+        public WebCallbackRouteConfiguration Callback { get; set; }
 
         /// <summary>
         /// The social providers configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.social</c></remarks>
         public IReadOnlyDictionary<string, WebSocialProviderConfiguration> Social { get; set; }
+            = new Dictionary<string, WebSocialProviderConfiguration>(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>
         /// The Me route configuration.

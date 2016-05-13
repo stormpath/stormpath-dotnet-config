@@ -31,13 +31,13 @@ namespace Stormpath.Configuration.Abstractions
         /// The cookie's <c>HttpOnly</c>flag.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.[*Cookie].httpOnly</c></remarks>
-        public bool HttpOnly { get; set; }
+        public bool HttpOnly { get; set; } = true;
 
         /// <summary>
         /// The cookie's <c>Secure</c> flag.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.[*Cookie].secure</c></remarks>
-        public bool? Secure { get; set; }
+        public bool? Secure { get; set; } = null;
 
         /// <summary>
         /// THe cookie path.

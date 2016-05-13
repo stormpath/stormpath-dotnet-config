@@ -25,12 +25,12 @@ namespace Stormpath.Configuration.Abstractions
         /// The application's name.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.application.name</c></remarks>
-        public string Name { get; set; }
+        public string Name { get; set; } = Default.Configuration.Application.Name;
 
         /// <summary>
         /// The application's Stormpath <c>href</c>.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.application.href</c></remarks>
-        public string Href { get; set; }
+        public string Href { get; set; } = Default.Configuration.Application.Href;
     }
 }

@@ -35,6 +35,7 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
       ""secret"": ""modified-barbaz""
     },
     ""cacheManager"": {
+      ""enabled"": false,
       ""defaultTtl"": 500,
       ""defaultTti"": 600,
       ""caches"": {
@@ -75,14 +76,14 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
       },
       ""password"": {
         ""enabled"": false,
-        ""validationStrategy"": ""remote""
+        ""validationStrategy"": ""STORMPATH""
       }
     },
     ""accessTokenCookie"": {
       ""name"": ""accessToken"",
       ""httpOnly"": false,
       ""secure"": false,
-      ""path"": ""/"",
+      ""path"": ""/bar"",
       ""domain"": ""foo.bar""
     },
     ""refreshTokenCookie"": {
@@ -104,6 +105,7 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
         ""fields"": {
           ""email"": {
             ""enabled"": false,
+            ""visible"": false,
             ""label"": ""I Can Has Email"",
             ""placeholder"": ""Can Has?"",
             ""required"": false,
@@ -132,6 +134,7 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
         ""fields"": {
           ""password"": {
             ""enabled"": false,
+            ""visible"": false,
             ""label"": ""Password?"",
             ""placeholder"": ""Maybe"",
             ""required"": false,
@@ -156,7 +159,6 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
     },
     ""changePassword"": {
       ""enabled"": true,
-      ""autoLogin"": true,
       ""uri"": ""/change6"",
       ""nextUri"": ""/login?status=reset?"",
       ""view"": ""change-password-view"",
@@ -164,11 +166,13 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
     },
     ""idSite"": {
       ""enabled"": true,
-      ""uri"": ""/idSiteResultz"",
-      ""nextUri"": ""/123"",
       ""loginUri"": ""/456"",
       ""forgotUri"": ""/#/forgot789"",
       ""registerUri"": ""/#/register0""
+    },
+    ""callback"": {
+      ""enabled"": false,
+      ""uri"": ""/stormpath-callback""
     },
     ""social"": {
       ""facebook"": {
@@ -194,13 +198,6 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
       ""expand"": {
         ""directory"": true
       }
-    },
-    ""spa"": {
-      ""enabled"": true,
-      ""view"": ""indexView""
-    },
-    ""unauthorized"": {
-      ""view"": ""unauthorizedView""
     }
   }
 }";

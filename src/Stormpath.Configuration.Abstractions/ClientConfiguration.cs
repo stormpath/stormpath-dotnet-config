@@ -37,19 +37,19 @@ namespace Stormpath.Configuration.Abstractions
         /// The API base URL.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.baseUrl</c></remarks>
-        public string BaseUrl { get; set; }
+        public string BaseUrl { get; set; } = Default.Configuration.Client.BaseUrl;
 
         /// <summary>
         /// The connection timeout.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.connectionTimeout</c></remarks>
-        public int? ConnectionTimeout { get; set; }
+        public int ConnectionTimeout { get; set; } = Default.Configuration.Client.ConnectionTimeout;
 
         /// <summary>
         /// The authentication scheme to use for requests.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.authenticationScheme</c></remarks>
-        public ClientAuthenticationScheme? AuthenticationScheme { get; set; }
+        public ClientAuthenticationScheme AuthenticationScheme { get; set; } = Default.Configuration.Client.AuthenticationScheme;
 
         /// <summary>
         /// The proxy to use for requests.
