@@ -30,18 +30,18 @@ namespace Stormpath.Configuration.Abstractions
         /// Configuration path: <c>stormpath.client.apiKey.file</c>
         /// </para>
         /// </remarks>
-        public string File { get; set; }
+        public string File { get; set; } = Default.Configuration.Client.ApiKey.File;
 
         /// <summary>
         /// The API Key ID.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.apiKey.id</c></remarks>
-        public string Id { get; set; }
+        public string Id { get; set; } = Default.Configuration.Client.ApiKey.Id;
 
         /// <summary>
         /// The API Key secret.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.apiKey.secret</c></remarks>
-        public string Secret { get;  set; }
+        public string Secret { get;  set; } = Default.Configuration.Client.ApiKey.Secret;
     }
 }

@@ -26,12 +26,12 @@ namespace Stormpath.Configuration.Abstractions
         /// The URI for this route, or <see langword="null"/> to use the default URI.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.callback.uri</c></remarks>
-        public string Uri { get; set; }
+        public string Uri { get; set; } = Default.Configuration.Web.Callback.Uri;
 
         /// <summary>
         /// Determines whether the Stormpath callback handler route is enabled.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.callback.enabled</c></remarks>
-        public bool Enabled { get; set; }
+        public bool Enabled { get; set; } = Default.Configuration.Web.Callback.Enabled;
     }
 }

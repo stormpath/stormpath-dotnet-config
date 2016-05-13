@@ -31,7 +31,7 @@ namespace Stormpath.Configuration.Abstractions
         /// Configuration path: <c>stormpath.web.register.autoLogin</c>
         /// </para>
         /// </remarks>
-        public bool AutoLogin { get; set; }
+        public bool AutoLogin { get; set; } = Default.Configuration.Web.Register.AutoLogin;
 
         /// <summary>
         /// The form configuration options.
@@ -43,24 +43,24 @@ namespace Stormpath.Configuration.Abstractions
         /// The view to use for this route, or <see langword="null"/> to use the default view.
         /// </summary>
         /// Configuration path: <c>stormpath.web.register.view</c>
-        public string View { get; set; }
+        public string View { get; set; } = Default.Configuration.Web.Register.View;
 
         /// <summary>
         /// The URI to redirect to if the operation is successful.
         /// </summary>
         /// Configuration path: <c>stormpath.web.register.nextUri</c>
-        public string NextUri { get; set; }
+        public string NextUri { get; set; } = Default.Configuration.Web.Register.NextUri;
 
         /// <summary>
         /// Determines whether the Register route is enabled.
         /// </summary>
         /// Configuration path: <c>stormpath.web.register.enabled</c>
-        public bool Enabled { get; set; }
+        public bool Enabled { get; set; } = Default.Configuration.Web.Register.Enabled;
 
         /// <summary>
         /// The URI for this route, or <see langword="null"/> to use the default URI.
         /// </summary>
         /// Configuration path: <c>stormpath.web.register.uri</c>
-        public string Uri { get; set; }
+        public string Uri { get; set; } = Default.Configuration.Web.Register.Uri;
     }
 }

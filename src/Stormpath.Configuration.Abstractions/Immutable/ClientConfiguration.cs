@@ -73,13 +73,13 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         /// The connection timeout.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.connectionTimeout</c></remarks>
-        public int? ConnectionTimeout { get; internal set; }
+        public int ConnectionTimeout { get; internal set; }
 
         /// <summary>
         /// The authentication scheme to use for requests.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.authenticationScheme</c></remarks>
-        public ClientAuthenticationScheme? AuthenticationScheme { get; internal set; }
+        public ClientAuthenticationScheme AuthenticationScheme { get; internal set; }
 
         /// <summary>
         /// The proxy to use for requests.

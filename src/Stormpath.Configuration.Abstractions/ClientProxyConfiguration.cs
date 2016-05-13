@@ -25,24 +25,24 @@ namespace Stormpath.Configuration.Abstractions
         /// The proxy port.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.proxy.port</c></remarks>
-        public int? Port { get; set; }
+        public int? Port { get; set; } = Default.Configuration.Client.Proxy.Port;
 
         /// <summary>
         /// The proxy hostname.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.proxy.host</c></remarks>
-        public string Host { get; set; }
+        public string Host { get; set; } = Default.Configuration.Client.Proxy.Host;
 
         /// <summary>
         /// The proxy username.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.proxy.username</c></remarks>
-        public string Username { get; set; }
+        public string Username { get; set; } = Default.Configuration.Client.Proxy.Username;
 
         /// <summary>
         /// The proxy password.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.proxy.password</c></remarks>
-        public string Password { get; set; }
+        public string Password { get; set; } = Default.Configuration.Client.Proxy.Password;
     }
 }

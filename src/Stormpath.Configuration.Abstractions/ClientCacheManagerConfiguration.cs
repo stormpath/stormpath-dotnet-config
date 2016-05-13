@@ -47,6 +47,6 @@ namespace Stormpath.Configuration.Abstractions
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.cacheManager.caches</c></remarks>
         public IReadOnlyDictionary<string, ClientCacheConfiguration> Caches { get; set; }
-            = new Dictionary<string, ClientCacheConfiguration>(StringComparer.OrdinalIgnoreCase) { };
+            = new Dictionary<string, ClientCacheConfiguration>(StringComparer.OrdinalIgnoreCase);
     }
 }

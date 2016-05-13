@@ -25,13 +25,13 @@ namespace Stormpath.Configuration.Abstractions
         /// The view to use for this route, or <see langword="null"/> to use the default view.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.verifyEmail.view</c></remarks>
-        public string View { get; set; }
+        public string View { get; set; } = Default.Configuration.Web.VerifyEmail.View;
 
         /// <summary>
         /// The URI to redirect to if the operation is successful.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.verifyEmail.nextUri</c></remarks>
-        public string NextUri { get; set; }
+        public string NextUri { get; set; } = Default.Configuration.Web.VerifyEmail.NextUri;
 
         /// <summary>
         /// Determines whether the Change Password route is enabled.
@@ -44,12 +44,12 @@ namespace Stormpath.Configuration.Abstractions
         /// Configuration path: <c>stormpath.web.verifyEmail.enabled</c>
         /// </para>
         /// </remarks>
-        public bool? Enabled { get; set; }
+        public bool? Enabled { get; set; } = Default.Configuration.Web.VerifyEmail.Enabled;
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.verifyEmail.uri</c></remarks>
-        public string Uri { get; set; }
+        public string Uri { get; set; } = Default.Configuration.Web.VerifyEmail.Uri;
     }
 }

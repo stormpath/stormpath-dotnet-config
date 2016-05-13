@@ -25,24 +25,24 @@ namespace Stormpath.Configuration.Abstractions
         /// The relative path for the ID Site Login action, or <see langword="null"/> to use the default path.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.idSite.loginUri</c></remarks>
-        public string LoginUri { get; set; }
+        public string LoginUri { get; set; } = Default.Configuration.Web.IdSite.LoginUri;
 
         /// <summary>
         /// The relative path for the ID Site Forgot Password action, or <see langword="null"/> to use the default path.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.idSite.forgotUri</c></remarks>
-        public string ForgotUri { get; set; }
+        public string ForgotUri { get; set; } = Default.Configuration.Web.IdSite.ForgotUri;
 
         /// <summary>
         /// The relative path for the ID Site Register action, or <see langword="null"/> to use the default path.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.idSite.registerUri</c></remarks>
-        public string RegisterUri { get; set; }
+        public string RegisterUri { get; set; } = Default.Configuration.Web.IdSite.RegisterUri;
 
         /// <summary>
         /// Determines whether ID Site is used for login, registration, and password reset.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.idSite.enabled</c></remarks>
-        public bool Enabled { get; set; }
+        public bool Enabled { get; set; } = Default.Configuration.Web.IdSite.Enabled;
     }
 }

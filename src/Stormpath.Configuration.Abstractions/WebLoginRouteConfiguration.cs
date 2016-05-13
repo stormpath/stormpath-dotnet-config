@@ -31,24 +31,24 @@ namespace Stormpath.Configuration.Abstractions
         /// The view to use for this route, or <see langword="null"/> to use the default view.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.login.view</c></remarks>
-        public string View { get; set; }
+        public string View { get; set; } = Default.Configuration.Web.Login.View;
 
         /// <summary>
         /// The URI to redirect to if the operation is successful.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.login.nextUri</c></remarks>
-        public string NextUri { get; set; }
+        public string NextUri { get; set; } = Default.Configuration.Web.Login.NextUri;
 
         /// <summary>
         /// Determines whether the Login route is enabled.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.login.enabled</c></remarks>
-        public bool Enabled { get; set; }
+        public bool Enabled { get; set; } = Default.Configuration.Web.Login.Enabled;
 
         /// <summary>
         /// The URI for this route, or <see langword="null"/> to use the default URI.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.login.uri</c></remarks>
-        public string Uri { get; set; }
+        public string Uri { get; set; } = Default.Configuration.Web.Login.Uri;
     }
 }
