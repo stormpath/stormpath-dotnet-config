@@ -4,22 +4,24 @@
   "description": "Abstractions for the Stormpath.Configuration package.",
   "frameworks": {
     "net45": { },
-    "netstandard1.1": {
+    "netstandard1.5": {
       "dependencies": {
-        "NETStandard.Library": "1.5.0-rc2"
+        "NETStandard.Library": "1.5.0-rc2-24027"
       }
     }
   },
-  "licenseUrl": "https://github.com/stormpath/stormpath-dotnet-config/blob/master/LICENSE",
-  "projectUrl": "https://github.com/stormpath/stormpath-dotnet-config/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/stormpath/stormpath-dotnet-config/"
+  "packOptions": {
+    "licenseUrl": "https://github.com/stormpath/stormpath-dotnet-config/blob/master/LICENSE",
+    "projectUrl": "https://github.com/stormpath/stormpath-dotnet-config/",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/stormpath/stormpath-dotnet-config/"
+    },
+    "tags": [ "stormpath" ]
   },
-  "tags": [ "stormpath" ],
   "tooling": {
     "defaultNamespace": "Stormpath.Configuration.Abstractions"
   },
-  "version": "5.1.0",
+  "version": "5.1.0-beta1",
   "xmlDoc": true
 }
