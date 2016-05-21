@@ -3,19 +3,10 @@
   "copyright": "(c) 2016 Stormpath, Inc.",
   "description": "Abstractions for the Stormpath.Configuration package.",
   "frameworks": {
-    "dnx451": { },
-    "dotnet5.1": {
-      "dependencies": {
-        "System.Collections": "4.0.11-beta-23516",
-        "System.Linq": "4.0.1-beta-23516",
-        "System.Runtime.Extensions": "4.0.11-beta-23516"
-      }
-    },
     "net45": { },
-    "netcore50": {
+    "netstandard1.1": {
       "dependencies": {
-        "System.Collections": "4.0.11-beta-23516",
-        "System.Linq": "4.0.1-beta-23516"
+        "NETStandard.Library": "1.5.0-rc2"
       }
     }
   },
@@ -29,6 +20,6 @@
   "tooling": {
     "defaultNamespace": "Stormpath.Configuration.Abstractions"
   },
-  "version": "5.0.0",
-  "xmlDoc":  true
+  "version": "5.1.0",
+  "xmlDoc": true
 }
