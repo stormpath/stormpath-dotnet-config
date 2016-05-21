@@ -1,15 +1,13 @@
 {
   "authors": [ "Nate Barbettini" ],
-  "buildOptions": {
-    "emitEntryPoint": true
-  },
   "copyright": "(c) 2016 Stormpath, Inc.",
   "dependencies": {
-    "dotnet-test-xunit": "1.0.0-rc2",
+    "dotnet-test-xunit": "1.0.0-rc2-build10015",
     "FluentAssertions": "4.2.1",
     "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc2-final",
     "Microsoft.NETCore.App": {
-      "version": "1.0.0-rc2"
+      "type": "platform",
+      "version": "1.0.0-rc2-3002702"
     },
     "Stormpath.Configuration": {
       "version": "5.1.0-beta1",
@@ -23,11 +21,12 @@
       "imports": [ "dotnet", "portable-net45+win8" ]
     }
   },
-  "licenseUrl": "https://github.com/stormpath/stormpath-dotnet-config/blob/master/LICENSE",
-  "projectUrl": "https://github.com/stormpath/stormpath-dotnet-config/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/stormpath/stormpath-dotnet-config/"
+  "packOptions": {
+    "licenseUrl": "https://github.com/stormpath/stormpath-dotnet-config/blob/master/LICENSE",
+    "projectUrl": "https://github.com/stormpath/stormpath-dotnet-config/",
+    "repository": {
+      "url": "https://github.com/stormpath/stormpath-dotnet-config/"
+    }
   },
   "testRunner": "xunit",
   "tooling": {
