@@ -1,5 +1,10 @@
 {
   "authors": [ "Nate Barbettini" ],
+  "buildOptions": {
+    "copyToOutput": {
+      "include": [ "xunit.runner.json" ]
+    }
+  },
   "copyright": "(c) 2016 Stormpath, Inc.",
   "dependencies": {
     "dotnet-test-xunit": "1.0.0-rc2-build10015",
@@ -10,8 +15,8 @@
       "version": "1.0.0-rc2-3002702"
     },
     "Stormpath.Configuration": {
-      "version": "5.1.0-beta2",
-      "target": "project"
+      "target": "project",
+      "version": "5.1.0"
     },
     "xunit": "2.1.0"
   },
@@ -32,5 +37,5 @@
   "tooling": {
     "defaultNamespace": "Stormpath.Configuration.Test"
   },
-  "version": "5.1.0-beta2"
+  "version": "5.1.0"
 }
