@@ -90,10 +90,14 @@ namespace Stormpath.Configuration
                 throw new ConfigurationException("API key cannot be empty.");
             }
 
-            if (string.IsNullOrEmpty(client.ApiKey.Id)
-                || string.IsNullOrEmpty(client.ApiKey.Secret))
+            if (string.IsNullOrEmpty(client.ApiKey.Id))
             {
-                throw new ConfigurationException("API key ID and secret is required.");
+                throw new ConfigurationException("API key ID is required.");
+            }
+
+            if (string.IsNullOrEmpty(client.ApiKey.Secret))
+            {
+                throw new ConfigurationException("API key secret is required.");
             }
         }
 

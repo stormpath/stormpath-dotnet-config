@@ -18,7 +18,7 @@ using System;
 using System.IO;
 using System.Linq;
 #if !NET45
-using Microsoft.Extensions.PlatformAbstractions;
+using System.Runtime.InteropServices;
 #endif
 
 namespace Stormpath.Configuration
@@ -61,32 +61,26 @@ namespace Stormpath.Configuration
         /// <summary>
         /// Resolves the current user's home directory path.
         /// </summary>
-        /// <remarks>
-        /// Copied from DNX's DnuEnvironment.cs
-        /// </remarks>
-        /// <returns></returns>
+        /// <returns>The home path.</returns>
         public static string GetHomePath()
         {
 #if NET45
             return Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 #else
-            var runtimeEnv = PlatformServices.Default.Runtime;
-            if (runtimeEnv.OperatingSystem == "Windows")
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 return Environment.GetEnvironmentVariable("USERPROFILE") ??
-                    Environment.GetEnvironmentVariable("HOMEDRIVE") + Environment.GetEnvironmentVariable("HOMEPATH");
+                    Path.Combine(Environment.GetEnvironmentVariable("HOMEDRIVE"), Environment.GetEnvironmentVariable("HOMEPATH"));
             }
-            else
+
+            var home = Environment.GetEnvironmentVariable("HOME");
+
+            if (string.IsNullOrEmpty(home))
             {
-                var home = Environment.GetEnvironmentVariable("HOME");
-
-                if (string.IsNullOrEmpty(home))
-                {
-                    throw new Exception("Home directory not found. The HOME environment variable is not set.");
-                }
-
-                return home;
+                throw new Exception("Home directory not found. The HOME environment variable is not set.");
             }
+
+            return home;
 #endif
         }
     }

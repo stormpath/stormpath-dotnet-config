@@ -2,7 +2,7 @@
   "authors": [ "Nate Barbettini" ],
   "copyright": "(c) 2016 Stormpath, Inc.",
   "dependencies": {
-    "FlexibleConfiguration": "1.1.1",
+    "FlexibleConfiguration": "1.2.0-beta1",
     "Stormpath.Configuration.Abstractions": {
       "target": "project",
       "version": "5.2.0-beta1"
@@ -13,8 +13,7 @@
     "net45": { },
     "netstandard1.3": {
       "dependencies": {
-        "Microsoft.Extensions.PlatformAbstractions": "1.0.0",
-        "NETStandard.Library": "1.6.0"
+        "System.Runtime.InteropServices.RuntimeInformation": "4.0.0"
       },
       "imports": "dotnet"
     }
