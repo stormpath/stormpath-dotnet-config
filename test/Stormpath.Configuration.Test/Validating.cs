@@ -40,7 +40,7 @@ namespace Stormpath.Configuration.Test
 
             Action act = () => ConfigurationLoader.Initialize().Load(anon);
 
-            act.ShouldThrow<ConfigurationException>().WithMessage("API key ID and secret is required.");
+            act.ShouldThrow<ConfigurationException>().WithMessage("API key ID is required.");
         }
 
         [Fact]
@@ -60,7 +60,7 @@ namespace Stormpath.Configuration.Test
 
             Action act = () => ConfigurationLoader.Initialize().Load(anon);
 
-            act.ShouldThrow<ConfigurationException>().WithMessage("API key ID and secret is required.");
+            act.ShouldThrow<ConfigurationException>().WithMessage("API key secret is required.");
         }
 
         [Fact]

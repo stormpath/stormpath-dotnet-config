@@ -43,7 +43,7 @@ namespace Stormpath.Configuration.Test
             foreach (var entry in TestCases())
             {
                 var testCase = entry[0] as ConfigTestCaseBase;
-                var filePath = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, testCase.Filename);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), testCase.Filename);
 
                 File.Delete(filePath);
             }
@@ -54,7 +54,7 @@ namespace Stormpath.Configuration.Test
         public void Loading_Stormpath_defaults(ConfigTestCaseBase testCase)
         {
             var filePath = Path.Combine(
-                PlatformServices.Default.Application.ApplicationBasePath, testCase.Filename);
+                Directory.GetCurrentDirectory(), testCase.Filename);
 
             File.WriteAllText(filePath, testCase.FileContents);
 

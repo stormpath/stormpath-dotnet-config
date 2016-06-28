@@ -307,6 +307,14 @@ namespace Stormpath.Configuration.Test
         {
             var test = new StormpathConfiguration
             {
+                Client = new ClientConfiguration
+                {
+                    ApiKey = new ClientApiKeyConfiguration
+                    {
+                        Id = "testing-foobar",
+                        Secret = "testing-foobar"
+                    }
+                },
                 Application = new ApplicationConfiguration { Name = "My Application!" },
                 Web = new WebConfiguration
                 {
@@ -326,7 +334,19 @@ namespace Stormpath.Configuration.Test
         [Fact]
         public void Default_cookie_paths_are_slash()
         {
-            var config = ConfigurationLoader.Initialize().Load();
+            var dummyApiKeyConfiguration = new
+            {
+                client = new
+                {
+                    apiKey = new
+                    {
+                        id = "modified-foobar",
+                        secret = "modified-barbaz"
+                    }
+                }
+            };
+
+            var config = ConfigurationLoader.Initialize().Load(dummyApiKeyConfiguration);
 
             config.Web.AccessTokenCookie.Path.Should().Be("/");
             config.Web.RefreshTokenCookie.Path.Should().Be("/");
@@ -335,13 +355,23 @@ namespace Stormpath.Configuration.Test
         [Fact]
         public void Cookie_paths_follow_base_path_if_unspecified()
         {
-            var config = ConfigurationLoader.Initialize().Load(new
+            var userConfiguration = new
             {
+                client = new
+                {
+                    apiKey = new
+                    {
+                        id = "modified-foobar",
+                        secret = "modified-barbaz"
+                    }
+                },
                 web = new
                 {
                     basePath = "/blah"
                 }
-            });
+            };
+
+            var config = ConfigurationLoader.Initialize().Load(userConfiguration);
 
             config.Web.BasePath.Should().Be("/blah");
 
@@ -352,8 +382,16 @@ namespace Stormpath.Configuration.Test
         [Fact]
         public void Explicit_cookie_paths_are_observed()
         {
-            var config = ConfigurationLoader.Initialize().Load(new
+            var userConfiguration = new
             {
+                client = new
+                {
+                    apiKey = new
+                    {
+                        id = "modified-foobar",
+                        secret = "modified-barbaz"
+                    }
+                },
                 web = new
                 {
                     basePath = "/blah",
@@ -366,7 +404,9 @@ namespace Stormpath.Configuration.Test
                         path = "/bar"
                     }
                 }
-            });
+            };
+
+            var config = ConfigurationLoader.Initialize().Load(userConfiguration);
 
             config.Web.BasePath.Should().Be("/blah");
 

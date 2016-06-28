@@ -26,7 +26,7 @@ namespace Stormpath.Configuration.Test
     public class Api_properties_file : IDisposable
     {
         private readonly static string PropertiesFilePath =
-            Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "apiKey.properties");
+            Path.Combine(Directory.GetCurrentDirectory(), "apiKey.properties");
 
         private readonly static string PropertiesFileContents = @"
 apiKey.id = APIKEY_FOOBAR
@@ -55,7 +55,7 @@ apiKey.secret = APIKEY_bazquxsecret!";
         public void Loads_specified_file()
         {
             var otherPropertiesFilePath = Path.Combine(
-                PlatformServices.Default.Application.ApplicationBasePath, "myother_apiKey.properties");
+                Directory.GetCurrentDirectory(), "myother_apiKey.properties");
 
             File.WriteAllText(
                 otherPropertiesFilePath, 
@@ -82,7 +82,7 @@ apiKey.secret = APIKEY_bazquxsecret!";
         public void Throws_if_file_is_missing()
         {
             var otherPropertiesFilePath = Path.Combine(
-                PlatformServices.Default.Application.ApplicationBasePath, "myother_apiKey.properties");
+                Directory.GetCurrentDirectory(), "myother_apiKey.properties");
 
 
             // Clean up just in case a previous test run didn't

@@ -26,7 +26,7 @@ namespace Stormpath.Configuration.Test
     public class Appsettings_file : IDisposable
     {
         private readonly static string AppSettingsFilePath = Path.Combine(
-            PlatformServices.Default.Application.ApplicationBasePath, "appsettings.json");
+            Directory.GetCurrentDirectory(), "appsettings.json");
 
         private readonly static string AppSettingsFileContents = @"
 {
