@@ -26,11 +26,9 @@ namespace Stormpath.Configuration
 {
     internal sealed class DefaultConfigurationLoader : IConfigurationLoader
     {
-        private static readonly string stormpathDirectoryPath = Path.Combine("~", ".stormpath");
-
-        public Abstractions.Immutable.StormpathConfiguration Load(object userConfiguration = null)
+        public Abstractions.Immutable.StormpathConfiguration Load(object userConfiguration = null, string configurationFileRoot = null)
         {
-            var compiled = CompileFromSources(userConfiguration); // TODO restore logging
+            var compiled = CompileFromSources(userConfiguration, configurationFileRoot); // TODO restore logging
 
             var output = new Abstractions.Immutable.StormpathConfiguration(Default.Configuration);
             compiled.GetSection("stormpath").Bind(output);
@@ -44,27 +42,38 @@ namespace Stormpath.Configuration
             return output;
         }
 
-        private static IConfigurationRoot CompileFromSources(object userConfiguration)
+        private static IConfigurationRoot CompileFromSources(object userConfiguration, string configurationFileRoot)
         {
             var homeApiKeyPropertiesLocation = HomePath.Resolve("~", ".stormpath", "apiKey.properties");
             var homeStormpathJsonLocation = HomePath.Resolve("~", ".stormpath", "stormpath.json");
             var homeStormpathYamlLocation = HomePath.Resolve("~", ".stormpath", "stormpath.yaml");
 
-            var configurationSources = string.Join(", ",
-                homeApiKeyPropertiesLocation, homeStormpathJsonLocation, homeStormpathYamlLocation,
-                "appsettings.json", "apiKey.properties", "stormpath.json", "stormpath.yaml",
-                "Environment variables starting with 'STORMPATH_",
-                userConfiguration == null ? null : "User-supplied configuration");
+            var applicationAppSettingsLocation = Path.Combine(configurationFileRoot ?? string.Empty, "appsettings.json");
+            var applicationApiKeyPropertiesLocation = Path.Combine(configurationFileRoot ?? string.Empty, "apiKey.properties");
+            var applicationStormpathJsonLocation = Path.Combine(configurationFileRoot ?? string.Empty, "stormpath.json");
+            var applicationStormpathYamlLocation = Path.Combine(configurationFileRoot ?? string.Empty, "stormpath.yaml");
+
+            // TODO logging
+            //var configurationSources = string.Join(", ",
+            //    homeApiKeyPropertiesLocation,
+            //    homeStormpathJsonLocation,
+            //    homeStormpathYamlLocation,
+            //    applicationAppSettingsLocation,
+            //    applicationApiKeyPropertiesLocation,
+            //    applicationStormpathJsonLocation,
+            //    applicationStormpathYamlLocation,
+            //    "Environment variables starting with 'STORMPATH_",
+            //    userConfiguration == null ? null : "User-supplied configuration");
             //logger.Trace($"Compiling configuration from sources: {configurationSources}");
 
             var builder = new ConfigurationBuilder()
                 .AddPropertiesFile(homeApiKeyPropertiesLocation, optional: true, root: "stormpath:client")
                 .AddJsonFile(homeStormpathJsonLocation, optional: true, root: "stormpath")
                 .AddYamlFile(homeStormpathYamlLocation, optional: true, root: "stormpath")
-                .AddJsonFile("appsettings.json", optional: true)
-                .AddPropertiesFile("apiKey.properties", optional: true, root: "stormpath:client")
-                .AddJsonFile("stormpath.json", optional: true, root: "stormpath")
-                .AddYamlFile("stormpath.yaml", optional: true, root: "stormpath")
+                .AddJsonFile(applicationAppSettingsLocation, optional: true)
+                .AddPropertiesFile(applicationApiKeyPropertiesLocation, optional: true, root: "stormpath:client")
+                .AddJsonFile(applicationStormpathJsonLocation, optional: true, root: "stormpath")
+                .AddYamlFile(applicationStormpathYamlLocation, optional: true, root: "stormpath")
                 .AddEnvironmentVariables("stormpath", "_", root: "stormpath")
                 .AddObject(userConfiguration, root: "stormpath");
 

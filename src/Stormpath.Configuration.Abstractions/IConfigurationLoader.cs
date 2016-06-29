@@ -27,7 +27,10 @@ namespace Stormpath.Configuration.Abstractions
         /// <param name="userConfiguration">
         /// An instance of <see cref="StormpathConfiguration"/>, or an anonymous type, containing user-defined configuration options.
         /// </param>
+        /// <param name="configurationFileRoot">
+        /// The path to search for configuration files, if any. <c>null</c> will search the current directory.
+        /// </param>
         /// <returns>The resolved Stormpath configuration.</returns>
-        Immutable.StormpathConfiguration Load(object userConfiguration = null);
+        Immutable.StormpathConfiguration Load(object userConfiguration = null, string configurationFileRoot = null);
     }
 }
