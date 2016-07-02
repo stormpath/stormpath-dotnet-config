@@ -413,5 +413,49 @@ namespace Stormpath.Configuration.Test
             config.Web.AccessTokenCookie.Path.Should().Be("/foo");
             config.Web.RefreshTokenCookie.Path.Should().Be("/bar");
         }
+
+        [Fact]
+        public void Server_uri_is_null_by_default()
+        {
+            var dummyApiKeyConfiguration = new
+            {
+                client = new
+                {
+                    apiKey = new
+                    {
+                        id = "modified-foobar",
+                        secret = "modified-barbaz"
+                    }
+                }
+            };
+
+            var config = ConfigurationLoader.Initialize().Load(dummyApiKeyConfiguration);
+
+            config.Web.ServerUri.Should().BeNull();
+        }
+
+        [Fact]
+        public void Server_uri_can_be_set()
+        {
+            var userConfiguration = new
+            {
+                client = new
+                {
+                    apiKey = new
+                    {
+                        id = "modified-foobar",
+                        secret = "modified-barbaz"
+                    }
+                },
+                web = new
+                {
+                    serverUri = "http://localhost:9999"
+                }
+            };
+
+            var config = ConfigurationLoader.Initialize().Load(userConfiguration);
+
+            config.Web.ServerUri.Should().Be("http://localhost:9999");
+        }
     }
 }

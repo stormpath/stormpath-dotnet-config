@@ -53,6 +53,7 @@ application:
   name: null
   href: null
 web:
+  serverUri: null
   basePath: ""/""
 
   oauth2:
@@ -237,7 +238,7 @@ web:
       scope: ""email profile""
     linkedin:
       uri: ""/callbacks/linkedin""
-      scope: ""r_basicprofile, r_emailaddress""
+      scope: ""r_basicprofile r_emailaddress""
 
   # The /me route is for front-end applications, it returns a JSON object with
   # the current user object

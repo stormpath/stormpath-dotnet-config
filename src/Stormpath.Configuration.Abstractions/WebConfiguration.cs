@@ -25,6 +25,12 @@ namespace Stormpath.Configuration.Abstractions
     public sealed class WebConfiguration
     {
         /// <summary>
+        /// The web server's base URI.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.serverUri</c></remarks>
+        public string ServerUri { get; set; } = Default.Configuration.Web.ServerUri;
+
+        /// <summary>
         /// The web application's base path.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.basePath</c></remarks>

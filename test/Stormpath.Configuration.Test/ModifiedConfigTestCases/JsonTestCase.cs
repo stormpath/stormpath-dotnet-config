@@ -64,6 +64,7 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
     ""href"": ""https://api.foo.com/v1/applications/foo""
   },
   ""web"": {
+    ""serverUri"": ""https://localhost:9000"",
     ""basePath"": ""#/"",
     ""oauth2"": {
       ""enabled"": false,

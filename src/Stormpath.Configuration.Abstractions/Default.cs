@@ -70,6 +70,9 @@ namespace Stormpath.Configuration.Abstractions
             // (https://github.com/stormpath/stormpath-framework-spec/blob/master/configuration.md)
             Web = new Immutable.WebConfiguration()
             {
+                // The base server URI (null unless it's specifically needed for social login integrations)
+                ServerUri = null,
+
                 // The base path is used as the default path for the cookies that are set.
                 BasePath = "/",
 
@@ -358,7 +361,7 @@ namespace Stormpath.Configuration.Abstractions
                     ["linkedin"] = new Immutable.WebSocialProviderConfiguration()
                     {
                         Uri = "/callbacks/linkedin",
-                        Scope = "r_basicprofile, r_emailaddress"
+                        Scope = "r_basicprofile r_emailaddress"
                     },
                 },
 

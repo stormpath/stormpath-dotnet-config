@@ -26,6 +26,7 @@ namespace Stormpath.Configuration.Abstractions.Immutable
     public sealed class WebConfiguration
     {
         public WebConfiguration(
+            string serverUri = null,
             string basePath = null,
             WebOauth2RouteConfiguration oauth2Route = null,
             WebCookieConfiguration accessTokenCookie = null,
@@ -42,6 +43,7 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             IDictionary<string, WebSocialProviderConfiguration> social = null,
             WebMeRouteConfiguration meRoute = null)
         {
+            this.ServerUri = serverUri ?? Default.Configuration.Web.ServerUri;
             this.BasePath = basePath ?? Default.Configuration.Web.BasePath;
             this.Oauth2 = new WebOauth2RouteConfiguration(oauth2Route ?? Default.Configuration.Web.Oauth2);
             this.AccessTokenCookie = new WebCookieConfiguration(accessTokenCookie ?? Default.Configuration.Web.AccessTokenCookie);
@@ -60,7 +62,8 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         }
 
         public WebConfiguration(WebConfiguration existing)
-            : this(existing?.BasePath,
+            : this(existing?.ServerUri,
+                  existing?.BasePath,
                   existing?.Oauth2,
                   existing?.AccessTokenCookie,
                   existing?.RefreshTokenCookie,
@@ -81,6 +84,12 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         internal WebConfiguration()
         {
         }
+
+        /// <summary>
+        /// The web server's base URI.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.serverUri</c></remarks>
+        public string ServerUri { get; internal set; }
 
         /// <summary>
         /// The web application's base path.

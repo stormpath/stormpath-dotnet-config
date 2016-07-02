@@ -100,6 +100,7 @@ namespace Stormpath.Configuration.Test
                 href: "https://api.foo.com/v1/applications/foo");
 
             var webConfiguration = new Abstractions.Immutable.WebConfiguration(
+                serverUri: "https://localhost:9000",
                 basePath: "#/",
 
                 oauth2Route: new Abstractions.Immutable.WebOauth2RouteConfiguration(
@@ -284,6 +285,7 @@ namespace Stormpath.Configuration.Test
 
                 Web = new WebConfiguration()
                 {
+                    ServerUri = "https://localhost:9000",
                     BasePath = "#/",
                     Oauth2 = new WebOauth2RouteConfiguration()
                     {
@@ -491,6 +493,7 @@ namespace Stormpath.Configuration.Test
 
                 web = new
                 {
+                    serverUri = "https://localhost:9000",
                     basePath = "#/",
 
                     oauth2 = new
@@ -706,6 +709,7 @@ namespace Stormpath.Configuration.Test
             config.Application.Name.Should().Be("Lightsabers Galore");
 
             // Web section
+            config.Web.ServerUri.Should().Be("https://localhost:9000");
             config.Web.BasePath.Should().Be("#/");
 
             config.Web.Oauth2.Enabled.Should().BeFalse();

@@ -120,6 +120,7 @@ namespace Stormpath.Configuration.Test
             config.Application.Name.Should().BeNullOrEmpty();
 
             // Web section
+            config.Web.ServerUri.Should().BeNullOrEmpty();
             config.Web.BasePath.Should().Be("/");
 
             config.Web.Oauth2.Enabled.Should().BeTrue();
@@ -276,7 +277,7 @@ namespace Stormpath.Configuration.Test
             config.Web.Social["google"].Uri.Should().Be("/callbacks/google");
             config.Web.Social["google"].Scope.Should().Be("email profile");
             config.Web.Social["linkedin"].Uri.Should().Be("/callbacks/linkedin");
-            config.Web.Social["linkedin"].Scope.Should().Be("r_basicprofile, r_emailaddress");
+            config.Web.Social["linkedin"].Scope.Should().Be("r_basicprofile r_emailaddress");
 
             config.Web.Me.Enabled.Should().BeTrue();
             config.Web.Me.Uri.Should().Be("/me");

@@ -58,6 +58,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
     ""href"": null
   },
   ""web"": {
+    ""serverUri"": null,
     ""basePath"": ""/"",
     ""oauth2"": {
       ""enabled"": true,
@@ -246,7 +247,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
         },
         ""linkedin"": {
             ""uri"": ""/callbacks/linkedin"",
-            ""scope"": ""r_basicprofile, r_emailaddress""
+            ""scope"": ""r_basicprofile r_emailaddress""
         }
     },
     ""me"": {

@@ -56,6 +56,7 @@ application:
   name: Lightsabers Galore
   href: ""https://api.foo.com/v1/applications/foo""
 web:
+  serverUri: ""https://localhost:9000""
   basePath: ""#/""
 
   oauth2:
