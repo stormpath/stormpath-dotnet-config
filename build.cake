@@ -21,21 +21,7 @@ Task("Build")
     });
 });
 
-Task("Test")
-.WithCriteria(() => HasArgument("test"))
-.Does(() =>
-{
-    var tests = GetFiles("./test/**/project.json");
-    Console.WriteLine("Running {0} tests", tests.Count());
-
-    foreach (var test in tests) 
-    {
-        DotNetCoreTest(test.FullPath);
-    }
-});
-
 Task("Pack")
-.WithCriteria(() => HasArgument("pack"))
 .Does(() =>
 {
     var projects = GetFiles("./src/**/project.json");
@@ -51,11 +37,22 @@ Task("Pack")
     }
 });
 
+Task("Test")
+.Does(() =>
+{
+    var tests = GetFiles("./test/**/project.json");
+    Console.WriteLine("Running {0} tests", tests.Count());
+
+    foreach (var test in tests) 
+    {
+        DotNetCoreTest(test.FullPath);
+    }
+});
+
 Task("Default")
     .IsDependentOn("Clean")
     .IsDependentOn("Restore")
     .IsDependentOn("Build")
-    .IsDependentOn("Test")
     .IsDependentOn("Pack");
 
 

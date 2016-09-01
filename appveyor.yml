@@ -3,9 +3,9 @@ branches:
   only:
   - master
 build_script:
-- ps: ./build.ps1 -pack
+- ps: ./build.ps1
 test_script:
-- ps: ./build.ps1 -test
+- ps: ./build.ps1 -Target Test
 artifacts:
 - path: artifacts/*.nupkg
 deploy: off
