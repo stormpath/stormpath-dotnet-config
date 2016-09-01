@@ -6,10 +6,7 @@ build_script:
 - ps: ./build.ps1
 test_script:
 - ps: ./build.ps1 -test
-before_deploy:
-- ps: ./build.ps1 -pack
-deploy:
-- provider: Environment
+artifacts:
+- path: artifacts/*
   name: MyGet
-  on:
-    branch: master
+deploy: off
