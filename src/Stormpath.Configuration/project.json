@@ -5,7 +5,7 @@
     "FlexibleConfiguration": "1.2.0",
     "Stormpath.Configuration.Abstractions": {
       "target": "project",
-      "version": "5.3.1"
+      "version": "6.0.0-beta1"
     }
   },
   "description": "Load Stormpath configuration from various sources.",
@@ -29,5 +29,5 @@
   "tooling": {
     "defaultNamespace": "Stormpath.Configuration"
   },
-  "version": "5.3.1"
+  "version": "6.0.0-beta1"
 }
