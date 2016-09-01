@@ -1,5 +1,5 @@
 build_script:
-- ps: build.ps1
+- ps: .\build.ps1
 test_script:
-- ps: build.ps1 -test
+- ps: .\build.ps1 -test
 deploy: off
