@@ -13,6 +13,5 @@ deploy:
   server: https://www.myget.org/F/stormpath-dotnet-config/api/v2/package
   api_key:
     secure: NKw0lJ4AaTBs1qfXDV9llSwcngm99ioJNmRZGm2KROLqsFrT6XwSSEEkmD5pyaGL
-  artifact: ./artifacts/*
   on:
     branch: master
