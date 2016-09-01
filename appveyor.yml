@@ -3,10 +3,9 @@ branches:
   only:
   - master
 build_script:
-- ps: ./build.ps1
+- ps: ./build.ps1 -pack
 test_script:
 - ps: ./build.ps1 -test
 artifacts:
-- path: artifacts/*
-  name: MyGet
+- path: artifacts/*.nupkg
 deploy: off
