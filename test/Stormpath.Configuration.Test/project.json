@@ -16,7 +16,7 @@
     },
     "Stormpath.Configuration": {
       "target": "project",
-      "version": "5.3.1-beta3"
+      "version": "5.3.1"
     },
     "xunit": "2.1.0"
   },
@@ -37,5 +37,5 @@
   "tooling": {
     "defaultNamespace": "Stormpath.Configuration.Test"
   },
-  "version": "5.3.1-beta3"
+  "version": "5.3.1"
 }

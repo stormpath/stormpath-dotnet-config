@@ -54,13 +54,13 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         public bool Enabled { get; internal set; }
 
         /// <summary>
-        /// The default cache Time-To-Live.
+        /// The default cache Time-To-Live, in seconds.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.cacheManager.defaultTtl</c></remarks>
         public int DefaultTtl { get; internal set; }
 
         /// <summary>
-        /// The default cache Time-To-Idle.
+        /// The default cache Time-To-Idle, in seconds.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.cacheManager.defaultTti</c></remarks>
         public int DefaultTti { get; internal set; }

@@ -40,13 +40,13 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         }
 
         /// <summary>
-        /// The cache Time-To-Live.
+        /// The cache Time-To-Live, in seconds.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.cacheManager.caches.[*].ttl</c></remarks>
         public int? Ttl { get; internal set; }
 
         /// <summary>
-        /// The cache Time-To-Idle.
+        /// The cache Time-To-Idle, in seconds.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.cacheManager.caches.[*].tti</c></remarks>
         public int? Tti { get; internal set; }

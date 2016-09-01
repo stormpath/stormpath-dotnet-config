@@ -30,8 +30,8 @@ namespace Stormpath.Configuration.Abstractions
                 CacheManager = new Immutable.ClientCacheManagerConfiguration()
                 {
                     Enabled = true,
-                    DefaultTtl = 300,
-                    DefaultTti = 300,
+                    DefaultTtl = 3600,
+                    DefaultTti = 3600,
                     Caches = new Dictionary<string, Immutable.ClientCacheConfiguration>(StringComparer.OrdinalIgnoreCase) { },
                 },
 
@@ -39,8 +39,8 @@ namespace Stormpath.Configuration.Abstractions
                 // You shouldn't have to modify this unless you are connecting to Stormpath Enterprise.
                 BaseUrl = "https://api.stormpath.com/v1",
 
-                // The default HTTP connection timeout, in milliseconds.
-                ConnectionTimeout = 30 * 1000,
+                // The default HTTP connection timeout, in seconds.
+                ConnectionTimeout = 30,
 
                 // The REST API authentication scheme to use.
                 // SAuthc1  (the default) is more secure, but Basic is required in some hosting scenarios.

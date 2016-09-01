@@ -70,7 +70,7 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         public string BaseUrl { get; internal set; }
 
         /// <summary>
-        /// The connection timeout.
+        /// The connection timeout, in seconds.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.client.connectionTimeout</c></remarks>
         public int ConnectionTimeout { get; internal set; }
