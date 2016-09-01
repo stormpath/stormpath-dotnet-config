@@ -101,13 +101,13 @@ namespace Stormpath.Configuration.Test
             config.Client.ApiKey.Secret.Should().Be("default-secret123!");
 
             config.Client.CacheManager.Enabled.Should().BeTrue();
-            config.Client.CacheManager.DefaultTtl.Should().Be(300);
-            config.Client.CacheManager.DefaultTti.Should().Be(300);
+            config.Client.CacheManager.DefaultTtl.Should().Be(Abstractions.Default.Configuration.Client.CacheManager.DefaultTtl);
+            config.Client.CacheManager.DefaultTti.Should().Be(Abstractions.Default.Configuration.Client.CacheManager.DefaultTti);
 
             config.Client.CacheManager.Caches.Should().HaveCount(0);
 
             config.Client.BaseUrl.Should().Be("https://api.stormpath.com/v1");
-            config.Client.ConnectionTimeout.Should().Be(30000);
+            config.Client.ConnectionTimeout.Should().Be(30);
             config.Client.AuthenticationScheme.Should().Be(Abstractions.ClientAuthenticationScheme.SAuthc1);
 
             config.Client.Proxy.Port.Should().Be(null);

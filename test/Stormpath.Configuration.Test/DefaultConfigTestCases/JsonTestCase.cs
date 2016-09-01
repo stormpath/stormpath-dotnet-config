@@ -39,12 +39,12 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
     },
     ""cacheManager"": {
       ""enabled"": true,
-      ""defaultTtl"": 300,
-      ""defaultTti"": 300,
+      ""defaultTtl"": 3600,
+      ""defaultTti"": 3600,
       ""caches"": { }
     },
     ""baseUrl"": ""https://api.stormpath.com/v1"",
-    ""connectionTimeout"": 30000,
+    ""connectionTimeout"": 30,
     ""authenticationScheme"": ""SAUTHC1"",
     ""proxy"": {
       ""port"": null,

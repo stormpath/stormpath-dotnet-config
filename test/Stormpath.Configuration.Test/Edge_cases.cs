@@ -39,8 +39,8 @@ namespace Stormpath.Configuration.Test
 
         private static void ValidateCustomCacheConfiguration(Abstractions.Immutable.StormpathConfiguration config)
         {
-            config.Client.CacheManager.DefaultTtl.Should().Be(300); // the default
-            config.Client.CacheManager.DefaultTti.Should().Be(300); // the default
+            config.Client.CacheManager.DefaultTtl.Should().Be(Abstractions.Default.Configuration.Client.CacheManager.DefaultTtl); // the default
+            config.Client.CacheManager.DefaultTti.Should().Be(Abstractions.Default.Configuration.Client.CacheManager.DefaultTti); // the default
 
             config.Client.CacheManager.Caches["application"].Ttl.Should().Be(450);
             config.Client.CacheManager.Caches["application"].Tti.Should().Be(700);
