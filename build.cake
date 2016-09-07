@@ -38,6 +38,8 @@ Task("Pack")
 });
 
 Task("Test")
+.IsDependentOn("Restore")
+.IsDependentOn("Build")
 .Does(() =>
 {
     var tests = GetFiles("./test/**/project.json");
