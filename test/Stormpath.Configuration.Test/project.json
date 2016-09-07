@@ -8,7 +8,7 @@
   "copyright": "(c) 2016 Stormpath, Inc.",
   "dependencies": {
     "dotnet-test-xunit": "2.2.0-preview2-build1029",
-    "FluentAssertions": "4.2.1",
+    "FluentAssertions": "4.14.0",
     "Microsoft.Extensions.PlatformAbstractions": "1.0.0",
     "Microsoft.NETCore.App": {
       "type": "platform",
@@ -16,7 +16,7 @@
     },
     "Stormpath.Configuration": {
       "target": "project",
-      "version": "6.0.0-beta1"
+      "version": "6.0.0"
     },
     "xunit": "2.1.0"
   },
@@ -37,5 +37,5 @@
   "tooling": {
     "defaultNamespace": "Stormpath.Configuration.Test"
   },
-  "version": "6.0.0-beta1"
+  "version": "6.0.0"
 }
