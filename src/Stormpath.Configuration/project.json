@@ -20,6 +20,7 @@
   },
   "packOptions": {
     "licenseUrl": "https://github.com/stormpath/stormpath-dotnet-config/blob/master/LICENSE",
+	"iconUrl": "https://raw.githubusercontent.com/stormpath/stormpath-sdk-dotnet/master/icon.png",
     "projectUrl": "https://github.com/stormpath/stormpath-dotnet-config/",
     "repository": {
       "url": "https://github.com/stormpath/stormpath-dotnet-config/"
