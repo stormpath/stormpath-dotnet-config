@@ -57,6 +57,13 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
     ""name"": null,
     ""href"": null
   },
+  ""okta"": {
+    ""apiToken"": ""okta_apiToken"",
+    ""org"": ""okta_org"",
+    ""application"": {
+      ""id"": ""okta_application_id""
+    }
+  },
   ""web"": {
     ""serverUri"": null,
     ""basePath"": ""/"",

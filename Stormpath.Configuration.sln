@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{8D9CF7EA-B8A7-4925-8202-1D9230EBE18E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B1B2D9F8-477D-479D-93C0-596B55BFF6F7}"
+	ProjectSection(SolutionItems) = preProject
+		changelog.md = changelog.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stormpath.Configuration", "src\Stormpath.Configuration\Stormpath.Configuration.csproj", "{734117C4-70D3-47D1-891A-ECCEB2FC2844}"
 EndProject

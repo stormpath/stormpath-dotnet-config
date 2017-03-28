@@ -17,7 +17,6 @@
 using System.Collections.Generic;
 using System.IO;
 using FluentAssertions;
-using Microsoft.Extensions.PlatformAbstractions;
 using Stormpath.Configuration.Abstractions.Immutable;
 using Xunit;
 
@@ -70,12 +69,13 @@ namespace Stormpath.Configuration.Test
         {
             var config = ConfigurationLoader.Initialize().Load(new
             {
-                client = new
+                okta = new
                 {
-                    apiKey = new
+                    apitoken = "okta_apiToken",
+                    org = "okta_org",
+                    application = new
                     {
-                        id = "default-foobar", // so the API credentials validation does not throw
-                        secret = "default-secret123!" // ditto
+                        id = "okta_application_id"
                     }
                 }
             });
@@ -87,37 +87,21 @@ namespace Stormpath.Configuration.Test
         public void Null_configuration_loads_defaults()
         {
             var config = ConfigurationLoader.Initialize().Load(new StormpathConfiguration(
-                new ClientConfiguration(
-                    new ClientApiKeyConfiguration(id: "default-foobar", secret: "default-secret123!"))));
+                okta: new OktaConfiguration(
+                    apiToken: "okta_apiToken",
+                    org: "okta_org",
+                    application: new OktaApplicationConfiguration(
+                        id: "okta_application_id"))));
 
             ValidateConfig(config);
         }
 
         private static void ValidateConfig(StormpathConfiguration config)
         {
-            // Client section
-            config.Client.ApiKey.File.Should().BeNullOrEmpty();
-            config.Client.ApiKey.Id.Should().Be("default-foobar");
-            config.Client.ApiKey.Secret.Should().Be("default-secret123!");
-
-            config.Client.CacheManager.Enabled.Should().BeTrue();
-            config.Client.CacheManager.DefaultTtl.Should().Be(Abstractions.Default.Configuration.Client.CacheManager.DefaultTtl);
-            config.Client.CacheManager.DefaultTti.Should().Be(Abstractions.Default.Configuration.Client.CacheManager.DefaultTti);
-
-            config.Client.CacheManager.Caches.Should().HaveCount(0);
-
-            config.Client.BaseUrl.Should().Be("https://api.stormpath.com/v1");
-            config.Client.ConnectionTimeout.Should().Be(30);
-            config.Client.AuthenticationScheme.Should().Be(Abstractions.ClientAuthenticationScheme.SAuthc1);
-
-            config.Client.Proxy.Port.Should().Be(null);
-            config.Client.Proxy.Host.Should().BeNullOrEmpty();
-            config.Client.Proxy.Username.Should().BeNullOrEmpty();
-            config.Client.Proxy.Password.Should().BeNullOrEmpty();
-
-            // Application section
-            config.Application.Href.Should().BeNullOrEmpty();
-            config.Application.Name.Should().BeNullOrEmpty();
+            // Okta section
+            config.Okta.ApiToken.Should().Be("okta_apiToken");
+            config.Okta.Org.Should().Be("okta_org");
+            config.Okta.Application.Id.Should().Be("okta_application_id");
 
             // Web section
             config.Web.ServerUri.Should().BeNullOrEmpty();

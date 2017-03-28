@@ -55,6 +55,11 @@ client:
 application:
   name: Lightsabers Galore
   href: ""https://api.foo.com/v1/applications/foo""
+okta:
+  apiToken: foobarApiToken
+  org: https://dev-12345.oktapreview.com
+  application:
+    id: LightsabersGalore.app.foo
 web:
   serverUri: ""https://localhost:9000""
   basePath: ""#/""

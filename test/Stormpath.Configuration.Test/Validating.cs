@@ -16,7 +16,6 @@
 
 using System;
 using FluentAssertions;
-using Stormpath.Configuration.Abstractions;
 using Xunit;
 
 namespace Stormpath.Configuration.Test
@@ -24,89 +23,9 @@ namespace Stormpath.Configuration.Test
     public class Validating
     {
         [Fact]
-        public void Throws_for_missing_key_id()
+        public void Empty_config_is_ok()
         {
-            var anon = new
-            {
-                client = new
-                {
-                    apiKey = new
-                    {
-                        id = string.Empty,
-                        secret = "secret!",
-                    }
-                }
-            };
-
-            Action act = () => ConfigurationLoader.Initialize().Load(anon);
-
-            act.ShouldThrow<ConfigurationException>().WithMessage("API key ID is required.");
-        }
-
-        [Fact]
-        public void Throws_for_missing_key_secret()
-        {
-            var anon = new
-            {
-                client = new
-                {
-                    apiKey = new
-                    {
-                        id = "foobar",
-                        secret = string.Empty,
-                    }
-                }
-            };
-
-            Action act = () => ConfigurationLoader.Initialize().Load(anon);
-
-            act.ShouldThrow<ConfigurationException>().WithMessage("API key secret is required.");
-        }
-
-        [Fact]
-        public void Throws_for_malformed_app_href()
-        {
-            var anon = new
-            {
-                client = new
-                {
-                    apiKey = new
-                    {
-                        id = "foobar",
-                        secret = "secret123!",
-                    }
-                },
-                application = new
-                {
-                    href = "https://foo.bar/myapps/123",
-                }
-            };
-
-            Action act = () => ConfigurationLoader.Initialize().Load(anon);
-
-            act.ShouldThrow<ConfigurationException>().Which.Message.Should().EndWith("is not a valid Stormpath Application href.");
-        }
-
-        [Fact]
-        public void Blank_app_href_is_ok()
-        {
-            var anon = new
-            {
-                client = new
-                {
-                    apiKey = new
-                    {
-                        id = "foobar",
-                        secret = "secret123!",
-                    }
-                },
-                application = new
-                {
-                    href = string.Empty,
-                }
-            };
-
-            Action act = () => ConfigurationLoader.Initialize().Load(anon);
+            Action act = () => ConfigurationLoader.Initialize().Load();
 
             act.ShouldNotThrow();
         }

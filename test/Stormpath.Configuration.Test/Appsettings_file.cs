@@ -17,7 +17,6 @@
 using System;
 using System.IO;
 using FluentAssertions;
-using Microsoft.Extensions.PlatformAbstractions;
 using Xunit;
 
 namespace Stormpath.Configuration.Test
@@ -39,14 +38,12 @@ namespace Stormpath.Configuration.Test
     }
   },
   ""Stormpath"": {
-    ""Client"": {
-        ""ApiKey"": {
-            ""Id"": ""appsetting-id"",
-            ""Secret"": ""appsetting-secret123!""
+    ""Okta"": {
+        ""ApiToken"": ""appsettings-okta-token"",
+        ""Org"": ""appsettings-okta-org"",
+        ""Application"": {
+            ""Id"": ""appsettings-okta-app-id"",
         }
-    },
-    ""Application"": {
-        ""Href"": ""https://api.stormpath.com/v1/applications/foobar123""
     }
   }
 }
@@ -67,9 +64,9 @@ namespace Stormpath.Configuration.Test
         {
             var config = ConfigurationLoader.Initialize().Load();
 
-            config.Client.ApiKey.Id.Should().Be("appsetting-id");
-            config.Client.ApiKey.Secret.Should().Be("appsetting-secret123!");
-            config.Application.Href.Should().Be("https://api.stormpath.com/v1/applications/foobar123");
+            config.Okta.ApiToken.Should().Be("appsettings-okta-token");
+            config.Okta.Org.Should().Be("appsettings-okta-org");
+            config.Okta.Application.Id.Should().Be("appsettings-okta-app-id");
         }
     }
 }

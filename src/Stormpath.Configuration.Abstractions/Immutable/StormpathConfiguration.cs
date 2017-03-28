@@ -26,18 +26,15 @@ namespace Stormpath.Configuration.Abstractions.Immutable
     public class StormpathConfiguration
     {
         public StormpathConfiguration(
-            ClientConfiguration client = null,
-            ApplicationConfiguration application = null,
+            OktaConfiguration okta = null,
             WebConfiguration web = null)
         {
-            this.Client = new ClientConfiguration(client ?? Default.Configuration.Client);
-            this.Application = new ApplicationConfiguration(application ?? Default.Configuration.Application);
+            this.Okta = new OktaConfiguration(okta ?? Default.Configuration.Okta);
             this.Web = new WebConfiguration(web ?? Default.Configuration.Web);
         }
 
         public StormpathConfiguration(StormpathConfiguration existing)
-            : this(client: existing?.Client,
-                  application: existing?.Application,
+            : this(okta: existing?.Okta,
                   web: existing?.Web)
         {
         }
@@ -47,16 +44,10 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         }
 
         /// <summary>
-        /// The Client-specific configuration.
+        /// The Okta-specific configuration.
         /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.client</c></remarks>
-        public ClientConfiguration Client { get; internal set; }
-
-        /// <summary>
-        /// The Application-specific configuration.
-        /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.application</c></remarks>
-        public ApplicationConfiguration Application { get; internal set; }
+        /// <remarks>Configuration path: <c>stormpath.okta</c></remarks>
+        public OktaConfiguration Okta { get; internal set; }
 
         /// <summary>
         /// The framework integration-specific configuration.

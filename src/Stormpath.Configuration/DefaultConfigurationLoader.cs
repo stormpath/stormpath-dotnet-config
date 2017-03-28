@@ -14,10 +14,8 @@
 // limitations under the License.
 // </copyright>
 
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using FlexibleConfiguration;
 using FlexibleConfiguration.Abstractions;
 using Stormpath.Configuration.Abstractions;
@@ -33,23 +31,15 @@ namespace Stormpath.Configuration
             var output = new Abstractions.Immutable.StormpathConfiguration(Default.Configuration);
             compiled.GetSection("stormpath").Bind(output);
 
-            // Validate API Key and Secret exists
-            ThrowIfMissingCredentials(output.Client); // TODO restore logging
-
-            // Validation application href, if exists
-            ThrowIfInvalidApplicationHref(output.Application);
-
             return output;
         }
 
         private static IConfigurationRoot CompileFromSources(object userConfiguration, string configurationFileRoot)
         {
-            var homeApiKeyPropertiesLocation = HomePath.Resolve("~", ".stormpath", "apiKey.properties");
             var homeStormpathJsonLocation = HomePath.Resolve("~", ".stormpath", "stormpath.json");
             var homeStormpathYamlLocation = HomePath.Resolve("~", ".stormpath", "stormpath.yaml");
 
             var applicationAppSettingsLocation = Path.Combine(configurationFileRoot ?? string.Empty, "appsettings.json");
-            var applicationApiKeyPropertiesLocation = Path.Combine(configurationFileRoot ?? string.Empty, "apiKey.properties");
             var applicationStormpathJsonLocation = Path.Combine(configurationFileRoot ?? string.Empty, "stormpath.json");
             var applicationStormpathYamlLocation = Path.Combine(configurationFileRoot ?? string.Empty, "stormpath.yaml");
 
@@ -67,104 +57,19 @@ namespace Stormpath.Configuration
             //logger.Trace($"Compiling configuration from sources: {configurationSources}");
 
             var builder = new ConfigurationBuilder()
-                .AddPropertiesFile(homeApiKeyPropertiesLocation, optional: true, root: "stormpath:client")
                 .AddJsonFile(homeStormpathJsonLocation, optional: true, root: "stormpath")
                 .AddYamlFile(homeStormpathYamlLocation, optional: true, root: "stormpath")
                 .AddJsonFile(applicationAppSettingsLocation, optional: true)
-                .AddPropertiesFile(applicationApiKeyPropertiesLocation, optional: true, root: "stormpath:client")
                 .AddJsonFile(applicationStormpathJsonLocation, optional: true, root: "stormpath")
                 .AddYamlFile(applicationStormpathYamlLocation, optional: true, root: "stormpath")
                 .AddEnvironmentVariables("stormpath", "_", root: "stormpath")
                 .AddObject(userConfiguration, root: "stormpath");
-
-            // If a root key 'apiKey' is set, map to client.apiKey (for backwards compatibility)
-            MapOrphanApiKeySection(builder); // TODO restore logging
-
-            // If client.apiKey.file is set, load that
-            LoadCustomApiKeyFileIfSpecified(builder); // TODO restore logging
 
             // Apply rules to cookie paths
             UpdateCookiePath(builder, "accessTokenCookie");
             UpdateCookiePath(builder, "refreshTokenCookie");
 
             return builder.Build();
-        }
-
-        private static void ThrowIfMissingCredentials(Abstractions.Immutable.ClientConfiguration client)
-        {
-            //logger.Trace("Validating API credentials");
-
-            if (client?.ApiKey == null)
-            {
-                throw new ConfigurationException("API key cannot be empty.");
-            }
-
-            if (string.IsNullOrEmpty(client.ApiKey.Id))
-            {
-                throw new ConfigurationException("API key ID is required.");
-            }
-
-            if (string.IsNullOrEmpty(client.ApiKey.Secret))
-            {
-                throw new ConfigurationException("API key secret is required.");
-            }
-        }
-
-        private static void ThrowIfInvalidApplicationHref(Abstractions.Immutable.ApplicationConfiguration app)
-        {
-            if (string.IsNullOrEmpty(app?.Href))
-            {
-                return; // Skip validation
-            }
-
-            bool contains = app.Href.IndexOf("/applications/", StringComparison.OrdinalIgnoreCase) >= 0;
-            if (!contains)
-            {
-                throw new ConfigurationException($"'{app.Href}' is not a valid Stormpath Application href.");
-            }
-        }
-
-        private static void MapOrphanApiKeySection(IConfigurationBuilder builder)
-        {
-            var apiKeyRootElement = builder.Build().GetSection("stormpath:apiKey");
-            var mappedProperties = new Dictionary<string, string>();
-
-            var apiKeyRootFile = apiKeyRootElement.GetValue<string>("file");
-            if (!string.IsNullOrEmpty(apiKeyRootFile))
-            {
-                mappedProperties["stormpath:client:apiKey:file"] = apiKeyRootFile;
-            }
-
-            var apiKeyRootId = apiKeyRootElement.GetValue<string>("id");
-            if (!string.IsNullOrEmpty(apiKeyRootId))
-            {
-                mappedProperties["stormpath:client:apiKey:id"] = apiKeyRootId;
-            }
-
-            var apiKeyRootSecret = apiKeyRootElement.GetValue<string>("secret");
-            if (!string.IsNullOrEmpty(apiKeyRootSecret))
-            {
-                mappedProperties["stormpath:client:apiKey:secret"] = apiKeyRootSecret;
-            }
-
-            if (mappedProperties.Any())
-            {
-                //logger.Warn("Mapping root-level apiKey properties to stormpath.client.apiKey for backwards compatibility. Switch to fully-qualified configuration with stormpath.client.apiKey.");
-
-                builder.AddInMemoryCollection(mappedProperties);
-            }
-        }
-
-        private static void LoadCustomApiKeyFileIfSpecified(IConfigurationBuilder builder)
-        {
-            var specifiedApiKeyFilePath = builder.Build().GetValue("stormpath:client:apiKey:file", defaultValue: string.Empty);
-
-            if (!string.IsNullOrEmpty(specifiedApiKeyFilePath))
-            {
-                //logger.Trace($"Loading specified apiKey.properties file at {specifiedApiKeyFilePath}");
-
-                builder.AddPropertiesFile(HomePath.Resolve(specifiedApiKeyFilePath), optional: false, root: "stormpath:client"); // Not optional this time!
-            }
         }
 
         private static void UpdateCookiePath(IConfigurationBuilder builder, string cookieName)

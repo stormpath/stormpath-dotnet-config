@@ -26,21 +26,15 @@ namespace Stormpath.Configuration.Abstractions
     public class StormpathConfiguration
     {
         /// <summary>
-        /// The Client-specific configuration.
-        /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.client</c></remarks>
-        public ClientConfiguration Client { get; set; }
-
-        /// <summary>
-        /// The Application-specific configuration.
-        /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.application</c></remarks>
-        public ApplicationConfiguration Application { get; set; }
-
-        /// <summary>
         /// The framework integration-specific configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web</c></remarks>
         public WebConfiguration Web { get; set; }
+
+        /// <summary>
+        /// Okta-specific configuration.
+        /// </summary>
+        /// <remarks>See changelog.md</remarks>
+        public OktaConfiguration Okta { get; set; }
     }
 }
