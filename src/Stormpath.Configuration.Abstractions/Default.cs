@@ -13,15 +13,11 @@ namespace Stormpath.Configuration.Abstractions
         /// </summary>
         public static readonly Immutable.StormpathConfiguration Configuration = new Immutable.StormpathConfiguration()
         {
-            // Okta configuration
-            Okta = new Immutable.OktaConfiguration()
+            ApiToken = null,
+            Org = null,
+            Application = new Immutable.OktaApplicationConfiguration()
             {
-                ApiToken = null,
-                Org = null,
-                Application = new Immutable.OktaApplicationConfiguration()
-                {
-                    Id = null
-                }
+                Id = null
             },
 
             // Framework integration configuration

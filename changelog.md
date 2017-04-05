@@ -6,7 +6,7 @@ This version supports the migration of ASP.NET applications from Stormpath to Ok
 
 ## Breaking changes
 
-* The `stormpath.okta` configuration section was added
-* The `stormpath.application` and `stormpath.client` sections were removed
+* The `client` section was removed
+* The `application` section now only includes one property: `id` (the Okta Application ID)
 * The configuration parser no longer throws errors if the Stormpath API Key and Secret are missing
 * The configuration parser no longer looks for an `apiKey.properties` file

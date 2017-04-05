@@ -69,14 +69,11 @@ namespace Stormpath.Configuration.Test
         {
             var config = ConfigurationLoader.Initialize().Load(new
             {
-                okta = new
+                apiToken = "okta_apiToken",
+                org = "okta_org",
+                application = new
                 {
-                    apitoken = "okta_apiToken",
-                    org = "okta_org",
-                    application = new
-                    {
-                        id = "okta_application_id"
-                    }
+                    id = "okta_application_id"
                 }
             });
 
@@ -87,11 +84,10 @@ namespace Stormpath.Configuration.Test
         public void Null_configuration_loads_defaults()
         {
             var config = ConfigurationLoader.Initialize().Load(new StormpathConfiguration(
-                okta: new OktaConfiguration(
-                    apiToken: "okta_apiToken",
+                apiToken: "okta_apiToken",
                     org: "okta_org",
                     application: new OktaApplicationConfiguration(
-                        id: "okta_application_id"))));
+                        id: "okta_application_id")));
 
             ValidateConfig(config);
         }
@@ -99,9 +95,9 @@ namespace Stormpath.Configuration.Test
         private static void ValidateConfig(StormpathConfiguration config)
         {
             // Okta section
-            config.Okta.ApiToken.Should().Be("okta_apiToken");
-            config.Okta.Org.Should().Be("okta_org");
-            config.Okta.Application.Id.Should().Be("okta_application_id");
+            config.ApiToken.Should().Be("okta_apiToken");
+            config.Org.Should().Be("okta_org");
+            config.Application.Id.Should().Be("okta_application_id");
 
             // Web section
             config.Web.ServerUri.Should().BeNullOrEmpty();

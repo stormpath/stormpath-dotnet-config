@@ -4,7 +4,7 @@
     {
         public OktaApplicationConfiguration(string id = null)
         {
-            Id = id ?? Default.Configuration.Okta.Application.Id;
+            Id = id ?? Default.Configuration.Application.Id;
         }
 
         public OktaApplicationConfiguration(OktaApplicationConfiguration existing)

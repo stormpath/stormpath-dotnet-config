@@ -66,11 +66,6 @@ namespace Stormpath.Configuration.Test
         [Fact]
         public void Supplied_by_immutable_instance()
         {
-            var oktaConfiguration = new Abstractions.Immutable.OktaConfiguration(
-                apiToken: "foobarApiToken",
-                org: "https://dev-12345.oktapreview.com",
-                application: new Abstractions.Immutable.OktaApplicationConfiguration(id: "LightsabersGalore.app.foo"));
-
             var webConfiguration = new Abstractions.Immutable.WebConfiguration(
                 serverUri: "https://localhost:9000",
                 basePath: "#/",
@@ -204,8 +199,10 @@ namespace Stormpath.Configuration.Test
             );
 
             var stormpathConfiguration = new Abstractions.Immutable.StormpathConfiguration(
-                oktaConfiguration,
-                webConfiguration);
+                apiToken: "foobarApiToken",
+                org: "https://dev-12345.oktapreview.com",
+                application: new Abstractions.Immutable.OktaApplicationConfiguration(id: "LightsabersGalore.app.foo"),
+                web: webConfiguration);
 
             var config = ConfigurationLoader.Initialize().Load(stormpathConfiguration);
 
@@ -217,14 +214,11 @@ namespace Stormpath.Configuration.Test
         {
             var stormpathConfiguration = new StormpathConfiguration()
             {
-                Okta = new OktaConfiguration()
+                ApiToken = "foobarApiToken",
+                Org = "https://dev-12345.oktapreview.com",
+                Application = new OktaApplicationConfiguration
                 {
-                    ApiToken = "foobarApiToken",
-                    Org = "https://dev-12345.oktapreview.com",
-                     Application = new OktaApplicationConfiguration
-                     {
-                         Id = "LightsabersGalore.app.foo"
-                     }
+                    Id = "LightsabersGalore.app.foo"
                 },
                 Web = new WebConfiguration()
                 {
@@ -387,12 +381,9 @@ namespace Stormpath.Configuration.Test
         {
             var userConfiguration = new
             {
-                okta = new
-                {
-                    apiToken = "foobarApiToken",
-                    org = "https://dev-12345.oktapreview.com",
-                    application = new { id = "LightsabersGalore.app.foo" }
-                },
+                apiToken = "foobarApiToken",
+                org = "https://dev-12345.oktapreview.com",
+                application = new { id = "LightsabersGalore.app.foo" },
 
                 // These old properties should not cause an exception
                 client = new
@@ -433,13 +424,6 @@ namespace Stormpath.Configuration.Test
                         username = "foo",
                         password = "bar",
                     }
-                },
-
-                // These old properties should not cause an exception
-                application = new
-                {
-                    name = "Lightsabers Galore",
-                    href = "https://api.foo.com/v1/applications/foo",
                 },
 
                 web = new
@@ -633,9 +617,9 @@ namespace Stormpath.Configuration.Test
         private static void ValidateConfig(Abstractions.Immutable.StormpathConfiguration config)
         {
             // Okta section
-            config.Okta.ApiToken.Should().Be("foobarApiToken");
-            config.Okta.Org.Should().Be("https://dev-12345.oktapreview.com");
-            config.Okta.Application.Id.Should().Be("LightsabersGalore.app.foo");
+            config.ApiToken.Should().Be("foobarApiToken");
+            config.Org.Should().Be("https://dev-12345.oktapreview.com");
+            config.Application.Id.Should().Be("LightsabersGalore.app.foo");
 
             // Web section
             config.Web.ServerUri.Should().Be("https://localhost:9000");

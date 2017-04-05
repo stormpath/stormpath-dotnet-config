@@ -38,12 +38,10 @@ namespace Stormpath.Configuration.Test
     }
   },
   ""Stormpath"": {
-    ""Okta"": {
-        ""ApiToken"": ""appsettings-okta-token"",
-        ""Org"": ""appsettings-okta-org"",
-        ""Application"": {
-            ""Id"": ""appsettings-okta-app-id"",
-        }
+    ""ApiToken"": ""appsettings-okta-token"",
+    ""Org"": ""appsettings-okta-org"",
+    ""Application"": {
+        ""Id"": ""appsettings-okta-app-id"",
     }
   }
 }
@@ -64,9 +62,9 @@ namespace Stormpath.Configuration.Test
         {
             var config = ConfigurationLoader.Initialize().Load();
 
-            config.Okta.ApiToken.Should().Be("appsettings-okta-token");
-            config.Okta.Org.Should().Be("appsettings-okta-org");
-            config.Okta.Application.Id.Should().Be("appsettings-okta-app-id");
+            config.ApiToken.Should().Be("appsettings-okta-token");
+            config.Org.Should().Be("appsettings-okta-org");
+            config.Application.Id.Should().Be("appsettings-okta-app-id");
         }
     }
 }

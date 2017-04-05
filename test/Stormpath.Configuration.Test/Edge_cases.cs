@@ -171,13 +171,10 @@ namespace Stormpath.Configuration.Test
         {
             var test = new StormpathConfiguration
             {
-                Okta = new OktaConfiguration
+                ApiToken = "foobar",
+                Application = new OktaApplicationConfiguration
                 {
-                    ApiToken = "foobar",
-                    Application = new OktaApplicationConfiguration
-                    {
-                        Id = "qux123"
-                    }
+                    Id = "qux123"
                 },
                 Web = new WebConfiguration
                 {
@@ -190,8 +187,8 @@ namespace Stormpath.Configuration.Test
 
             var config = ConfigurationLoader.Initialize().Load(test);
 
-            config.Okta.ApiToken.Should().Be("foobar");
-            config.Okta.Application.Id.Should().Be("qux123");
+            config.ApiToken.Should().Be("foobar");
+            config.Application.Id.Should().Be("qux123");
             config.Web.Login.View.Should().Be("test");
         }
 
