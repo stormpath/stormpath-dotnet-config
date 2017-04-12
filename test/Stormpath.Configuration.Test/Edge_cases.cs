@@ -62,26 +62,12 @@ namespace Stormpath.Configuration.Test
 
             var config = ConfigurationLoader.Initialize().Load(userConfiguration);
 
-            config.Web.BasePath.Should().Be(Default.Configuration.Web.BasePath);
+            config.Web.BasePath.Should().Be("/");
 
             config.Web.Produces.ShouldBeEquivalentTo(new List<string>()
             {
                 "foo/bar",
             });
-        }
-
-        [Fact]
-        public void Default_dictionaries_are_case_insensitive()
-        {
-            Default.Configuration.Web.Social["Facebook"].Uri.Should().Be("/callbacks/facebook");
-        }
-
-        [Fact]
-        public void Copied_default_dictionaries_are_case_insensitive()
-        {
-            var config = new Abstractions.Immutable.StormpathConfiguration(Default.Configuration);
-
-            config.Web.Social["Facebook"].Uri.Should().Be("/callbacks/facebook");
         }
 
         [Fact]
