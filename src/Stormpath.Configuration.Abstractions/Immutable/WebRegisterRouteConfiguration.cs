@@ -29,27 +29,20 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             bool? enabled = null,
             string uri = null)
         {
-            this.AutoLogin = autoLogin ?? Default.Configuration.Web.Register.AutoLogin;
-            this.Form = new WebRegisterRouteFormConfiguration(form ?? Default.Configuration.Web.Register.Form);
-            this.View = view ?? Default.Configuration.Web.Register.View;
-            this.NextUri = nextUri ?? Default.Configuration.Web.Register.NextUri;
-            this.Enabled = enabled ?? Default.Configuration.Web.Register.Enabled;
-            this.Uri = uri ?? Default.Configuration.Web.Register.Uri;
-        }
-
-        public WebRegisterRouteConfiguration(WebRegisterRouteConfiguration existing)
-            : this(autoLogin: existing?.AutoLogin,
-                  form: existing?.Form,
-                  view: existing?.View,
-                  nextUri: existing?.NextUri,
-                  enabled: existing?.Enabled,
-                  uri: existing?.Uri)
-        {
+            AutoLogin = autoLogin ?? false;
+            Form = form;
+            View = view;
+            NextUri = nextUri;
+            Enabled = enabled ?? false;
+            Uri = uri;
         }
 
         internal WebRegisterRouteConfiguration()
         {
         }
+
+        public WebRegisterRouteConfiguration DeepClone()
+            => new WebRegisterRouteConfiguration(AutoLogin, Form.DeepClone(), View, NextUri, Enabled, Uri);
 
         /// <summary>
         /// Determines whether the user should be automatically logged in after interacting with this route.

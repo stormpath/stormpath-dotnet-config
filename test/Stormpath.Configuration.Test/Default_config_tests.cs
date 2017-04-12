@@ -241,11 +241,6 @@ namespace Stormpath.Configuration.Test
             config.Web.ChangePassword.View.Should().Be("change-password");
             config.Web.ChangePassword.ErrorUri.Should().Be("/forgot?status=invalid_sptoken");
 
-            config.Web.IdSite.Enabled.Should().BeFalse();
-            config.Web.IdSite.LoginUri.Should().BeNullOrEmpty();
-            config.Web.IdSite.ForgotUri.Should().Be("/#/forgot");
-            config.Web.IdSite.RegisterUri.Should().Be("/#/register");
-
             config.Web.Callback.Enabled.Should().BeTrue();
             config.Web.Callback.Uri.Should().Be("/stormpathCallback");
 

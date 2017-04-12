@@ -26,19 +26,16 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             bool? enabled = null,
             string uri = null)
         {
-            this.Enabled = enabled ?? Default.Configuration.Web.Callback.Enabled;
-            this.Uri = uri ?? Default.Configuration.Web.Callback.Uri;
-        }
-
-        public WebCallbackRouteConfiguration(WebCallbackRouteConfiguration existing)
-            : this(enabled: existing?.Enabled,
-                  uri: existing?.Uri)
-        {
+            Enabled = enabled ?? false;
+            Uri = uri;
         }
 
         internal WebCallbackRouteConfiguration()
         {
         }
+
+        public WebCallbackRouteConfiguration DeepClone()
+            => new WebCallbackRouteConfiguration(Enabled, Uri);
 
         /// <summary>
         /// The URI for this route, or <see langword="null"/> to use the default URI.

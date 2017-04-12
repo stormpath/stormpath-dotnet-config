@@ -28,7 +28,7 @@ namespace Stormpath.Configuration
         {
             var compiled = CompileFromSources(userConfiguration, configurationFileRoot); // TODO restore logging
 
-            var output = new Abstractions.Immutable.StormpathConfiguration(Default.Configuration);
+            var output = Default.Configuration.DeepClone();
             compiled.GetSection("okta").Bind(output);
 
             return output;

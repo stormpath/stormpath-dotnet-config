@@ -29,19 +29,16 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             IDictionary<string, WebFieldConfiguration> fields = null,
             IList<string> fieldOrder = null)
         {
-            this.Fields = new Dictionary<string, WebFieldConfiguration>(fields ?? Default.Configuration.Web.Register.Form.Fields.ToDictionary(), StringComparer.OrdinalIgnoreCase);
-            this.FieldOrder = new List<string>(fieldOrder ?? Default.Configuration.Web.Register.Form.FieldOrder.ToList());
-        }
-
-        public WebRegisterRouteFormConfiguration(WebRegisterRouteFormConfiguration existing)
-            : this(fields: existing?.Fields.ToDictionary(),
-                  fieldOrder: existing?.FieldOrder.ToList())
-        {
+            Fields = new Dictionary<string, WebFieldConfiguration>(fields, StringComparer.OrdinalIgnoreCase);
+            FieldOrder = fieldOrder.ToList();
         }
 
         internal WebRegisterRouteFormConfiguration()
         {
         }
+
+        public WebRegisterRouteFormConfiguration DeepClone()
+            => new WebRegisterRouteFormConfiguration(Fields.ToDictionary(kvp => kvp.Key, kvp => kvp.Value), FieldOrder.ToList());
 
         /// <summary>
         /// The field configuration options.

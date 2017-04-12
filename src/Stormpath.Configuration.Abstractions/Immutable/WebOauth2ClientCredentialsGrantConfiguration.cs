@@ -25,19 +25,16 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             bool? enabled = null,
             WebOauth2TokenConfiguration accessToken = null)
         {
-            this.Enabled = enabled ?? Default.Configuration.Web.Oauth2.Client_Credentials.Enabled;
-            this.AccessToken = new WebOauth2TokenConfiguration(accessToken ?? Default.Configuration.Web.Oauth2.Client_Credentials.AccessToken);
-        }
-
-        public WebOauth2ClientCredentialsGrantConfiguration(WebOauth2ClientCredentialsGrantConfiguration existing)
-            : this(enabled: existing?.Enabled,
-                  accessToken: existing?.AccessToken)
-        {
+            Enabled = enabled ?? false;
+            AccessToken = accessToken;
         }
 
         internal WebOauth2ClientCredentialsGrantConfiguration()
         {
         }
+
+        public WebOauth2ClientCredentialsGrantConfiguration DeepClone()
+            => new WebOauth2ClientCredentialsGrantConfiguration(Enabled, AccessToken?.DeepClone());
 
         /// <summary>
         /// Determines whether the <c>client_credentials</c> grant type is enabled.

@@ -38,52 +38,48 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             WebLogoutRouteConfiguration logoutRoute = null,
             WebForgotPasswordRouteConfiguration forgotPasswordRoute = null,
             WebChangePasswordRouteConfiguration changePasswordRoute = null,
-            WebIdSiteConfiguration idSite = null,
             WebCallbackRouteConfiguration callbackRoute = null,
             IDictionary<string, WebSocialProviderConfiguration> social = null,
             WebMeRouteConfiguration meRoute = null)
         {
-            this.ServerUri = serverUri ?? Default.Configuration.Web.ServerUri;
-            this.BasePath = basePath ?? Default.Configuration.Web.BasePath;
-            this.Oauth2 = new WebOauth2RouteConfiguration(oauth2Route ?? Default.Configuration.Web.Oauth2);
-            this.AccessTokenCookie = new WebCookieConfiguration(accessTokenCookie ?? Default.Configuration.Web.AccessTokenCookie);
-            this.RefreshTokenCookie = new WebCookieConfiguration(refreshTokenCookie ?? Default.Configuration.Web.RefreshTokenCookie);
-            this.Produces = new List<string>(produces ?? Default.Configuration.Web.Produces.ToList());
-            this.Register = new WebRegisterRouteConfiguration(registerRoute ?? Default.Configuration.Web.Register);
-            this.VerifyEmail = new WebVerifyEmailRouteConfiguration(verifyRoute ?? Default.Configuration.Web.VerifyEmail);
-            this.Login = new WebLoginRouteConfiguration(loginRoute ?? Default.Configuration.Web.Login);
-            this.Logout = new WebLogoutRouteConfiguration(logoutRoute ?? Default.Configuration.Web.Logout);
-            this.ForgotPassword = new WebForgotPasswordRouteConfiguration(forgotPasswordRoute ?? Default.Configuration.Web.ForgotPassword);
-            this.ChangePassword = new WebChangePasswordRouteConfiguration(changePasswordRoute ?? Default.Configuration.Web.ChangePassword);
-            this.IdSite = new WebIdSiteConfiguration(idSite ?? Default.Configuration.Web.IdSite);
-            this.Callback = new WebCallbackRouteConfiguration(callbackRoute ?? Default.Configuration.Web.Callback);
-            this.Social = new Dictionary<string, WebSocialProviderConfiguration>(social ?? Default.Configuration.Web.Social.ToDictionary(), StringComparer.OrdinalIgnoreCase);
-            this.Me = new WebMeRouteConfiguration(meRoute ?? Default.Configuration.Web.Me);
-        }
-
-        public WebConfiguration(WebConfiguration existing)
-            : this(existing?.ServerUri,
-                  existing?.BasePath,
-                  existing?.Oauth2,
-                  existing?.AccessTokenCookie,
-                  existing?.RefreshTokenCookie,
-                  existing?.Produces.ToList(),
-                  existing?.Register,
-                  existing?.VerifyEmail,
-                  existing?.Login,
-                  existing?.Logout,
-                  existing?.ForgotPassword,
-                  existing?.ChangePassword,
-                  existing?.IdSite,
-                  existing?.Callback,
-                  existing?.Social.ToDictionary(),
-                  existing?.Me)
-        {
+            ServerUri = serverUri;
+            BasePath = basePath;
+            Oauth2 = oauth2Route;
+            AccessTokenCookie = accessTokenCookie;
+            RefreshTokenCookie = refreshTokenCookie;
+            Produces = produces.ToList();
+            Register = registerRoute;
+            VerifyEmail = verifyRoute;
+            Login = loginRoute;
+            Logout = logoutRoute;
+            ForgotPassword = forgotPasswordRoute;
+            ChangePassword = changePasswordRoute;
+            Callback = callbackRoute;
+            Social = new Dictionary<string, WebSocialProviderConfiguration>(social, StringComparer.OrdinalIgnoreCase);
+            Me = meRoute;
         }
 
         internal WebConfiguration()
         {
         }
+
+        public WebConfiguration DeepClone()
+            => new WebConfiguration(
+                ServerUri,
+                BasePath,
+                Oauth2.DeepClone(),
+                AccessTokenCookie.DeepClone(),
+                RefreshTokenCookie.DeepClone(),
+                new List<string>(Produces),
+                Register.DeepClone(),
+                VerifyEmail.DeepClone(),
+                Login.DeepClone(),
+                Logout.DeepClone(),
+                ForgotPassword.DeepClone(),
+                ChangePassword.DeepClone(),
+                Callback.DeepClone(),
+                new Dictionary<string, WebSocialProviderConfiguration>(Social.ToDictionary(kvp => kvp.Key, kvp => kvp.Value)),
+                Me.DeepClone());
 
         /// <summary>
         /// The web server's base URI.
@@ -156,12 +152,6 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.changePassword</c></remarks>
         public WebChangePasswordRouteConfiguration ChangePassword { get; internal set; }
-
-        /// <summary>
-        /// The ID Site configuration.
-        /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.web.idSite</c></remarks>
-        public WebIdSiteConfiguration IdSite { get; internal set; }
 
         /// <summary>
         /// The Stormpath callback route configuration.

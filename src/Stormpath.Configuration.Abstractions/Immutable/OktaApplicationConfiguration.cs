@@ -4,17 +4,15 @@
     {
         public OktaApplicationConfiguration(string id = null)
         {
-            Id = id ?? Default.Configuration.Application.Id;
-        }
-
-        public OktaApplicationConfiguration(OktaApplicationConfiguration existing)
-            : this(existing?.Id)
-        {
+            Id = id;
         }
 
         internal OktaApplicationConfiguration()
         {
         }
+
+        public OktaApplicationConfiguration DeepClone()
+            => new OktaApplicationConfiguration(Id);
 
         public string Id { get; internal set; }
     }

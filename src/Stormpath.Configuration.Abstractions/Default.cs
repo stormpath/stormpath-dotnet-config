@@ -277,15 +277,6 @@ namespace Stormpath.Configuration.Abstractions
                     ErrorUri = "/forgot?status=invalid_sptoken",
                 },
 
-                // Controls whether ID Site is used for registration, login, password reset, etc.
-                IdSite = new Immutable.WebIdSiteConfiguration()
-                {
-                    Enabled = false,
-                    LoginUri = "",
-                    ForgotUri = "/#/forgot",
-                    RegisterUri = "/#/register"
-                },
-
                 // The Stormpath callback route configuration.
                 // This is used for ID Site and other Stormpath redirect flows.
                 Callback = new Immutable.WebCallbackRouteConfiguration()

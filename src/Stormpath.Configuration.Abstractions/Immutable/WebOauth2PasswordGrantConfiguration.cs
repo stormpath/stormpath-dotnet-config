@@ -25,19 +25,16 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             bool? enabled = null,
             WebOauth2TokenValidationStrategy? validationStrategy = null)
         {
-            this.Enabled = enabled ?? Default.Configuration.Web.Oauth2.Password.Enabled;
-            this.ValidationStrategy = validationStrategy ?? Default.Configuration.Web.Oauth2.Password.ValidationStrategy;
-        }
-
-        public WebOauth2PasswordGrantConfiguration(WebOauth2PasswordGrantConfiguration existing)
-            : this(enabled: existing?.Enabled,
-                  validationStrategy: existing?.ValidationStrategy)
-        {
+            Enabled = enabled ?? false;
+            ValidationStrategy = validationStrategy ?? WebOauth2TokenValidationStrategy.Local;
         }
 
         internal WebOauth2PasswordGrantConfiguration()
         {
         }
+
+        public WebOauth2PasswordGrantConfiguration DeepClone()
+            => new WebOauth2PasswordGrantConfiguration(Enabled, ValidationStrategy);
 
         /// <summary>
         /// Determines whether the <c>password</c> grant type is enabled.
