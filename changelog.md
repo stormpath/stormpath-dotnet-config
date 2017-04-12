@@ -6,6 +6,10 @@ This version supports the migration of ASP.NET applications from Stormpath to Ok
 
 ## Breaking changes
 
+* All configuration properties start with `okta.*` instead of `stormpath.*`. For most applications, this won't cause any issues.
+* JSON/YAML configuration can now be loaded from `okta.json` or `okta.yaml` **or** `stormpath.json`/`stormpath.yaml`. For backwards compatibility, either filename will work. (Note: the home directory search location is still `~/.stormpath`, for maximum backwards compatibility.)
+* Environment variable configuration can now be specified using `OKTA_` environment variables in addition to `STORMPATH_` environment variables. For backwards compatibility, either string format will work.
+* Configuration provided via an `appsettings.json` file must now be placed in an `Okta` section.
 * The `client` section was removed
 * The `application` section now only includes one property: `id` (the Okta Application ID)
 * The configuration parser no longer throws errors if the Stormpath API Key and Secret are missing

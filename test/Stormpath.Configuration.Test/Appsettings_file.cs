@@ -37,7 +37,7 @@ namespace Stormpath.Configuration.Test
       ""Microsoft"": ""Information""
     }
   },
-  ""Stormpath"": {
+  ""Okta"": {
     ""ApiToken"": ""appsettings-okta-token"",
     ""Org"": ""appsettings-okta-org"",
     ""Application"": {
