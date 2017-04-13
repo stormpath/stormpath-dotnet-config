@@ -126,6 +126,7 @@ namespace Stormpath.Configuration.Test
             config.Web.Produces[1].Should().Be("text/html");
 
             config.Web.Register.Enabled.Should().BeTrue();
+            config.Web.Register.EmailVerificationRequired.Should().BeFalse();
             config.Web.Register.Uri.Should().Be("/register");
             config.Web.Register.NextUri.Should().Be("/");
             config.Web.Register.AutoLogin.Should().BeFalse();
@@ -194,7 +195,7 @@ namespace Stormpath.Configuration.Test
                 opt => opt.WithStrictOrdering()
             );
 
-            config.Web.VerifyEmail.Enabled.Should().Be(null);
+            config.Web.VerifyEmail.Enabled.Should().BeFalse();
             config.Web.VerifyEmail.Uri.Should().Be("/verify");
             config.Web.VerifyEmail.NextUri.Should().Be("/login?status=verified");
             config.Web.VerifyEmail.View.Should().Be("verify");
@@ -235,7 +236,7 @@ namespace Stormpath.Configuration.Test
             config.Web.ForgotPassword.NextUri.Should().Be("/login?status=forgot");
             config.Web.ForgotPassword.View.Should().Be("forgot-password");
 
-            config.Web.ChangePassword.Enabled.Should().Be(null);
+            config.Web.ChangePassword.Enabled.Should().BeFalse();
             config.Web.ChangePassword.Uri.Should().Be("/change");
             config.Web.ChangePassword.NextUri.Should().Be("/login?status=reset");
             config.Web.ChangePassword.View.Should().Be("change-password");

@@ -23,6 +23,7 @@ namespace Stormpath.Configuration.Abstractions.Immutable
     {
         public WebRegisterRouteConfiguration(
             bool? autoLogin = null,
+            bool? emailVerificationRequired = null,
             WebRegisterRouteFormConfiguration form = null,
             string view = null,
             string nextUri = null,
@@ -30,6 +31,7 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             string uri = null)
         {
             AutoLogin = autoLogin ?? false;
+            EmailVerificationRequired = emailVerificationRequired ?? false;
             Form = form;
             View = view;
             NextUri = nextUri;
@@ -42,7 +44,7 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         }
 
         public WebRegisterRouteConfiguration DeepClone()
-            => new WebRegisterRouteConfiguration(AutoLogin, Form.DeepClone(), View, NextUri, Enabled, Uri);
+            => new WebRegisterRouteConfiguration(AutoLogin, EmailVerificationRequired, Form.DeepClone(), View, NextUri, Enabled, Uri);
 
         /// <summary>
         /// Determines whether the user should be automatically logged in after interacting with this route.
@@ -85,5 +87,11 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         /// </summary>
         /// Configuration path: <c>stormpath.web.register.uri</c>
         public string Uri { get; internal set; }
+
+        /// <summary>
+        /// Whether new accounts must verify their email address before becoming active.
+        /// </summary>
+        /// Configuration path: <c>okta.web.register.emailVerificationRequired</c>
+        public bool EmailVerificationRequired { get; internal set; }
     }
 }

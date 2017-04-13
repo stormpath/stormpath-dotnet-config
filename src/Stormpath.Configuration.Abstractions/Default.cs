@@ -110,6 +110,9 @@ namespace Stormpath.Configuration.Abstractions
                     // Whether to automatically log in a user after registration.
                     AutoLogin = false,
 
+                    // Whether new accounts must verify their email address before becoming active.
+                    EmailVerificationRequired = false,
+
                     // The URI to redirect to after successful registration, if AutoLogin is enabled.
                     NextUri = "/",
 
@@ -202,7 +205,7 @@ namespace Stormpath.Configuration.Abstractions
                 // The email verification route configuration.
                 VerifyEmail = new Immutable.WebVerifyEmailRouteConfiguration()
                 {
-                    Enabled = null,
+                    Enabled = false,
                     Uri = "/verify",
                     NextUri = "/login?status=verified",
                     View = "verify"
@@ -270,7 +273,7 @@ namespace Stormpath.Configuration.Abstractions
                 // The change password route configuration.
                 ChangePassword = new Immutable.WebChangePasswordRouteConfiguration()
                 {
-                    Enabled = null,
+                    Enabled = false,
                     Uri = "/change",
                     NextUri = "/login?status=reset",
                     View = "change-password",

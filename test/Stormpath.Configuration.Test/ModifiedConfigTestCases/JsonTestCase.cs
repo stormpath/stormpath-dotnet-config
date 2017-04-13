@@ -103,6 +103,7 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
       ""uri"": ""/register1"",
       ""nextUri"": ""/1"",
       ""autoLogin"": true,
+      ""emailVerificationRequired"": true,
       ""form"": {
         ""fields"": {
           ""email"": {

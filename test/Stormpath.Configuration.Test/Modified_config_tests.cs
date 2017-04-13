@@ -106,6 +106,7 @@ namespace Stormpath.Configuration.Test
                     uri: "/register1",
                     nextUri: "/1",
                     autoLogin: true,
+                    emailVerificationRequired: true,
                     view: "registerView",
                     form: new Abstractions.Immutable.WebRegisterRouteFormConfiguration(
                         fields: new Dictionary<string, Abstractions.Immutable.WebFieldConfiguration>()
@@ -259,6 +260,7 @@ namespace Stormpath.Configuration.Test
                         Uri = "/register1",
                         NextUri = "/1",
                         AutoLogin = true,
+                        EmailVerificationRequired = true,
                         View = "registerView",
                         Form = new WebRegisterRouteFormConfiguration()
                         {
@@ -464,6 +466,7 @@ namespace Stormpath.Configuration.Test
                         uri = "/register1",
                         nextUri = "/1",
                         autoLogin = true,
+                        emailVerificationRequired = true,
                         view = "registerView",
                         form = new
                         {
@@ -643,6 +646,7 @@ namespace Stormpath.Configuration.Test
             config.Web.Register.Uri.Should().Be("/register1");
             config.Web.Register.NextUri.Should().Be("/1");
             config.Web.Register.AutoLogin.Should().BeTrue();
+            config.Web.Register.EmailVerificationRequired.Should().BeTrue();
             config.Web.Register.View.Should().Be("registerView");
             config.Web.Register.Form.Fields.Should().HaveCount(1);
 

@@ -110,7 +110,7 @@ namespace Stormpath.Configuration.Test
         {
             var verifyPasswordNull = new Abstractions.Immutable.WebVerifyEmailRouteConfiguration(enabled: null);
 
-            verifyPasswordNull.Enabled.Should().Be(null);
+            verifyPasswordNull.Enabled.Should().BeFalse();
 
             var verifyPasswordEnabled = new Abstractions.Immutable.WebVerifyEmailRouteConfiguration(enabled: true);
 
@@ -142,7 +142,7 @@ namespace Stormpath.Configuration.Test
         {
             var changePasswordNull = new Abstractions.Immutable.WebChangePasswordRouteConfiguration(enabled: null);
 
-            changePasswordNull.Enabled.Should().Be(null);
+            changePasswordNull.Enabled.Should().BeFalse();
 
             var changePasswordEnabled = new Abstractions.Immutable.WebChangePasswordRouteConfiguration(enabled: true);
 
