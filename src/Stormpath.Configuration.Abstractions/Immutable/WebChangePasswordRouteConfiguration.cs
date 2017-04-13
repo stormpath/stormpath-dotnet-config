@@ -31,7 +31,7 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             View = view;
             ErrorUri = errorUri;
             NextUri = nextUri;
-            Enabled = enabled;
+            Enabled = enabled ?? false;
             Uri = uri;
         }
 
@@ -71,7 +71,7 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         /// Configuration path: <c>stormpath.web.changePassword.enabled</c>
         /// </para>
         /// </remarks>
-        public bool? Enabled { get; internal set; }
+        public bool Enabled { get; internal set; }
 
         /// <summary>
         /// The URI for this route, or <see langword="null"/> to use the default URI.

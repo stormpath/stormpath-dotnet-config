@@ -29,7 +29,7 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         {
             View = view;
             NextUri = nextUri;
-            Enabled = enabled;
+            Enabled = enabled ?? false;
             Uri = uri;
         }
 
@@ -63,7 +63,7 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         /// Configuration path: <c>stormpath.web.verifyEmail.enabled</c>
         /// </para>
         /// </remarks>
-        public bool? Enabled { get; internal set; }
+        public bool Enabled { get; internal set; }
 
         /// <summary>
         /// 
