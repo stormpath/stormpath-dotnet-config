@@ -28,25 +28,19 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             bool? enabled = null,
             string uri = null)
         {
-            this.View = view ?? Default.Configuration.Web.ChangePassword.View;
-            this.ErrorUri = errorUri ?? Default.Configuration.Web.ChangePassword.ErrorUri;
-            this.NextUri = nextUri ?? Default.Configuration.Web.ChangePassword.NextUri;
-            this.Enabled = enabled ?? Default.Configuration.Web.ChangePassword.Enabled;
-            this.Uri = uri ?? Default.Configuration.Web.ChangePassword.Uri;
-        }
-
-        public WebChangePasswordRouteConfiguration(WebChangePasswordRouteConfiguration existing)
-            : this(view: existing?.View,
-                  errorUri: existing?.ErrorUri,
-                  nextUri: existing?.NextUri,
-                  enabled: existing?.Enabled,
-                  uri: existing?.Uri)
-        {
+            View = view;
+            ErrorUri = errorUri;
+            NextUri = nextUri;
+            Enabled = enabled ?? false;
+            Uri = uri;
         }
 
         internal WebChangePasswordRouteConfiguration()
         {
         }
+
+        public WebChangePasswordRouteConfiguration DeepClone()
+            => new WebChangePasswordRouteConfiguration(View, ErrorUri, NextUri, Enabled, Uri);
 
         /// <summary>
         /// The view to use for this route, or <see langword="null"/> to use the default view.
@@ -77,7 +71,7 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         /// Configuration path: <c>stormpath.web.changePassword.enabled</c>
         /// </para>
         /// </remarks>
-        public bool? Enabled { get; internal set; }
+        public bool Enabled { get; internal set; }
 
         /// <summary>
         /// The URI for this route, or <see langword="null"/> to use the default URI.

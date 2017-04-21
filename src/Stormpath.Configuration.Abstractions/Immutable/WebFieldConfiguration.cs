@@ -29,27 +29,20 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             bool required,
             string type)
         {
-            this.Enabled = enabled;
-            this.Visible = visible;
-            this.Label = label;
-            this.Placeholder = placeholder;
-            this.Required = required;
-            this.Type = type;
-        }
-
-        public WebFieldConfiguration(WebFieldConfiguration existing)
-            : this(enabled: existing?.Enabled ?? true,
-                  visible: existing?.Visible ?? true,
-                  label: existing?.Label,
-                  placeholder: existing?.Placeholder,
-                  required: existing?.Required ?? true,
-                  type: existing?.Type)
-        {
+            Enabled = enabled;
+            Visible = visible;
+            Label = label;
+            Placeholder = placeholder;
+            Required = required;
+            Type = type;
         }
 
         internal WebFieldConfiguration()
         {
         }
+
+        public WebFieldConfiguration DeepClone()
+            => new WebFieldConfiguration(Enabled, Visible, Label, Placeholder, Required, Type);
 
         /// <summary>
         /// Determines whether this field is enabled (shown).

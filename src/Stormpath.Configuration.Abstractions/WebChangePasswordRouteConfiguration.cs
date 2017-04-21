@@ -50,7 +50,7 @@ namespace Stormpath.Configuration.Abstractions
         /// Configuration path: <c>stormpath.web.changePassword.enabled</c>
         /// </para>
         /// </remarks>
-        public bool? Enabled { get; set; } = Default.Configuration.Web.ChangePassword.Enabled;
+        public bool Enabled { get; set; } = Default.Configuration.Web.ChangePassword.Enabled;
 
         /// <summary>
         /// The URI for this route, or <see langword="null"/> to use the default URI.

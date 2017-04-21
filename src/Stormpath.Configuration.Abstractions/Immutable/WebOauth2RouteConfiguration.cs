@@ -27,23 +27,18 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             bool? enabled = null,
             string uri = null)
         {
-            this.Client_Credentials = new WebOauth2ClientCredentialsGrantConfiguration(clientCredentialsGrant ?? Default.Configuration.Web.Oauth2.Client_Credentials);
-            this.Password = new WebOauth2PasswordGrantConfiguration(passwordGrant ?? Default.Configuration.Web.Oauth2.Password);
-            this.Enabled = enabled ?? Default.Configuration.Web.Oauth2.Enabled;
-            this.Uri = uri ?? Default.Configuration.Web.Oauth2.Uri;
-        }
-
-        public WebOauth2RouteConfiguration(WebOauth2RouteConfiguration existing)
-            : this(clientCredentialsGrant: existing?.Client_Credentials,
-                  passwordGrant: existing?.Password,
-                  enabled: existing?.Enabled,
-                  uri: existing?.Uri)
-        {
+            Client_Credentials = clientCredentialsGrant;
+            Password = passwordGrant;
+            Enabled = enabled ?? false;
+            Uri = uri;
         }
 
         internal WebOauth2RouteConfiguration()
         {
         }
+
+        public WebOauth2RouteConfiguration DeepClone()
+            => new WebOauth2RouteConfiguration(Client_Credentials.DeepClone(), Password.DeepClone(), Enabled, Uri);
 
         /// <summary>
         /// The <c>client_credentials</c> grant type configuration.

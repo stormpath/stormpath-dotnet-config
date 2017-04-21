@@ -23,18 +23,16 @@ namespace Stormpath.Configuration.Abstractions.Immutable
     {
         public WebSocialProviderConfiguration(string uri, string scope)
         {
-            this.Uri = uri;
-            this.Scope = scope;
-        }
-
-        public WebSocialProviderConfiguration(WebSocialProviderConfiguration existing)
-            : this(existing?.Uri, existing?.Scope)
-        {
+            Uri = uri;
+            Scope = scope;
         }
 
         internal WebSocialProviderConfiguration()
         {
         }
+
+        public WebSocialProviderConfiguration DeepClone()
+            => new WebSocialProviderConfiguration(Uri, Scope);
 
         /// <summary>
         /// The callback URI used for this social provider.

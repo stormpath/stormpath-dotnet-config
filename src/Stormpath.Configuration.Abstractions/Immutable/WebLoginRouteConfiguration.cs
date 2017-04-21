@@ -29,25 +29,19 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             bool? enabled = null,
             string uri = null)
         {
-            this.Form = new WebLoginRouteFormConfiguration(form ?? Default.Configuration.Web.Login.Form);
-            this.View = view ?? Default.Configuration.Web.Login.View;
-            this.NextUri = nextUri ?? Default.Configuration.Web.Login.NextUri;
-            this.Enabled = enabled ?? Default.Configuration.Web.Login.Enabled;
-            this.Uri = uri ?? Default.Configuration .Web.Login.Uri;
-        }
-
-        public WebLoginRouteConfiguration(WebLoginRouteConfiguration existing)
-            : this(form: existing?.Form,
-                  view: existing?.View,
-                  nextUri: existing?.NextUri,
-                  enabled: existing?.Enabled,
-                  uri: existing?.Uri)
-        {
+            Form = form;
+            View = view;
+            NextUri = nextUri;
+            Enabled = enabled ?? false;
+            Uri = uri;
         }
 
         internal WebLoginRouteConfiguration()
         {
         }
+
+        public WebLoginRouteConfiguration DeepClone()
+            => new WebLoginRouteConfiguration(Form?.DeepClone(), View, NextUri, Enabled, Uri);
 
         /// <summary>
         /// The form configuration options.

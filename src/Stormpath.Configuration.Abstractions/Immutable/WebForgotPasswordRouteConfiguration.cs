@@ -27,23 +27,18 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             bool? enabled = null,
             string uri = null)
         {
-            this.View = view ?? Default.Configuration.Web.ForgotPassword.View;
-            this.NextUri = nextUri ?? Default.Configuration.Web.ForgotPassword.NextUri;
-            this.Enabled = enabled ?? Default.Configuration.Web.ForgotPassword.Enabled;
-            this.Uri = uri ?? Default.Configuration.Web.ForgotPassword.Uri;
-        }
-
-        public WebForgotPasswordRouteConfiguration(WebForgotPasswordRouteConfiguration existing)
-            : this(view: existing?.View,
-                  nextUri: existing?.NextUri,
-                  enabled: existing?.Enabled,
-                  uri: existing?.Uri)
-        {
+            View = view;
+            NextUri = nextUri;
+            Enabled = enabled;
+            Uri = uri;
         }
 
         internal WebForgotPasswordRouteConfiguration()
         {
         }
+
+        public WebForgotPasswordRouteConfiguration DeepClone()
+            => new WebForgotPasswordRouteConfiguration(View, NextUri, Enabled, Uri);
 
         /// <summary>
         /// The view to use for this route, or <see langword="null"/> to use the default view.

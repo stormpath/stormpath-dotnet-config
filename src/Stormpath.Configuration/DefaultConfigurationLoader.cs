@@ -28,8 +28,8 @@ namespace Stormpath.Configuration
         {
             var compiled = CompileFromSources(userConfiguration, configurationFileRoot); // TODO restore logging
 
-            var output = new Abstractions.Immutable.StormpathConfiguration(Default.Configuration);
-            compiled.GetSection("stormpath").Bind(output);
+            var output = Default.Configuration.DeepClone();
+            compiled.GetSection("okta").Bind(output);
 
             return output;
         }
@@ -37,11 +37,15 @@ namespace Stormpath.Configuration
         private static IConfigurationRoot CompileFromSources(object userConfiguration, string configurationFileRoot)
         {
             var homeStormpathJsonLocation = HomePath.Resolve("~", ".stormpath", "stormpath.json");
+            var homeOktaJsonLocation = HomePath.Resolve("~", ".stormpath", "okta.json");
             var homeStormpathYamlLocation = HomePath.Resolve("~", ".stormpath", "stormpath.yaml");
+            var homeOktaYamlLocation = HomePath.Resolve("~", ".stormpath", "okta.yaml");
 
             var applicationAppSettingsLocation = Path.Combine(configurationFileRoot ?? string.Empty, "appsettings.json");
             var applicationStormpathJsonLocation = Path.Combine(configurationFileRoot ?? string.Empty, "stormpath.json");
+            var applicationOktaJsonLocation = Path.Combine(configurationFileRoot ?? string.Empty, "okta.json");
             var applicationStormpathYamlLocation = Path.Combine(configurationFileRoot ?? string.Empty, "stormpath.yaml");
+            var applicationOktaYamlLocation = Path.Combine(configurationFileRoot ?? string.Empty, "okta.yaml");
 
             // TODO logging
             //var configurationSources = string.Join(", ",
@@ -57,13 +61,14 @@ namespace Stormpath.Configuration
             //logger.Trace($"Compiling configuration from sources: {configurationSources}");
 
             var builder = new ConfigurationBuilder()
-                .AddJsonFile(homeStormpathJsonLocation, optional: true, root: "stormpath")
-                .AddYamlFile(homeStormpathYamlLocation, optional: true, root: "stormpath")
+                .AddJsonFile(homeStormpathJsonLocation, optional: true, root: "okta")
+                .AddYamlFile(homeStormpathYamlLocation, optional: true, root: "okta")
                 .AddJsonFile(applicationAppSettingsLocation, optional: true)
-                .AddJsonFile(applicationStormpathJsonLocation, optional: true, root: "stormpath")
-                .AddYamlFile(applicationStormpathYamlLocation, optional: true, root: "stormpath")
-                .AddEnvironmentVariables("stormpath", "_", root: "stormpath")
-                .AddObject(userConfiguration, root: "stormpath");
+                .AddJsonFile(applicationStormpathJsonLocation, optional: true, root: "okta")
+                .AddYamlFile(applicationStormpathYamlLocation, optional: true, root: "okta")
+                .AddEnvironmentVariables("stormpath", "_", root: "okta")
+                .AddEnvironmentVariables("okta", "_", root: "okta")
+                .AddObject(userConfiguration, root: "okta");
 
             // Apply rules to cookie paths
             UpdateCookiePath(builder, "accessTokenCookie");
@@ -76,8 +81,8 @@ namespace Stormpath.Configuration
         {
             var built = builder.Build();
 
-            var basePath = built.GetValue<string>("stormpath:web:basePath");
-            var cookiePath = built.GetValue<string>($"stormpath:web:{cookieName}:path");
+            var basePath = built.GetValue<string>("okta:web:basePath");
+            var cookiePath = built.GetValue<string>($"okta:web:{cookieName}:path");
 
             if (string.IsNullOrEmpty(cookiePath))
             {
@@ -87,7 +92,7 @@ namespace Stormpath.Configuration
 
                 builder.AddInMemoryCollection(new Dictionary<string, string>()
                 {
-                    [$"stormpath:web:{cookieName}:path"] = defaultPath
+                    [$"okta:web:{cookieName}:path"] = defaultPath
                 });
             }
         }

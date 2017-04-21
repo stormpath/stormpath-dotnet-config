@@ -31,20 +31,18 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             OktaApplicationConfiguration application = null,
             WebConfiguration web = null)
         {
-            ApiToken = apiToken ?? Default.Configuration.ApiToken;
-            Org = org ?? Default.Configuration.Org;
-            Application = application ?? Default.Configuration.Application;
-            Web = web ?? Default.Configuration.Web;
-        }
-
-        public StormpathConfiguration(StormpathConfiguration existing)
-            : this(apiToken: existing?.ApiToken, org: existing?.Org, application: existing?.Application, web: existing?.Web)
-        {
+            ApiToken = apiToken;
+            Org = org;
+            Application = application;
+            Web = web;
         }
 
         internal StormpathConfiguration()
         {
         }
+
+        public StormpathConfiguration DeepClone()
+            => new StormpathConfiguration(ApiToken, Org, Application?.DeepClone(), Web.DeepClone());
 
         /// <summary>
         /// The Okta API token.

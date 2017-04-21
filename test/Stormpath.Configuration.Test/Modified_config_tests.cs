@@ -106,6 +106,7 @@ namespace Stormpath.Configuration.Test
                     uri: "/register1",
                     nextUri: "/1",
                     autoLogin: true,
+                    emailVerificationRequired: true,
                     view: "registerView",
                     form: new Abstractions.Immutable.WebRegisterRouteFormConfiguration(
                         fields: new Dictionary<string, Abstractions.Immutable.WebFieldConfiguration>()
@@ -170,12 +171,6 @@ namespace Stormpath.Configuration.Test
                     nextUri: "/login?status=reset?",
                     view: "change-password-view",
                     errorUri: "/forgot?status=invalid_sptoken:("),
-
-                idSite: new Abstractions.Immutable.WebIdSiteConfiguration(
-                    enabled: true,
-                    loginUri: "/456",
-                    forgotUri: "/#/forgot789",
-                    registerUri: "/#/register0"),
 
                 callbackRoute: new Abstractions.Immutable.WebCallbackRouteConfiguration(
                     enabled: false,
@@ -265,6 +260,7 @@ namespace Stormpath.Configuration.Test
                         Uri = "/register1",
                         NextUri = "/1",
                         AutoLogin = true,
+                        EmailVerificationRequired = true,
                         View = "registerView",
                         Form = new WebRegisterRouteFormConfiguration()
                         {
@@ -339,13 +335,6 @@ namespace Stormpath.Configuration.Test
                         NextUri = "/login?status=reset?",
                         View = "change-password-view",
                         ErrorUri = "/forgot?status=invalid_sptoken:("
-                    },
-                    IdSite = new WebIdSiteConfiguration()
-                    {
-                        Enabled = true,
-                        LoginUri = "/456",
-                        ForgotUri = "/#/forgot789",
-                        RegisterUri = "/#/register0"
                     },
                     Callback = new WebCallbackRouteConfiguration()
                     {
@@ -477,6 +466,7 @@ namespace Stormpath.Configuration.Test
                         uri = "/register1",
                         nextUri = "/1",
                         autoLogin = true,
+                        emailVerificationRequired = true,
                         view = "registerView",
                         form = new
                         {
@@ -656,6 +646,7 @@ namespace Stormpath.Configuration.Test
             config.Web.Register.Uri.Should().Be("/register1");
             config.Web.Register.NextUri.Should().Be("/1");
             config.Web.Register.AutoLogin.Should().BeTrue();
+            config.Web.Register.EmailVerificationRequired.Should().BeTrue();
             config.Web.Register.View.Should().Be("registerView");
             config.Web.Register.Form.Fields.Should().HaveCount(1);
 
@@ -713,11 +704,6 @@ namespace Stormpath.Configuration.Test
             config.Web.ChangePassword.NextUri.Should().Be("/login?status=reset?");
             config.Web.ChangePassword.View.Should().Be("change-password-view");
             config.Web.ChangePassword.ErrorUri.Should().Be("/forgot?status=invalid_sptoken:(");
-
-            config.Web.IdSite.Enabled.Should().BeTrue();
-            config.Web.IdSite.LoginUri.Should().Be("/456");
-            config.Web.IdSite.ForgotUri.Should().Be("/#/forgot789");
-            config.Web.IdSite.RegisterUri.Should().Be("/#/register0");
 
             config.Web.Callback.Enabled.Should().BeFalse();
             config.Web.Callback.Uri.Should().Be("/stormpath-callback");

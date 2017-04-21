@@ -62,5 +62,11 @@ namespace Stormpath.Configuration.Abstractions
         /// </summary>
         /// Configuration path: <c>stormpath.web.register.uri</c>
         public string Uri { get; set; } = Default.Configuration.Web.Register.Uri;
+
+        /// <summary>
+        /// Whether new accounts must verify their email address before becoming active.
+        /// </summary>
+        /// Configuration path: <c>okta.web.register.emailVerificationRequired</c>
+        public bool EmailVerificationRequired { get; set; } = Default.Configuration.Web.Register.EmailVerificationRequired;
     }
 }

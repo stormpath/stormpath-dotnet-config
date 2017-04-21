@@ -98,6 +98,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
       ""uri"": ""/register"",
       ""nextUri"": ""/"",
       ""autoLogin"": false,
+      ""emailVerificationRequired"": false,
       ""form"": {
         ""fields"": {
           ""givenName"": {
@@ -170,7 +171,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
       ""view"": ""register""
     },
     ""verifyEmail"": {
-      ""enabled"": null,
+      ""enabled"": false,
       ""uri"": ""/verify"",
       ""nextUri"": ""/login?status=verified"",
       ""view"": ""verify""
@@ -217,7 +218,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
       ""nextUri"": ""/login?status=forgot""
     },
     ""changePassword"": {
-      ""enabled"": null,
+      ""enabled"": false,
       ""uri"": ""/change"",
       ""nextUri"": ""/login?status=reset"",
       ""view"": ""change-password"",

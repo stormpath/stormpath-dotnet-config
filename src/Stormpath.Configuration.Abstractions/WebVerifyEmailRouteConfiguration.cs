@@ -44,7 +44,7 @@ namespace Stormpath.Configuration.Abstractions
         /// Configuration path: <c>stormpath.web.verifyEmail.enabled</c>
         /// </para>
         /// </remarks>
-        public bool? Enabled { get; set; } = Default.Configuration.Web.VerifyEmail.Enabled;
+        public bool Enabled { get; set; } = Default.Configuration.Web.VerifyEmail.Enabled;
 
         /// <summary>
         /// 
