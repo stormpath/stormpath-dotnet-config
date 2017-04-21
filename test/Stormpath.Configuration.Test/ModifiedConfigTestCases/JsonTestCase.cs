@@ -59,9 +59,10 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
       ""password"": ""bar""
     }
   },
+  ""apiToken"": ""foobarApiToken"",
+  ""org"": ""https://dev-12345.oktapreview.com"",
   ""application"": {
-    ""name"": ""Lightsabers Galore"",
-    ""href"": ""https://api.foo.com/v1/applications/foo""
+    ""id"": ""LightsabersGalore.app.foo""
   },
   ""web"": {
     ""serverUri"": ""https://localhost:9000"",
@@ -102,6 +103,7 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
       ""uri"": ""/register1"",
       ""nextUri"": ""/1"",
       ""autoLogin"": true,
+      ""emailVerificationRequired"": true,
       ""form"": {
         ""fields"": {
           ""email"": {

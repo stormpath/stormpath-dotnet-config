@@ -53,9 +53,10 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
       ""password"": null
     }
   },
+  ""apiToken"": ""okta_apiToken"",
+  ""org"": ""okta_org"",
   ""application"": {
-    ""name"": null,
-    ""href"": null
+    ""id"": ""okta_application_id""
   },
   ""web"": {
     ""serverUri"": null,
@@ -97,6 +98,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
       ""uri"": ""/register"",
       ""nextUri"": ""/"",
       ""autoLogin"": false,
+      ""emailVerificationRequired"": false,
       ""form"": {
         ""fields"": {
           ""givenName"": {
@@ -169,7 +171,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
       ""view"": ""register""
     },
     ""verifyEmail"": {
-      ""enabled"": null,
+      ""enabled"": false,
       ""uri"": ""/verify"",
       ""nextUri"": ""/login?status=verified"",
       ""view"": ""verify""
@@ -216,7 +218,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
       ""nextUri"": ""/login?status=forgot""
     },
     ""changePassword"": {
-      ""enabled"": null,
+      ""enabled"": false,
       ""uri"": ""/change"",
       ""nextUri"": ""/login?status=reset"",
       ""view"": ""change-password"",

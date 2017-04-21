@@ -27,23 +27,18 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             bool? enabled = null,
             string uri = null)
         {
-            this.View = view ?? Default.Configuration.Web.VerifyEmail.View;
-            this.NextUri = nextUri ?? Default.Configuration.Web.VerifyEmail.NextUri;
-            this.Enabled = enabled ?? Default.Configuration.Web.VerifyEmail.Enabled;
-            this.Uri = uri ?? Default.Configuration.Web.VerifyEmail.Uri;
-        }
-
-        public WebVerifyEmailRouteConfiguration(WebVerifyEmailRouteConfiguration existing)
-            : this(view: existing?.View,
-                  nextUri: existing?.NextUri,
-                  enabled: existing?.Enabled,
-                  uri: existing?.Uri)
-        {
+            View = view;
+            NextUri = nextUri;
+            Enabled = enabled ?? false;
+            Uri = uri;
         }
 
         internal WebVerifyEmailRouteConfiguration()
         {
         }
+
+        public WebVerifyEmailRouteConfiguration DeepClone()
+            => new WebVerifyEmailRouteConfiguration(View, NextUri, Enabled, Uri);
 
         /// <summary>
         /// The view to use for this route, or <see langword="null"/> to use the default view.
@@ -68,7 +63,7 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         /// Configuration path: <c>stormpath.web.verifyEmail.enabled</c>
         /// </para>
         /// </remarks>
-        public bool? Enabled { get; internal set; }
+        public bool Enabled { get; internal set; }
 
         /// <summary>
         /// 

@@ -17,7 +17,6 @@
 using System.Collections.Generic;
 using System.IO;
 using FluentAssertions;
-using Microsoft.Extensions.PlatformAbstractions;
 using Stormpath.Configuration.Abstractions;
 using Xunit;
 
@@ -67,38 +66,6 @@ namespace Stormpath.Configuration.Test
         [Fact]
         public void Supplied_by_immutable_instance()
         {
-            var clientConfiguration = new Abstractions.Immutable.ClientConfiguration(
-                new Abstractions.Immutable.ClientApiKeyConfiguration(
-                    file: null,
-                    id: "modified-foobar",
-                    secret: "modified-barbaz"),
-
-                cacheManager: new Abstractions.Immutable.ClientCacheManagerConfiguration(
-                    enabled: false,
-                    defaultTimeToLive: 500,
-                    defaultTimeToIdle: 600,
-                    caches: new Dictionary<string, Abstractions.Immutable.ClientCacheConfiguration>()
-                    {
-                        ["application"] = new Abstractions.Immutable.ClientCacheConfiguration(timeToLive: 450, timeToIdle: 700),
-                        ["directory"] = new Abstractions.Immutable.ClientCacheConfiguration(timeToLive: 200, timeToIdle: 300)
-                    }),
-
-                baseUrl: "https://api.foo.com/v1",
-                connectionTimeout: 90,
-                authenticationScheme: ClientAuthenticationScheme.Basic,
-
-                proxy: new Abstractions.Immutable.ClientProxyConfiguration(
-                    port: 8088,
-                    host: "proxy.foo.bar",
-                    username: "foo",
-                    password: "bar"
-                )
-            );
-
-            var applicationConfiguration = new Abstractions.Immutable.ApplicationConfiguration(
-                name: "Lightsabers Galore",
-                href: "https://api.foo.com/v1/applications/foo");
-
             var webConfiguration = new Abstractions.Immutable.WebConfiguration(
                 serverUri: "https://localhost:9000",
                 basePath: "#/",
@@ -139,6 +106,7 @@ namespace Stormpath.Configuration.Test
                     uri: "/register1",
                     nextUri: "/1",
                     autoLogin: true,
+                    emailVerificationRequired: true,
                     view: "registerView",
                     form: new Abstractions.Immutable.WebRegisterRouteFormConfiguration(
                         fields: new Dictionary<string, Abstractions.Immutable.WebFieldConfiguration>()
@@ -204,12 +172,6 @@ namespace Stormpath.Configuration.Test
                     view: "change-password-view",
                     errorUri: "/forgot?status=invalid_sptoken:("),
 
-                idSite: new Abstractions.Immutable.WebIdSiteConfiguration(
-                    enabled: true,
-                    loginUri: "/456",
-                    forgotUri: "/#/forgot789",
-                    registerUri: "/#/register0"),
-
                 callbackRoute: new Abstractions.Immutable.WebCallbackRouteConfiguration(
                     enabled: false,
                     uri: "/stormpath-callback"),
@@ -232,9 +194,10 @@ namespace Stormpath.Configuration.Test
             );
 
             var stormpathConfiguration = new Abstractions.Immutable.StormpathConfiguration(
-                clientConfiguration,
-                applicationConfiguration,
-                webConfiguration);
+                apiToken: "foobarApiToken",
+                org: "https://dev-12345.oktapreview.com",
+                application: new Abstractions.Immutable.OktaApplicationConfiguration(id: "LightsabersGalore.app.foo"),
+                web: webConfiguration);
 
             var config = ConfigurationLoader.Initialize().Load(stormpathConfiguration);
 
@@ -246,43 +209,12 @@ namespace Stormpath.Configuration.Test
         {
             var stormpathConfiguration = new StormpathConfiguration()
             {
-                Client = new ClientConfiguration()
+                ApiToken = "foobarApiToken",
+                Org = "https://dev-12345.oktapreview.com",
+                Application = new OktaApplicationConfiguration
                 {
-                    ApiKey = new ClientApiKeyConfiguration()
-                    {
-                        File = null,
-                        Id = "modified-foobar",
-                        Secret = "modified-barbaz"
-                    },
-                    CacheManager = new ClientCacheManagerConfiguration()
-                    {
-                        Enabled = false,
-                        DefaultTtl = 500,
-                        DefaultTti = 600,
-                        Caches = new Dictionary<string, ClientCacheConfiguration>()
-                        {
-                            ["application"] = new ClientCacheConfiguration() { Ttl = 450, Tti = 700 },
-                            ["directory"] = new ClientCacheConfiguration() { Ttl = 200, Tti = 300 },
-                        }
-                    },
-                    BaseUrl = "https://api.foo.com/v1",
-                    ConnectionTimeout = 90,
-                    AuthenticationScheme = ClientAuthenticationScheme.Basic,
-                    Proxy = new ClientProxyConfiguration()
-                    {
-                        Port = 8088,
-                        Host = "proxy.foo.bar",
-                        Username = "foo",
-                        Password = "bar"
-                    }
+                    Id = "LightsabersGalore.app.foo"
                 },
-
-                Application = new ApplicationConfiguration()
-                {
-                    Name = "Lightsabers Galore",
-                    Href = "https://api.foo.com/v1/applications/foo"
-                },
-
                 Web = new WebConfiguration()
                 {
                     ServerUri = "https://localhost:9000",
@@ -328,6 +260,7 @@ namespace Stormpath.Configuration.Test
                         Uri = "/register1",
                         NextUri = "/1",
                         AutoLogin = true,
+                        EmailVerificationRequired = true,
                         View = "registerView",
                         Form = new WebRegisterRouteFormConfiguration()
                         {
@@ -403,13 +336,6 @@ namespace Stormpath.Configuration.Test
                         View = "change-password-view",
                         ErrorUri = "/forgot?status=invalid_sptoken:("
                     },
-                    IdSite = new WebIdSiteConfiguration()
-                    {
-                        Enabled = true,
-                        LoginUri = "/456",
-                        ForgotUri = "/#/forgot789",
-                        RegisterUri = "/#/register0"
-                    },
                     Callback = new WebCallbackRouteConfiguration()
                     {
                         Enabled = false,
@@ -444,6 +370,11 @@ namespace Stormpath.Configuration.Test
         {
             var userConfiguration = new
             {
+                apiToken = "foobarApiToken",
+                org = "https://dev-12345.oktapreview.com",
+                application = new { id = "LightsabersGalore.app.foo" },
+
+                // These old properties should not cause an exception
                 client = new
                 {
                     apiKey = new
@@ -474,7 +405,6 @@ namespace Stormpath.Configuration.Test
 
                     baseUrl = "https://api.foo.com/v1",
                     connectionTimeout = 90,
-                    authenticationScheme = ClientAuthenticationScheme.Basic,
 
                     proxy = new
                     {
@@ -483,12 +413,6 @@ namespace Stormpath.Configuration.Test
                         username = "foo",
                         password = "bar",
                     }
-                },
-
-                application = new
-                {
-                    name = "Lightsabers Galore",
-                    href = "https://api.foo.com/v1/applications/foo",
                 },
 
                 web = new
@@ -542,6 +466,7 @@ namespace Stormpath.Configuration.Test
                         uri = "/register1",
                         nextUri = "/1",
                         autoLogin = true,
+                        emailVerificationRequired = true,
                         view = "registerView",
                         form = new
                         {
@@ -681,32 +606,10 @@ namespace Stormpath.Configuration.Test
 
         private static void ValidateConfig(Abstractions.Immutable.StormpathConfiguration config)
         {
-            // Client section
-            config.Client.ApiKey.Id.Should().Be("modified-foobar");
-            config.Client.ApiKey.Secret.Should().Be("modified-barbaz");
-
-            config.Client.CacheManager.Enabled.Should().BeFalse();
-            config.Client.CacheManager.DefaultTtl.Should().Be(500);
-            config.Client.CacheManager.DefaultTti.Should().Be(600);
-
-            config.Client.CacheManager.Caches.Should().HaveCount(2);
-            config.Client.CacheManager.Caches["application"].Ttl.Should().Be(450);
-            config.Client.CacheManager.Caches["application"].Tti.Should().Be(700);
-            config.Client.CacheManager.Caches["directory"].Ttl.Should().Be(200);
-            config.Client.CacheManager.Caches["directory"].Tti.Should().Be(300);
-
-            config.Client.BaseUrl.Should().Be("https://api.foo.com/v1");
-            config.Client.ConnectionTimeout.Should().Be(90);
-            config.Client.AuthenticationScheme.Should().Be(ClientAuthenticationScheme.Basic);
-
-            config.Client.Proxy.Port.Should().Be(8088);
-            config.Client.Proxy.Host.Should().Be("proxy.foo.bar");
-            config.Client.Proxy.Username.Should().Be("foo");
-            config.Client.Proxy.Password.Should().Be("bar");
-
-            // Application section
-            config.Application.Href.Should().Be("https://api.foo.com/v1/applications/foo");
-            config.Application.Name.Should().Be("Lightsabers Galore");
+            // Okta section
+            config.ApiToken.Should().Be("foobarApiToken");
+            config.Org.Should().Be("https://dev-12345.oktapreview.com");
+            config.Application.Id.Should().Be("LightsabersGalore.app.foo");
 
             // Web section
             config.Web.ServerUri.Should().Be("https://localhost:9000");
@@ -743,6 +646,7 @@ namespace Stormpath.Configuration.Test
             config.Web.Register.Uri.Should().Be("/register1");
             config.Web.Register.NextUri.Should().Be("/1");
             config.Web.Register.AutoLogin.Should().BeTrue();
+            config.Web.Register.EmailVerificationRequired.Should().BeTrue();
             config.Web.Register.View.Should().Be("registerView");
             config.Web.Register.Form.Fields.Should().HaveCount(1);
 
@@ -800,11 +704,6 @@ namespace Stormpath.Configuration.Test
             config.Web.ChangePassword.NextUri.Should().Be("/login?status=reset?");
             config.Web.ChangePassword.View.Should().Be("change-password-view");
             config.Web.ChangePassword.ErrorUri.Should().Be("/forgot?status=invalid_sptoken:(");
-
-            config.Web.IdSite.Enabled.Should().BeTrue();
-            config.Web.IdSite.LoginUri.Should().Be("/456");
-            config.Web.IdSite.ForgotUri.Should().Be("/#/forgot789");
-            config.Web.IdSite.RegisterUri.Should().Be("/#/register0");
 
             config.Web.Callback.Enabled.Should().BeFalse();
             config.Web.Callback.Uri.Should().Be("/stormpath-callback");

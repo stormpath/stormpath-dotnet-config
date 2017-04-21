@@ -28,25 +28,19 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             string path,
             string domain)
         {
-            this.Name = name;
-            this.HttpOnly = httpOnly;
-            this.Secure = secure;
-            this.Path = path;
-            this.Domain = domain;
-        }
-
-        public WebCookieConfiguration(WebCookieConfiguration existing)
-            : this(name: existing?.Name,
-                  httpOnly: existing?.HttpOnly ?? true,
-                  secure: existing?.Secure,
-                  path: existing?.Path,
-                  domain: existing?.Domain)
-        {
+            Name = name;
+            HttpOnly = httpOnly;
+            Secure = secure;
+            Path = path;
+            Domain = domain;
         }
 
         internal WebCookieConfiguration()
         {
         }
+
+        public WebCookieConfiguration DeepClone()
+            => new WebCookieConfiguration(Name, HttpOnly, Secure, Path, Domain);
 
         /// <summary>
         /// The cookie name.

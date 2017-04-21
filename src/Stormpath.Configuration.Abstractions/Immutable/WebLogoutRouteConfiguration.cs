@@ -26,21 +26,17 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             bool? enabled = null,
             string uri = null)
         {
-            this.NextUri = nextUri ?? Default.Configuration.Web.Logout.NextUri;
-            this.Enabled = enabled ?? Default.Configuration.Web.Logout.Enabled;
-            this.Uri = uri ?? Default.Configuration.Web.Logout.Uri;
-        }
-
-        public WebLogoutRouteConfiguration(WebLogoutRouteConfiguration existing)
-            : this(nextUri: existing?.NextUri,
-                  enabled: existing?.Enabled,
-                  uri: existing?.Uri)
-        {
+            NextUri = nextUri;
+            Enabled = enabled ?? false;
+            Uri = uri;
         }
 
         internal WebLogoutRouteConfiguration()
         {
         }
+
+        public WebLogoutRouteConfiguration DeepClone()
+            => new WebLogoutRouteConfiguration(NextUri, Enabled, Uri);
 
         /// <summary>
         /// The URI to redirect to if the logout is successful.

@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Load Stormpath configuration from various sources.</Description>
+    <Copyright>(c) 2016 Stormpath, Inc.</Copyright>
+    <VersionPrefix>7.0.0-beta3</VersionPrefix>
+    <Authors>Nate Barbettini</Authors>
+    <TargetFrameworks>net45;netstandard1.3</TargetFrameworks>
+    <AssemblyName>Stormpath.Configuration</AssemblyName>
+    <PackageId>Stormpath.Configuration</PackageId>
+    <PackageTags>stormpath;configuration</PackageTags>
+    <PackageIconUrl>https://raw.githubusercontent.com/stormpath/stormpath-sdk-dotnet/master/icon.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/stormpath/stormpath-dotnet-config/</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/stormpath/stormpath-dotnet-config/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/stormpath/stormpath-dotnet-config/</RepositoryUrl>
+    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.3' ">$(PackageTargetFallback);dotnet</PackageTargetFallback>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Stormpath.Configuration.Abstractions\Stormpath.Configuration.Abstractions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FlexibleConfiguration" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+</Project>

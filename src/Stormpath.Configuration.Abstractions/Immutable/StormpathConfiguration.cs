@@ -26,42 +26,46 @@ namespace Stormpath.Configuration.Abstractions.Immutable
     public class StormpathConfiguration
     {
         public StormpathConfiguration(
-            ClientConfiguration client = null,
-            ApplicationConfiguration application = null,
+            string apiToken = null,
+            string org = null,
+            OktaApplicationConfiguration application = null,
             WebConfiguration web = null)
         {
-            this.Client = new ClientConfiguration(client ?? Default.Configuration.Client);
-            this.Application = new ApplicationConfiguration(application ?? Default.Configuration.Application);
-            this.Web = new WebConfiguration(web ?? Default.Configuration.Web);
-        }
-
-        public StormpathConfiguration(StormpathConfiguration existing)
-            : this(client: existing?.Client,
-                  application: existing?.Application,
-                  web: existing?.Web)
-        {
+            ApiToken = apiToken;
+            Org = org;
+            Application = application;
+            Web = web;
         }
 
         internal StormpathConfiguration()
         {
         }
 
-        /// <summary>
-        /// The Client-specific configuration.
-        /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.client</c></remarks>
-        public ClientConfiguration Client { get; internal set; }
+        public StormpathConfiguration DeepClone()
+            => new StormpathConfiguration(ApiToken, Org, Application?.DeepClone(), Web.DeepClone());
 
         /// <summary>
-        /// The Application-specific configuration.
+        /// The Okta API token.
         /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.application</c></remarks>
-        public ApplicationConfiguration Application { get; internal set; }
+        /// <remarks>Configuration path: <c>okta.apiToken</c></remarks>
+        public string ApiToken { get; internal set; }
+
+        /// <summary>
+        /// The Okta organization href.
+        /// </summary>
+        /// <remarks>Configuration path: <c>okta.org</c></remarks>
+        public string Org { get; internal set; }
+
+        /// <summary>
+        /// The Okta application configuration.
+        /// </summary>
+        /// <remarks>Configuration path: <c>okta.application</c></remarks>
+        public OktaApplicationConfiguration Application { get; internal set; }
 
         /// <summary>
         /// The framework integration-specific configuration.
         /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.web</c></remarks>
+        /// <remarks>Configuration path: <c>okta.web</c></remarks>
         public WebConfiguration Web { get; internal set; }
     }
 }

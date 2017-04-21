@@ -13,57 +13,11 @@ namespace Stormpath.Configuration.Abstractions
         /// </summary>
         public static readonly Immutable.StormpathConfiguration Configuration = new Immutable.StormpathConfiguration()
         {
-            // SDK Client configuration
-            // (https://github.com/stormpath/stormpath-sdk-spec/blob/master/specifications/config.md)
-            Client = new Immutable.ClientConfiguration()
+            ApiToken = null,
+            Org = null,
+            Application = new Immutable.OktaApplicationConfiguration()
             {
-                // The Stormpath credentials to use when connecting to the Stormpath API.
-                ApiKey = new Immutable.ClientApiKeyConfiguration()
-                {
-                    File = null,
-                    Id = null,
-                    Secret = null
-                },
-
-                // Configures the SDK Client caching layer.
-                // Uses an in-memory cache by default.
-                CacheManager = new Immutable.ClientCacheManagerConfiguration()
-                {
-                    Enabled = true,
-                    DefaultTtl = 3600,
-                    DefaultTti = 3600,
-                    Caches = new Dictionary<string, Immutable.ClientCacheConfiguration>(StringComparer.OrdinalIgnoreCase) { },
-                },
-
-                // The Stormpath Base URL to use.
-                // You shouldn't have to modify this unless you are connecting to Stormpath Enterprise.
-                BaseUrl = "https://api.stormpath.com/v1",
-
-                // The default HTTP connection timeout, in seconds.
-                ConnectionTimeout = 30,
-
-                // The REST API authentication scheme to use.
-                // SAuthc1  (the default) is more secure, but Basic is required in some hosting scenarios.
-                AuthenticationScheme = ClientAuthenticationScheme.SAuthc1,
-
-                // The HTTP proxy to use, if any.
-                Proxy = new Immutable.ClientProxyConfiguration()
-                {
-                    Port = null,
-                    Host = null,
-                    Username = null,
-                    Password = null,
-                }
-            },
-
-            // Framework integration configuration
-            // (https://github.com/stormpath/stormpath-framework-spec/blob/master/configuration.md)
-            // Either name or href is required to connect a front-end application to a Stormpath Application.
-            // If left empty, the framework library will attempt to auto-resolve an Application in the current Stormpath Tenant.
-            Application = new Immutable.ApplicationConfiguration()
-            {
-                Name = null,
-                Href = null
+                Id = null
             },
 
             // Framework integration configuration
@@ -155,6 +109,9 @@ namespace Stormpath.Configuration.Abstractions
 
                     // Whether to automatically log in a user after registration.
                     AutoLogin = false,
+
+                    // Whether new accounts must verify their email address before becoming active.
+                    EmailVerificationRequired = false,
 
                     // The URI to redirect to after successful registration, if AutoLogin is enabled.
                     NextUri = "/",
@@ -248,7 +205,7 @@ namespace Stormpath.Configuration.Abstractions
                 // The email verification route configuration.
                 VerifyEmail = new Immutable.WebVerifyEmailRouteConfiguration()
                 {
-                    Enabled = null,
+                    Enabled = false,
                     Uri = "/verify",
                     NextUri = "/login?status=verified",
                     View = "verify"
@@ -316,20 +273,11 @@ namespace Stormpath.Configuration.Abstractions
                 // The change password route configuration.
                 ChangePassword = new Immutable.WebChangePasswordRouteConfiguration()
                 {
-                    Enabled = null,
+                    Enabled = false,
                     Uri = "/change",
                     NextUri = "/login?status=reset",
                     View = "change-password",
                     ErrorUri = "/forgot?status=invalid_sptoken",
-                },
-
-                // Controls whether ID Site is used for registration, login, password reset, etc.
-                IdSite = new Immutable.WebIdSiteConfiguration()
-                {
-                    Enabled = false,
-                    LoginUri = "",
-                    ForgotUri = "/#/forgot",
-                    RegisterUri = "/#/register"
                 },
 
                 // The Stormpath callback route configuration.

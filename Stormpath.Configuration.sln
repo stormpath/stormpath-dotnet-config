@@ -1,22 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Stormpath.Configuration", "src\Stormpath.Configuration\Stormpath.Configuration.xproj", "{734117C4-70D3-47D1-891A-ECCEB2FC2844}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Stormpath.Configuration.Test", "test\Stormpath.Configuration.Test\Stormpath.Configuration.Test.xproj", "{C818234B-15E4-45B5-AAA0-BB93C95319D3}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Stormpath.Configuration.Abstractions", "src\Stormpath.Configuration.Abstractions\Stormpath.Configuration.Abstractions.xproj", "{C6D48F3C-B35C-44A9-B271-898A8BC448A9}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CB9D4701-1FF3-44A0-A9CC-A9AA2E80A0C4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{8D9CF7EA-B8A7-4925-8202-1D9230EBE18E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B1B2D9F8-477D-479D-93C0-596B55BFF6F7}"
 	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
+		changelog.md = changelog.md
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stormpath.Configuration", "src\Stormpath.Configuration\Stormpath.Configuration.csproj", "{734117C4-70D3-47D1-891A-ECCEB2FC2844}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stormpath.Configuration.Test", "test\Stormpath.Configuration.Test\Stormpath.Configuration.Test.csproj", "{C818234B-15E4-45B5-AAA0-BB93C95319D3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stormpath.Configuration.Abstractions", "src\Stormpath.Configuration.Abstractions\Stormpath.Configuration.Abstractions.csproj", "{C6D48F3C-B35C-44A9-B271-898A8BC448A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

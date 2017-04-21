@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Abstractions for the Stormpath.Configuration package.</Description>
+    <Copyright>(c) 2016 Stormpath, Inc.</Copyright>
+    <VersionPrefix>7.0.0-beta3</VersionPrefix>
+    <Authors>Nate Barbettini</Authors>
+    <TargetFrameworks>net45;netstandard1.0</TargetFrameworks>
+    <AssemblyName>Stormpath.Configuration.Abstractions</AssemblyName>
+    <PackageId>Stormpath.Configuration.Abstractions</PackageId>
+    <PackageTags>stormpath</PackageTags>
+    <PackageIconUrl>https://raw.githubusercontent.com/stormpath/stormpath-sdk-dotnet/master/icon.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/stormpath/stormpath-dotnet-config/</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/stormpath/stormpath-dotnet-config/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/stormpath/stormpath-dotnet-config/</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Reference Include="System.Runtime" />
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+</Project>

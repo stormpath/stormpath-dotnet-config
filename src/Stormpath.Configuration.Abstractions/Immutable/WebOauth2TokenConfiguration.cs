@@ -23,17 +23,15 @@ namespace Stormpath.Configuration.Abstractions.Immutable
     {
         public WebOauth2TokenConfiguration(int? timeToLive)
         {
-            this.Ttl = timeToLive;
-        }
-
-        public WebOauth2TokenConfiguration(WebOauth2TokenConfiguration existing)
-            : this(timeToLive: existing?.Ttl)
-        {
+            Ttl = timeToLive;
         }
 
         internal WebOauth2TokenConfiguration()
         {
         }
+
+        public WebOauth2TokenConfiguration DeepClone()
+            => new WebOauth2TokenConfiguration(Ttl);
 
         /// <summary>
         /// The token Time-To-Live.

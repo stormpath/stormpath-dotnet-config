@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Stormpath.Configuration.Abstractions.Immutable
 {
@@ -29,21 +30,17 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             bool? enabled = null,
             string uri = null)
         {
-            this.Expand = new Dictionary<string, bool>(expand ?? Default.Configuration.Web.Me.Expand.ToDictionary(), StringComparer.OrdinalIgnoreCase);
-            this.Enabled = enabled ?? Default.Configuration.Web.Me.Enabled;
-            this.Uri = uri ?? Default.Configuration.Web.Me.Uri;
-        }
-
-        public WebMeRouteConfiguration(WebMeRouteConfiguration existing)
-            : this(expand: existing?.Expand.ToDictionary(),
-                  enabled: existing?.Enabled,
-                  uri: existing?.Uri)
-        {
+            Expand = new Dictionary<string, bool>(expand, StringComparer.OrdinalIgnoreCase);
+            Enabled = enabled ?? false;
+            Uri = uri;
         }
 
         internal WebMeRouteConfiguration()
         {
         }
+
+        public WebMeRouteConfiguration DeepClone()
+            => new WebMeRouteConfiguration(Expand.ToDictionary(kvp => kvp.Key, kvp => kvp.Value), Enabled, Uri);
 
         /// <summary>
         /// The expansion options configuration.

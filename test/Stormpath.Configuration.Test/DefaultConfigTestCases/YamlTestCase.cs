@@ -49,9 +49,10 @@ client:
     host: null
     username: null
     password: null
+apiToken: okta_apiToken
+org: okta_org
 application:
-  name: null
-  href: null
+  id: okta_application_id
 web:
   serverUri: null
   basePath: ""/""
@@ -94,6 +95,7 @@ web:
     uri: ""/register""
     nextUri: ""/""
     autoLogin: false
+    emailVerificationRequired: false
     form:
       fields:
         givenName:
@@ -160,7 +162,7 @@ web:
   # store for the defined Stormpath application has the email verification
   # workflow enabled.
   verifyEmail:
-    enabled: null
+    enabled: false
     uri: ""/verify""
     nextUri: ""/login?status=verified""
     view: ""verify""
@@ -208,7 +210,7 @@ web:
   # will be automatically enabled if the default account store for the defined
   # Stormpath application has the password reset workflow enabled.
   changePassword:
-    enabled: null
+    enabled: false
     uri: ""/change""
     nextUri: ""/login?status=reset""
     view: ""change-password""

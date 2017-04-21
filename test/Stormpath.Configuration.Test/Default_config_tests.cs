@@ -17,7 +17,6 @@
 using System.Collections.Generic;
 using System.IO;
 using FluentAssertions;
-using Microsoft.Extensions.PlatformAbstractions;
 using Stormpath.Configuration.Abstractions.Immutable;
 using Xunit;
 
@@ -70,13 +69,11 @@ namespace Stormpath.Configuration.Test
         {
             var config = ConfigurationLoader.Initialize().Load(new
             {
-                client = new
+                apiToken = "okta_apiToken",
+                org = "okta_org",
+                application = new
                 {
-                    apiKey = new
-                    {
-                        id = "default-foobar", // so the API credentials validation does not throw
-                        secret = "default-secret123!" // ditto
-                    }
+                    id = "okta_application_id"
                 }
             });
 
@@ -87,37 +84,20 @@ namespace Stormpath.Configuration.Test
         public void Null_configuration_loads_defaults()
         {
             var config = ConfigurationLoader.Initialize().Load(new StormpathConfiguration(
-                new ClientConfiguration(
-                    new ClientApiKeyConfiguration(id: "default-foobar", secret: "default-secret123!"))));
+                apiToken: "okta_apiToken",
+                    org: "okta_org",
+                    application: new OktaApplicationConfiguration(
+                        id: "okta_application_id")));
 
             ValidateConfig(config);
         }
 
         private static void ValidateConfig(StormpathConfiguration config)
         {
-            // Client section
-            config.Client.ApiKey.File.Should().BeNullOrEmpty();
-            config.Client.ApiKey.Id.Should().Be("default-foobar");
-            config.Client.ApiKey.Secret.Should().Be("default-secret123!");
-
-            config.Client.CacheManager.Enabled.Should().BeTrue();
-            config.Client.CacheManager.DefaultTtl.Should().Be(Abstractions.Default.Configuration.Client.CacheManager.DefaultTtl);
-            config.Client.CacheManager.DefaultTti.Should().Be(Abstractions.Default.Configuration.Client.CacheManager.DefaultTti);
-
-            config.Client.CacheManager.Caches.Should().HaveCount(0);
-
-            config.Client.BaseUrl.Should().Be("https://api.stormpath.com/v1");
-            config.Client.ConnectionTimeout.Should().Be(30);
-            config.Client.AuthenticationScheme.Should().Be(Abstractions.ClientAuthenticationScheme.SAuthc1);
-
-            config.Client.Proxy.Port.Should().Be(null);
-            config.Client.Proxy.Host.Should().BeNullOrEmpty();
-            config.Client.Proxy.Username.Should().BeNullOrEmpty();
-            config.Client.Proxy.Password.Should().BeNullOrEmpty();
-
-            // Application section
-            config.Application.Href.Should().BeNullOrEmpty();
-            config.Application.Name.Should().BeNullOrEmpty();
+            // Okta section
+            config.ApiToken.Should().Be("okta_apiToken");
+            config.Org.Should().Be("okta_org");
+            config.Application.Id.Should().Be("okta_application_id");
 
             // Web section
             config.Web.ServerUri.Should().BeNullOrEmpty();
@@ -146,6 +126,7 @@ namespace Stormpath.Configuration.Test
             config.Web.Produces[1].Should().Be("text/html");
 
             config.Web.Register.Enabled.Should().BeTrue();
+            config.Web.Register.EmailVerificationRequired.Should().BeFalse();
             config.Web.Register.Uri.Should().Be("/register");
             config.Web.Register.NextUri.Should().Be("/");
             config.Web.Register.AutoLogin.Should().BeFalse();
@@ -214,7 +195,7 @@ namespace Stormpath.Configuration.Test
                 opt => opt.WithStrictOrdering()
             );
 
-            config.Web.VerifyEmail.Enabled.Should().Be(null);
+            config.Web.VerifyEmail.Enabled.Should().BeFalse();
             config.Web.VerifyEmail.Uri.Should().Be("/verify");
             config.Web.VerifyEmail.NextUri.Should().Be("/login?status=verified");
             config.Web.VerifyEmail.View.Should().Be("verify");
@@ -255,16 +236,11 @@ namespace Stormpath.Configuration.Test
             config.Web.ForgotPassword.NextUri.Should().Be("/login?status=forgot");
             config.Web.ForgotPassword.View.Should().Be("forgot-password");
 
-            config.Web.ChangePassword.Enabled.Should().Be(null);
+            config.Web.ChangePassword.Enabled.Should().BeFalse();
             config.Web.ChangePassword.Uri.Should().Be("/change");
             config.Web.ChangePassword.NextUri.Should().Be("/login?status=reset");
             config.Web.ChangePassword.View.Should().Be("change-password");
             config.Web.ChangePassword.ErrorUri.Should().Be("/forgot?status=invalid_sptoken");
-
-            config.Web.IdSite.Enabled.Should().BeFalse();
-            config.Web.IdSite.LoginUri.Should().BeNullOrEmpty();
-            config.Web.IdSite.ForgotUri.Should().Be("/#/forgot");
-            config.Web.IdSite.RegisterUri.Should().Be("/#/register");
 
             config.Web.Callback.Enabled.Should().BeTrue();
             config.Web.Callback.Uri.Should().Be("/stormpathCallback");
