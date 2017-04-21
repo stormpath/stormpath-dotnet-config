@@ -2,7 +2,7 @@
 
 ## Version 7.0.0-beta3
 
-This version supports the migration of ASP.NET applications from Stormpath to Okta. For more information, see the [master changelog](https://github.com/stormpath/stormpath-dotnet-owin-middleware/blob/4.0.0/changelog.md).
+This version supports the migration of ASP.NET applications from Stormpath to Okta. For more information, see the [master changelog](https://github.com/stormpath/stormpath-dotnet-owin-middleware/blob/master/changelog.md).
 
 #### Breaking changes
 
