@@ -1,7 +1,13 @@
-#Stormpath is Joining Okta
+# Stormpath is Joining Okta
 We are incredibly excited to announce that [Stormpath is joining forces with Okta](https://stormpath.com/blog/stormpaths-new-path?utm_source=github&utm_medium=readme&utm-campaign=okta-announcement). Please visit [the Migration FAQs](https://stormpath.com/oktaplusstormpath?utm_source=github&utm_medium=readme&utm-campaign=okta-announcement) for a detailed look at what this means for Stormpath users.
 
 We're available to answer all questions at [support@stormpath.com](mailto:support@stormpath.com).
+
+## Migration Guide
+
+The list of breaking changes in this configuration library is in the [changelog](https://github.com/stormpath/stormpath-dotnet-config/blob/master/changelog.md).
+
+See the [Migration Guide](https://github.com/stormpath/stormpath-dotnet-owin-middleware/blob/master/migrating.md) for instructions on migrating an application from Stormpath to Okta.
 
 
 # Stormpath .NET Configuration
