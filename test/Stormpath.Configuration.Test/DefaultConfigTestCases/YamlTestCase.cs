@@ -230,17 +230,14 @@ web:
 
   social:
     facebook:
-      uri: ""/callbacks/facebook""
-      scope: ""email""
-    github:
-      uri: ""/callbacks/github""
-      scope: ""user:email""
+      displayName: ""Facebook""
+      scope: ""openid""
     google:
-      uri: ""/callbacks/google""
-      scope: ""email profile""
+      displayName: ""Google""
+      scope: ""openid""
     linkedin:
-      uri: ""/callbacks/linkedin""
-      scope: ""r_basicprofile r_emailaddress""
+      displayName: ""LinkedIn""
+      scope: ""openid""
 
   # The /me route is for front-end applications, it returns a JSON object with
   # the current user object

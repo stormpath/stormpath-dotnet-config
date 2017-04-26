@@ -293,23 +293,18 @@ namespace Stormpath.Configuration.Abstractions
                 {
                     ["facebook"] = new Immutable.WebSocialProviderConfiguration()
                     {
-                        Uri = "/callbacks/facebook",
-                        Scope = "email"
-                    },
-                    ["github"] = new Immutable.WebSocialProviderConfiguration()
-                    {
-                        Uri = "/callbacks/github",
-                        Scope = "user:email"
+                        DisplayName = "Facebook",
+                        Scope = "openid"
                     },
                     ["google"] = new Immutable.WebSocialProviderConfiguration()
                     {
-                        Uri = "/callbacks/google",
-                        Scope = "email profile"
+                        DisplayName = "Google",
+                        Scope = "openid"
                     },
                     ["linkedin"] = new Immutable.WebSocialProviderConfiguration()
                     {
-                        Uri = "/callbacks/linkedin",
-                        Scope = "r_basicprofile r_emailaddress"
+                        DisplayName = "LinkedIn",
+                        Scope = "openid"
                     },
                 },
 

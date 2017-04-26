@@ -90,7 +90,7 @@ namespace Stormpath.Configuration.Test
                     {
                         facebook = new
                         {
-                            uri = "/fb/cb"
+                            displayName = "FB"
                         }
                     }
                 }
@@ -98,7 +98,7 @@ namespace Stormpath.Configuration.Test
 
             var config = ConfigurationLoader.Initialize().Load(userConfiguration);
 
-            config.Web.Social["Facebook"].Uri.Should().Be("/fb/cb");
+            config.Web.Social["Facebook"].DisplayName.Should().Be("FB");
         }
 
         /// <summary>

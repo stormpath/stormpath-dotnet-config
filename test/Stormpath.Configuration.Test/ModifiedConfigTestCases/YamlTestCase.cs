@@ -177,16 +177,16 @@ web:
 
   social:
     facebook:
-      uri: ""/callbackz/facebook""
+      displayName: ""Bookface""
       scope: ""email birthday""
-    github:
-      uri: ""/callbackz/github""
+    microsoft:
+      displayName: ""M$""
       scope: ""user:everything""
     google:
-      uri: ""/callbackz/google""
+      displayName: ""Elgoog""
       scope: ""email profile friends""
     linkedin:
-      uri: ""/callbackz/linkedin""
+      displayName: ""Also M$""
       scope: ""email interests""
 
   # The /me route is for front-end applications, it returns a JSON object with

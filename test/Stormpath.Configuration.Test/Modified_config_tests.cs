@@ -178,10 +178,10 @@ namespace Stormpath.Configuration.Test
 
                 social: new Dictionary<string, Abstractions.Immutable.WebSocialProviderConfiguration>()
                 {
-                    ["facebook"] = new Abstractions.Immutable.WebSocialProviderConfiguration("/callbackz/facebook", "email birthday"),
-                    ["github"] = new Abstractions.Immutable.WebSocialProviderConfiguration("/callbackz/github", "user:everything"),
-                    ["google"] = new Abstractions.Immutable.WebSocialProviderConfiguration("/callbackz/google", "email profile friends"),
-                    ["linkedin"] = new Abstractions.Immutable.WebSocialProviderConfiguration("/callbackz/linkedin", "email interests")
+                    ["facebook"] = new Abstractions.Immutable.WebSocialProviderConfiguration("Bookface", "email birthday"),
+                    ["microsoft"] = new Abstractions.Immutable.WebSocialProviderConfiguration("M$", "user:everything"),
+                    ["google"] = new Abstractions.Immutable.WebSocialProviderConfiguration("Elgoog", "email profile friends"),
+                    ["linkedin"] = new Abstractions.Immutable.WebSocialProviderConfiguration("Also M$", "email interests")
                 },
 
                 meRoute: new Abstractions.Immutable.WebMeRouteConfiguration(
@@ -343,10 +343,10 @@ namespace Stormpath.Configuration.Test
                     },
                     Social = new Dictionary<string, WebSocialProviderConfiguration>()
                     {
-                        ["facebook"] = new WebSocialProviderConfiguration() { Uri = "/callbackz/facebook", Scope = "email birthday" },
-                        ["github"] = new WebSocialProviderConfiguration() { Uri = "/callbackz/github", Scope = "user:everything" },
-                        ["google"] = new WebSocialProviderConfiguration() { Uri = "/callbackz/google", Scope = "email profile friends" },
-                        ["linkedin"] = new WebSocialProviderConfiguration() { Uri = "/callbackz/linkedin", Scope = "email interests" }
+                        ["facebook"] = new WebSocialProviderConfiguration() { DisplayName = "Bookface", Scope = "email birthday" },
+                        ["microsoft"] = new WebSocialProviderConfiguration() { DisplayName = "M$", Scope = "user:everything" },
+                        ["google"] = new WebSocialProviderConfiguration() { DisplayName = "Elgoog", Scope = "email profile friends" },
+                        ["linkedin"] = new WebSocialProviderConfiguration() { DisplayName = "Also M$", Scope = "email interests" }
                     },
                     Me = new WebMeRouteConfiguration()
                     {
@@ -567,22 +567,22 @@ namespace Stormpath.Configuration.Test
                     {
                         facebook = new
                         {
-                            uri = "/callbackz/facebook",
+                            displayName = "Bookface",
                             scope = "email birthday"
                         },
-                        github = new
+                        microsoft = new
                         {
-                            uri = "/callbackz/github",
+                            displayname = "M$",
                             scope = "user:everything"
                         },
                         google = new
                         {
-                            uri = "/callbackz/google",
+                            DisplayName = "Elgoog",
                             scope = "email profile friends"
                         },
                         linkedin = new
                         {
-                            uri = "/callbackz/linkedin",
+                            displayName = "Also M$",
                             scope = "email interests"
                         },
                     },
@@ -708,13 +708,13 @@ namespace Stormpath.Configuration.Test
             config.Web.Callback.Enabled.Should().BeFalse();
             config.Web.Callback.Uri.Should().Be("/stormpath-callback");
 
-            config.Web.Social["facebook"].Uri.Should().Be("/callbackz/facebook");
+            config.Web.Social["facebook"].DisplayName.Should().Be("Bookface");
             config.Web.Social["facebook"].Scope.Should().Be("email birthday");
-            config.Web.Social["github"].Uri.Should().Be("/callbackz/github");
-            config.Web.Social["github"].Scope.Should().Be("user:everything");
-            config.Web.Social["google"].Uri.Should().Be("/callbackz/google");
+            config.Web.Social["microsoft"].DisplayName.Should().Be("M$");
+            config.Web.Social["microsoft"].Scope.Should().Be("user:everything");
+            config.Web.Social["google"].DisplayName.Should().Be("Elgoog");
             config.Web.Social["google"].Scope.Should().Be("email profile friends");
-            config.Web.Social["linkedin"].Uri.Should().Be("/callbackz/linkedin");
+            config.Web.Social["linkedin"].DisplayName.Should().Be("Also M$");
             config.Web.Social["linkedin"].Scope.Should().Be("email interests");
 
             config.Web.Me.Enabled.Should().BeFalse();

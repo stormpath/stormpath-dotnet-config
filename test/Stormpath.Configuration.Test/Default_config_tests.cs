@@ -245,15 +245,12 @@ namespace Stormpath.Configuration.Test
             config.Web.Callback.Enabled.Should().BeTrue();
             config.Web.Callback.Uri.Should().Be("/stormpathCallback");
 
-            config.Web.Social.Should().HaveCount(4);
-            config.Web.Social["facebook"].Uri.Should().Be("/callbacks/facebook");
-            config.Web.Social["facebook"].Scope.Should().Be("email");
-            config.Web.Social["github"].Uri.Should().Be("/callbacks/github");
-            config.Web.Social["github"].Scope.Should().Be("user:email");
-            config.Web.Social["google"].Uri.Should().Be("/callbacks/google");
-            config.Web.Social["google"].Scope.Should().Be("email profile");
-            config.Web.Social["linkedin"].Uri.Should().Be("/callbacks/linkedin");
-            config.Web.Social["linkedin"].Scope.Should().Be("r_basicprofile r_emailaddress");
+            config.Web.Social["facebook"].DisplayName.Should().Be("Facebook");
+            config.Web.Social["facebook"].Scope.Should().Be("openid");
+            config.Web.Social["google"].DisplayName.Should().Be("Google");
+            config.Web.Social["google"].Scope.Should().Be("openid");
+            config.Web.Social["linkedin"].DisplayName.Should().Be("LinkedIn");
+            config.Web.Social["linkedin"].Scope.Should().Be("openid");
 
             config.Web.Me.Enabled.Should().BeTrue();
             config.Web.Me.Uri.Should().Be("/me");

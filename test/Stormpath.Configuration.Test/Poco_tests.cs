@@ -9,8 +9,8 @@ namespace Stormpath.Configuration.Test
         [Fact]
         public void Default_dictionaries_are_case_insensitive()
         {
-            Default.Configuration.Web.Social["facebook"].Uri.Should().Be("/callbacks/facebook");
-            Default.Configuration.Web.Social["Facebook"].Uri.Should().Be("/callbacks/facebook");
+            Default.Configuration.Web.Social["facebook"].DisplayName.Should().Be("Facebook");
+            Default.Configuration.Web.Social["Facebook"].DisplayName.Should().Be("Facebook");
         }
 
         [Fact]
@@ -18,8 +18,8 @@ namespace Stormpath.Configuration.Test
         {
             var config = Default.Configuration.DeepClone();
 
-            config.Web.Social["facebook"].Uri.Should().Be("/callbacks/facebook");
-            config.Web.Social["Facebook"].Uri.Should().Be("/callbacks/facebook");
+            config.Web.Social["facebook"].DisplayName.Should().Be("Facebook");
+            config.Web.Social["Facebook"].DisplayName.Should().Be("Facebook");
         }
 
         [Fact]
@@ -53,7 +53,7 @@ namespace Stormpath.Configuration.Test
         [Fact]
         public void Default_is_immutable_for_nested_dictionaries()
         {
-            Default.Configuration.Web.Social["Facebook"].Uri.Should().Be("/callbacks/facebook");
+            Default.Configuration.Web.Social["Facebook"].DisplayName.Should().Be("Facebook");
 
             var config = ConfigurationLoader.Initialize().Load(new
             {
@@ -63,17 +63,17 @@ namespace Stormpath.Configuration.Test
                     {
                         facebook = new
                         {
-                            uri = "/fb/cb"
+                            displayName = "FB"
                         }
                     }
                 }
             });
-            config.Web.Social["Facebook"].Uri.Should().Be("/fb/cb");
+            config.Web.Social["Facebook"].DisplayName.Should().Be("FB");
 
-            Default.Configuration.Web.Social["Facebook"].Uri.Should().Be("/callbacks/facebook");
+            Default.Configuration.Web.Social["Facebook"].DisplayName.Should().Be("Facebook");
 
             var originalConfig = ConfigurationLoader.Initialize().Load();
-            originalConfig.Web.Social["Facebook"].Uri.Should().Be("/callbacks/facebook");
+            originalConfig.Web.Social["Facebook"].DisplayName.Should().Be("Facebook");
         }
     }
 }

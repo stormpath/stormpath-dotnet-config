@@ -22,10 +22,10 @@ namespace Stormpath.Configuration.Abstractions
     public class WebSocialProviderConfiguration
     {
         /// <summary>
-        /// The callback URI used for this social provider.
+        /// The name rendered in the UI for this provider.
         /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.web.social.[providerId].uri</c></remarks>
-        public string Uri { get; set; }
+        /// <remarks>Configuration path: <c>stormpath.web.social.[providerId].displayName</c></remarks>
+        public string DisplayName { get; set; }
 
         /// <summary>
         /// The scope requested of this social provider.

@@ -21,9 +21,9 @@ namespace Stormpath.Configuration.Abstractions.Immutable
     /// </summary>
     public class WebSocialProviderConfiguration
     {
-        public WebSocialProviderConfiguration(string uri, string scope)
+        public WebSocialProviderConfiguration(string displayName, string scope)
         {
-            Uri = uri;
+            DisplayName = displayName;
             Scope = scope;
         }
 
@@ -32,13 +32,13 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         }
 
         public WebSocialProviderConfiguration DeepClone()
-            => new WebSocialProviderConfiguration(Uri, Scope);
+            => new WebSocialProviderConfiguration(DisplayName, Scope);
 
         /// <summary>
-        /// The callback URI used for this social provider.
+        /// The name rendered in the UI for this provider.
         /// </summary>
-        /// <remarks>Configuration path: <c>stormpath.web.social.[providerId].uri</c></remarks>
-        public string Uri { get; internal set; }
+        /// <remarks>Configuration path: <c>stormpath.web.social.[providerId].displayName</c></remarks>
+        public string DisplayName { get; internal set; }
 
         /// <summary>
         /// The scope requested of this social provider.
