@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Description>Load Stormpath configuration from various sources.</Description>
     <Copyright>(c) 2016 Stormpath, Inc.</Copyright>
-    <VersionPrefix>7.0.0-beta3</VersionPrefix>
+    <VersionPrefix>7.0.0-beta4</VersionPrefix>
     <Authors>Nate Barbettini</Authors>
     <TargetFrameworks>net45;netstandard1.3</TargetFrameworks>
     <AssemblyName>Stormpath.Configuration</AssemblyName>
@@ -13,7 +13,6 @@
     <PackageProjectUrl>https://github.com/stormpath/stormpath-dotnet-config/</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/stormpath/stormpath-dotnet-config/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/stormpath/stormpath-dotnet-config/</RepositoryUrl>
-    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.3' ">$(PackageTargetFallback);dotnet</PackageTargetFallback>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FlexibleConfiguration" Version="1.2.0" />
+    <PackageReference Include="FlexibleConfiguration" Version="1.2.1" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
