@@ -3,6 +3,7 @@
 ## Version 7.0.0-beta4
 
 * The `web.social.[provider]` items no longer have a `uri` property.
+* The YamlDotNet dependency has been updated so it no longer requires a workaround to install on .NET Core.
 
 ## Version 7.0.0-beta3
 
