@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 7.0.0
+
+No breaking changes from beta4.
+
 ## Version 7.0.0-beta4
 
 * The `web.social.[provider]` items no longer have a `uri` property.
