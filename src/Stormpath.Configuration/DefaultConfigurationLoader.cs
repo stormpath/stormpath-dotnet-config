@@ -74,6 +74,8 @@ namespace Stormpath.Configuration
             UpdateCookiePath(builder, "accessTokenCookie");
             UpdateCookiePath(builder, "refreshTokenCookie");
 
+            FixOrgUrlTrailingSlash(builder);
+
             return builder.Build();
         }
 
@@ -95,6 +97,23 @@ namespace Stormpath.Configuration
                     [$"okta:web:{cookieName}:path"] = defaultPath
                 });
             }
+        }
+
+        private static void FixOrgUrlTrailingSlash(IConfigurationBuilder builder)
+        {
+            var built = builder.Build();
+
+            var orgUrl = built.GetValue<string>("okta:org");
+
+            if (string.IsNullOrEmpty(orgUrl)) return;
+            if (!orgUrl.EndsWith("/")) return;
+
+            var sanitizedOrgUrl = orgUrl.TrimEnd('/');
+
+            builder.AddInMemoryCollection(new Dictionary<string, string>()
+            {
+                [$"okta:org"] = sanitizedOrgUrl
+            });
         }
     }
 }

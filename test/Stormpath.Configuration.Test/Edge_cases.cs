@@ -304,5 +304,18 @@ namespace Stormpath.Configuration.Test
 
             config.Web.ServerUri.Should().Be("http://localhost:9999");
         }
+
+        [Fact]
+        public void Org_trailing_slash_is_removed()
+        {
+            var userConfiguration = new StormpathConfiguration
+            {
+                Org = "https://dev-123.oktapreview.com/"
+            };
+
+            var config = ConfigurationLoader.Initialize().Load(userConfiguration);
+
+            config.Org.Should().Be("https://dev-123.oktapreview.com");
+        }
     }
 }
