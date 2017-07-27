@@ -95,7 +95,7 @@ namespace Stormpath.Configuration.Test
                     secure: true,
                     path: "/foo",
                     domain: "baz.qux",
-                    maxAge: 60000),
+                    maxAge: 31536000),
 
                 produces: new List<string>()
                 {
@@ -250,7 +250,7 @@ namespace Stormpath.Configuration.Test
                         Secure = true,
                         Path = "/foo",
                         Domain = "baz.qux",
-                        MaxAge = 60000
+                        MaxAge = 31536000 // 365 days in seconds
                     },
                     Produces = new List<string>()
                     {
@@ -458,7 +458,7 @@ namespace Stormpath.Configuration.Test
                         secure = true,
                         path = "/foo",
                         domain = "baz.qux",
-                        maxAge = 60000
+                        maxAge = 31536000
                     },
 
                     produces = new string[] { "foo/bar" },
@@ -636,7 +636,7 @@ namespace Stormpath.Configuration.Test
             config.Web.RefreshTokenCookie.Secure.Should().BeTrue();
             config.Web.RefreshTokenCookie.Path.Should().Be("/foo");
             config.Web.RefreshTokenCookie.Domain.Should().Be("baz.qux");
-            config.Web.RefreshTokenCookie.MaxAge.Should().Be(60000);
+            config.Web.RefreshTokenCookie.MaxAge.Should().Be(31536000);
 
             config.Web.Produces.ShouldBeEquivalentTo(
                 new List<string>()

@@ -84,7 +84,7 @@ web:
     secure: true
     path: ""/foo""
     domain: ""baz.qux""
-    maxAge: 60000
+    maxAge: 31536000
 
   # By default the Stormpath integration should respond to JSON and HTML
   # requests.  If either is removed from configuration, the integration should

@@ -22,7 +22,7 @@ namespace Stormpath.Configuration.Abstractions
     public class WebRefreshTokenCookieConfiguration : WebCookieConfiguration
     {
         /// <summary>
-        /// The Max-Age of the cookie in milliseconds. If <c>null</c>, the cookie will be saved as a Session cookie.
+        /// The Max-Age of the cookie in seconds. If <c>null</c>, the cookie will be saved as a Session cookie.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.refreshTokenCookie.maxAge</c></remarks>
         public int? MaxAge { get; set; }
