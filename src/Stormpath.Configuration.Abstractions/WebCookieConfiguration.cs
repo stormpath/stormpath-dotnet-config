@@ -1,4 +1,4 @@
-﻿// <copyright file="WebOauth2TokenCookieConfiguration.cs" company="Stormpath, Inc.">
+﻿// <copyright file="WebCookieConfiguration.cs" company="Stormpath, Inc.">
 // Copyright (c) 2016 Stormpath, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,7 +19,7 @@ namespace Stormpath.Configuration.Abstractions
     /// <summary>
     /// Represents configuration options for cookies produced by the framework.
     /// </summary>
-    public sealed class WebCookieConfiguration
+    public class WebCookieConfiguration
     {
         /// <summary>
         /// The cookie name.

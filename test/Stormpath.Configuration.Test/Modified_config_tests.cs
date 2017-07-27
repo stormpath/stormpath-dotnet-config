@@ -89,12 +89,13 @@ namespace Stormpath.Configuration.Test
                     path: "/bar",
                     domain: "foo.bar"),
 
-                refreshTokenCookie: new Abstractions.Immutable.WebCookieConfiguration(
+                refreshTokenCookie: new Abstractions.Immutable.WebRefreshTokenCookieConfiguration(
                     name: "refreshToken",
                     httpOnly: false,
                     secure: true,
                     path: "/foo",
-                    domain: "baz.qux"),
+                    domain: "baz.qux",
+                    maxAge: 60000),
 
                 produces: new List<string>()
                 {
@@ -242,13 +243,14 @@ namespace Stormpath.Configuration.Test
                         Path = "/bar",
                         Domain = "foo.bar"
                     },
-                    RefreshTokenCookie = new WebCookieConfiguration()
+                    RefreshTokenCookie = new WebRefreshTokenCookieConfiguration()
                     {
                         Name = "refreshToken",
                         HttpOnly = false,
                         Secure = true,
                         Path = "/foo",
-                        Domain = "baz.qux"
+                        Domain = "baz.qux",
+                        MaxAge = 60000
                     },
                     Produces = new List<string>()
                     {
@@ -456,6 +458,7 @@ namespace Stormpath.Configuration.Test
                         secure = true,
                         path = "/foo",
                         domain = "baz.qux",
+                        maxAge = 60000
                     },
 
                     produces = new string[] { "foo/bar" },
@@ -633,6 +636,7 @@ namespace Stormpath.Configuration.Test
             config.Web.RefreshTokenCookie.Secure.Should().BeTrue();
             config.Web.RefreshTokenCookie.Path.Should().Be("/foo");
             config.Web.RefreshTokenCookie.Domain.Should().Be("baz.qux");
+            config.Web.RefreshTokenCookie.MaxAge.Should().Be(60000);
 
             config.Web.Produces.ShouldBeEquivalentTo(
                 new List<string>()

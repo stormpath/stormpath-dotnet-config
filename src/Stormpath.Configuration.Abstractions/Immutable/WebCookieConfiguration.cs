@@ -19,7 +19,7 @@ namespace Stormpath.Configuration.Abstractions.Immutable
     /// <summary>
     /// Represents configuration options for cookies produced by the framework.
     /// </summary>
-    public sealed class WebCookieConfiguration
+    public class WebCookieConfiguration
     {
         public WebCookieConfiguration(
             string name,

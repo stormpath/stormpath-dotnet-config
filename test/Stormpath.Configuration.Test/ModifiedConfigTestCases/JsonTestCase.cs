@@ -93,7 +93,8 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
       ""httpOnly"": false,
       ""secure"": true,
       ""path"": ""/foo"",
-      ""domain"": ""baz.qux""
+      ""domain"": ""baz.qux"",
+      ""maxAge"": 60000
     },
     ""produces"": [
       ""foo/bar""

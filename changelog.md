@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 7.1.0
+
+* Added the `web.refreshTokenCookie.maxAge` property, which controls the expiration time (if any) of refresh token cookies.
+
 ## Version 7.0.0
 
 No breaking changes from beta4.

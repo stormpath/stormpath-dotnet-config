@@ -30,7 +30,7 @@ namespace Stormpath.Configuration.Abstractions.Immutable
             string basePath = null,
             WebOauth2RouteConfiguration oauth2Route = null,
             WebCookieConfiguration accessTokenCookie = null,
-            WebCookieConfiguration refreshTokenCookie = null,
+            WebRefreshTokenCookieConfiguration refreshTokenCookie = null,
             IList<string> produces = null,
             WebRegisterRouteConfiguration registerRoute = null,
             WebVerifyEmailRouteConfiguration verifyRoute = null,
@@ -109,7 +109,7 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         /// The refresh token cookie configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.refreshTokenCookie</c></remarks>
-        public WebCookieConfiguration RefreshTokenCookie { get; internal set; }
+        public WebRefreshTokenCookieConfiguration RefreshTokenCookie { get; internal set; }
 
         /// <summary>
         /// The output types configuration.

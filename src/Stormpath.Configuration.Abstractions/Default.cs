@@ -84,13 +84,14 @@ namespace Stormpath.Configuration.Abstractions
 
                 // The details of the Refresh Token cookie saved to the user's browser.
                 // This has the same configuration options as the Access Token cookie (above).
-                RefreshTokenCookie = new Immutable.WebCookieConfiguration()
+                RefreshTokenCookie = new Immutable.WebRefreshTokenCookieConfiguration()
                 {
                     Name = "refresh_token",
                     HttpOnly = true,
                     Secure = null,
                     Path = null,
                     Domain = "",
+                    MaxAge = null,
                 },
 
                 // Controls what Content-Types the framework library can produce.

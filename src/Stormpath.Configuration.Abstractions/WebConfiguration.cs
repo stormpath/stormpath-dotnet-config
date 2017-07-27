@@ -52,7 +52,7 @@ namespace Stormpath.Configuration.Abstractions
         /// The refresh token cookie configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.refreshTokenCookie</c></remarks>
-        public WebCookieConfiguration RefreshTokenCookie { get; set; }
+        public WebRefreshTokenCookieConfiguration RefreshTokenCookie { get; set; }
 
         /// <summary>
         /// The output types configuration.
