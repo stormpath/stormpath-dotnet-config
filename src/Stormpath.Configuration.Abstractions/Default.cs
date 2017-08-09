@@ -51,6 +51,9 @@ namespace Stormpath.Configuration.Abstractions
                     {
                         Enabled = true,
 
+                        // Request a refresh token by default
+                        DefaultScope = "openid offline_access",
+
                         // Local validation checks the token signature.
                         // Stormpath (remote) validation makes a network request, but allows for token revocation.
                         ValidationStrategy = WebOauth2TokenValidationStrategy.Local

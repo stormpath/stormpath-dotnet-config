@@ -109,6 +109,7 @@ namespace Stormpath.Configuration.Test
             config.Web.Oauth2.Client_Credentials.Enabled.Should().BeTrue();
             config.Web.Oauth2.Client_Credentials.AccessToken.Ttl.Should().Be(3600);
             config.Web.Oauth2.Password.Enabled.Should().BeTrue();
+            config.Web.Oauth2.Password.DefaultScope.Should().Be("openid offline_access");
             config.Web.Oauth2.Password.ValidationStrategy.Should().Be(Abstractions.WebOauth2TokenValidationStrategy.Local);
 
             config.Web.AccessTokenCookie.Name.Should().Be("access_token");

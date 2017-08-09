@@ -73,6 +73,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
       },
       ""password"": {
         ""enabled"": true,
+        ""defaultScope"": ""openid offline_access"",
         ""validationStrategy"": ""local""
       }
     },

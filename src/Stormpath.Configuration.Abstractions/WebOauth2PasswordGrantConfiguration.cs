@@ -28,6 +28,12 @@ namespace Stormpath.Configuration.Abstractions
         public bool Enabled { get; set; } = Default.Configuration.Web.Oauth2.Password.Enabled;
 
         /// <summary>
+        /// The default scope(s) that are requested in addition to any scopes requested by the client.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.oauth2.password.defaultScope</c></remarks>
+        public string DefaultScope { get; set; } = Default.Configuration.Web.Oauth2.Password.DefaultScope;
+
+        /// <summary>
         /// The selected validation strategy.
         /// </summary>
         public WebOauth2TokenValidationStrategy ValidationStrategy { get; set; } = Default.Configuration.Web.Oauth2.Password.ValidationStrategy;

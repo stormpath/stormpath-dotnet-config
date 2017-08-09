@@ -67,6 +67,7 @@ web:
         ttl: 3600
     password:
       enabled: true
+      defaultScope: openid offline_access
       validationStrategy: ""local""
 
   accessTokenCookie:

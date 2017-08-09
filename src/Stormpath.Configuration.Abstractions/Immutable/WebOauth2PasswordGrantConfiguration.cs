@@ -23,9 +23,11 @@ namespace Stormpath.Configuration.Abstractions.Immutable
     {
         public WebOauth2PasswordGrantConfiguration(
             bool? enabled = null,
+            string defaultScope = null,
             WebOauth2TokenValidationStrategy? validationStrategy = null)
         {
             Enabled = enabled ?? false;
+            DefaultScope = defaultScope;
             ValidationStrategy = validationStrategy ?? WebOauth2TokenValidationStrategy.Local;
         }
 
@@ -34,13 +36,19 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         }
 
         public WebOauth2PasswordGrantConfiguration DeepClone()
-            => new WebOauth2PasswordGrantConfiguration(Enabled, ValidationStrategy);
+            => new WebOauth2PasswordGrantConfiguration(Enabled, DefaultScope, ValidationStrategy);
 
         /// <summary>
         /// Determines whether the <c>password</c> grant type is enabled.
         /// </summary>
         /// <remarks>Configuration path: <c>stormpath.web.oauth2.password.enabled</c></remarks>
         public bool Enabled { get; internal set; }
+
+        /// <summary>
+        /// The default scope(s) that are requested in addition to any scopes requested by the client.
+        /// </summary>
+        /// <remarks>Configuration path: <c>stormpath.web.oauth2.password.defaultScope</c></remarks>
+        public string DefaultScope { get; internal set; }
 
         /// <summary>
         /// The selected validation strategy.

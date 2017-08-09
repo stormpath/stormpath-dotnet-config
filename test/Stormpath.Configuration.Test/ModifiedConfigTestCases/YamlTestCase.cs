@@ -70,6 +70,7 @@ web:
         ttl: 3601
     password:
       enabled: false
+      defaultScope: profile
       validationStrategy: ""STORMPATH""
 
   accessTokenCookie:

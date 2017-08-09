@@ -79,6 +79,7 @@ namespace Stormpath.Configuration.Test
                     ),
                     passwordGrant: new Abstractions.Immutable.WebOauth2PasswordGrantConfiguration(
                         enabled: false,
+                        defaultScope: "profile",
                         validationStrategy: WebOauth2TokenValidationStrategy.Stormpath)
                 ),
 
@@ -234,6 +235,7 @@ namespace Stormpath.Configuration.Test
                         Password = new WebOauth2PasswordGrantConfiguration()
                         {
                             Enabled = false,
+                            DefaultScope = "profile",
                             ValidationStrategy = WebOauth2TokenValidationStrategy.Stormpath
                         }
                     },
@@ -441,6 +443,7 @@ namespace Stormpath.Configuration.Test
                         password = new
                         {
                             enabled = false,
+                            defaultScope = "profile",
                             validationStrategy = WebOauth2TokenValidationStrategy.Stormpath
                         }
                     },
@@ -627,6 +630,7 @@ namespace Stormpath.Configuration.Test
             config.Web.Oauth2.Client_Credentials.Enabled.Should().BeFalse();
             config.Web.Oauth2.Client_Credentials.AccessToken.Ttl.Should().Be(3601);
             config.Web.Oauth2.Password.Enabled.Should().BeFalse();
+            config.Web.Oauth2.Password.DefaultScope.Should().Be("profile");
             config.Web.Oauth2.Password.ValidationStrategy.Should().Be(WebOauth2TokenValidationStrategy.Stormpath);
 
             config.Web.AccessTokenCookie.Name.Should().Be("accessToken");

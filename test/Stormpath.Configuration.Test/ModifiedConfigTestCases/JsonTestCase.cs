@@ -79,6 +79,7 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
       },
       ""password"": {
         ""enabled"": false,
+        ""defaultScope"": ""profile"",
         ""validationStrategy"": ""STORMPATH""
       }
     },
