@@ -198,6 +198,7 @@ namespace Stormpath.Configuration.Test
                 apiToken: "foobarApiToken",
                 org: "https://dev-12345.oktapreview.com",
                 application: new Abstractions.Immutable.OktaApplicationConfiguration(id: "LightsabersGalore.app.foo"),
+                authorizationServerId: "asid12345",
                 web: webConfiguration);
 
             var config = ConfigurationLoader.Initialize().Load(stormpathConfiguration);
@@ -216,6 +217,7 @@ namespace Stormpath.Configuration.Test
                 {
                     Id = "LightsabersGalore.app.foo"
                 },
+                AuthorizationServerId = "asid12345",
                 Web = new WebConfiguration()
                 {
                     ServerUri = "https://localhost:9000",
@@ -375,6 +377,7 @@ namespace Stormpath.Configuration.Test
                 apiToken = "foobarApiToken",
                 org = "https://dev-12345.oktapreview.com",
                 application = new { id = "LightsabersGalore.app.foo" },
+                authorizationServerId = "asid12345",
 
                 // These old properties should not cause an exception
                 client = new
@@ -613,6 +616,7 @@ namespace Stormpath.Configuration.Test
             config.ApiToken.Should().Be("foobarApiToken");
             config.Org.Should().Be("https://dev-12345.oktapreview.com");
             config.Application.Id.Should().Be("LightsabersGalore.app.foo");
+            config.AuthorizationServerId.Should().Be("asid12345");
 
             // Web section
             config.Web.ServerUri.Should().Be("https://localhost:9000");

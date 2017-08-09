@@ -28,11 +28,13 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         public StormpathConfiguration(
             string apiToken = null,
             string org = null,
+            string authorizationServerId = null,
             OktaApplicationConfiguration application = null,
             WebConfiguration web = null)
         {
             ApiToken = apiToken;
             Org = org;
+            AuthorizationServerId = authorizationServerId;
             Application = application;
             Web = web;
         }
@@ -42,7 +44,7 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         }
 
         public StormpathConfiguration DeepClone()
-            => new StormpathConfiguration(ApiToken, Org, Application?.DeepClone(), Web.DeepClone());
+            => new StormpathConfiguration(ApiToken, Org, AuthorizationServerId, Application?.DeepClone(), Web.DeepClone());
 
         /// <summary>
         /// The Okta API token.
@@ -55,6 +57,12 @@ namespace Stormpath.Configuration.Abstractions.Immutable
         /// </summary>
         /// <remarks>Configuration path: <c>okta.org</c></remarks>
         public string Org { get; internal set; }
+
+        /// <summary>
+        /// The Okta authorization server ID.
+        /// </summary>
+        /// <remarks>Configuration path: <c>okta.authorizationServerId</c></remarks>
+        public string AuthorizationServerId { get; internal set; }
 
         /// <summary>
         /// The Okta application configuration.

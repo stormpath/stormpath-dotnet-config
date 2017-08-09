@@ -53,6 +53,7 @@ apiToken: okta_apiToken
 org: okta_org
 application:
   id: okta_application_id
+authorizationServerId: null
 web:
   serverUri: null
   basePath: ""/""

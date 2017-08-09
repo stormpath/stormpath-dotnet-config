@@ -44,6 +44,12 @@ namespace Stormpath.Configuration.Abstractions
         public string Org { get; set; }
 
         /// <summary>
+        /// The Okta authorization server ID.
+        /// </summary>
+        /// <remarks>Configuration path: <c>okta.authorizationServerId</c></remarks>
+        public string AuthorizationServerId { get; set; }
+
+        /// <summary>
         /// The Okta Application configuration.
         /// </summary>
         /// <remarks>Configuration path: <c>okta.application</c></remarks>

@@ -64,6 +64,7 @@ namespace Stormpath.Configuration.Test.ModifiedConfigTestCases
   ""application"": {
     ""id"": ""LightsabersGalore.app.foo""
   },
+  ""authorizationServerId"": ""asid12345"",
   ""web"": {
     ""serverUri"": ""https://localhost:9000"",
     ""basePath"": ""#/"",

@@ -58,6 +58,7 @@ namespace Stormpath.Configuration.Test.DefaultConfigTestCases
   ""application"": {
     ""id"": ""okta_application_id""
   },
+  ""authorizationServerId"": null,
   ""web"": {
     ""serverUri"": null,
     ""basePath"": ""/"",

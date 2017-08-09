@@ -56,6 +56,7 @@ apiToken: foobarApiToken
 org: https://dev-12345.oktapreview.com
 application:
   id: LightsabersGalore.app.foo
+authorizationServerId: asid12345
 web:
   serverUri: ""https://localhost:9000""
   basePath: ""#/""

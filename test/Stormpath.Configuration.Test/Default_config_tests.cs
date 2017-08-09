@@ -98,6 +98,7 @@ namespace Stormpath.Configuration.Test
             config.ApiToken.Should().Be("okta_apiToken");
             config.Org.Should().Be("okta_org");
             config.Application.Id.Should().Be("okta_application_id");
+            config.AuthorizationServerId.Should().BeNullOrEmpty();
 
             // Web section
             config.Web.ServerUri.Should().BeNullOrEmpty();
