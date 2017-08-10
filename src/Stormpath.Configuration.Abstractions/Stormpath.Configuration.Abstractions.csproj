@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Description>Abstractions for the Stormpath.Configuration package.</Description>
     <Copyright>(c) 2017 Stormpath, Inc.</Copyright>
-    <VersionPrefix>7.1.0-beta3</VersionPrefix>
+    <VersionPrefix>7.1.0</VersionPrefix>
     <Authors>Nate Barbettini</Authors>
     <TargetFrameworks>net45;netstandard1.0</TargetFrameworks>
     <AssemblyName>Stormpath.Configuration.Abstractions</AssemblyName>

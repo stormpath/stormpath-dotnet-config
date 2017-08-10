@@ -3,6 +3,8 @@
 ## Version 7.1.0
 
 * Added the `web.refreshTokenCookie.maxAge` property, which controls the expiration time (if any) of refresh token cookies.
+* Added the `authorizationServerId` property, which allows the developer to specify the Okta Authorization Server to use (instead of relying on auto-discovery).
+* Added the `web.oauth2.password.defaultScope` property, which sets the default scopes (if any) that are sent during a Password Grant request.
 
 ## Version 7.0.0
 
